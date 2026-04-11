@@ -18,7 +18,8 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-(--z-sticky) border-b border-border bg-background md:isolate",
+        "fixed inset-x-0 top-0 z-(--z-sticky) border-b border-border bg-background",
+        "md:sticky md:inset-x-auto md:top-0 md:isolate",
         className,
       )}
     >
