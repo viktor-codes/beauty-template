@@ -1,4 +1,4 @@
-import { Calendar, List } from "@phosphor-icons/react/ssr";
+import { Calendar, ListIcon } from "@phosphor-icons/react/ssr";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md",
+        "sticky top-0 z-(--z-sticky) border-b border-border bg-background md:isolate",
         className,
       )}
     >
@@ -25,7 +25,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
         <div className="grid grid-cols-3 items-center gap-2 md:hidden">
           <div className="flex justify-start">
             <span className={iconFrameClass} aria-hidden="true">
-              <List className="h-6 w-6" weight="light" />
+              <ListIcon className="h-6 w-6" weight="light" />
             </span>
           </div>
           <div className="flex min-w-0 justify-center">
@@ -39,7 +39,10 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
           <div className="flex justify-end">
             <Link
               href={content.cta.href}
-              className={cn(iconFrameClass, "transition-colors hover:bg-surface")}
+              className={cn(
+                iconFrameClass,
+                "transition-colors hover:bg-surface",
+              )}
               aria-label={content.cta.label}
             >
               <Calendar className="h-6 w-6" weight="light" aria-hidden />
@@ -73,8 +76,8 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
         </div>
       </div>
       <nav
-        className="flex gap-4 overflow-x-auto border-t border-border px-4 py-2 lg:hidden"
-        aria-label="Primary mobile"
+        className="hidden gap-4 overflow-x-auto border-t border-border px-4 py-2 md:flex lg:hidden"
+        aria-label="Primary tablet"
       >
         {content.links.map((link) => (
           <Link

@@ -10,6 +10,21 @@
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-playfair), ui-serif, Georgia, "Times New Roman",
     serif;
+
+  /*
+   * Z-index tokens — one scale, no magic numbers.
+   * https://css-tricks.com/the-value-of-z-index/
+   * Use z-(--z-*) in markup. Pair related layers with calc(var(--z-overlay) - 1), etc.
+   */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-toast: 200;
+  --z-dropdown: 300;
+  --z-overlay: 400;
+  --z-modal: 500;
+  /* Inside components that create a stacking context (e.g. isolate): */
+  --z-internal-bottom: -10;
+  --z-internal-top: 10;
 }
 
 body {
