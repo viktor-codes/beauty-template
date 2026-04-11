@@ -1,4 +1,4 @@
-import { Calendar, ListIcon } from "@phosphor-icons/react/ssr";
+import { CalendarIcon, ListIcon } from "@phosphor-icons/react/ssr";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -45,7 +45,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
               )}
               aria-label={content.cta.label}
             >
-              <Calendar className="h-6 w-6" weight="light" aria-hidden />
+              <CalendarIcon className="h-6 w-6" weight="light" aria-hidden />
             </Link>
           </div>
         </div>
@@ -57,7 +57,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
             Studio
           </Link>
           <nav
-            className="hidden min-w-0 flex-1 justify-center gap-6 lg:flex"
+            className="hidden min-w-0 flex-1 justify-center gap-4 md:flex lg:gap-6"
             aria-label="Primary"
           >
             {content.links.map((link) => (
@@ -75,20 +75,6 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
           </Button>
         </div>
       </div>
-      <nav
-        className="hidden gap-4 overflow-x-auto border-t border-border px-4 py-2 md:flex lg:hidden"
-        aria-label="Primary tablet"
-      >
-        {content.links.map((link) => (
-          <Link
-            key={`${link.label}-${link.href}`}
-            href={link.href}
-            className="shrink-0 text-xs text-muted hover:text-primary"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </nav>
     </header>
   );
 }
