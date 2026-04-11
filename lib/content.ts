@@ -25,7 +25,7 @@ export const content = {
     primaryCta: { label: "Book a consultation", href: "#booking" },
     secondaryCta: { label: "View services", href: "#services" },
     image: {
-      src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80",
+      src: "/hero.jpg",
       alt: "Calm treatment room with natural light and minimal decor",
       width: 1200,
       height: 800,

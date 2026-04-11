@@ -6,8 +6,10 @@ import { Section } from "@/components/shared/section";
 import type { HeroContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 
-export interface HeroSectionProps
-  extends Omit<HTMLAttributes<HTMLElement>, "content"> {
+export interface HeroSectionProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "content"
+> {
   content: HeroContent;
 }
 
@@ -21,10 +23,7 @@ export function HeroSection({
     <Section
       id={id}
       hasContainer={false}
-      className={cn(
-        "bg-surface pb-16 pt-8 md:pb-24 md:pt-12",
-        className,
-      )}
+      className={cn("bg-surface pb-16 pt-8 md:pb-24 md:pt-12", className)}
       {...rest}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -52,7 +51,7 @@ export function HeroSection({
               </Button>
             </div>
           </div>
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border shadow-sm lg:aspect-[3/4]">
+          <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-border shadow-sm lg:aspect-[3/4]">
             <Image
               src={content.image.src}
               alt={content.image.alt}
