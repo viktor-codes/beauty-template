@@ -15,14 +15,14 @@ export const content = {
       { label: "FAQ", href: "#faq" },
       { label: "Contact", href: "#contact" },
     ],
-    cta: { label: "Book a consultation", href: "#booking" },
+    cta: { label: "Book a consultation", href: "#contact" },
   },
   hero: {
     eyebrow: "Cosmetology studio",
     title: "Confidence that shows in every reflection",
     subtitle:
       "Personalized treatments, calm atmosphere, and results you can see—without the hard sell.",
-    primaryCta: { label: "Book a consultation", href: "#booking" },
+    primaryCta: { label: "Book a consultation", href: "#contact" },
     secondaryCta: { label: "View services", href: "#services" },
     image: {
       src: "/hero.jpg",
@@ -74,13 +74,6 @@ export const content = {
     eyebrow: "Results & mood",
     title: "A glimpse inside the studio",
     instagramUrl: "https://www.instagram.com/",
-  },
-  booking: {
-    eyebrow: "Scheduling",
-    title: "Pick a time that fits your week",
-    description:
-      "Choose a slot below. You will receive a confirmation with preparation notes—no account required.",
-    calendlyUrl: "https://calendly.com/your-handle/consultation",
   },
   reviews: {
     eyebrow: "Client voices",

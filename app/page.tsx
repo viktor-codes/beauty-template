@@ -1,5 +1,4 @@
 import { AboutSection } from "@/components/sections/about-section";
-import { BookingSection } from "@/components/sections/booking-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { GallerySection } from "@/components/sections/gallery-section";
@@ -19,7 +18,6 @@ export default function Home() {
         <AboutSection content={content.about} />
         <ServicesSection content={content.services} />
         <GallerySection content={content.gallery} />
-        <BookingSection content={content.booking} />
         <ReviewsSection content={content.reviews} />
         <FAQSection content={content.faq} />
         <ContactSection content={content.contact} />

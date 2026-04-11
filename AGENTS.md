@@ -22,7 +22,6 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Icons**: `@phosphor-icons/react` (weights: thin/light for beauty aesthetic).
 - **Fonts**: `next/font` only (Playfair Display for headings, Montserrat for body).
 - **Forms**: Resend (Server Actions) + Zod for validation.
-- **Booking**: Calendly (Lazy loaded via `dynamic()`).
 
 ## 3. TAILWIND CSS v4 (MANDATORY)
 

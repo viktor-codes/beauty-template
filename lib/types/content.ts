@@ -59,13 +59,6 @@ export interface GalleryContent {
   instagramUrl: string;
 }
 
-export interface BookingContent {
-  eyebrow: string;
-  title: string;
-  description: string;
-  calendlyUrl: string;
-}
-
 export interface ReviewItem {
   quote: string;
   authorName: string;
@@ -115,7 +108,6 @@ export interface LandingContent {
   about: AboutContent;
   services: ServicesContent;
   gallery: GalleryContent;
-  booking: BookingContent;
   reviews: ReviewsContent;
   faq: FAQContent;
   contact: ContactContent;
