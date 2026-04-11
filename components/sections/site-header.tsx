@@ -1,6 +1,7 @@
-import { CalendarIcon, ListIcon } from "@phosphor-icons/react/ssr";
+import { CalendarHeartIcon } from "@phosphor-icons/react/ssr";
 import Link from "next/link";
 
+import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";
 import { Button } from "@/components/ui/button";
 import type { NavContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
@@ -24,9 +25,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
       <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-3 items-center gap-2 md:hidden">
           <div className="flex justify-start">
-            <span className={iconFrameClass} aria-hidden="true">
-              <ListIcon className="h-6 w-6" weight="light" />
-            </span>
+            <MobileMenuBurgerTrigger nav={content} />
           </div>
           <div className="flex min-w-0 justify-center">
             <Link
@@ -45,7 +44,11 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
               )}
               aria-label={content.cta.label}
             >
-              <CalendarIcon className="h-6 w-6" weight="light" aria-hidden />
+              <CalendarHeartIcon
+                className="h-6 w-6"
+                weight="light"
+                aria-hidden
+              />
             </Link>
           </div>
         </div>

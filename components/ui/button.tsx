@@ -1,5 +1,9 @@
 import Link from "next/link";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type {
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+  ReactNode,
+} from "react";
 
 import { cn } from "@/lib/cn";
 
@@ -42,6 +46,7 @@ export function Button({
   href,
   target,
   rel,
+  onClick,
   ...rest
 }: ButtonProps) {
   const classes = cn(
@@ -60,6 +65,7 @@ export function Button({
         rel={rel}
         aria-disabled={isDisabled ? true : undefined}
         tabIndex={isDisabled ? -1 : undefined}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
       >
         {children}
       </Link>
