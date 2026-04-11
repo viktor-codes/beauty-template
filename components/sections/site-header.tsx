@@ -30,7 +30,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
         >
           {content.links.map((link) => (
             <Link
-              key={link.href}
+              key={`${link.label}-${link.href}`}
               href={link.href}
               className="text-sm text-muted transition-colors hover:text-primary"
             >
@@ -48,7 +48,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
       >
         {content.links.map((link) => (
           <Link
-            key={link.href}
+            key={`${link.label}-${link.href}`}
             href={link.href}
             className="shrink-0 text-xs text-muted hover:text-primary"
           >

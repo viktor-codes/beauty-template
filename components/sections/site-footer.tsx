@@ -19,7 +19,7 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
           {content.links.map((link) => (
             <Link
-              key={link.href}
+              key={`${link.label}-${link.href}`}
               href={link.href}
               className="text-sm text-muted transition-colors hover:text-primary"
             >
@@ -33,7 +33,7 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
           <div className="flex flex-wrap gap-4">
             {content.legal.links.map((link) => (
               <Link
-                key={link.href}
+                key={`legal-${link.label}-${link.href}`}
                 href={link.href}
                 className="text-xs text-muted hover:text-primary"
               >
