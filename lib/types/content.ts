@@ -13,12 +13,20 @@ export interface NavContent {
   cta: ContentLink;
 }
 
+export interface HeroImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface HeroContent {
   eyebrow: string;
   title: string;
   subtitle: string;
   primaryCta: ContentLink;
   secondaryCta: ContentLink;
+  image: HeroImage;
 }
 
 export interface AboutStat {
