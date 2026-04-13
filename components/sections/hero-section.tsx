@@ -54,10 +54,22 @@ export function HeroSection({
             </h1>
           </div>
           <div className="relative flex w-full justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:min-h-0 md:items-center md:justify-center">
-            {/* <div
+            <div
               aria-hidden
               className="pointer-events-none absolute top-[45%] left-1/2 z-0 h-[min(60rem,calc(72vw*2))] w-[min(78rem,calc(92vw*2))] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,color-mix(in_srgb,var(--color-accent)_55%,transparent)_0%,transparent_68%)] blur-3xl md:top-1/2"
-            /> */}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute bottom-[8%] left-[2%] z-1 hidden max-w-[28vw] max-md:block"
+            >
+              <Image
+                src="/leave.svg"
+                alt=""
+                width={187}
+                height={356}
+                className="h-auto w-full opacity-90"
+              />
+            </div>
             <Image
               src={content.image.src}
               alt={content.image.alt}
@@ -68,6 +80,18 @@ export function HeroSection({
               sizes="(max-width: 767px) 100vw, 50vw"
               className="relative z-10 h-auto w-full max-w-full object-contain translate-x-3"
             />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute top-[8%] right-[2%] z-1 hidden max-w-[28vw] max-md:block"
+            >
+              <Image
+                src="/leave.svg"
+                alt=""
+                width={187}
+                height={356}
+                className="h-auto w-full -scale-x-100 opacity-90"
+              />
+            </div>
           </div>
           <div className="text-center md:col-start-1 md:row-start-2 md:text-left">
             <p className="mx-auto max-w-xl text-base leading-relaxed text-muted md:mx-0">
