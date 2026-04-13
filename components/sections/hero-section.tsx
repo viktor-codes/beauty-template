@@ -28,7 +28,7 @@ export function HeroSection({
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src="/hero-bg-1.jpg"
+          src="/hero-bg.jpg"
           alt=""
           fill
           priority
