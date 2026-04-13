@@ -35,7 +35,7 @@ export function HeroSection({
           sizes="100vw"
           loading="eager"
           fetchPriority="high"
-          className="object-cover opacity-80 transform-[scaleX(-1)]"
+          className="object-cover opacity-90 transform-[scaleX(-1)]"
           aria-hidden
         />
       </div>
