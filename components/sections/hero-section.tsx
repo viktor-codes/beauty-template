@@ -45,7 +45,7 @@ export function HeroSection({
       />
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-stretch md:gap-14">
-          <div className="md:col-start-1 md:row-start-1">
+          <div className="text-center md:col-start-1 md:row-start-1 md:text-left">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
               {content.eyebrow}
             </p>
@@ -65,11 +65,11 @@ export function HeroSection({
               className="h-auto w-full max-w-full object-contain"
             />
           </div>
-          <div className="md:col-start-1 md:row-start-2">
-            <p className="max-w-xl text-base leading-relaxed text-muted">
+          <div className="text-center md:col-start-1 md:row-start-2 md:text-left">
+            <p className="mx-auto max-w-xl text-base leading-relaxed text-muted md:mx-0">
               {content.subtitle}
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4 md:justify-start">
               <Button href={content.primaryCta.href} size="lg">
                 {content.primaryCta.label}
               </Button>
