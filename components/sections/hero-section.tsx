@@ -47,7 +47,7 @@ export function HeroSection({
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
               {content.eyebrow}
             </p>
-            <h1 className="mt-4 font-heading text-4xl leading-tight tracking-tight text-primary md:text-5xl lg:text-6xl">
+            <h1 className="text-pretty mt-4 font-heading  text-[clamp(2.25rem,calc(6vw+1.5rem),5rem)] font-medium leading-[1.1] text-primary">
               {content.title}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
