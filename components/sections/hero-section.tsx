@@ -44,15 +44,29 @@ export function HeroSection({
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
-          <div className="order-2 md:order-1">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-stretch md:gap-14">
+          <div className="md:col-start-1 md:row-start-1">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
               {content.eyebrow}
             </p>
             <h1 className="text-pretty mt-4 font-heading text-[clamp(2.25rem,calc(4vw+1.5rem),5rem)] font-medium leading-[1.1] text-primary">
               {content.title}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
+          </div>
+          <div className="flex w-full justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:min-h-0 md:items-center md:justify-center">
+            <Image
+              src={content.image.src}
+              alt={content.image.alt}
+              width={content.image.width}
+              height={content.image.height}
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 767px) 100vw, 50vw"
+              className="h-auto w-full max-w-full object-contain"
+            />
+          </div>
+          <div className="md:col-start-1 md:row-start-2">
+            <p className="max-w-xl text-base leading-relaxed text-muted">
               {content.subtitle}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -67,18 +81,6 @@ export function HeroSection({
                 {content.secondaryCta.label}
               </Button>
             </div>
-          </div>
-          <div className="relative order-1 w-full overflow-hidden md:order-2">
-            <Image
-              src={content.image.src}
-              alt={content.image.alt}
-              width={content.image.width}
-              height={content.image.height}
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 767px) 100vw, 50vw"
-              className="h-full w-full object-cover"
-            />
           </div>
         </div>
       </div>
