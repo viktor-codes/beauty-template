@@ -66,7 +66,7 @@ export function HeroSection({
               priority
               fetchPriority="high"
               sizes="(max-width: 767px) 100vw, 50vw"
-              className="relative z-10 h-auto w-full max-w-full object-contain"
+              className="relative z-10 h-auto w-full max-w-full object-contain translate-x-3"
             />
           </div>
           <div className="text-center md:col-start-1 md:row-start-2 md:text-left">
