@@ -22,15 +22,13 @@ export function Section({
       id={id}
       className={cn(
         "py-16 md:py-24",
-        id ? "scroll-mt-24 md:scroll-mt-28" : null,
+        id ? "scroll-mt-18 md:scroll-mt-16" : null,
         className,
       )}
       {...rest}
     >
       {hasContainer ? (
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          {children}
-        </div>
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">{children}</div>
       ) : (
         children
       )}

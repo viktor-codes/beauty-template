@@ -6,12 +6,14 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin", "cyrillic"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin", "cyrillic"],
   display: "swap",
+  weight: ["500", "700"],
 });
 
 export const metadata: Metadata = {

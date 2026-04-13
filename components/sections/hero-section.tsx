@@ -23,10 +23,25 @@ export function HeroSection({
     <Section
       id={id}
       hasContainer={false}
-      className={cn("bg-surface pb-16 pt-8 md:pb-24 md:pt-12", className)}
+      className={cn("relative overflow-hidden", className)}
       {...rest}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <Image
+          src="/hero-bg-1.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover transform-[scaleX(-1)] opacity-80"
+          aria-hidden
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-0 z-1 bg-surface/75"
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
