@@ -51,7 +51,7 @@ export function HeroSection({
               </Button>
             </div>
           </div>
-          <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-border shadow-sm lg:aspect-[3/4]">
+          <div className="relative w-full overflow-hidden">
             <Image
               src={content.image.src}
               alt={content.image.alt}
