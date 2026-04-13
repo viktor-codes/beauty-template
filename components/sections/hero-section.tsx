@@ -44,12 +44,12 @@ export function HeroSection({
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+          <div className="order-2 md:order-1">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
               {content.eyebrow}
             </p>
-            <h1 className="text-pretty mt-4 font-heading text-[clamp(2.25rem,calc(6vw+1.5rem),5rem)] font-medium leading-[1.1] text-primary">
+            <h1 className="text-pretty mt-4 font-heading text-[clamp(2.25rem,calc(4vw+1.5rem),5rem)] font-medium leading-[1.1] text-primary">
               {content.title}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
@@ -68,7 +68,7 @@ export function HeroSection({
               </Button>
             </div>
           </div>
-          <div className="relative w-full overflow-hidden">
+          <div className="relative order-1 w-full overflow-hidden md:order-2">
             <Image
               src={content.image.src}
               alt={content.image.alt}
@@ -76,7 +76,7 @@ export function HeroSection({
               height={content.image.height}
               priority
               fetchPriority="high"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 767px) 100vw, 50vw"
               className="h-full w-full object-cover"
             />
           </div>
