@@ -28,12 +28,13 @@ export function HeroSection({
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src="/hero-bg.jpg"
+          src="/hero-bg.webp"
           alt=""
           fill
-          priority
           sizes="100vw"
-          className="object-cover transform-[scaleX(-1)] opacity-80"
+          loading="eager"
+          fetchPriority="high"
+          className="object-cover opacity-80 transform-[scaleX(-1)]"
           aria-hidden
         />
       </div>
@@ -47,7 +48,7 @@ export function HeroSection({
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
               {content.eyebrow}
             </p>
-            <h1 className="text-pretty mt-4 font-heading  text-[clamp(2.25rem,calc(6vw+1.5rem),5rem)] font-medium leading-[1.1] text-primary">
+            <h1 className="text-pretty mt-4 font-heading text-[clamp(2.25rem,calc(6vw+1.5rem),5rem)] font-medium leading-[1.1] text-primary">
               {content.title}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
@@ -73,6 +74,7 @@ export function HeroSection({
               width={content.image.width}
               height={content.image.height}
               priority
+              fetchPriority="high"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-full w-full object-cover"
             />
