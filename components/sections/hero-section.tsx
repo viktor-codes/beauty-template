@@ -24,7 +24,7 @@ export function HeroSection({
     <Section
       id={id}
       hasContainer={false}
-      className={cn("relative overflow-hidden", className)}
+      className={cn("relative overflow-hidden py-24 md:py-32", className)}
       {...rest}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -53,7 +53,11 @@ export function HeroSection({
               {content.title}
             </h1>
           </div>
-          <div className="flex w-full justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:min-h-0 md:items-center md:justify-center">
+          <div className="relative flex w-full justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:min-h-0 md:items-center md:justify-center">
+            {/* <div
+              aria-hidden
+              className="pointer-events-none absolute top-[45%] left-1/2 z-0 h-[min(60rem,calc(72vw*2))] w-[min(78rem,calc(92vw*2))] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,color-mix(in_srgb,var(--color-accent)_55%,transparent)_0%,transparent_68%)] blur-3xl md:top-1/2"
+            /> */}
             <Image
               src={content.image.src}
               alt={content.image.alt}
@@ -62,7 +66,7 @@ export function HeroSection({
               priority
               fetchPriority="high"
               sizes="(max-width: 767px) 100vw, 50vw"
-              className="h-auto w-full max-w-full object-contain"
+              className="relative z-10 h-auto w-full max-w-full object-contain"
             />
           </div>
           <div className="text-center md:col-start-1 md:row-start-2 md:text-left">
