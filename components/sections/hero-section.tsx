@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { HTMLAttributes } from "react";
 
+import heroBg from "@/assets/hero-bg.webp";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/shared/section";
 import type { HeroContent } from "@/lib/types/content";
@@ -28,7 +29,7 @@ export function HeroSection({
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src="/hero-bg.webp"
+          src={heroBg}
           alt=""
           fill
           sizes="100vw"
