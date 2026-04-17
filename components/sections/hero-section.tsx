@@ -69,16 +69,22 @@ export function HeroSection({
                 className="h-auto w-full opacity-70 -scale-y-100 blur-[0.6px]"
               />
             </div>
-            <Image
-              src={content.image.src}
-              alt={content.image.alt}
-              width={content.image.width}
-              height={content.image.height}
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 800px) 100vw, 50vw"
-              className="relative z-10 w-2/3 h-auto md:w-full max-w-full object-contain object-bottom self-end"
-            />
+            <div className="relative z-10 w-2/3 md:w-full max-w-full self-end">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-[8%] bottom-[6%] top-[18%] z-0 rounded-full bg-radial from-accent/28 via-accent/10 to-transparent blur-2xl md:blur-3xl"
+              />
+              <Image
+                src={content.image.src}
+                alt={content.image.alt}
+                width={content.image.width}
+                height={content.image.height}
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 800px) 100vw, 50vw"
+                className="relative z-10 h-auto w-full object-contain object-bottom drop-shadow-[0_10px_18px_rgba(0,0,0,0.10)]"
+              />
+            </div>
             <div
               aria-hidden
               className="pointer-events-none absolute top-[8%] right-[2%] z-20 hidden max-w-[28vw] max-md:block"
