@@ -53,28 +53,28 @@ export const content = {
         title: "Skin & maintenance",
         description:
           "Facials, peels, and skin-first protocols chosen for clarity, glow, and long-term balance.",
-        href: "/services",
+        href: "/services/aesthetic-treatments",
       },
       {
         id: "services-category-injections",
         title: "Injectables (natural results)",
         description:
           "Hydration, collagen support, and subtle structure—planned conservatively and safely.",
-        href: "/services",
+        href: "/services/aesthetic-injections",
       },
       {
         id: "services-category-advanced",
         title: "Advanced clinic treatments",
         description:
           "Device-based tightening and resurfacing when you want more visible change with a protocol.",
-        href: "/services",
+        href: "/services/advanced-aesthetic-treatments",
       },
       {
         id: "services-category-laser",
         title: "Laser hair removal",
         description:
           "Course-based sessions tailored to hair type and skin tone for consistent, comfortable results.",
-        href: "/services",
+        href: "/services/laser-hair-removal",
       },
     ],
     goals: [
