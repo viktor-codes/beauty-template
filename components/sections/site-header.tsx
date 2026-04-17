@@ -1,5 +1,6 @@
 import { CalendarHeartIcon } from "@phosphor-icons/react/ssr";
 import Link from "next/link";
+import Image from "next/image";
 
 import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";
 import { Button } from "@/components/ui/button";
@@ -33,7 +34,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
               href="#hero"
               className="truncate font-heading text-lg tracking-tight text-primary"
             >
-              Studio
+              <Image src="/logo.svg" alt="Studio" width={100} height={100} />
             </Link>
           </div>
           <div className="flex justify-end">
@@ -58,7 +59,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
             href="#hero"
             className="shrink-0 font-heading text-lg tracking-tight text-primary"
           >
-            Studio
+            <Image src="/logo.svg" alt="Studio" width={100} height={100} />
           </Link>
           <nav
             className="hidden min-w-0 flex-1 justify-center gap-4 md:flex lg:gap-6"

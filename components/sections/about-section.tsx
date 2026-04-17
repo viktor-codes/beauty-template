@@ -1,12 +1,16 @@
 import type { HTMLAttributes } from "react";
 
+import Image from "next/image";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import type { AboutContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 
-export interface AboutSectionProps
-  extends Omit<HTMLAttributes<HTMLElement>, "content"> {
+export interface AboutSectionProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "content"
+> {
   content: AboutContent;
 }
 
@@ -38,6 +42,34 @@ export function AboutSection({
           </li>
         ))}
       </ul>
+
+      <div className="mx-auto mt-10 max-w-5xl">
+        <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          Trusted brands I work with
+        </p>
+        <ul className="mt-5 flex flex-wrap items-center justify-center gap-4">
+          {[
+            { src: "/logos/esse.png", alt: "Esse" },
+            { src: "/logos/jan-marini.png", alt: "Jan Marini" },
+            { src: "/logos/obagi.png", alt: "Obagi" },
+            { src: "/logos/zo.png", alt: "ZO Skin Health" },
+          ].map((logo) => (
+            <li
+              key={logo.src}
+              className="flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
+            >
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={140}
+                height={44}
+                className="h-6 w-auto opacity-95 brightness-0 invert"
+                loading="lazy"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </Section>
   );
 }
