@@ -20,6 +20,25 @@ export const metadata: Metadata = {
   title: "Studio — Cosmetology",
   description:
     "Personalized cosmetology treatments, calm atmosphere, and natural-looking results.",
+  manifest: "/favicon/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon.ico" },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+      {
+        url: "/favicon/favicon-96x96.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+    ],
+    apple: [
+      {
+        url: "/favicon/apple-touch-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
