@@ -18,7 +18,10 @@ export function Breadcrumbs({ items, className, ...rest }: BreadcrumbsProps) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className={cn("text-sm text-muted", className)}
+      className={cn(
+        "mb-8 text-sm text-muted md:mb-10",
+        className,
+      )}
       {...rest}
     >
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
