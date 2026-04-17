@@ -13,9 +13,14 @@ const iconFrameClass =
 export interface SiteHeaderProps {
   content: NavContent;
   className?: string;
+  homeHref?: string;
 }
 
-export function SiteHeader({ content, className }: SiteHeaderProps) {
+export function SiteHeader({
+  content,
+  className,
+  homeHref = "#hero",
+}: SiteHeaderProps) {
   return (
     <header
       className={cn(
@@ -31,7 +36,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
           </div>
           <div className="flex min-w-0 justify-center">
             <Link
-              href="#hero"
+              href={homeHref}
               className="truncate font-heading text-lg tracking-tight text-primary"
             >
               <Image src="/logo.svg" alt="Studio" width={100} height={100} />
@@ -56,7 +61,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
         </div>
         <div className="hidden items-center justify-between gap-4 md:flex">
           <Link
-            href="#hero"
+            href={homeHref}
             className="shrink-0 font-heading text-lg tracking-tight text-primary"
           >
             <Image src="/logo.svg" alt="Studio" width={100} height={100} />
