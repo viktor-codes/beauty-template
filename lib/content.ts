@@ -47,28 +47,45 @@ export const content = {
     title: "Treatments designed around you",
     description:
       "From maintenance facials to advanced protocols—always explained in plain language, always optional add-ons, never pressure.",
-    items: [
+    categories: [
       {
-        title: "Skin analysis & consultation",
+        id: "services-category-skin",
+        title: "Skin & maintenance",
         description:
-          "A full assessment and a roadmap so you know what to expect, when, and why.",
+          "Facials, peels, and skin-first protocols chosen for clarity, glow, and long-term balance.",
+        href: "/services",
       },
       {
-        title: "Facial treatments",
+        id: "services-category-injections",
+        title: "Injectables (natural results)",
         description:
-          "Deep cleansing, hydration, and glow-focused protocols for everyday radiance.",
+          "Hydration, collagen support, and subtle structure—planned conservatively and safely.",
+        href: "/services",
       },
       {
-        title: "Peels & renewal",
+        id: "services-category-advanced",
+        title: "Advanced clinic treatments",
         description:
-          "Controlled exfoliation to refine texture and even tone with careful aftercare.",
+          "Device-based tightening and resurfacing when you want more visible change with a protocol.",
+        href: "/services",
       },
       {
-        title: "Body care",
+        id: "services-category-laser",
+        title: "Laser hair removal",
         description:
-          "Targeted rituals for smooth, nourished skin beyond the face.",
+          "Course-based sessions tailored to hair type and skin tone for consistent, comfortable results.",
+        href: "/services",
       },
     ],
+    goals: [
+      { id: "goal-glow", title: "Glow", href: "/services" },
+      { id: "goal-texture", title: "Texture", href: "/services" },
+      { id: "goal-acne", title: "Acne control", href: "/services" },
+      { id: "goal-pigmentation", title: "Pigmentation", href: "/services" },
+      { id: "goal-firmness", title: "Firmness", href: "/services" },
+      { id: "goal-hair", title: "Hair loss", href: "/services" },
+    ],
+    cta: { label: "View all services", href: "/services" },
   },
   gallery: {
     eyebrow: "Results & mood",
