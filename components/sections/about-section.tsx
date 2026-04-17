@@ -22,15 +22,39 @@ export function AboutSection({
 }: AboutSectionProps) {
   return (
     <Section id={id} className={cn("bg-background", className)} {...rest}>
-      <SectionHeading
-        eyebrow={content.eyebrow}
-        title={content.title}
-        align="center"
-        className="mx-auto max-w-3xl"
-      />
-      <p className="mx-auto max-w-2xl text-center text-base leading-relaxed text-muted">
-        {content.description}
-      </p>
+      <div className="mx-auto max-w-6xl">
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
+          <div>
+            <SectionHeading
+              eyebrow={content.eyebrow}
+              title={content.title}
+              align="left"
+              className="max-w-xl"
+            />
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
+              {content.description
+                .split("\n\n")
+                .filter(Boolean)
+                .map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+            </div>
+          </div>
+
+          <div className="mx-auto w-full max-w-md md:max-w-none">
+            <div className="relative aspect-4/5 overflow-hidden rounded-3xl border border-border bg-surface/50">
+              <Image
+                src="/about.webp"
+                alt="Inna Chernovol in the studio"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <ul className="mt-12 grid gap-6 sm:grid-cols-3">
         {content.stats.map((stat) => (
           <li
@@ -52,6 +76,7 @@ export function AboutSection({
             { src: "/logos/esse.png", alt: "Esse" },
             { src: "/logos/jan-marini.png", alt: "Jan Marini" },
             { src: "/logos/obagi.png", alt: "Obagi" },
+            { src: "/logos/is-clinical.png", alt: "Is Clinical" },
             { src: "/logos/zo.png", alt: "ZO Skin Health" },
           ].map((logo) => (
             <li

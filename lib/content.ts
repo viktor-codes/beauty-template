@@ -32,10 +32,10 @@ export const content = {
     },
   },
   about: {
-    eyebrow: "About the studio",
-    title: "Where expertise meets a gentle touch",
+    eyebrow: "About Inna",
+    title: "The Skinbar by Inna Chernovol",
     description:
-      "We focus on skin health, natural-looking outcomes, and clear expectations from the first visit. Every plan is tailored to your goals, schedule, and comfort level.",
+      "Welcome to The Skinbar by Inna Chernovol, where fulfilling your beauty goals is our priority.\n\nWith over 15 years of experience, I specialize in aesthetic treatments that help you feel rejuvenated and confident. Whether it’s enhancing your lips or providing advanced laser treatments, I offer personalized care using high-quality products to ensure your safety, comfort, and effective results.\n\nTogether, we can create a personalized plan for your unique beauty journey.",
     stats: [
       { value: "15+", label: "Years of practice" },
       { value: "2.5k+", label: "Treatments performed" },
