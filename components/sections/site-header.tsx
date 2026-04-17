@@ -23,7 +23,7 @@ export function SiteHeader({ content, className }: SiteHeaderProps) {
         className,
       )}
     >
-      <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-3 items-center gap-2 md:hidden">
           <div className="flex justify-start">
             <MobileMenuBurgerTrigger nav={content} />

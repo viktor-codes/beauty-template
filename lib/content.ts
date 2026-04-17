@@ -25,7 +25,7 @@ export const content = {
     primaryCta: { label: "Book a consultation", href: "#contact" },
     secondaryCta: { label: "View services", href: "#services" },
     image: {
-      src: "/newera.png",
+      src: "/hero.webp",
       alt: "Calm treatment room with natural light and minimal decor",
       width: 920,
       height: 1170,
@@ -37,7 +37,7 @@ export const content = {
     description:
       "We focus on skin health, natural-looking outcomes, and clear expectations from the first visit. Every plan is tailored to your goals, schedule, and comfort level.",
     stats: [
-      { value: "10+", label: "Years of practice" },
+      { value: "15+", label: "Years of practice" },
       { value: "2.5k+", label: "Treatments performed" },
       { value: "4.9", label: "Average client rating" },
     ],

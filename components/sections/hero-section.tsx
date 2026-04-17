@@ -24,7 +24,10 @@ export function HeroSection({
     <Section
       id={id}
       hasContainer={false}
-      className={cn("relative overflow-hidden py-24 md:py-32", className)}
+      className={cn(
+        "relative overflow-hidden pt-24 pb-0 md:pt-32 md:pb-0",
+        className,
+      )}
       {...rest}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -35,7 +38,7 @@ export function HeroSection({
           sizes="100vw"
           loading="eager"
           fetchPriority="high"
-          className="object-cover opacity-90 transform-[scaleX(-1)]"
+          className="object-cover opacity-40 transform-[scaleX(-1)]"
           aria-hidden
         />
       </div>
@@ -45,7 +48,7 @@ export function HeroSection({
       />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-stretch md:gap-14">
-          <div className="text-center md:col-start-1 md:row-start-1 md:text-left">
+          <div className="order-1 text-center md:order-0 md:col-span-2 md:row-start-1 md:text-left lg:col-span-1 lg:col-start-1">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
               {content.eyebrow}
             </p>
@@ -53,11 +56,7 @@ export function HeroSection({
               {content.title}
             </h1>
           </div>
-          <div className="relative flex w-full justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:min-h-0 md:items-center md:justify-center">
-            {/* <div
-              aria-hidden
-              className="pointer-events-none absolute top-[45%] left-1/2 z-0 h-[min(60rem,calc(72vw*2))] w-[min(78rem,calc(92vw*2))] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,color-mix(in_srgb,var(--color-accent)_55%,transparent)_0%,transparent_68%)] blur-3xl md:top-1/2"
-            /> */}
+          <div className="order-3 relative flex w-full justify-center md:order-0 md:col-start-2 md:row-start-2 md:min-h-0 md:items-center md:justify-end lg:row-span-2 lg:row-start-1">
             <div
               aria-hidden
               className="pointer-events-none absolute bottom-[8%] left-[2%] z-1 hidden max-w-[28vw] max-md:block"
@@ -67,7 +66,7 @@ export function HeroSection({
                 alt=""
                 width={187}
                 height={356}
-                className="h-auto w-full opacity-90"
+                className="h-auto w-full opacity-70"
               />
             </div>
             <Image
@@ -77,8 +76,8 @@ export function HeroSection({
               height={content.image.height}
               priority
               fetchPriority="high"
-              sizes="(max-width: 767px) 100vw, 50vw"
-              className="relative z-10 h-auto w-full max-w-full object-contain translate-x-3"
+              sizes="(max-width: 800px) 100vw, 50vw"
+              className="relative z-10 w-2/3 h-auto md:w-full max-w-full object-contain object-bottom self-end"
             />
             <div
               aria-hidden
@@ -89,11 +88,11 @@ export function HeroSection({
                 alt=""
                 width={187}
                 height={356}
-                className="h-auto w-full -scale-x-100 opacity-90"
+                className="h-auto w-full -scale-x-100 -scale-y-100 opacity-70"
               />
             </div>
           </div>
-          <div className="text-center md:col-start-1 md:row-start-2 md:text-left">
+          <div className="order-2 mb-0 text-center md:order-0 md:mb-8 md:col-start-1 md:row-start-2 md:text-left">
             <p className="mx-auto max-w-xl text-base leading-relaxed text-muted md:mx-0">
               {content.subtitle}
             </p>
