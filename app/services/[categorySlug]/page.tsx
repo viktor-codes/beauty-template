@@ -11,6 +11,7 @@ import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { getServicesCategoryFaq } from "@/lib/services-faq";
 import { servicesCatalog } from "@/lib/services";
+import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 function getCategoryOrThrow(categorySlug: string) {
   const category =
@@ -36,8 +37,14 @@ export async function generateMetadata({
   const category = getCategoryOrThrow(categorySlug);
 
   return {
-    title: `${category.title} — Services`,
+    title: `${category.title} — consultations & protocols`,
     description: category.description,
+    openGraph: {
+      title: `${category.title} | ${SITE_BRAND}`,
+      description: category.description,
+      type: "website",
+      siteName: `${SITE_BRAND} · ${SITE_PRACTITIONER}`,
+    },
   };
 }
 

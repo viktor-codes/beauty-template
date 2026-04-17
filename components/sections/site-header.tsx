@@ -6,6 +6,7 @@ import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burge
 import { Button } from "@/components/ui/button";
 import type { NavContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
+import { SITE_NAME_FULL } from "@/lib/site-metadata";
 
 const iconFrameClass =
   "inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-primary";
@@ -39,7 +40,7 @@ export function SiteHeader({
               href={homeHref}
               className="truncate font-heading text-lg tracking-tight text-primary"
             >
-              <Image src="/logo.svg" alt="Studio" width={100} height={100} />
+              <Image src="/logo.svg" alt={SITE_NAME_FULL} width={100} height={100} />
             </Link>
           </div>
           <div className="flex justify-end">
@@ -64,7 +65,7 @@ export function SiteHeader({
             href={homeHref}
             className="shrink-0 font-heading text-lg tracking-tight text-primary"
           >
-            <Image src="/logo.svg" alt="Studio" width={100} height={100} />
+            <Image src="/logo.svg" alt={SITE_NAME_FULL} width={100} height={100} />
           </Link>
           <nav
             className="hidden min-w-0 flex-1 justify-center gap-4 md:flex lg:gap-6"

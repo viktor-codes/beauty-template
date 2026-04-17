@@ -111,7 +111,7 @@ export function FaqLanding({ content }: { content: FAQContent }) {
             </p>
             <p className="font-heading text-h4 tracking-h4 text-primary">Still deciding?</p>
             <p className="text-sm leading-relaxed text-muted">
-              Share your goal, timeline, and downtime preference—we will narrow options quickly in consultation.
+              Share your goal, timeline, and downtime preference—I’ll narrow options quickly in consultation.
             </p>
           </div>
           <a

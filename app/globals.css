@@ -127,8 +127,8 @@ body {
   color: var(--color-primary);
 }
 
-/* Reviews: infinite horizontal marquee (GPU-friendly transform loop) */
-@keyframes reviews-marquee-scroll {
+/* Horizontal infinite marquee — shared by reviews, brand logos, etc. */
+@keyframes marquee-scroll-x {
   from {
     transform: translate3d(0, 0, 0);
   }
@@ -138,39 +138,122 @@ body {
   }
 }
 
-.reviews-marquee-viewport {
+.marquee-viewport {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
-.reviews-marquee-track {
+/*
+ * Symmetric soft fade in the *visible window* (percent = viewport width).
+ * A mask on the long rail was asymmetric: left % sat on-screen, right % sat off-screen.
+ */
+.marquee-inner {
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+/* Mist + blur — same geometry on both sides (90deg / -90deg mirrors) */
+.marquee-viewport::before,
+.marquee-viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: min(3.75rem, 13vw);
+  pointer-events: none;
+  backdrop-filter: blur(8px) saturate(1.04);
+  -webkit-backdrop-filter: blur(8px) saturate(1.04);
+}
+
+.marquee-viewport::before {
+  left: 0;
+  mask-image: linear-gradient(90deg, #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 100%);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--marquee-edge, var(--color-background)) 50%, transparent)
+      0%,
+    transparent 100%
+  );
+}
+
+.marquee-viewport::after {
+  right: 0;
+  mask-image: linear-gradient(-90deg, #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(-90deg, #000 0%, transparent 100%);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  background: linear-gradient(
+    -90deg,
+    color-mix(in srgb, var(--marquee-edge, var(--color-background)) 50%, transparent)
+      0%,
+    transparent 100%
+  );
+}
+
+.marquee-track {
   display: flex;
   flex-wrap: nowrap;
   flex-shrink: 0;
   width: max-content;
   min-width: max-content;
-  animation: reviews-marquee-scroll 80s linear infinite;
+  animation: marquee-scroll-x var(--marquee-duration, 70s) linear infinite;
   will-change: transform;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .reviews-marquee-viewport:hover .reviews-marquee-track,
-  .reviews-marquee-viewport:focus-within .reviews-marquee-track {
+  .marquee-viewport:hover .marquee-track,
+  .marquee-viewport:focus-within .marquee-track {
     animation-play-state: paused;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reviews-marquee-viewport {
+  .marquee-viewport {
     overflow-x: auto;
     overflow-y: hidden;
   }
 
-  .reviews-marquee-track {
+  .marquee-viewport::before,
+  .marquee-viewport::after {
+    display: none;
+  }
+
+  .marquee-inner {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .marquee-track {
     animation: none !important;
   }
 
-  .reviews-marquee-item--clone {
+  .marquee-item--clone {
     display: none !important;
   }
 }

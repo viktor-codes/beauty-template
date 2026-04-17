@@ -12,13 +12,13 @@ const landingFaqGroups = [
   {
     id: "faq-group-planning",
     title: "Planning & expectations",
-    subtitle: "How we choose, what “realistic” means, and how courses are structured.",
+    subtitle: "How I choose treatments, what “realistic” means, and how courses are structured.",
     items: [
       {
         id: "faq-how-do-i-choose-the-right-treatment",
         question: "How do I choose the right treatment for my skin goals?",
         answer:
-          "We start with a consultation and a quick skin assessment (concerns, sensitivities, medical history, downtime preferences, and your timeline). From there, we recommend the smallest effective plan—often a combination of professional treatments plus a simple home routine (especially daily SPF).",
+          "I start with a consultation and a quick skin assessment (concerns, sensitivities, medical history, downtime preferences, and your timeline). From there, I recommend the smallest effective plan—often a combination of professional treatments plus a simple home routine (especially daily SPF).",
         isDefaultOpen: true,
       },
       {
@@ -31,7 +31,7 @@ const landingFaqGroups = [
         id: "faq-how-many-sessions-do-i-need",
         question: "How many sessions will I need?",
         answer:
-          "It depends on the concern and the treatment intensity. Many skin-quality protocols are planned as a course (commonly 3–6 sessions) with maintenance. During consultation, we’ll outline a schedule with milestones so you know what to expect and when.",
+          "It depends on the concern and the treatment intensity. Many skin-quality protocols are planned as a course (commonly 3–6 sessions) with maintenance. During consultation, I’ll outline a schedule with milestones so you know what to expect and when.",
       },
     ],
   },
@@ -51,14 +51,14 @@ const landingFaqGroups = [
         question:
           "Can I get a peel if I use retinoids, acids, or acne medications?",
         answer:
-          "Possibly, but your routine may need a short pause to protect your skin barrier and reduce irritation. If you’ve used isotretinoin (Accutane) recently, certain resurfacing procedures may be postponed. We’ll give you a simple pre- and post-care plan tailored to your current skincare and medications.",
+          "Possibly, but your routine may need a short pause to protect your skin barrier and reduce irritation. If you’ve used isotretinoin (Accutane) recently, certain resurfacing procedures may be postponed. I’ll give you a simple pre- and post-care plan tailored to your current skincare and medications.",
       },
       {
         id: "faq-cold-sores-and-treatments",
         question:
           "I get cold sores. Can I still do peels, lip fillers, or microneedling?",
         answer:
-          "Yes, but please tell us in advance. Some procedures can trigger a herpes flare in people with a history of cold sores. In many cases, prophylactic antiviral medication is recommended. We’ll guide you based on your history and the treatment area.",
+          "Yes, but please tell me in advance. Some procedures can trigger a herpes flare in people with a history of cold sores. In many cases, prophylactic antiviral medication is recommended. I’ll guide you based on your history and the treatment area.",
       },
     ],
   },
@@ -78,7 +78,7 @@ const landingFaqGroups = [
         question:
           "Will lip fillers look natural? Can you avoid the 'overfilled' look?",
         answer:
-          "Yes. Our approach prioritizes proportion, symmetry, and soft definition. We can build gradually over multiple visits if you want a subtle change. Temporary swelling right after treatment can make lips look larger for a few days before settling.",
+          "Yes. My approach prioritizes proportion, symmetry, and soft definition. I can build gradually over multiple visits if you want a subtle change. Temporary swelling right after treatment can make lips look larger for a few days before settling.",
       },
       {
         id: "faq-collagen-stimulators-vs-ha-fillers",
@@ -90,7 +90,7 @@ const landingFaqGroups = [
         id: "faq-prp-vs-prf",
         question: "PRP vs. PRF: what’s the difference?",
         answer:
-          "Both use your own blood-derived platelets to support regeneration. PRP is typically a platelet-rich plasma with a faster release of growth factors. PRF forms a fibrin matrix and may release growth factors more gradually. We recommend based on the area, your goals, and recovery preferences.",
+          "Both use your own blood-derived platelets to support regeneration. PRP is typically a platelet-rich plasma with a faster release of growth factors. PRF forms a fibrin matrix and may release growth factors more gradually. I recommend based on the area, your goals, and recovery preferences.",
       },
     ],
   },
@@ -122,13 +122,13 @@ const landingFaqGroups = [
         id: "faq-laser-hair-removal-sessions",
         question: "How many laser hair removal sessions do I need?",
         answer:
-          "Hair grows in cycles, so a course is required to target follicles effectively. The exact number depends on the area, hair thickness/color, and hormonal factors. We’ll set expectations and spacing during consultation to keep results consistent and safe.",
+          "Hair grows in cycles, so a course is required to target follicles effectively. The exact number depends on the area, hair thickness/color, and hormonal factors. I’ll set expectations and spacing during consultation to keep results consistent and safe.",
       },
       {
         id: "faq-laser-hair-removal-prep",
         question: "How should I prepare for laser hair removal?",
         answer:
-          "Typically: shave the area before your appointment, avoid tanning/sunburn, and skip waxing/epilators before sessions (they remove the follicle the laser targets). We’ll provide a precise prep checklist for your areas and skin type.",
+          "Typically: shave the area before your appointment, avoid tanning/sunburn, and skip waxing/epilators before sessions (they remove the follicle the laser targets). I’ll provide a precise prep checklist for your areas and skin type.",
       },
       {
         id: "faq-sclerotherapy-what-to-expect",
@@ -147,7 +147,7 @@ const landingFaqGroups = [
         id: "faq-when-not-to-book",
         question: "When should I postpone treatment?",
         answer:
-          "Please postpone if you’re unwell, have an active skin infection, open wounds in the treatment area, a fresh sunburn, or an uncontrolled flare of a skin condition. If you’re pregnant or breastfeeding, some procedures and ingredients may not be recommended—tell us and we’ll suggest safer options.",
+          "Please postpone if you’re unwell, have an active skin infection, open wounds in the treatment area, a fresh sunburn, or an uncontrolled flare of a skin condition. If you’re pregnant or breastfeeding, some procedures and ingredients may not be recommended—tell me and I’ll suggest safer options.",
       },
     ],
   },
@@ -168,10 +168,10 @@ export const content = {
     cta: { label: "Book a consultation", href: "#contact" },
   },
   hero: {
-    eyebrow: "Cosmetology studio",
+    eyebrow: "Skinbar · Inna Chernovol",
     title: "Confidence that shows in every reflection",
     subtitle:
-      "Personalized treatments, calm atmosphere, and results you can see—without the hard sell.",
+      "I personalize every treatment plan in a calm space—results you can see without the hard sell.",
     primaryCta: { label: "Book a consultation", href: "#contact" },
     secondaryCta: { label: "View services", href: "#services" },
     image: {
@@ -183,20 +183,29 @@ export const content = {
   },
   about: {
     eyebrow: "About Inna",
-    title: "The Skinbar by Inna Chernovol",
+    title: "Skinbar by Inna Chernovol",
     description:
-      "Welcome to The Skinbar by Inna Chernovol, where fulfilling your beauty goals is our priority.\n\nWith over 15 years of experience, I specialize in aesthetic treatments that help you feel rejuvenated and confident. Whether it’s enhancing your lips or providing advanced laser treatments, I offer personalized care using high-quality products to ensure your safety, comfort, and effective results.\n\nTogether, we can create a personalized plan for your unique beauty journey.",
+      "Welcome to Skinbar by Inna Chernovol, where your goals are my priority.\n\nWith over 15 years of experience, I specialize in aesthetic treatments that help you feel rejuvenated and confident. Whether it’s enhancing your lips or providing advanced laser treatments, I offer personalized care using high-quality products to ensure your safety, comfort, and effective results.\n\nI’ll build a personalized plan with you for your unique beauty journey.",
     stats: [
       { value: "15+", label: "Years of practice" },
       { value: "2.5k+", label: "Treatments performed" },
       { value: "4.9", label: "Average client rating" },
+    ],
+    brandsEyebrow: "Trusted brands I work with",
+    brandLogos: [
+      { src: "/logos/esse.png", alt: "Esse", width: 140, height: 44 },
+      { src: "/logos/jan-marini.png", alt: "Jan Marini", width: 140, height: 44 },
+      { src: "/logos/obagi.png", alt: "Obagi", width: 140, height: 44 },
+      { src: "/logos/is-clinical.png", alt: "Is Clinical", width: 140, height: 44 },
+      { src: "/logos/zo.png", alt: "ZO Skin Health", width: 140, height: 44 },
+      { src: "/logos/elemis.png", alt: "Elemis", width: 140, height: 44 },
     ],
   },
   services: {
     eyebrow: "What I offer",
     title: "Treatments designed around you",
     description:
-      "From maintenance facials to advanced protocols—always explained in plain language, always optional add-ons, never pressure.",
+      "From maintenance facials to advanced protocols—I explain everything in plain language, optional add-ons only, never pressure.",
     categories: [
       {
         id: "services-category-skin",
@@ -247,7 +256,7 @@ export const content = {
   },
   gallery: {
     eyebrow: "Results & mood",
-    title: "A glimpse inside the studio",
+    title: "A glimpse inside Skinbar",
     instagramUrl: INSTAGRAM_PROFILE_HREF,
   },
   reviews: {
@@ -280,7 +289,7 @@ export const content = {
       },
       {
         quote:
-          "My skin is literally radiant. I am so impressed with the Esse products! My skin has never looked this bright and healthy. Everything we chose works so well together. It's clear you only select the highest quality cosmetics for your clients.",
+          "My skin is literally radiant. I am so impressed with the Esse products! My skin has never looked this bright and healthy. Everything you and I chose works so well together. It's clear you only select the highest quality cosmetics for your clients.",
         authorName: "Verified client",
         authorRole: "Esse skincare results",
       },
@@ -307,22 +316,22 @@ export const content = {
   },
   contact: {
     eyebrow: "Get in touch",
-    title: "We are one message away",
+    title: "I’m one message away",
     description:
-      "Call, email, or use the form—we reply within one business day.",
+      "Call, email, or use the form—I reply within one business day.",
     phone: "+1 (555) 010-0199",
     email: "hello@studio.example.com",
     address: "120 Beauty Lane, Suite 4, New York, NY 10001",
   },
   footer: {
-    tagline: "Cosmetology studio · thoughtful care, visible results",
+    tagline: "Skinbar · Inna Chernovol · thoughtful care, visible results",
     links: [
       { label: "Instagram", href: INSTAGRAM_PROFILE_HREF },
       { label: "Privacy", href: "#" },
       { label: "Terms", href: "#" },
     ],
     legal: {
-      notice: "© 2026 Studio Example. All rights reserved.",
+      notice: "© 2026 Inna Chernovol · Skinbar. All rights reserved.",
       links: [
         { label: "Privacy policy", href: "#" },
         { label: "Terms of use", href: "#" },

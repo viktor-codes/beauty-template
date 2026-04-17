@@ -247,7 +247,7 @@ export const servicesCatalog: ServicesCatalog = {
               id: "sypha",
               title: "Sypha",
               description:
-                "An HA-based lip filler choice aimed at improving lip proportions, hydration, and definition. We prioritize subtle, natural volume and a smooth finish.",
+                "An HA-based lip filler choice aimed at improving lip proportions, hydration, and definition. I prioritize subtle, natural volume and a smooth finish.",
               image: {
                 src: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=900&h=900&q=80",
                 alt: "Aesthetic medicine workspace",

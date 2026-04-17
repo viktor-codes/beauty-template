@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
@@ -17,6 +18,22 @@ import {
   isGoalSlug,
   type GoalSlug,
 } from "@/lib/services-goals";
+import {
+  SITE_BRAND,
+  SITE_PRACTITIONER,
+  SITE_SERVICES_HUB_DESCRIPTION,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: "Cosmetology services & treatment categories",
+  description: SITE_SERVICES_HUB_DESCRIPTION,
+  openGraph: {
+    title: `Cosmetology services | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
+    description: SITE_SERVICES_HUB_DESCRIPTION,
+    type: "website",
+    url: "/services",
+  },
+};
 
 export default async function ServicesPage({
   searchParams,
@@ -45,7 +62,7 @@ export default async function ServicesPage({
         <Breadcrumbs items={breadcrumbs} />
         <SectionHeading
           title="Explore services by category"
-          subtitle="Start with a direction or choose a goal. We'll keep it clear and calm—no overwhelming menus."
+          subtitle="Start with a direction or choose a goal. I keep it clear and calm—no overwhelming menus."
         />
 
         {selectedGoal ? (

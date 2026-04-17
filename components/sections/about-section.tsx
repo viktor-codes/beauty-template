@@ -69,32 +69,45 @@ export function AboutSection({
 
       <div className="mx-auto mt-16 max-w-5xl">
         <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
-          Trusted brands I work with
+          {content.brandsEyebrow}
         </p>
-        <ul className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          {[
-            { src: "/logos/esse.png", alt: "Esse" },
-            { src: "/logos/jan-marini.png", alt: "Jan Marini" },
-            { src: "/logos/obagi.png", alt: "Obagi" },
-            { src: "/logos/is-clinical.png", alt: "Is Clinical" },
-            { src: "/logos/zo.png", alt: "ZO Skin Health" },
-            { src: "/logos/elemis.png", alt: "Elemis" },
-          ].map((logo) => (
-            <li
-              key={logo.src}
-              className="flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
-            >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={140}
-                height={44}
-                className="h-6 w-auto opacity-95 brightness-0 invert"
-                loading="lazy"
-              />
-            </li>
-          ))}
-        </ul>
+        <div className="marquee-viewport mt-8 [--marquee-duration:48s] [--marquee-edge:var(--color-background)]">
+          <div className="marquee-inner">
+            <ul className="marquee-track list-none gap-4 py-1">
+              {content.brandLogos.map((logo) => (
+                <li
+                  key={logo.src}
+                  className="flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={logo.width ?? 140}
+                    height={logo.height ?? 44}
+                    className="h-6 w-auto opacity-95 brightness-0 invert"
+                    loading="lazy"
+                  />
+                </li>
+              ))}
+              {content.brandLogos.map((logo) => (
+                <li
+                  key={`${logo.src}-clone`}
+                  className="marquee-item--clone flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
+                  aria-hidden
+                >
+                  <Image
+                    src={logo.src}
+                    alt=""
+                    width={logo.width ?? 140}
+                    height={logo.height ?? 44}
+                    className="h-6 w-auto opacity-95 brightness-0 invert"
+                    loading="lazy"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </Section>
   );

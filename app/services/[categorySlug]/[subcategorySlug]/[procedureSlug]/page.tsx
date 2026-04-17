@@ -17,6 +17,7 @@ import {
   getServicesSubcategory,
   servicesCatalog,
 } from "@/lib/services";
+import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 function getCategoryOrThrow(categorySlug: string) {
   const category = getServicesCategory(categorySlug);
@@ -81,6 +82,7 @@ export async function generateMetadata({
       title: procedure.title,
       description: procedure.description,
       type: "article",
+      siteName: `${SITE_BRAND} · ${SITE_PRACTITIONER}`,
     },
   };
 }
@@ -155,9 +157,9 @@ export default async function ServiceProcedurePage({
 
             <div className="mt-10 rounded-2xl border border-border bg-surface/50 p-6">
               <p className="text-sm leading-relaxed text-muted">
-                We’ll confirm suitability, expected downtime, and aftercare during your
+                I’ll confirm suitability, expected downtime, and aftercare during your
                 consultation. If you have upcoming events or active skincare (retinoids,
-                peels), mention it so we can plan safely.
+                peels), mention it so I can plan safely.
               </p>
             </div>
 

@@ -34,11 +34,20 @@ export interface AboutStat {
   label: string;
 }
 
+export interface AboutBrandLogo {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
 export interface AboutContent {
   eyebrow: string;
   title: string;
   description: string;
   stats: AboutStat[];
+  brandsEyebrow: string;
+  brandLogos: AboutBrandLogo[];
 }
 
 export interface ServiceItem {

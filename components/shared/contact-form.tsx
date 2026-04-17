@@ -51,7 +51,7 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
           name="message"
           rows={4}
           required
-          placeholder="How can we help?"
+          placeholder="What would you like me to know?"
           className={cn(fieldClass, "resize-y min-h-[120px]")}
         />
       </div>

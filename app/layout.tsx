@@ -2,6 +2,17 @@ import type { Metadata } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
+import {
+  SITE_BRAND,
+  SITE_DEFAULT_DESCRIPTION,
+  SITE_DEFAULT_TITLE,
+  SITE_KEYWORDS,
+  SITE_NAME_FULL,
+  SITE_PRACTITIONER,
+  SITE_TITLE_TEMPLATE,
+  resolveMetadataBase,
+} from "@/lib/site-metadata";
+
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin", "cyrillic"],
@@ -16,11 +27,37 @@ const playfairDisplay = Playfair_Display({
   weight: ["500", "700"],
 });
 
+const metadataBase = resolveMetadataBase();
+
 export const metadata: Metadata = {
-  title: "Studio — Cosmetology",
-  description:
-    "Personalized cosmetology treatments, calm atmosphere, and natural-looking results.",
+  ...(metadataBase ? { metadataBase } : {}),
+  title: {
+    default: SITE_DEFAULT_TITLE,
+    template: SITE_TITLE_TEMPLATE,
+  },
+  description: SITE_DEFAULT_DESCRIPTION,
+  keywords: [...SITE_KEYWORDS],
+  authors: [
+    metadataBase
+      ? { name: SITE_PRACTITIONER, url: metadataBase.origin }
+      : { name: SITE_PRACTITIONER },
+  ],
+  creator: SITE_PRACTITIONER,
+  applicationName: SITE_BRAND,
   manifest: "/favicon/site.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: SITE_NAME_FULL,
+    title: SITE_DEFAULT_TITLE,
+    description: SITE_DEFAULT_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_DEFAULT_TITLE,
+    description: SITE_DEFAULT_DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
   icons: {
     icon: [
       { url: "/favicon/favicon.ico" },

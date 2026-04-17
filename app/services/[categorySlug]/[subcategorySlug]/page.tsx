@@ -15,6 +15,7 @@ import {
   getServicesSubcategory,
   servicesCatalog,
 } from "@/lib/services";
+import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 function getCategoryOrThrow(categorySlug: string) {
   const category = getServicesCategory(categorySlug);
@@ -51,6 +52,12 @@ export async function generateMetadata({
   return {
     title: `${subcategory.title} — ${category.title}`,
     description: subcategory.description,
+    openGraph: {
+      title: `${subcategory.title} | ${SITE_BRAND}`,
+      description: subcategory.description,
+      type: "website",
+      siteName: `${SITE_BRAND} · ${SITE_PRACTITIONER}`,
+    },
   };
 }
 
@@ -152,7 +159,7 @@ export default async function ServicesSubcategoryPage({
 
         <div className="mt-10 rounded-2xl border border-border bg-surface/50 p-6">
           <p className="text-sm leading-relaxed text-muted">
-            Not sure where to start? Book a consultation and we’ll map out the safest,
+            Not sure where to start? Book a consultation and I’ll map out the safest,
             most effective plan for your goal and timeline.
           </p>
           <div className="mt-6 flex flex-wrap gap-4">

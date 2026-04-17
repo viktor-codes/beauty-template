@@ -33,35 +33,37 @@ export function ReviewsSection({
         align="center"
         className="mx-auto max-w-2xl"
       />
-      <div className="reviews-marquee-viewport mt-10 -mx-1 px-1 sm:-mx-2 sm:px-2">
-        <ul className="reviews-marquee-track list-none gap-5 py-1">
-          {items.map((item, index) => (
-            <li
-              key={reviewStableKey(item, index)}
-              className="w-[min(88vw,22rem)] shrink-0 sm:w-80"
-            >
-              <TestimonialCard
-                quote={item.quote}
-                authorName={item.authorName}
-                authorRole={item.authorRole}
-              />
-            </li>
-          ))}
-          {items.map((item, index) => (
-            <li
-              key={`${reviewStableKey(item, index)}-clone`}
-              className="reviews-marquee-item--clone w-[min(88vw,22rem)] shrink-0 sm:w-80"
-              aria-hidden
-            >
-              <TestimonialCard
-                quote={item.quote}
-                authorName={item.authorName}
-                authorRole={item.authorRole}
-                tabIndex={-1}
-              />
-            </li>
-          ))}
-        </ul>
+      <div className="marquee-viewport mt-10 -mx-1 px-1 [--marquee-duration:80s] [--marquee-edge:var(--color-surface)] sm:-mx-2 sm:px-2">
+        <div className="marquee-inner">
+          <ul className="marquee-track list-none gap-5 py-1">
+            {items.map((item, index) => (
+              <li
+                key={reviewStableKey(item, index)}
+                className="w-[min(88vw,22rem)] shrink-0 sm:w-80"
+              >
+                <TestimonialCard
+                  quote={item.quote}
+                  authorName={item.authorName}
+                  authorRole={item.authorRole}
+                />
+              </li>
+            ))}
+            {items.map((item, index) => (
+              <li
+                key={`${reviewStableKey(item, index)}-clone`}
+                className="marquee-item--clone w-[min(88vw,22rem)] shrink-0 sm:w-80"
+                aria-hidden
+              >
+                <TestimonialCard
+                  quote={item.quote}
+                  authorName={item.authorName}
+                  authorRole={item.authorRole}
+                  tabIndex={-1}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </Section>
   );

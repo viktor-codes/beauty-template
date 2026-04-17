@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { AboutSection } from "@/components/sections/about-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { FAQSection } from "@/components/sections/faq-section";
@@ -8,6 +10,20 @@ import { ServicesSection } from "@/components/sections/services-section";
 import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
 import { content } from "@/lib/content";
+import {
+  SITE_DEFAULT_DESCRIPTION,
+  SITE_DEFAULT_TITLE,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: { absolute: SITE_DEFAULT_TITLE },
+  description: SITE_DEFAULT_DESCRIPTION,
+  openGraph: {
+    title: SITE_DEFAULT_TITLE,
+    description: SITE_DEFAULT_DESCRIPTION,
+    url: "/",
+  },
+};
 
 export default function Home() {
   return (

@@ -1,13 +1,6 @@
-import type { Metadata } from "next";
-
 import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
 import { content } from "@/lib/content";
-
-export const metadata: Metadata = {
-  title: "Services — Studio",
-  description: "Explore services by category and goal.",
-};
 
 export default function ServicesLayout({
   children,

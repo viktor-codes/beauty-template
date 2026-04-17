@@ -58,7 +58,7 @@ export function ContactSection({
           <li className="flex gap-3">
             <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" weight="light" aria-hidden />
             <div>
-              <p className="font-medium text-primary">Studio</p>
+              <p className="font-medium text-primary">Skinbar · Inna Chernovol</p>
               <p className="text-muted">{content.address}</p>
             </div>
           </li>
