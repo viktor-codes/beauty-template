@@ -126,3 +126,51 @@ body {
   background-color: var(--color-background);
   color: var(--color-primary);
 }
+
+/* Reviews: infinite horizontal marquee (GPU-friendly transform loop) */
+@keyframes reviews-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.reviews-marquee-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews-marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  width: max-content;
+  min-width: max-content;
+  animation: reviews-marquee-scroll 80s linear infinite;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reviews-marquee-viewport:hover .reviews-marquee-track,
+  .reviews-marquee-viewport:focus-within .reviews-marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-marquee-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .reviews-marquee-track {
+    animation: none !important;
+  }
+
+  .reviews-marquee-item--clone {
+    display: none !important;
+  }
+}

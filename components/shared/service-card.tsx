@@ -59,7 +59,7 @@ export function ServiceCard({
               className="h-20 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               sizes="100vw"
             />
-            <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/0 via-background/40 to-background/60" />
+            <div className="pointer-events-none absolute inset-0 bg-background/45" />
           </div>
 
           {/* Desktop+: image as a soft background on the right third */}
@@ -77,12 +77,7 @@ export function ServiceCard({
               sizes="(min-width: 640px) 33vw, 100vw"
               className="object-cover opacity-85"
             />
-            <div
-              className={cn(
-                "absolute inset-0 from-background/20 via-background/55 to-background/0 backdrop-blur-[0.6px]",
-                isImageOnLeft ? "bg-linear-to-r" : "bg-linear-to-l",
-              )}
-            />
+            <div className="absolute inset-0 bg-background/40 backdrop-blur-[0.6px]" />
           </div>
         </>
       ) : null}

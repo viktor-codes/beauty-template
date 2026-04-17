@@ -93,10 +93,19 @@ export interface FAQItem {
   isDefaultOpen?: boolean;
 }
 
+export interface FAQGroup {
+  id: string;
+  title: string;
+  subtitle?: string;
+  items: FAQItem[];
+}
+
 export interface FAQContent {
   eyebrow: string;
   title: string;
   description?: string;
+  introBullets?: string[];
+  groups?: FAQGroup[];
   items: FAQItem[];
 }
 

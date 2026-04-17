@@ -64,7 +64,7 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata> {
   const { categorySlug, subcategorySlug, procedureSlug } = await params;
-  const category = getCategoryOrThrow(categorySlug);
+  getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
   const procedure = getProcedureOrThrow(categorySlug, subcategorySlug, procedureSlug);
 
@@ -183,7 +183,7 @@ export default async function ServiceProcedurePage({
                   loading="lazy"
                 />
               ) : (
-                <div className="absolute inset-0 bg-linear-to-br from-surface to-background" />
+                <div className="absolute inset-0 bg-surface" />
               )}
             </div>
           </div>

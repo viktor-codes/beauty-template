@@ -3,12 +3,18 @@ import type { HTMLAttributes } from "react";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
-import type { ReviewsContent } from "@/lib/types/content";
+import type { ReviewItem, ReviewsContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 
 export interface ReviewsSectionProps
   extends Omit<HTMLAttributes<HTMLElement>, "content"> {
   content: ReviewsContent;
+}
+
+function reviewStableKey(item: ReviewItem, index: number): string {
+  return item.authorRole
+    ? `review-${item.authorRole}`
+    : `review-${index}-${item.quote.slice(0, 24)}`;
 }
 
 export function ReviewsSection({
@@ -17,6 +23,8 @@ export function ReviewsSection({
   id = "reviews",
   ...rest
 }: ReviewsSectionProps) {
+  const { items } = content;
+
   return (
     <Section id={id} className={cn("bg-surface", className)} {...rest}>
       <SectionHeading
@@ -25,17 +33,36 @@ export function ReviewsSection({
         align="center"
         className="mx-auto max-w-2xl"
       />
-      <ul className="mt-4 grid gap-6 md:grid-cols-3">
-        {content.items.map((item, index) => (
-          <li key={`review-${index}`}>
-            <TestimonialCard
-              quote={item.quote}
-              authorName={item.authorName}
-              authorRole={item.authorRole}
-            />
-          </li>
-        ))}
-      </ul>
+      <div className="reviews-marquee-viewport mt-10 -mx-1 px-1 sm:-mx-2 sm:px-2">
+        <ul className="reviews-marquee-track list-none gap-5 py-1">
+          {items.map((item, index) => (
+            <li
+              key={reviewStableKey(item, index)}
+              className="w-[min(88vw,22rem)] shrink-0 sm:w-80"
+            >
+              <TestimonialCard
+                quote={item.quote}
+                authorName={item.authorName}
+                authorRole={item.authorRole}
+              />
+            </li>
+          ))}
+          {items.map((item, index) => (
+            <li
+              key={`${reviewStableKey(item, index)}-clone`}
+              className="reviews-marquee-item--clone w-[min(88vw,22rem)] shrink-0 sm:w-80"
+              aria-hidden
+            >
+              <TestimonialCard
+                quote={item.quote}
+                authorName={item.authorName}
+                authorRole={item.authorRole}
+                tabIndex={-1}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </Section>
   );
 }
