@@ -66,7 +66,7 @@ export function HeroSection({
                 alt=""
                 width={187}
                 height={356}
-                className="h-auto w-full opacity-70"
+                className="h-auto w-full opacity-70 blur-[0.6px]"
               />
             </div>
             <Image
@@ -81,14 +81,14 @@ export function HeroSection({
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute top-[8%] right-[2%] z-1 hidden max-w-[28vw] max-md:block"
+              className="pointer-events-none absolute top-[8%] right-[2%] z-20 hidden max-w-[28vw] max-md:block"
             >
               <Image
                 src="/leave.svg"
                 alt=""
                 width={187}
                 height={356}
-                className="h-auto w-full -scale-x-100 -scale-y-100 opacity-70"
+                className="h-auto w-full -scale-x-100 -scale-y-100 opacity-90"
               />
             </div>
           </div>
