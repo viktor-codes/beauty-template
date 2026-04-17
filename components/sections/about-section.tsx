@@ -78,6 +78,7 @@ export function AboutSection({
             { src: "/logos/obagi.png", alt: "Obagi" },
             { src: "/logos/is-clinical.png", alt: "Is Clinical" },
             { src: "/logos/zo.png", alt: "ZO Skin Health" },
+            { src: "/logos/elemis.png", alt: "Elemis" },
           ].map((logo) => (
             <li
               key={logo.src}
