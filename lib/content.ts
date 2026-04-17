@@ -43,7 +43,7 @@ export const content = {
     ],
   },
   services: {
-    eyebrow: "What we offer",
+    eyebrow: "What I offer",
     title: "Treatments designed around you",
     description:
       "From maintenance facials to advanced protocols—always explained in plain language, always optional add-ons, never pressure.",
@@ -81,8 +81,16 @@ export const content = {
       { id: "goal-glow", title: "Glow", href: "/services?goal=glow" },
       { id: "goal-texture", title: "Texture", href: "/services?goal=texture" },
       { id: "goal-acne", title: "Acne control", href: "/services?goal=acne" },
-      { id: "goal-pigmentation", title: "Pigmentation", href: "/services?goal=pigmentation" },
-      { id: "goal-firmness", title: "Firmness", href: "/services?goal=firmness" },
+      {
+        id: "goal-pigmentation",
+        title: "Pigmentation",
+        href: "/services?goal=pigmentation",
+      },
+      {
+        id: "goal-firmness",
+        title: "Firmness",
+        href: "/services?goal=firmness",
+      },
       { id: "goal-hair", title: "Hair loss", href: "/services?goal=hair" },
     ],
     cta: { label: "View all services", href: "/services" },

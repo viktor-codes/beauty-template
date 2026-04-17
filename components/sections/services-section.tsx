@@ -2,7 +2,6 @@ import type { CSSProperties, HTMLAttributes } from "react";
 
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ServiceCard } from "@/components/shared/service-card";
 import { getServicesCategory } from "@/lib/services";
@@ -72,20 +71,30 @@ export function ServicesSection({
         ))}
       </ul>
 
-      <div className="mt-10 flex flex-col items-center gap-10">
+      <div className="mt-8 flex flex-col items-center gap-16">
         <Button href={content.cta.href} variant="secondary" size="lg">
           {content.cta.label}
         </Button>
 
-        <div className="w-full max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
+        <div className="w-full max-w-4xl text-center">
+          <p className="type-caption font-semibold uppercase tracking-[0.22em] text-muted">
             or choose by your goal
           </p>
-          <ul className="mt-3 flex flex-wrap justify-center gap-2">
+          <ul className="mt-5 flex flex-wrap justify-center gap-2.5 sm:gap-3">
             {content.goals.map((goal) => (
               <li key={goal.id}>
-                <a href={goal.href} className="no-underline">
-                  <Badge variant="outline">{goal.title}</Badge>
+                <a
+                  href={goal.href}
+                  className={cn(
+                    "no-underline",
+                    "inline-flex min-h-9 items-center rounded-full border border-border bg-background px-3.5 py-1.5",
+                    "text-xs font-medium uppercase tracking-[0.14em] text-primary",
+                    "transition-[color,background-color,border-color,box-shadow] duration-200",
+                    "hover:border-accent/35 hover:bg-surface hover:shadow-sm",
+                    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                  )}
+                >
+                  {goal.title}
                 </a>
               </li>
             ))}
