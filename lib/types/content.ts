@@ -46,11 +46,26 @@ export interface ServiceItem {
   description: string;
 }
 
+export interface ServicesCategoryPreview {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+}
+
+export interface ServicesGoalPreview {
+  id: string;
+  title: string;
+  href: string;
+}
+
 export interface ServicesContent {
   eyebrow: string;
   title: string;
   description: string;
-  items: ServiceItem[];
+  categories: ServicesCategoryPreview[];
+  goals: ServicesGoalPreview[];
+  cta: ContentLink;
 }
 
 export interface GalleryContent {

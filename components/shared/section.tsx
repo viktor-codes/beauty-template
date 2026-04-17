@@ -21,7 +21,7 @@ export function Section({
     <Comp
       id={id}
       className={cn(
-        "py-16 md:py-24",
+        "py-24 md:py-32",
         id ? "scroll-mt-18 md:scroll-mt-16" : null,
         className,
       )}
