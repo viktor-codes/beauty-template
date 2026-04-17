@@ -22,7 +22,7 @@ export function AboutSection({
 }: AboutSectionProps) {
   return (
     <Section id={id} className={cn("bg-background", className)} {...rest}>
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
           <div>
             <SectionHeading
@@ -61,13 +61,13 @@ export function AboutSection({
             key={stat.label}
             className="rounded-2xl border border-border bg-surface/50 px-6 py-8 text-center"
           >
-            <p className="font-heading text-3xl text-accent">{stat.value}</p>
+            <p className="font-heading text-4xl text-accent">{stat.value}</p>
             <p className="mt-2 text-sm text-muted">{stat.label}</p>
           </li>
         ))}
       </ul>
 
-      <div className="mx-auto mt-10 max-w-5xl">
+      <div className="mx-auto mt-16 max-w-5xl">
         <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
           Trusted brands I work with
         </p>

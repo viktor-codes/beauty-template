@@ -31,11 +31,9 @@ export function SectionHeading({
           <Badge variant="accent">{eyebrow}</Badge>
         </div>
       ) : null}
-      <h2 className="font-heading text-3xl tracking-tight text-primary md:text-4xl">
-        {title}
-      </h2>
+      <h2 className="type-h2 tracking-tight text-primary">{title}</h2>
       {subtitle ? (
-        <p className="mt-4 text-base leading-relaxed text-muted">{subtitle}</p>
+        <p className="type-body mt-4 text-muted">{subtitle}</p>
       ) : null}
     </div>
   );

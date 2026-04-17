@@ -12,8 +12,8 @@ export const servicesCatalog: ServicesCatalog = {
       description:
         "Non-invasive and minimally invasive treatments focused on texture, clarity, and glow—ideal for ongoing skin maintenance and targeted correction.",
       image: {
-        src: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1200&h=800&q=80",
-        alt: "Soft, clean skincare setting",
+        src: "/peel.webp",
+        alt: "Skincare products and towels in a calm setting",
         width: 1200,
         height: 800,
       },
@@ -199,8 +199,8 @@ export const servicesCatalog: ServicesCatalog = {
       description:
         "Injectable treatments aimed at hydration, structure, and skin quality—planned with a natural-result philosophy and an emphasis on safety and anatomy.",
       image: {
-        src: "https://images.unsplash.com/photo-1584516150909-c43483ee7932?auto=format&fit=crop&w=1200&h=800&q=80",
-        alt: "Minimal medical aesthetic setting",
+        src: "/injection.webp",
+        alt: "Clean clinical aesthetic setting for injectables",
         width: 1200,
         height: 800,
       },
@@ -700,8 +700,8 @@ export const servicesCatalog: ServicesCatalog = {
       description:
         "Device-based and advanced clinic treatments designed for tightening, resurfacing, and targeted correction—ideal when you want more visible change with structured protocols.",
       image: {
-        src: "https://images.unsplash.com/photo-1582719478185-2f5b8b6b7b5b?auto=format&fit=crop&w=1200&h=800&q=80",
-        alt: "Modern clinic interior with clean lines",
+        src: "/device.webp",
+        alt: "Modern aesthetic device in a minimal clinic",
         width: 1200,
         height: 800,
       },
@@ -862,8 +862,8 @@ export const servicesCatalog: ServicesCatalog = {
       description:
         "Laser treatments designed to reduce unwanted hair by targeting follicles. Results build over a course of sessions, with protocols tailored to hair thickness, skin tone, and treatment area.",
       image: {
-        src: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1200&h=800&q=80",
-        alt: "Minimal clinic setting for laser treatment",
+        src: "/laser.webp",
+        alt: "Laser treatment room with soft neutral tones",
         width: 1200,
         height: 800,
       },
