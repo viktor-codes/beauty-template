@@ -40,7 +40,6 @@ export default async function ServicesPage({
         <BreadcrumbsJsonLd items={breadcrumbs} />
         <Breadcrumbs items={breadcrumbs} />
         <SectionHeading
-          eyebrow="Services"
           title="Explore services by category"
           subtitle="Start with a direction or choose a goal. We'll keep it clear and calm—no overwhelming menus."
         />

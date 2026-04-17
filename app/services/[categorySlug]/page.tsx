@@ -58,7 +58,6 @@ export default async function ServicesCategoryPage({
         <Breadcrumbs items={breadcrumbs} />
 
         <SectionHeading
-          eyebrow="Services"
           title={category.title}
           subtitle={category.description}
         />

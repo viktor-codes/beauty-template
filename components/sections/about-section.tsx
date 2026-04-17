@@ -71,7 +71,7 @@ export function AboutSection({
         <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
           Trusted brands I work with
         </p>
-        <ul className="mt-5 flex flex-wrap items-center justify-center gap-4">
+        <ul className="mt-8 flex flex-wrap items-center justify-center gap-4">
           {[
             { src: "/logos/esse.png", alt: "Esse" },
             { src: "/logos/jan-marini.png", alt: "Jan Marini" },

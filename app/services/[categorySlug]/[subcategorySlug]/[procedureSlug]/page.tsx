@@ -120,7 +120,6 @@ export default async function ServiceProcedurePage({
         <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
           <div>
             <SectionHeading
-              eyebrow={subcategory.title}
               title={procedure.title}
               subtitle={procedure.description}
               className="mb-0"
