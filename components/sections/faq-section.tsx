@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from "react";
 
 import { AccordionItem } from "@/components/shared/accordion-item";
+import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import type { FAQContent } from "@/lib/types/content";
@@ -19,13 +20,19 @@ export function FAQSection({
 }: FAQSectionProps) {
   return (
     <Section id={id} className={cn("bg-background", className)} {...rest}>
-      <SectionHeading eyebrow={content.eyebrow} title={content.title} />
+      <FaqJsonLd items={content.items} />
+      <SectionHeading
+        eyebrow={content.eyebrow}
+        title={content.title}
+        subtitle={content.description}
+      />
       <div className="mx-auto max-w-3xl">
         {content.items.map((item, index) => (
           <AccordionItem
-            key={item.question}
-            itemId={`faq-${index}`}
+            key={item.id ?? `${item.question}-${index}`}
+            itemId={item.id ?? `faq-${index}`}
             title={item.question}
+            defaultIsOpen={item.isDefaultOpen}
           >
             {item.answer}
           </AccordionItem>

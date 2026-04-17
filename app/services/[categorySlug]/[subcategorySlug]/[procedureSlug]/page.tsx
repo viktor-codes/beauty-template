@@ -8,6 +8,9 @@ import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
+import { FaqAccordion } from "@/components/shared/faq-accordion";
+import { FaqJsonLd } from "@/components/shared/faq-jsonld";
+import { getServicesProcedureFaq } from "@/lib/services-faq";
 import {
   getServicesCategory,
   getServicesProcedure,
@@ -96,6 +99,7 @@ export default async function ServiceProcedurePage({
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
   const procedure = getProcedureOrThrow(categorySlug, subcategorySlug, procedureSlug);
+  const procedureFaq = getServicesProcedureFaq(category, subcategory, procedure, 5);
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
@@ -182,6 +186,25 @@ export default async function ServiceProcedurePage({
                 <div className="absolute inset-0 bg-linear-to-br from-surface to-background" />
               )}
             </div>
+          </div>
+        </div>
+
+        <div className="mt-12">
+          <FaqJsonLd items={procedureFaq} />
+          <SectionHeading
+            eyebrow="FAQ"
+            title={`Before you book: ${procedure.title}`}
+            subtitle="A shortlist of the most relevant questions—plus the full FAQ library on the homepage."
+            className="mb-6"
+          />
+          <FaqAccordion items={procedureFaq} />
+          <div className="mt-6">
+            <Link
+              href="/#faq"
+              className="text-sm text-muted underline underline-offset-4 hover:text-primary"
+            >
+              View the full FAQ on the homepage
+            </Link>
           </div>
         </div>
       </Section>

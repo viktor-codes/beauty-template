@@ -5,6 +5,9 @@
 
 import type { LandingContent } from "@/lib/types/content";
 
+const INSTAGRAM_PROFILE_HREF =
+  "https://www.instagram.com/innache.aesthetic.nurse/";
+
 export const content = {
   nav: {
     links: [
@@ -98,7 +101,7 @@ export const content = {
   gallery: {
     eyebrow: "Results & mood",
     title: "A glimpse inside the studio",
-    instagramUrl: "https://www.instagram.com/",
+    instagramUrl: INSTAGRAM_PROFILE_HREF,
   },
   reviews: {
     eyebrow: "Client voices",
@@ -106,41 +109,147 @@ export const content = {
     items: [
       {
         quote:
-          "Clear explanations, zero rush, and my skin has never looked this even.",
-        authorName: "Alex M.",
-        authorRole: "First-time peel client",
+          "I am absolutely glowing! Inna, I had to share this with you. A few days after my biorevitalization, my skin feels completely reborn. My friends keep commenting on how much the texture has smoothed out and how lifted my face looks. I feel so refreshed and confident. Can't wait for my next session this autumn!",
+        authorName: "Verified client",
+        authorRole: "Biorevitalization & glow",
       },
       {
         quote:
-          "Finally a place that listens. The plan felt personal, not like a template.",
-        authorName: "Jordan K.",
+          "A true professional and a wonderful person. It's rare to find such a perfect balance of deep expertise and genuine care. Inna is not just a master of her craft; she truly understands what your skin needs. I'm so happy to have finally found my go-to aesthetician!",
+        authorName: "Verified client",
+        authorRole: "Professionalism & personal touch",
       },
       {
         quote:
-          "Calm space, steady hands, and results I still notice months later.",
-        authorName: "Sam R.",
-        authorRole: "Facial series",
+          "Skin like silk. Thank you so much for the amazing work! My skin feels like silk after the carbon peeling. And that lip treatment you recommended? You were absolutely right — I'm officially obsessed. See you again very soon!",
+        authorName: "Verified client",
+        authorRole: "Carbon peeling & lips",
+      },
+      {
+        quote:
+          "Baby-soft skin, zero pain. The PRX-T33 treatment is a game-changer. My skin feels as soft as a baby's. It's the perfect solution for a quick glow-up before an event without any downtime or discomfort. So happy with the results!",
+        authorName: "Verified client",
+        authorRole: "PRX-T33 peeling",
+      },
+      {
+        quote:
+          "My skin is literally radiant. I am so impressed with the Esse products! My skin has never looked this bright and healthy. Everything we chose works so well together. It's clear you only select the highest quality cosmetics for your clients.",
+        authorName: "Verified client",
+        authorRole: "Esse skincare results",
+      },
+      {
+        quote:
+          "Efficient and painless. I am so satisfied with the results of my laser hair removal sessions. It's completely painless and highly effective. Inna makes the whole process so comfortable. Highly recommend to anyone looking for smooth skin for the summer!",
+        authorName: "Verified client",
+        authorRole: "Laser hair removal",
       },
     ],
   },
   faq: {
     eyebrow: "FAQ",
-    title: "Questions we hear often",
+    title: "FAQ",
+    description:
+      "Clear, evidence-informed answers to the questions clients ask before booking.",
     items: [
       {
-        question: "How do I prepare for my first visit?",
+        id: "faq-how-do-i-choose-the-right-treatment",
+        question: "How do I choose the right treatment for my skin goals?",
         answer:
-          "Arrive with clean skin, avoid strong retinoids 48–72 hours before unless we say otherwise, and bring a list of products you use daily.",
+          "We start with a consultation and a quick skin assessment (concerns, sensitivities, medical history, downtime preferences, and your timeline). From there, we recommend the smallest effective plan—often a combination of professional treatments plus a simple home routine (especially daily SPF).",
+        isDefaultOpen: true,
       },
       {
-        question: "Is there downtime after treatments?",
+        id: "faq-what-results-can-i-realistically-expect",
+        question: "What results can I realistically expect—and how fast?",
         answer:
-          "It depends on the protocol. We always outline downtime, sun care, and what to skip before events.",
+          "Some treatments give an immediate “fresh” glow (facials, carbon peel). Collagen-stimulating procedures (HIFU, RF microneedling, collagen stimulators) build gradually—typically over weeks to a few months. Your results depend on baseline skin condition, consistency (courses matter), and aftercare (sun protection is critical).",
       },
       {
-        question: "Do you offer packages?",
+        id: "faq-how-many-sessions-do-i-need",
+        question: "How many sessions will I need?",
         answer:
-          "Yes—bundles are optional and explained upfront. You can start with a single session and decide later.",
+          "It depends on the concern and the treatment intensity. Many skin-quality protocols are planned as a course (commonly 3–6 sessions) with maintenance. During consultation, we’ll outline a schedule with milestones so you know what to expect and when.",
+      },
+      {
+        id: "faq-are-chemical-peels-safe",
+        question: "Are chemical peels safe? What is the downtime?",
+        answer:
+          "When performed by trained professionals, peels are generally safe—but the recovery depends on peel depth. Light peels can have mild redness and flaking for a few days. Medium/deeper peels may involve more noticeable peeling and longer recovery. Post-peel care and strict sun avoidance during healing are essential to reduce the risk of pigmentation issues and scarring.",
+      },
+      {
+        id: "faq-can-i-get-a-peel-if-i-use-retinol-or-acne-medications",
+        question:
+          "Can I get a peel if I use retinoids, acids, or acne medications?",
+        answer:
+          "Possibly, but your routine may need a short pause to protect your skin barrier and reduce irritation. If you’ve used isotretinoin (Accutane) recently, certain resurfacing procedures may be postponed. We’ll give you a simple pre- and post-care plan tailored to your current skincare and medications.",
+      },
+      {
+        id: "faq-cold-sores-and-treatments",
+        question:
+          "I get cold sores. Can I still do peels, lip fillers, or microneedling?",
+        answer:
+          "Yes, but please tell us in advance. Some procedures can trigger a herpes flare in people with a history of cold sores. In many cases, prophylactic antiviral medication is recommended. We’ll guide you based on your history and the treatment area.",
+      },
+      {
+        id: "faq-filler-safety-and-risks",
+        question: "How safe are dermal fillers? What are the real risks?",
+        answer:
+          "Most side effects are temporary (swelling, bruising, tenderness). The rare but most serious risk is accidental injection into a blood vessel, which can cause skin injury and, in extreme cases, vision problems. This is why provider training, anatomy knowledge, and an emergency protocol matter. Hyaluronic acid fillers are reversible with hyaluronidase if needed.",
+      },
+      {
+        id: "faq-lip-filler-natural-look",
+        question:
+          "Will lip fillers look natural? Can you avoid the 'overfilled' look?",
+        answer:
+          "Yes. Our approach prioritizes proportion, symmetry, and soft definition. We can build gradually over multiple visits if you want a subtle change. Temporary swelling right after treatment can make lips look larger for a few days before settling.",
+      },
+      {
+        id: "faq-collagen-stimulators-vs-ha-fillers",
+        question: "Collagen stimulators vs. HA fillers: what’s the difference?",
+        answer:
+          "HA fillers primarily add immediate volume and definition. Collagen stimulators are designed to trigger your body’s collagen remodeling, so results are more gradual and tend to look very natural. Which one is right depends on whether you need structure now, skin quality improvement over time, or both.",
+      },
+      {
+        id: "faq-prp-vs-prf",
+        question: "PRP vs. PRF: what’s the difference?",
+        answer:
+          "Both use your own blood-derived platelets to support regeneration. PRP is typically a platelet-rich plasma with a faster release of growth factors. PRF forms a fibrin matrix and may release growth factors more gradually. We recommend based on the area, your goals, and recovery preferences.",
+      },
+      {
+        id: "faq-hifu-what-it-feels-like",
+        question: "Does HIFU hurt and when will I see results?",
+        answer:
+          "Sensation varies: many people feel warmth, tingling, or brief discomfort during pulses. There’s usually no downtime. Some tightening can be subtle at first, with the most noticeable change commonly appearing over 8–12 weeks as collagen remodels.",
+      },
+      {
+        id: "faq-rf-microneedling-downtime",
+        question: "What is the downtime for RF microneedling?",
+        answer:
+          "Expect redness and mild swelling similar to a sunburn for about 1–3 days (sometimes longer depending on intensity). Makeup is usually paused for at least 24–48 hours. Texture and tone improvements build over time, with collagen-driven changes typically developing over the following months.",
+      },
+      {
+        id: "faq-laser-hair-removal-sessions",
+        question: "How many laser hair removal sessions do I need?",
+        answer:
+          "Hair grows in cycles, so a course is required to target follicles effectively. The exact number depends on the area, hair thickness/color, and hormonal factors. We’ll set expectations and spacing during consultation to keep results consistent and safe.",
+      },
+      {
+        id: "faq-laser-hair-removal-prep",
+        question: "How should I prepare for laser hair removal?",
+        answer:
+          "Typically: shave the area before your appointment, avoid tanning/sunburn, and skip waxing/epilators before sessions (they remove the follicle the laser targets). We’ll provide a precise prep checklist for your areas and skin type.",
+      },
+      {
+        id: "faq-sclerotherapy-what-to-expect",
+        question: "What should I expect after sclerotherapy?",
+        answer:
+          "It’s usually an in-office procedure with quick recovery. Compression stockings are commonly recommended for a short period, and walking is encouraged. Results are not instant—spider veins often fade over weeks, and larger veins may take longer. A series may be needed depending on the pattern and vein size.",
+      },
+      {
+        id: "faq-when-not-to-book",
+        question: "When should I postpone treatment?",
+        answer:
+          "Please postpone if you’re unwell, have an active skin infection, open wounds in the treatment area, a fresh sunburn, or an uncontrolled flare of a skin condition. If you’re pregnant or breastfeeding, some procedures and ingredients may not be recommended—tell us and we’ll suggest safer options.",
       },
     ],
   },
@@ -156,7 +265,7 @@ export const content = {
   footer: {
     tagline: "Cosmetology studio · thoughtful care, visible results",
     links: [
-      { label: "Instagram", href: "https://www.instagram.com/" },
+      { label: "Instagram", href: INSTAGRAM_PROFILE_HREF },
       { label: "Privacy", href: "#" },
       { label: "Terms", href: "#" },
     ],

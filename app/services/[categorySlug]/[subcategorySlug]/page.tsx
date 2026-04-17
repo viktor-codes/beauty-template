@@ -7,6 +7,9 @@ import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
+import { FaqAccordion } from "@/components/shared/faq-accordion";
+import { FaqJsonLd } from "@/components/shared/faq-jsonld";
+import { getServicesSubcategoryFaq } from "@/lib/services-faq";
 import {
   getServicesCategory,
   getServicesSubcategory,
@@ -59,6 +62,7 @@ export default async function ServicesSubcategoryPage({
   const { categorySlug, subcategorySlug } = await params;
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
+  const subcategoryFaq = getServicesSubcategoryFaq(category, subcategory, 6);
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
@@ -126,6 +130,25 @@ export default async function ServicesSubcategoryPage({
             );
           })}
         </ul>
+
+        <div className="mt-12">
+          <FaqJsonLd items={subcategoryFaq} />
+          <SectionHeading
+            eyebrow="FAQ"
+            title={`${subcategory.title}: what clients ask`}
+            subtitle="Practical guidance for planning, downtime, and safety—tailored to this treatment group."
+            className="mb-6"
+          />
+          <FaqAccordion items={subcategoryFaq} />
+          <div className="mt-6">
+            <Link
+              href="/#faq"
+              className="text-sm text-muted underline underline-offset-4 hover:text-primary"
+            >
+              View the full FAQ on the homepage
+            </Link>
+          </div>
+        </div>
 
         <div className="mt-10 rounded-2xl border border-border bg-surface/50 p-6">
           <p className="text-sm leading-relaxed text-muted">

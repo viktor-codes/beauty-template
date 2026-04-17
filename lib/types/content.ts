@@ -87,13 +87,16 @@ export interface ReviewsContent {
 }
 
 export interface FAQItem {
+  id?: string;
   question: string;
   answer: string;
+  isDefaultOpen?: boolean;
 }
 
 export interface FAQContent {
   eyebrow: string;
   title: string;
+  description?: string;
   items: FAQItem[];
 }
 

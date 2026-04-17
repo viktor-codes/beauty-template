@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ServiceCard } from "@/components/shared/service-card";
 import { content } from "@/lib/content";
+import { FaqAccordion } from "@/components/shared/faq-accordion";
+import { FaqJsonLd } from "@/components/shared/faq-jsonld";
+import { getServicesHubFaq } from "@/lib/services-faq";
 import {
   getGoalLabel,
   getGoalRecommendations,
@@ -33,6 +36,7 @@ export default async function ServicesPage({
   const recommended = selectedGoal
     ? getGoalRecommendations(selectedGoal, 10)
     : [];
+  const hubFaq = getServicesHubFaq(6);
 
   return (
     <main id="main-content" className="flex-1 pt-19 md:pt-0">
@@ -133,6 +137,25 @@ export default async function ServicesPage({
             <Button href="/#services" variant="secondary" size="lg">
               Back to landing
             </Button>
+          </div>
+        </div>
+
+        <div className="mt-12">
+          <FaqJsonLd items={hubFaq} />
+          <SectionHeading
+            eyebrow="FAQ"
+            title="Common questions"
+            subtitle="Straight answers for planning, safety, and realistic expectations—before you book."
+            className="mb-6"
+          />
+          <FaqAccordion items={hubFaq} />
+          <div className="mt-6">
+            <Link
+              href="/#faq"
+              className="text-sm text-muted underline underline-offset-4 hover:text-primary"
+            >
+              View the full FAQ on the homepage
+            </Link>
           </div>
         </div>
       </Section>
