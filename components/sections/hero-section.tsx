@@ -66,7 +66,7 @@ export function HeroSection({
                 alt=""
                 width={187}
                 height={356}
-                className="h-auto w-full opacity-70 blur-[0.6px]"
+                className="h-auto w-full opacity-70 -scale-y-100 blur-[0.6px]"
               />
             </div>
             <Image
@@ -88,7 +88,7 @@ export function HeroSection({
                 alt=""
                 width={187}
                 height={356}
-                className="h-auto w-full -scale-x-100 -scale-y-100 opacity-90"
+                className="h-auto w-full -scale-x-100  opacity-90"
               />
             </div>
           </div>
