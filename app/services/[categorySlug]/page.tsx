@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ServiceCard } from "@/components/shared/service-card";
@@ -44,17 +45,17 @@ export default async function ServicesCategoryPage({
 }) {
   const { categorySlug } = await params;
   const category = getCategoryOrThrow(categorySlug);
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: category.title, href: `/services/${categorySlug}` },
+  ];
 
   return (
     <main id="main-content" className="flex-1 pt-19 md:pt-0">
       <Section className="bg-background">
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Services", href: "/services" },
-            { label: category.title },
-          ]}
-        />
+        <BreadcrumbsJsonLd items={breadcrumbs} />
+        <Breadcrumbs items={breadcrumbs} />
 
         <SectionHeading
           eyebrow="Services"

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
@@ -95,6 +96,16 @@ export default async function ServiceProcedurePage({
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
   const procedure = getProcedureOrThrow(categorySlug, subcategorySlug, procedureSlug);
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: category.title, href: `/services/${categorySlug}` },
+    {
+      label: subcategory.title,
+      href: `/services/${categorySlug}/${subcategorySlug}`,
+    },
+    { label: procedure.title, href: `/services/${categorySlug}/${subcategorySlug}/${procedureSlug}` },
+  ];
 
   const priceLabel = procedure.price
     ? `${procedure.price.amount} ${procedure.price.currency}`
@@ -103,18 +114,8 @@ export default async function ServiceProcedurePage({
   return (
     <main id="main-content" className="flex-1 pt-19 md:pt-0">
       <Section className="bg-background">
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Services", href: "/services" },
-            { label: category.title, href: `/services/${categorySlug}` },
-            {
-              label: subcategory.title,
-              href: `/services/${categorySlug}/${subcategorySlug}`,
-            },
-            { label: procedure.title },
-          ]}
-        />
+        <BreadcrumbsJsonLd items={breadcrumbs} />
+        <Breadcrumbs items={breadcrumbs} />
 
         <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
           <div>

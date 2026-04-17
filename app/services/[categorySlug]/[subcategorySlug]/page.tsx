@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
@@ -59,18 +60,21 @@ export default async function ServicesSubcategoryPage({
   const { categorySlug, subcategorySlug } = await params;
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: category.title, href: `/services/${categorySlug}` },
+    {
+      label: subcategory.title,
+      href: `/services/${categorySlug}/${subcategorySlug}`,
+    },
+  ];
 
   return (
     <main id="main-content" className="flex-1 pt-19 md:pt-0">
       <Section className="bg-background">
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Services", href: "/services" },
-            { label: category.title, href: `/services/${categorySlug}` },
-            { label: subcategory.title },
-          ]}
-        />
+        <BreadcrumbsJsonLd items={breadcrumbs} />
+        <Breadcrumbs items={breadcrumbs} />
 
         <SectionHeading
           eyebrow={category.title}

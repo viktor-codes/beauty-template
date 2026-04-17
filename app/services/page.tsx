@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
@@ -9,15 +10,16 @@ import { ServiceCard } from "@/components/shared/service-card";
 import { content } from "@/lib/content";
 
 export default function ServicesPage() {
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+  ];
+
   return (
     <main id="main-content" className="flex-1 pt-19 md:pt-0">
       <Section className="bg-background">
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Services" },
-          ]}
-        />
+        <BreadcrumbsJsonLd items={breadcrumbs} />
+        <Breadcrumbs items={breadcrumbs} />
         <SectionHeading
           eyebrow="Services"
           title="Explore services by category"
