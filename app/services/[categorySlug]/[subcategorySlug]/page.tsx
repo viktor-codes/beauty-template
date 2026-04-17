@@ -7,7 +7,6 @@ import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
-import { ServiceCard } from "@/components/shared/service-card";
 import {
   getServicesCategory,
   getServicesSubcategory,
@@ -82,19 +81,48 @@ export default async function ServicesSubcategoryPage({
           subtitle={subcategory.description}
         />
 
-        <ul className="grid gap-6 sm:grid-cols-2">
+        <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
           {subcategory.procedures.map((procedure) => {
             const priceLabel = procedure.price
               ? `${procedure.price.amount} ${procedure.price.currency}`
               : null;
 
             return (
-              <li key={procedure.id}>
-                <ServiceCard
-                  title={priceLabel ? `${procedure.title} — ${priceLabel}` : procedure.title}
-                  description={procedure.description}
-                  href={`/services/${categorySlug}/${subcategorySlug}/${procedure.id}`}
-                />
+              <li
+                key={procedure.id}
+                className="group bg-background p-5 transition-colors hover:bg-surface/40"
+              >
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="min-w-0 font-heading text-lg text-primary">
+                        {procedure.title}
+                      </h3>
+                      {priceLabel ? (
+                        <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-primary">
+                          {priceLabel}
+                        </span>
+                      ) : null}
+                    </div>
+                    <p
+                      className="mt-2 max-w-3xl truncate text-sm leading-relaxed text-muted"
+                      title={procedure.description}
+                    >
+                      {procedure.description}
+                    </p>
+                  </div>
+
+                  <div className="flex shrink-0 items-center gap-3">
+                    <Button
+                      href={`/services/${categorySlug}/${subcategorySlug}/${procedure.id}`}
+                      variant="secondary"
+                      size="sm"
+                      className="whitespace-nowrap"
+                    >
+                      View details
+                    </Button>
+                  </div>
+                </div>
               </li>
             );
           })}
