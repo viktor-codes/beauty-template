@@ -77,6 +77,7 @@ export function Button({
       type={type}
       className={classes}
       disabled={isDisabled}
+      onClick={onClick}
       {...rest}
     >
       {children}

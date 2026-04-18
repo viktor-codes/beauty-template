@@ -187,10 +187,10 @@ body {
   top: 0;
   bottom: 0;
   z-index: 2;
-  width: min(2rem, 6vw);
+  width: 8px;
   pointer-events: none;
-  backdrop-filter: blur(8px) saturate(1.04);
-  -webkit-backdrop-filter: blur(8px) saturate(1.04);
+  backdrop-filter: blur(3px) saturate(1);
+  -webkit-backdrop-filter: blur(3px) saturate(1);
 }
 
 .marquee-viewport::before {

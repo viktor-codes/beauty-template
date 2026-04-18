@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CookieSettingsButton } from "@/components/consent/cookie-settings-button";
 import { Divider } from "@/components/ui/divider";
 import type { FooterContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
@@ -30,7 +31,7 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
         <Divider className="my-8" />
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted">{content.legal.notice}</p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             {content.legal.links.map((link) => (
               <Link
                 key={`legal-${link.label}-${link.href}`}
@@ -40,6 +41,7 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
                 {link.label}
               </Link>
             ))}
+            <CookieSettingsButton className="text-xs" />
           </div>
         </div>
       </div>

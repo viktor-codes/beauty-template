@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
+import { ConsentModeDefaultScript } from "@/components/consent/consent-mode-default-script";
+import { CookieConsentRoot } from "@/components/consent/cookie-consent-root";
 import {
   SITE_BRAND,
   SITE_DEFAULT_DESCRIPTION,
@@ -88,7 +90,10 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <ConsentModeDefaultScript />
+        <CookieConsentRoot>{children}</CookieConsentRoot>
+      </body>
     </html>
   );
 }

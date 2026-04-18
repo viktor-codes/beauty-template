@@ -322,19 +322,44 @@ export const content = {
     phone: "+1 (555) 010-0199",
     email: "hello@studio.example.com",
     address: "120 Beauty Lane, Suite 4, New York, NY 10001",
+    phoneLabel: "Phone",
+    emailLabel: "Email",
+    locationTitle: "Skinbar · Inna Chernovol",
+    messengers: [
+      {
+        id: "telegram",
+        href: "https://t.me/skinbarstudio",
+        ariaLabel: "Open Telegram",
+      },
+      {
+        id: "whatsapp",
+        href: "https://wa.me/15550100199",
+        ariaLabel: "Open WhatsApp",
+      },
+      {
+        id: "viber",
+        href: "viber://chat?number=15550100199",
+        ariaLabel: "Open Viber",
+      },
+      {
+        id: "instagram",
+        href: INSTAGRAM_PROFILE_HREF,
+        ariaLabel: "Open Instagram",
+      },
+    ],
   },
   footer: {
     tagline: "Skinbar · Inna Chernovol · thoughtful care, visible results",
     links: [
       { label: "Instagram", href: INSTAGRAM_PROFILE_HREF },
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
     ],
     legal: {
       notice: "© 2026 Inna Chernovol · Skinbar. All rights reserved.",
       links: [
-        { label: "Privacy policy", href: "#" },
-        { label: "Terms of use", href: "#" },
+        { label: "Privacy policy", href: "/privacy" },
+        { label: "Terms of use", href: "/terms" },
       ],
     },
   },
