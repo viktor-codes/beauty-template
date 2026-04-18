@@ -5,6 +5,7 @@ import "./globals.css";
 import { ConsentModeDefaultScript } from "@/components/consent/consent-mode-default-script";
 import { CookieConsentRoot } from "@/components/consent/cookie-consent-root";
 import { SiteGraphJsonLd } from "@/components/shared/site-graph-jsonld";
+import { SmoothHashNavigation } from "@/components/shared/smooth-hash-navigation";
 import { content } from "@/lib/content";
 import {
   SITE_BRAND,
@@ -96,14 +97,17 @@ export default function RootLayout({
         <a
           href="#main-content"
           className={[
-            "fixed left-4 top-0 z-600 -translate-y-full rounded-b-md bg-primary px-4 py-2.5",
-            "text-sm font-medium text-background shadow-md transition-transform",
-            "focus:translate-y-4 focus:outline-none focus:ring-2 focus:ring-accent/50",
+            /* Off-screen without transform — avoids Safari hairline above the header. */
+            "fixed left-4 top-[-9999px] z-550 rounded-b-md bg-primary px-4 py-2.5",
+            "text-sm font-medium text-background shadow-md",
+            "transition-[top] duration-200 ease-out",
+            "focus:top-[max(1rem,env(safe-area-inset-top,0px))] focus:outline-none focus:ring-2 focus:ring-accent/50",
           ].join(" ")}
         >
           Skip to main content
         </a>
         <SiteGraphJsonLd contact={content.contact} />
+        <SmoothHashNavigation />
         <ConsentModeDefaultScript />
         <CookieConsentRoot>{children}</CookieConsentRoot>
       </body>

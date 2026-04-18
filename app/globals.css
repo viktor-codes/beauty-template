@@ -127,6 +127,13 @@ body {
   color: var(--color-primary);
 }
 
+/* Smooth scrolling where supported; respect reduced-motion (see also SmoothHashNavigation). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Horizontal infinite marquee — shared by reviews, brand logos, etc. */
 @keyframes marquee-scroll-x {
   from {
