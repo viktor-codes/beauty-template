@@ -1,5 +1,4 @@
 import {
-  ChatCircleIcon,
   EnvelopeSimpleIcon,
   InstagramLogoIcon,
   MapPinIcon,
@@ -40,14 +39,6 @@ function ContactMessengerIcon({ id }: { id: ContactMessengerId }) {
     case "whatsapp":
       return (
         <WhatsappLogoIcon
-          className={messengerIconClass}
-          weight="light"
-          aria-hidden
-        />
-      );
-    case "viber":
-      return (
-        <ChatCircleIcon
           className={messengerIconClass}
           weight="light"
           aria-hidden

@@ -8,7 +8,6 @@ import {
   STUDIO_PHONE_DISPLAY,
   studioPhoneTelHref,
   studioPhoneTelegramHref,
-  studioPhoneViberHref,
   studioPhoneWhatsAppHref,
 } from "@/lib/studio-phone";
 
@@ -342,11 +341,6 @@ export const content = {
         id: "whatsapp",
         href: studioPhoneWhatsAppHref(),
         ariaLabel: "Open WhatsApp",
-      },
-      {
-        id: "viber",
-        href: studioPhoneViberHref(),
-        ariaLabel: "Open Viber",
       },
       {
         id: "instagram",

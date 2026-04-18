@@ -118,8 +118,8 @@ export interface FAQContent {
   items: FAQItem[];
 }
 
-/** Drives which Phosphor icon renders for a messenger row (no Viber brand in Phosphor — UI uses ChatCircle). */
-export type ContactMessengerId = "telegram" | "whatsapp" | "viber" | "instagram";
+/** Drives which Phosphor icon renders for a messenger row. */
+export type ContactMessengerId = "telegram" | "whatsapp" | "instagram";
 
 export interface ContactMessengerLink {
   id: ContactMessengerId;
