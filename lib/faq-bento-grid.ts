@@ -6,19 +6,6 @@ export const FAQ_BENTO_ROOT_GRID = cn(
   "xl:grid-cols-12 xl:grid-flow-dense xl:gap-5",
 );
 
-export const FAQ_BENTO_TOPIC_CHIPS = cn(
-  "mt-4 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none]",
-  "md:mt-5 md:flex-wrap md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden xl:flex xl:flex-col xl:gap-2",
-);
-
-export const FAQ_BENTO_TOPIC_LINK = cn(
-  "shrink-0 snap-start rounded-2xl border border-(--color-border) bg-background/80 px-3 py-2",
-  "text-left text-xs font-medium text-primary",
-  "transition-colors hover:border-accent/35 hover:text-accent",
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30",
-  "md:max-w-none xl:w-full",
-);
-
 /** Desktop (xl) column spans — must sum to full rows where intended. */
 export const FAQ_GROUP_BENTO_XL: Record<string, string> = {
   "faq-group-planning": "xl:col-span-6",

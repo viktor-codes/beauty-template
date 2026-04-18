@@ -1,8 +1,6 @@
 import { FaqAccordion } from "@/components/shared/faq-accordion";
 import {
   FAQ_BENTO_ROOT_GRID,
-  FAQ_BENTO_TOPIC_CHIPS,
-  FAQ_BENTO_TOPIC_LINK,
   FAQ_GROUP_BENTO_XL,
   faqBentoTileClassName,
 } from "@/lib/faq-bento-grid";
@@ -15,9 +13,6 @@ export function FaqLanding({ content }: { content: FAQContent }) {
   if (groups.length === 0) {
     return <FaqAccordion items={content.items} />;
   }
-
-  const introBullets = content.introBullets ?? [];
-  const hasIntro = introBullets.length > 0;
 
   return (
     <div className="mx-auto w-full max-w-7xl">

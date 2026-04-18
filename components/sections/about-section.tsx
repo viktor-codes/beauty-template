@@ -21,8 +21,20 @@ export function AboutSection({
   ...rest
 }: AboutSectionProps) {
   return (
-    <Section id={id} className={cn("bg-background", className)} {...rest}>
-      <div className="mx-auto max-w-7xl">
+    <Section
+      id={id}
+      hasContainer={false}
+      className={cn("relative overflow-hidden bg-background", className)}
+      {...rest}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        aria-hidden
+      >
+        <div className="absolute -top-[12%] right-[-8%] h-[min(28rem,70vw)] w-[min(42rem,95vw)] rounded-full bg-radial from-accent/9 via-accent/3 to-transparent blur-3xl" />
+        <div className="absolute -bottom-[18%] -left-[12%] h-[min(24rem,60vw)] w-[min(36rem,90vw)] rounded-full bg-radial from-accent/6 via-transparent to-transparent blur-3xl" />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
           <div>
             <SectionHeading
@@ -54,12 +66,17 @@ export function AboutSection({
             </div>
           </div>
         </div>
-      </div>
+
       <ul className="mt-12 grid gap-6 sm:grid-cols-3">
         {content.stats.map((stat) => (
           <li
             key={stat.label}
-            className="rounded-2xl border border-border bg-surface/50 px-6 py-8 text-center"
+            className={cn(
+              "relative rounded-2xl border border-border/90 bg-linear-to-b from-background to-surface/55",
+              "px-6 py-8 text-center shadow-[0_2px_12px_-4px_rgba(44,44,44,0.1)]",
+              "transition-[box-shadow,transform] duration-300",
+              "motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_10px_28px_-8px_rgba(44,44,44,0.14)]",
+            )}
           >
             <p className="font-heading text-4xl text-accent">{stat.value}</p>
             <p className="mt-2 text-sm text-muted">{stat.label}</p>
@@ -108,6 +125,7 @@ export function AboutSection({
             </ul>
           </div>
         </div>
+      </div>
       </div>
     </Section>
   );

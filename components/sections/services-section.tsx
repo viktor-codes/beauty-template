@@ -89,8 +89,9 @@ export function ServicesSection({
                     "no-underline",
                     "inline-flex min-h-9 items-center rounded-full border border-border bg-background px-3.5 py-1.5",
                     "text-xs font-medium uppercase tracking-[0.14em] text-primary",
+                    "shadow-[0_2px_10px_-4px_rgba(44,44,44,0.09)]",
                     "transition-[color,background-color,border-color,box-shadow] duration-200",
-                    "hover:border-accent/35 hover:bg-surface hover:shadow-sm",
+                    "hover:border-accent/35 hover:bg-surface hover:shadow-[0_8px_22px_-10px_rgba(44,44,44,0.13)]",
                     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
                   )}
                 >

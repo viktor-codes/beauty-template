@@ -50,7 +50,7 @@ export function ServiceCard({
       {image ? (
         <>
           {/* Mobile: keep a short, quiet image strip for readability */}
-          <div className="relative mb-5 overflow-hidden rounded-xl border border-border bg-surface sm:hidden">
+          <div className="relative mb-5 overflow-hidden rounded-xl border border-border/90 bg-surface sm:hidden">
             <Image
               src={image.src}
               alt={imageAlt}
@@ -95,7 +95,10 @@ export function ServiceCard({
   );
 
   const cardClass = cn(
-    "group relative flex min-h-[100px] overflow-hidden rounded-2xl border border-border bg-background p-6 transition-shadow hover:shadow-md sm:min-h-[150px]",
+    "group relative flex min-h-[100px] overflow-hidden rounded-2xl border border-border/90 bg-linear-to-b from-background/80 to-surface/25 p-6",
+    "shadow-[0_2px_12px_-4px_rgba(44,44,44,0.1)] transition-[box-shadow,transform] duration-300",
+    "motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_10px_28px_-8px_rgba(44,44,44,0.14)]",
+    "sm:min-h-[150px]",
     href && "block h-full",
     className,
   );

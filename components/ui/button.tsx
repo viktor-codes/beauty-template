@@ -23,11 +23,34 @@ export interface ButtonProps extends Omit<
 
 const variantClass: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary:
-    "bg-primary text-background hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    [
+      "relative border border-primary/90 bg-primary text-background",
+      "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.13),0_3px_12px_-2px_rgba(0,0,0,0.28)]",
+      "hover:brightness-105",
+      "motion-safe:hover:-translate-y-0.5",
+      "hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0_12px_32px_-8px_rgba(0,0,0,0.38)]",
+      "active:translate-y-0 active:brightness-100",
+      "active:shadow-[inset_0_3px_12px_rgba(0,0,0,0.38)]",
+      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    ].join(" "),
   secondary:
-    "border border-border bg-surface text-primary hover:bg-surface/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    [
+      "relative border border-border/90 bg-linear-to-b from-background to-surface/65 text-primary",
+      "shadow-[0_2px_10px_-4px_rgba(44,44,44,0.1)]",
+      "hover:border-accent/30 hover:bg-surface",
+      "motion-safe:hover:-translate-y-0.5",
+      "hover:shadow-[0_12px_28px_-10px_rgba(44,44,44,0.16)]",
+      "active:translate-y-0 active:shadow-[0_2px_8px_-4px_rgba(44,44,44,0.12)]",
+      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    ].join(" "),
   ghost:
-    "text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    [
+      "text-primary underline-offset-4 shadow-none",
+      "hover:bg-surface/55 hover:underline",
+      "motion-safe:hover:-translate-y-px",
+      "active:translate-y-0",
+      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    ].join(" "),
 };
 
 const sizeClass: Record<NonNullable<ButtonProps["size"]>, string> = {
@@ -50,7 +73,9 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 rounded-full font-medium no-underline",
+    "transition-[color,background-color,box-shadow,transform,border-color,filter] duration-200 ease-out",
+    "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none disabled:transform-none",
     variantClass[variant],
     sizeClass[size],
     className,
