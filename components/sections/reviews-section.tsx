@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from "react";
 
+import { ReviewsJsonLd } from "@/components/shared/reviews-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { TestimonialCard } from "@/components/shared/testimonial-card";
@@ -27,6 +28,7 @@ export function ReviewsSection({
 
   return (
     <Section id={id} className={cn("bg-surface", className)} {...rest}>
+      <ReviewsJsonLd items={items} />
       <SectionHeading
         eyebrow={content.eyebrow}
         title={content.title}
@@ -35,7 +37,7 @@ export function ReviewsSection({
       />
       <div className="marquee-viewport mt-10 -mx-1 px-1 [--marquee-duration:80s] [--marquee-edge:var(--color-surface)] sm:-mx-2 sm:px-2">
         <div className="marquee-inner">
-          <ul className="marquee-track list-none gap-5 py-1">
+          <ul className="marquee-track list-none gap-4 py-2">
             {items.map((item, index) => (
               <li
                 key={reviewStableKey(item, index)}

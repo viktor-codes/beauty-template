@@ -24,7 +24,7 @@ export function BeforeAfter({
   ...rest
 }: BeforeAfterProps) {
   return (
-    <figure className={cn("space-y-3", className)} {...rest}>
+    <figure className={cn("space-y-4", className)} {...rest}>
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <p className="text-xs font-medium uppercase tracking-wider text-muted">

@@ -24,7 +24,7 @@ export function Breadcrumbs({ items, className, ...rest }: BreadcrumbsProps) {
       )}
       {...rest}
     >
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <ol className="flex flex-wrap items-center gap-x-2 gap-y-2">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           const content = item.href && !isLast ? (

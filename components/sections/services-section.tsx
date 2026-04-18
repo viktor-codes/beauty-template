@@ -80,14 +80,14 @@ export function ServicesSection({
           <p className="type-caption font-semibold uppercase tracking-[0.22em] text-muted">
             or choose by your goal
           </p>
-          <ul className="mt-5 flex flex-wrap justify-center gap-2.5 sm:gap-3">
+          <ul className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-4">
             {content.goals.map((goal) => (
               <li key={goal.id}>
                 <a
                   href={goal.href}
                   className={cn(
                     "no-underline",
-                    "inline-flex min-h-9 items-center rounded-full border border-border bg-background px-3.5 py-1.5",
+                    "inline-flex min-h-9 items-center rounded-full border border-border bg-background px-4 py-2",
                     "text-xs font-medium uppercase tracking-[0.14em] text-primary",
                     "shadow-[0_2px_10px_-4px_rgba(44,44,44,0.09)]",
                     "transition-[color,background-color,border-color,box-shadow] duration-200",

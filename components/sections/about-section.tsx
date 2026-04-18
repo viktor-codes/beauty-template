@@ -43,7 +43,7 @@ export function AboutSection({
               align="left"
               className="max-w-xl"
             />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-muted">
               {content.description
                 .split("\n\n")
                 .filter(Boolean)
@@ -90,7 +90,7 @@ export function AboutSection({
         </p>
         <div className="marquee-viewport mt-8 [--marquee-duration:48s] [--marquee-edge:var(--color-background)]">
           <div className="marquee-inner">
-            <ul className="marquee-track list-none gap-4 py-1">
+            <ul className="marquee-track list-none gap-4 py-2">
               {content.brandLogos.map((logo) => (
                 <li
                   key={logo.src}

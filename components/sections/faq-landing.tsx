@@ -32,7 +32,7 @@ export function FaqLanding({ content }: { content: FAQContent }) {
               FAQ_GROUP_BENTO_XL[group.id] ?? "xl:col-span-4",
             )}
           >
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               <h3 className="font-heading text-h4 tracking-h4 text-primary">
                 {group.title}
               </h3>
@@ -42,8 +42,12 @@ export function FaqLanding({ content }: { content: FAQContent }) {
                 </p>
               ) : null}
             </div>
-            <div className="mt-4 min-h-0 flex-1 border-t border-border/50 pt-1 sm:mt-5">
-              <FaqAccordion items={group.items} isContained={false} />
+            <div className="mt-4 min-h-0 flex-1 border-t border-border/50 pt-2 sm:mt-6">
+              <FaqAccordion
+                items={group.items}
+                isContained={false}
+                itemHeadingLevel={4}
+              />
             </div>
           </section>
         ))}
@@ -59,9 +63,9 @@ export function FaqLanding({ content }: { content: FAQContent }) {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
               Next step
             </p>
-            <p className="font-heading text-h4 tracking-h4 text-primary">
+            <h3 className="font-heading text-h4 tracking-h4 text-primary">
               Still deciding?
-            </p>
+            </h3>
             <p className="text-sm leading-relaxed text-muted">
               Share your goal, timeline, and downtime preference—I’ll narrow
               options quickly in consultation.
@@ -71,7 +75,7 @@ export function FaqLanding({ content }: { content: FAQContent }) {
             href="#contact"
             className={cn(
               "inline-flex shrink-0 items-center justify-center rounded-full",
-              "bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-background",
+              "bg-primary px-6 py-4 text-sm font-semibold tracking-wide text-background",
               "transition-opacity hover:opacity-90",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40",
             )}

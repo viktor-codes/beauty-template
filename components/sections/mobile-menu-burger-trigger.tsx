@@ -71,20 +71,20 @@ export function MobileMenuBurgerTrigger({ nav }: MobileMenuBurgerTriggerProps) {
             onClick={() => setIsOpen(false)}
           />
           <div
-            className="fixed left-4 right-4 top-21 z-(--z-overlay) max-h-[calc(100dvh-5.25rem-0.75rem)] overflow-y-auto rounded-3xl border border-border bg-background px-4 pb-5 pt-4 shadow-xl md:hidden"
+            className="fixed left-4 right-4 top-21 z-(--z-overlay) max-h-[calc(100dvh-5.25rem-0.75rem)] overflow-y-auto rounded-3xl border border-border bg-background px-4 pb-6 pt-4 shadow-xl md:hidden"
             id="mobile-menu-panel"
             role="dialog"
             aria-modal="true"
             aria-label="Site menu"
           >
             <nav aria-label="Primary mobile">
-              <ul className="flex flex-col gap-0.5">
+              <ul className="flex flex-col gap-2">
                 {nav.links.map((link) => (
                   <li key={`${link.label}-${link.href}`}>
                     <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className="block rounded-xl px-3 py-3 text-base text-primary transition-colors hover:bg-surface"
+                      className="block rounded-xl px-3 py-4 text-base text-primary transition-colors hover:bg-surface"
                     >
                       {link.label}
                     </Link>

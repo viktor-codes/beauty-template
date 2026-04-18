@@ -50,7 +50,7 @@ export function ServiceCard({
       {image ? (
         <>
           {/* Mobile: keep a short, quiet image strip for readability */}
-          <div className="relative mb-5 overflow-hidden rounded-xl border border-border/90 bg-surface sm:hidden">
+          <div className="relative mb-6 overflow-hidden rounded-xl border border-border/90 bg-surface sm:hidden">
             <Image
               src={image.src}
               alt={imageAlt}

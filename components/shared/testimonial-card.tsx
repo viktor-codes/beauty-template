@@ -26,7 +26,7 @@ export function TestimonialCard({
       {...rest}
     >
       {rating ? (
-        <p className="mb-3 text-sm text-accent">
+        <p className="mb-4 text-sm text-accent">
           <span aria-hidden>{"★".repeat(rating)}</span>
           <span className="sr-only">{rating} out of 5 stars</span>
         </p>

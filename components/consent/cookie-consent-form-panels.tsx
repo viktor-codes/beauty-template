@@ -13,7 +13,7 @@ export function CookieConsentFormPanels({
 }: CookieConsentFormPanelsProps) {
   return (
     <>
-      <p className="mt-3 text-sm leading-relaxed text-muted">
+      <p className="mt-4 text-sm leading-relaxed text-muted">
         We use strictly necessary cookies to remember your choices. With your
         permission, we use Google Analytics to understand how our site is used.
         See our{" "}
@@ -32,7 +32,7 @@ export function CookieConsentFormPanels({
             <p className="text-sm font-semibold text-primary">
               Strictly necessary
             </p>
-            <p className="mt-1 text-xs text-muted">
+            <p className="mt-2 text-xs text-muted">
               Required to store your consent and run core site features. Always
               on.
             </p>
@@ -47,13 +47,13 @@ export function CookieConsentFormPanels({
               <p className="text-sm font-semibold text-primary">
                 Analytics (Google Analytics)
               </p>
-              <p className="mt-1 text-xs text-muted">
+              <p className="mt-2 text-xs text-muted">
                 Helps us measure traffic and improve the experience. Optional.
               </p>
             </div>
             <input
               type="checkbox"
-              className="mt-1 size-4 accent-accent"
+              className="size-4 shrink-0 accent-accent"
               checked={analyticsToggle}
               onChange={(e) => onAnalyticsChange(e.target.checked)}
             />

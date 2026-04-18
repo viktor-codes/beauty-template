@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader content={content.nav} />
-      <main id="main-content" className="flex-1 pt-19 md:pt-0">
+      <main id="main-content" className="flex-1 pt-20 md:pt-0">
         <HeroSection content={content.hero} />
         <AboutSection content={content.about} />
         <ServicesSection content={content.services} />

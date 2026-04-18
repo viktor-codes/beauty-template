@@ -86,7 +86,7 @@ export function CookieConsentDialog() {
           onAnalyticsChange={setAnalyticsToggle}
         />
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
+        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-end">
           <Button type="button" variant="secondary" size="md" onClick={rejectOptional}>
             Reject optional
           </Button>

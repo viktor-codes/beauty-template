@@ -11,7 +11,7 @@ function FooterNavLinks({ links }: { links: ContentLink[] }) {
     "text-sm text-muted transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
   return (
-    <ul className="mt-4 space-y-2.5">
+    <ul className="mt-4 space-y-4">
       {links.map((link) => {
         const isExternal = isHttpUrl(link.href);
 

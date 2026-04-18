@@ -25,7 +25,7 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-4">
             <p className="font-heading text-xl text-primary">{content.brandTitle}</p>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               {content.tagline}
             </p>
           </div>
@@ -39,10 +39,10 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
             <p className="font-heading text-sm font-medium tracking-wide text-primary">
               {contact.heading}
             </p>
-            <ul className="mt-4 space-y-3 text-sm text-muted">
-              <li className="flex gap-2.5">
+            <ul className="mt-4 space-y-4 text-sm text-muted">
+              <li className="flex items-start gap-2.5">
                 <PhoneIcon
-                  className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                  className="h-4 w-4 shrink-0 text-accent"
                   weight="light"
                   aria-hidden
                 />
@@ -53,9 +53,9 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
                   {contact.phone.label}
                 </Link>
               </li>
-              <li className="flex gap-2.5">
+              <li className="flex items-start gap-2.5">
                 <EnvelopeSimpleIcon
-                  className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                  className="h-4 w-4 shrink-0 text-accent"
                   weight="light"
                   aria-hidden
                 />
@@ -66,9 +66,9 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
                   {contact.email.label}
                 </Link>
               </li>
-              <li className="flex gap-2.5">
+              <li className="flex items-start gap-2.5">
                 <MapPinIcon
-                  className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                  className="h-4 w-4 shrink-0 text-accent"
                   weight="light"
                   aria-hidden
                 />
@@ -77,7 +77,7 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
                   {contact.directionsHref ? (
                     <a
                       href={contact.directionsHref}
-                      className="mt-1 inline-block text-xs text-muted underline-offset-2 transition-colors hover:text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      className="mt-2 inline-block text-xs text-muted underline-offset-2 transition-colors hover:text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

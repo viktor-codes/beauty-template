@@ -12,7 +12,7 @@ import {
 export type ContactFormProps = Omit<ComponentPropsWithoutRef<"form">, "onSubmit">;
 
 const fieldClass =
-  "w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-primary placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
+  "w-full rounded-xl border border-border bg-background px-4 py-4 text-sm text-primary placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
 
 type FieldErrors = Partial<Record<keyof ContactFormValues, string>>;
 

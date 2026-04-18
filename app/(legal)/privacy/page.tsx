@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { LegalStaticPage } from "@/components/sections/legal-static-page";
 import { PrivacyPolicyDocument } from "@/components/sections/privacy-policy-document";
+import { WebPageJsonLd } from "@/components/shared/web-page-jsonld";
 import { content } from "@/lib/content";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
@@ -24,7 +25,12 @@ export default function PrivacyPolicyPage() {
   const { email, phone } = content.contact;
 
   return (
-    <main id="main-content" className="flex-1 pt-19 md:pt-0">
+    <main id="main-content" className="flex-1 pt-20 md:pt-0">
+      <WebPageJsonLd
+        title={PAGE_TITLE}
+        description={DESCRIPTION}
+        path="/privacy"
+      />
       <LegalStaticPage title={PAGE_TITLE}>
         <PrivacyPolicyDocument email={email} phone={phone} />
       </LegalStaticPage>

@@ -11,6 +11,7 @@ import { ServiceCard } from "@/components/shared/service-card";
 import { content } from "@/lib/content";
 import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
+import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
 import { getServicesHubFaq } from "@/lib/services-faq";
 import {
   getGoalLabel,
@@ -23,6 +24,7 @@ import {
   SITE_PRACTITIONER,
   SITE_SERVICES_HUB_DESCRIPTION,
 } from "@/lib/site-metadata";
+import { servicesCatalog } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Cosmetology services & treatment categories",
@@ -56,20 +58,37 @@ export default async function ServicesPage({
   const hubFaq = getServicesHubFaq(6);
 
   return (
-    <main id="main-content" className="flex-1 pt-19 md:pt-0">
-      <Section className="bg-background">
+    <main id="main-content" className="flex-1 pt-20 md:pt-0">
+      <Section className="bg-background" aria-labelledby="services-hub-title">
         <BreadcrumbsJsonLd items={breadcrumbs} />
+        <ItemListJsonLd
+          name="Cosmetology service categories"
+          description={SITE_SERVICES_HUB_DESCRIPTION}
+          items={servicesCatalog.categories.map((category) => ({
+            name: category.title,
+            description: category.description,
+            url: `/services/${category.id}`,
+          }))}
+        />
         <Breadcrumbs items={breadcrumbs} />
         <SectionHeading
+          titleId="services-hub-title"
+          titleLevel={1}
           title="Explore services by category"
           subtitle="Start with a direction or choose a goal. I keep it clear and calm—no overwhelming menus."
         />
 
         {selectedGoal ? (
-          <div className="mb-10 rounded-2xl border border-border bg-surface/50 p-6">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          <section
+            className="mb-10"
+            aria-labelledby="hub-recommended-heading"
+          >
+            <h2
+              id="hub-recommended-heading"
+              className="text-xs font-medium uppercase tracking-[0.2em] text-muted"
+            >
               Recommended for {getGoalLabel(selectedGoal)}
-            </p>
+            </h2>
             <ul className="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
               {recommended.map((hit) => {
                 const priceLabel = hit.procedure.price
@@ -79,7 +98,7 @@ export default async function ServicesPage({
                 return (
                   <li
                     key={`${hit.category.id}-${hit.subcategory.id}-${hit.procedure.id}`}
-                    className="group bg-background p-5 transition-colors hover:bg-surface/40"
+                    className="group bg-background p-6 transition-colors hover:bg-surface/40"
                   >
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                       <div className="min-w-0">
@@ -88,7 +107,7 @@ export default async function ServicesPage({
                             {hit.procedure.title}
                           </h3>
                           {priceLabel ? (
-                            <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-primary">
+                            <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-2 text-xs font-medium text-primary">
                               {priceLabel}
                             </span>
                           ) : null}
@@ -119,26 +138,37 @@ export default async function ServicesPage({
                 );
               })}
             </ul>
-          </div>
+          </section>
         ) : null}
 
-        <ul className="grid gap-6 sm:grid-cols-2">
-          {content.services.categories.map((category) => (
-            <li key={category.id}>
-              <ServiceCard
-                title={category.title}
-                description={category.description}
-                href={category.href}
-              />
-            </li>
-          ))}
-        </ul>
+        <section aria-labelledby="hub-categories-heading">
+          <h2 id="hub-categories-heading" className="sr-only">
+            Treatment categories
+          </h2>
+          <ul className="grid gap-6 sm:grid-cols-2">
+            {content.services.categories.map((category) => (
+              <li key={category.id}>
+                <ServiceCard
+                  title={category.title}
+                  description={category.description}
+                  href={category.href}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
 
-        <div className="mt-10 rounded-2xl border border-border bg-surface/50 p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
+        <section
+          className="mt-10 rounded-2xl border border-border bg-surface/50 p-6"
+          aria-labelledby="hub-goals-heading"
+        >
+          <h2
+            id="hub-goals-heading"
+            className="text-xs font-medium uppercase tracking-[0.2em] text-muted"
+          >
             Choose by goal
-          </p>
-          <ul className="mt-3 flex flex-wrap gap-2">
+          </h2>
+          <ul className="mt-4 flex flex-wrap gap-2">
             {content.services.goals.map((goal) => (
               <li key={goal.id}>
                 <Link href={goal.href} className="no-underline">
@@ -155,28 +185,31 @@ export default async function ServicesPage({
               Back to landing
             </Button>
           </div>
-        </div>
+        </section>
+      </Section>
 
-        <div className="mt-12">
-          <FaqJsonLd items={hubFaq} />
-          <SectionHeading
-            eyebrow="FAQ"
-            title="Common questions"
-            subtitle="Straight answers for planning, safety, and realistic expectations—before you book."
-            className="mb-6"
-          />
-          <FaqAccordion items={hubFaq} />
-          <div className="mt-6">
-            <Link
-              href="/#faq"
-              className="text-sm text-muted underline underline-offset-4 hover:text-primary"
-            >
-              View the full FAQ on the homepage
-            </Link>
-          </div>
+      <Section
+        className="bg-background"
+        aria-labelledby="services-hub-faq-heading"
+      >
+        <FaqJsonLd items={hubFaq} />
+        <SectionHeading
+          titleId="services-hub-faq-heading"
+          eyebrow="FAQ"
+          title="Common questions"
+          subtitle="Straight answers for planning, safety, and realistic expectations—before you book."
+          className="mb-6"
+        />
+        <FaqAccordion items={hubFaq} />
+        <div className="mt-6">
+          <Link
+            href="/#faq"
+            className="text-sm text-muted underline underline-offset-4 hover:text-primary"
+          >
+            View the full FAQ on the homepage
+          </Link>
         </div>
       </Section>
     </main>
   );
 }
-

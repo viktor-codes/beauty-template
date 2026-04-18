@@ -25,22 +25,22 @@ const variantClass: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary:
     [
       "relative border border-primary/90 bg-primary text-background",
-      "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.13),0_3px_12px_-2px_rgba(0,0,0,0.28)]",
+      "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_2px_8px_-2px_rgba(0,0,0,0.18)]",
       "hover:brightness-105",
       "motion-safe:hover:-translate-y-0.5",
-      "hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0_12px_32px_-8px_rgba(0,0,0,0.38)]",
+      "hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_8px_22px_-6px_rgba(0,0,0,0.26)]",
       "active:translate-y-0 active:brightness-100",
-      "active:shadow-[inset_0_3px_12px_rgba(0,0,0,0.38)]",
+      "active:shadow-[inset_0_2px_10px_rgba(0,0,0,0.28)]",
       "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
     ].join(" "),
   secondary:
     [
       "relative border border-border/90 bg-linear-to-b from-background to-surface/65 text-primary",
-      "shadow-[0_2px_10px_-4px_rgba(44,44,44,0.1)]",
+      "shadow-[0_2px_8px_-3px_rgba(44,44,44,0.07)]",
       "hover:border-accent/30 hover:bg-surface",
       "motion-safe:hover:-translate-y-0.5",
-      "hover:shadow-[0_12px_28px_-10px_rgba(44,44,44,0.16)]",
-      "active:translate-y-0 active:shadow-[0_2px_8px_-4px_rgba(44,44,44,0.12)]",
+      "hover:shadow-[0_8px_20px_-8px_rgba(44,44,44,0.11)]",
+      "active:translate-y-0 active:shadow-[0_2px_6px_-3px_rgba(44,44,44,0.09)]",
       "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
     ].join(" "),
   ghost:

@@ -22,7 +22,7 @@ export interface ContactSectionProps extends Omit<
   content: ContactContent;
 }
 
-const rowIconClass = "mt-0.5 h-5 w-5 shrink-0 text-accent";
+const rowIconClass = "h-5 w-5 shrink-0 text-accent";
 const messengerIconClass = "h-6 w-6 text-accent";
 
 function ContactMessengerIcon({ id }: { id: ContactMessengerId }) {
@@ -82,7 +82,7 @@ export function ContactSection({
       <div className="grid gap-12 lg:grid-cols-2">
         <div className="flex flex-col gap-6 justify-between">
           <ul className="space-y-6 text-sm">
-            <li className="flex gap-3">
+            <li className="flex items-start gap-3">
               <PhoneIcon className={rowIconClass} weight="light" aria-hidden />
               <div>
                 <p className="font-medium text-primary">{content.phoneLabel}</p>
@@ -94,7 +94,7 @@ export function ContactSection({
                 </a>
               </div>
             </li>
-            <li className="flex gap-3">
+            <li className="flex items-start gap-3">
               <EnvelopeSimpleIcon
                 className={rowIconClass}
                 weight="light"
@@ -110,7 +110,7 @@ export function ContactSection({
                 </a>
               </div>
             </li>
-            <li className="flex gap-3">
+            <li className="flex items-start gap-3">
               <MapPinIcon className={rowIconClass} weight="light" aria-hidden />
               <div>
                 <p className="font-medium text-primary">

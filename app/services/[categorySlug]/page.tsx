@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { ServiceCard } from "@/components/shared/service-card";
 import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
+import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
 import { getServicesCategoryFaq } from "@/lib/services-faq";
 import { servicesCatalog } from "@/lib/services";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
@@ -62,46 +63,68 @@ export default async function ServicesCategoryPage({
     { label: category.title, href: `/services/${categorySlug}` },
   ];
 
+  const pageTitleId = `category-${categorySlug}-title`;
+
   return (
-    <main id="main-content" className="flex-1 pt-19 md:pt-0">
-      <Section className="bg-background">
+    <main id="main-content" className="flex-1 pt-20 md:pt-0">
+      <Section className="bg-background" aria-labelledby={pageTitleId}>
         <BreadcrumbsJsonLd items={breadcrumbs} />
+        <ItemListJsonLd
+          name={category.title}
+          description={category.description}
+          items={category.subcategories.map((subcategory) => ({
+            name: subcategory.title,
+            description: subcategory.description,
+            url: `/services/${categorySlug}/${subcategory.id}`,
+          }))}
+        />
         <Breadcrumbs items={breadcrumbs} />
 
         <SectionHeading
+          titleId={pageTitleId}
+          titleLevel={1}
           title={category.title}
           subtitle={category.description}
         />
 
-        <ul className="grid gap-6 sm:grid-cols-2">
-          {category.subcategories.map((subcategory) => (
-            <li key={subcategory.id}>
-              <ServiceCard
-                title={subcategory.title}
-                description={subcategory.description}
-                href={`/services/${categorySlug}/${subcategory.id}`}
-              />
-            </li>
-          ))}
-        </ul>
+        <section aria-labelledby={`${pageTitleId}-subcategories`}>
+          <h2 id={`${pageTitleId}-subcategories`} className="sr-only">
+            Subcategories
+          </h2>
+          <ul className="grid gap-6 sm:grid-cols-2">
+            {category.subcategories.map((subcategory) => (
+              <li key={subcategory.id}>
+                <ServiceCard
+                  title={subcategory.title}
+                  description={subcategory.description}
+                  href={`/services/${categorySlug}/${subcategory.id}`}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      </Section>
 
-        <div className="mt-12">
-          <FaqJsonLd items={categoryFaq} />
-          <SectionHeading
-            eyebrow="FAQ"
-            title={`${category.title}: common questions`}
-            subtitle="Focused answers for this direction—plus what to ask during consultation."
-            className="mb-6"
-          />
-          <FaqAccordion items={categoryFaq} />
-          <div className="mt-6">
-            <Link
-              href="/#faq"
-              className="text-sm text-muted underline underline-offset-4 hover:text-primary"
-            >
-              View the full FAQ on the homepage
-            </Link>
-          </div>
+      <Section
+        className="bg-background"
+        aria-labelledby={`${pageTitleId}-faq-heading`}
+      >
+        <FaqJsonLd items={categoryFaq} />
+        <SectionHeading
+          titleId={`${pageTitleId}-faq-heading`}
+          eyebrow="FAQ"
+          title={`${category.title}: common questions`}
+          subtitle="Focused answers for this direction—plus what to ask during consultation."
+          className="mb-6"
+        />
+        <FaqAccordion items={categoryFaq} />
+        <div className="mt-6">
+          <Link
+            href="/#faq"
+            className="text-sm text-muted underline underline-offset-4 hover:text-primary"
+          >
+            View the full FAQ on the homepage
+          </Link>
         </div>
 
         <div className="mt-10">
@@ -116,4 +139,3 @@ export default async function ServicesCategoryPage({
     </main>
   );
 }
-

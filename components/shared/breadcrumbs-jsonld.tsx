@@ -1,18 +1,5 @@
 import type { BreadcrumbItem } from "@/components/shared/breadcrumbs";
-
-function getSiteUrl(): string | null {
-  const value = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (!value) return null;
-  return value.endsWith("/") ? value.slice(0, -1) : value;
-}
-
-function toAbsoluteUrl(path: string): string {
-  const baseUrl = getSiteUrl();
-  if (!baseUrl) return path;
-  if (path.startsWith("http://") || path.startsWith("https://")) return path;
-  if (path.startsWith("/")) return `${baseUrl}${path}`;
-  return `${baseUrl}/${path}`;
-}
+import { toAbsoluteUrl } from "@/lib/site-url";
 
 export interface BreadcrumbsJsonLdProps {
   items: BreadcrumbItem[];

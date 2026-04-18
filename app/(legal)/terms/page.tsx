@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { LegalStaticPage } from "@/components/sections/legal-static-page";
 import { TermsPolicyDocument } from "@/components/sections/terms-policy-document";
+import { WebPageJsonLd } from "@/components/shared/web-page-jsonld";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 const PAGE_TITLE = "Terms & conditions";
@@ -21,7 +22,12 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main id="main-content" className="flex-1 pt-19 md:pt-0">
+    <main id="main-content" className="flex-1 pt-20 md:pt-0">
+      <WebPageJsonLd
+        title={PAGE_TITLE}
+        description={DESCRIPTION}
+        path="/terms"
+      />
       <LegalStaticPage title={PAGE_TITLE}>
         <TermsPolicyDocument />
       </LegalStaticPage>
