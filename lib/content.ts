@@ -349,12 +349,54 @@ export const content = {
     ],
   },
   footer: {
-    tagline: "Skinbar · Inna Chernovol · thoughtful care, visible results",
-    links: [
-      { label: "Instagram", href: INSTAGRAM_PROFILE_HREF },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-    ],
+    brandTitle: "Skinbar · Inna Chernovol",
+    tagline: "Thoughtful care, visible results — personalized aesthetic treatments in a calm studio setting.",
+    navigation: {
+      heading: "Navigate",
+      links: [
+        { label: "About", href: "/#about" },
+        { label: "Services", href: "/#services" },
+        { label: "Gallery", href: "/#gallery" },
+        { label: "Reviews", href: "/#reviews" },
+        { label: "FAQ", href: "/#faq" },
+        { label: "Contact", href: "/#contact" },
+      ],
+    },
+    services: {
+      heading: "Main categories",
+      links: [
+        {
+          label: "Skin & maintenance",
+          href: "/services/aesthetic-treatments",
+        },
+        {
+          label: "Injectables (natural results)",
+          href: "/services/aesthetic-injections",
+        },
+        {
+          label: "Advanced clinic treatments",
+          href: "/services/advanced-aesthetic-treatments",
+        },
+        {
+          label: "Laser hair removal",
+          href: "/services/laser-hair-removal",
+        },
+        { label: "All services", href: "/services" },
+      ],
+    },
+    contact: {
+      heading: "Studio",
+      phone: { label: "+1 (555) 010-0199", href: "tel:+15550100199" },
+      email: { label: "hello@studio.example.com", href: "mailto:hello@studio.example.com" },
+      address: "120 Beauty Lane, Suite 4, New York, NY 10001",
+      directionsHref:
+        "https://www.google.com/maps/search/?api=1&query=120%20Beauty%20Lane%20Suite%204%20New%20York%20NY%2010001",
+      directionsLabel: "Directions",
+    },
+    social: {
+      heading: "Follow",
+      links: [{ label: "Instagram", href: INSTAGRAM_PROFILE_HREF }],
+    },
     legal: {
       notice: "© 2026 Inna Chernovol · Skinbar. All rights reserved.",
       links: [

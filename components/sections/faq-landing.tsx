@@ -20,7 +20,7 @@ export function FaqLanding({ content }: { content: FAQContent }) {
   const hasIntro = introBullets.length > 0;
 
   return (
-    <div className="mx-auto w-full max-w-6xl">
+    <div className="mx-auto w-full max-w-7xl">
       <div className={FAQ_BENTO_ROOT_GRID}>
         {groups.map((group) => (
           <section

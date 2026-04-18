@@ -146,9 +146,29 @@ export interface FooterLegal {
   links: ContentLink[];
 }
 
-export interface FooterContent {
-  tagline: string;
+export interface FooterLinkGroup {
+  heading: string;
   links: ContentLink[];
+}
+
+export interface FooterContactBlock {
+  heading: string;
+  phone: ContentLink;
+  email: ContentLink;
+  /** Plain address line (no HTML). */
+  address: string;
+  /** Optional maps / directions URL. */
+  directionsHref?: string;
+  directionsLabel?: string;
+}
+
+export interface FooterContent {
+  brandTitle: string;
+  tagline: string;
+  navigation: FooterLinkGroup;
+  services: FooterLinkGroup;
+  contact: FooterContactBlock;
+  social: FooterLinkGroup;
   legal: FooterLegal;
 }
 
