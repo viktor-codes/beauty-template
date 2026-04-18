@@ -21,21 +21,8 @@ export function AboutSection({
   ...rest
 }: AboutSectionProps) {
   return (
-    <Section
-      id={id}
-      hasContainer={false}
-      className={cn("relative overflow-hidden bg-background", className)}
-      {...rest}
-    >
-      <div
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-        aria-hidden
-      >
-        <div className="absolute -top-[12%] right-[-8%] h-[min(28rem,70vw)] w-[min(42rem,95vw)] rounded-full bg-radial from-accent/9 via-accent/3 to-transparent blur-3xl" />
-        <div className="absolute -bottom-[18%] -left-[12%] h-[min(24rem,60vw)] w-[min(36rem,90vw)] rounded-full bg-radial from-accent/6 via-transparent to-transparent blur-3xl" />
-      </div>
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
+    <Section id={id} className={cn("bg-background", className)} {...rest}>
+      <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
           <div>
             <SectionHeading
               eyebrow={content.eyebrow}
@@ -125,7 +112,6 @@ export function AboutSection({
             </ul>
           </div>
         </div>
-      </div>
       </div>
     </Section>
   );

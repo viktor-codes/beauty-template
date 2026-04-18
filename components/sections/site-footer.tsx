@@ -21,9 +21,9 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
 
   return (
     <footer className={cn("border-t border-border bg-accent/20", className)}>
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <div className="sm:col-span-2 lg:col-span-4">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-12 lg:gap-y-10">
+          <div className="sm:col-span-2 lg:col-span-3">
             <p className="font-heading text-xl text-primary">
               {content.brandTitle}
             </p>
@@ -31,13 +31,17 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
               {content.tagline}
             </p>
           </div>
-          <div className="lg:col-span-2">
-            <SiteFooterLinkGroup group={content.navigation} />
+          <div className="min-w-0 sm:col-span-2 lg:col-span-4">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-10 lg:gap-x-10">
+              <div className="min-w-0">
+                <SiteFooterLinkGroup group={content.navigation} />
+              </div>
+              <div className="min-w-0">
+                <SiteFooterLinkGroup group={content.services} />
+              </div>
+            </div>
           </div>
-          <div className="lg:col-span-3">
-            <SiteFooterLinkGroup group={content.services} />
-          </div>
-          <div className="sm:col-span-2 lg:col-span-3">
+          <div className="sm:col-span-2 lg:col-span-4 lg:col-start-9">
             <p className="font-heading text-sm font-medium tracking-wide text-primary">
               {contact.heading}
             </p>

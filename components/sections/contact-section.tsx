@@ -12,8 +12,10 @@ import type { HTMLAttributes } from "react";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ContactForm } from "@/components/shared/contact-form";
+import { Tooltip } from "@/components/ui/tooltip";
 import type { ContactMessengerId, ContactContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
+import { toTelHref } from "@/lib/tel-href";
 
 export interface ContactSectionProps extends Omit<
   HTMLAttributes<HTMLElement>,
@@ -87,7 +89,7 @@ export function ContactSection({
               <div>
                 <p className="font-medium text-primary">{content.phoneLabel}</p>
                 <a
-                  href={`tel:${content.phone.replace(/\s/g, "")}`}
+                  href={toTelHref(content.phone)}
                   className="text-muted hover:text-primary"
                 >
                   {content.phone}
@@ -121,18 +123,24 @@ export function ContactSection({
             </li>
           </ul>
           <div className="flex flex-row flex-wrap items-center gap-4">
-            {content.messengers.map((m) => (
-              <a
-                key={`${m.id}-${m.href}`}
-                href={m.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex shrink-0 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                aria-label={m.ariaLabel}
-              >
-                <ContactMessengerIcon id={m.id} />
-              </a>
-            ))}
+            {content.messengers.map((m) => {
+              const isHttpUrl =
+                m.href.startsWith("http://") || m.href.startsWith("https://");
+              return (
+                <Tooltip key={`${m.id}-${m.href}`} label={m.ariaLabel}>
+                  <a
+                    href={m.href}
+                    {...(isHttpUrl
+                      ? { target: "_blank" as const, rel: "noopener noreferrer" as const }
+                      : undefined)}
+                    className="inline-flex shrink-0 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    aria-label={m.ariaLabel}
+                  >
+                    <ContactMessengerIcon id={m.id} />
+                  </a>
+                </Tooltip>
+              );
+            })}
           </div>
         </div>
         <ContactForm />

@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";
 import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 import type { NavContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 import { SITE_NAME_FULL } from "@/lib/site-metadata";
@@ -44,20 +45,22 @@ export function SiteHeader({
             </Link>
           </div>
           <div className="flex justify-end">
-            <Link
-              href={content.cta.href}
-              className={cn(
-                iconFrameClass,
-                "transition-colors hover:bg-surface",
-              )}
-              aria-label={content.cta.label}
-            >
-              <CalendarHeartIcon
-                className="h-6 w-6"
-                weight="light"
-                aria-hidden
-              />
-            </Link>
+            <Tooltip label={content.cta.label}>
+              <Link
+                href={content.cta.href}
+                className={cn(
+                  iconFrameClass,
+                  "transition-colors hover:bg-surface",
+                )}
+                aria-label={content.cta.label}
+              >
+                <CalendarHeartIcon
+                  className="h-6 w-6"
+                  weight="light"
+                  aria-hidden
+                />
+              </Link>
+            </Tooltip>
           </div>
         </div>
         <div className="hidden items-center justify-between gap-4 md:flex">

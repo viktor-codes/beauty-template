@@ -4,6 +4,13 @@
  */
 
 import type { FAQGroup, LandingContent } from "@/lib/types/content";
+import {
+  STUDIO_PHONE_DISPLAY,
+  studioPhoneTelHref,
+  studioPhoneTelegramHref,
+  studioPhoneViberHref,
+  studioPhoneWhatsAppHref,
+} from "@/lib/studio-phone";
 
 const INSTAGRAM_PROFILE_HREF =
   "https://www.instagram.com/innache.aesthetic.nurse/";
@@ -319,7 +326,7 @@ export const content = {
     title: "I’m one message away",
     description:
       "Call, email, or use the form—I reply within one business day.",
-    phone: "+1 (555) 010-0199",
+    phone: STUDIO_PHONE_DISPLAY,
     email: "hello@studio.example.com",
     address: "120 Beauty Lane, Suite 4, New York, NY 10001",
     phoneLabel: "Phone",
@@ -328,17 +335,17 @@ export const content = {
     messengers: [
       {
         id: "telegram",
-        href: "https://t.me/skinbarstudio",
+        href: studioPhoneTelegramHref(),
         ariaLabel: "Open Telegram",
       },
       {
         id: "whatsapp",
-        href: "https://wa.me/15550100199",
+        href: studioPhoneWhatsAppHref(),
         ariaLabel: "Open WhatsApp",
       },
       {
         id: "viber",
-        href: "viber://chat?number=15550100199",
+        href: studioPhoneViberHref(),
         ariaLabel: "Open Viber",
       },
       {
@@ -386,7 +393,7 @@ export const content = {
     },
     contact: {
       heading: "Studio",
-      phone: { label: "+1 (555) 010-0199", href: "tel:+15550100199" },
+      phone: { label: STUDIO_PHONE_DISPLAY, href: studioPhoneTelHref() },
       email: { label: "hello@studio.example.com", href: "mailto:hello@studio.example.com" },
       address: "120 Beauty Lane, Suite 4, New York, NY 10001",
       directionsHref:
