@@ -20,11 +20,13 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
   const { contact } = content;
 
   return (
-    <footer className={cn("border-t border-border bg-surface", className)}>
+    <footer className={cn("border-t border-border bg-accent/20", className)}>
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-4">
-            <p className="font-heading text-xl text-primary">{content.brandTitle}</p>
+            <p className="font-heading text-xl text-primary">
+              {content.brandTitle}
+            </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               {content.tagline}
             </p>
@@ -96,7 +98,9 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
         <Divider className="my-10" />
 
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs leading-relaxed text-muted">{content.legal.notice}</p>
+          <p className="text-xs leading-relaxed text-muted">
+            {content.legal.notice}
+          </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {content.legal.links.map((link) => (
               <Link
@@ -110,6 +114,21 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
             <CookieSettingsButton className="text-xs" />
           </div>
         </div>
+
+        {content.developerCredit ? (
+          <p className="mt-10 border-t border-border/70 pt-8 text-center text-[0.7rem] leading-relaxed tracking-[0.06em] text-muted">
+            <span>{content.developerCredit.lead}</span>
+            <a
+              href={content.developerCredit.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary underline-offset-[0.2em] transition-colors hover:text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              {content.developerCredit.brandLabel}
+            </a>
+            <span>{content.developerCredit.tail}</span>
+          </p>
+        ) : null}
       </div>
     </footer>
   );

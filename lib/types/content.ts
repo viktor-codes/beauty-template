@@ -162,6 +162,17 @@ export interface FooterContactBlock {
   directionsLabel?: string;
 }
 
+export interface FooterDeveloperCredit {
+  /** Text before the linked brand name. */
+  lead: string;
+  /** Linked studio / brand label. */
+  brandLabel: string;
+  /** Text after the link. */
+  tail: string;
+  /** Destination URL (e.g. portfolio). */
+  href: string;
+}
+
 export interface FooterContent {
   brandTitle: string;
   tagline: string;
@@ -170,6 +181,8 @@ export interface FooterContent {
   contact: FooterContactBlock;
   social: FooterLinkGroup;
   legal: FooterLegal;
+  /** Optional bottom credit line with link to designer/dev site. */
+  developerCredit?: FooterDeveloperCredit;
 }
 
 export interface LandingContent {

@@ -404,6 +404,12 @@ export const content = {
         { label: "Terms of use", href: "/terms" },
       ],
     },
+    developerCredit: {
+      lead: "Design & build — ",
+      brandLabel: "RuraMade",
+      tail: " · an independent studio (population: one). Not an agency.",
+      href: "https://ruramade.dev",
+    },
   },
 } satisfies LandingContent;
 
