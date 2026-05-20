@@ -30,7 +30,7 @@ export default async function PrivacyPolicyPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const landingContent = getLandingContent(locale as AppLocale);
+  const landingContent = await getLandingContent(locale as AppLocale);
   const { email, phone } = landingContent.contact;
 
   return (

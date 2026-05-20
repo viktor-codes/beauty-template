@@ -40,7 +40,7 @@ interface SanityCategoryLike {
   subcategories?: SanitySubcategoryLike[] | null;
 }
 
-interface SanityServicesCatalogLike {
+export interface SanityServicesCatalogLike {
   hubTitle?: LocaleFieldValues;
   hubDescription?: LocaleFieldValues;
   categories?: SanityCategoryLike[] | null;

@@ -62,8 +62,9 @@ function scoreFaqAgainstContext(item: FAQItem, context: string): number {
   return score;
 }
 
-function byId(id: string, locale: AppLocale): FAQItem | null {
-  return getLandingContent(locale).faq.items.find((i) => i.id === id) ?? null;
+async function byId(id: string, locale: AppLocale): Promise<FAQItem | null> {
+  const landing = await getLandingContent(locale);
+  return landing.faq.items.find((i) => i.id === id) ?? null;
 }
 
 function dedupe(items: FAQItem[]): FAQItem[] {
@@ -97,12 +98,18 @@ function buildProcedureContext(
   return `${buildSubcategoryContext(category, subcategory)} ${procedure.title} ${procedure.description}`;
 }
 
-function pickFaqForContext(context: string, locale: AppLocale, limit: number): FAQItem[] {
-  const faqItems = getLandingContent(locale).faq.items;
-  const always: FAQItem[] = [
-    byId("faq-how-do-i-choose-the-right-treatment", locale),
-    byId("faq-when-not-to-book", locale),
-  ].filter(Boolean) as FAQItem[];
+async function pickFaqForContext(
+  context: string,
+  locale: AppLocale,
+  limit: number,
+): Promise<FAQItem[]> {
+  const faqItems = (await getLandingContent(locale)).faq.items;
+  const always: FAQItem[] = (
+    await Promise.all([
+      byId("faq-how-do-i-choose-the-right-treatment", locale),
+      byId("faq-when-not-to-book", locale),
+    ])
+  ).filter(Boolean) as FAQItem[];
 
   const scored = faqItems
     .map((item) => ({ item, score: scoreFaqAgainstContext(item, context) }))
@@ -113,7 +120,10 @@ function pickFaqForContext(context: string, locale: AppLocale, limit: number): F
   return dedupe([...always, ...scored]).slice(0, limit);
 }
 
-export function getServicesHubFaq(locale: AppLocale, limit = 6): FAQItem[] {
+export async function getServicesHubFaq(
+  locale: AppLocale,
+  limit = 6,
+): Promise<FAQItem[]> {
   const context = servicesCatalog.categories
     .flatMap((c) => [c.title, c.description, ...c.subcategories.flatMap((s) => [s.title, s.description])])
     .join(" ");
@@ -121,30 +131,30 @@ export function getServicesHubFaq(locale: AppLocale, limit = 6): FAQItem[] {
   return pickFaqForContext(context, locale, limit);
 }
 
-export function getServicesCategoryFaq(
+export async function getServicesCategoryFaq(
   category: ServiceCategory,
   locale: AppLocale,
   limit = 6,
-): FAQItem[] {
+): Promise<FAQItem[]> {
   return pickFaqForContext(buildCategoryContext(category), locale, limit);
 }
 
-export function getServicesSubcategoryFaq(
+export async function getServicesSubcategoryFaq(
   category: ServiceCategory,
   subcategory: ServiceSubcategory,
   locale: AppLocale,
   limit = 6,
-): FAQItem[] {
+): Promise<FAQItem[]> {
   return pickFaqForContext(buildSubcategoryContext(category, subcategory), locale, limit);
 }
 
-export function getServicesProcedureFaq(
+export async function getServicesProcedureFaq(
   category: ServiceCategory,
   subcategory: ServiceSubcategory,
   procedure: ServiceProcedure,
   locale: AppLocale,
   limit = 5,
-): FAQItem[] {
+): Promise<FAQItem[]> {
   return pickFaqForContext(
     buildProcedureContext(category, subcategory, procedure),
     locale,

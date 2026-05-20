@@ -1,19 +1,19 @@
 import type { AppLocale } from "@/i18n/routing";
+import { getStaticLandingContent } from "@/lib/content/static";
+import { isSanityConfigured } from "@/lib/sanity/env";
+import { fetchLandingPage } from "@/lib/sanity/fetch/fetch-landing-page";
+import { mapLandingPageSafe } from "@/lib/sanity/mappers/landing";
 import type { LandingContent } from "@/lib/types/content";
 
-import { enLandingContent } from "./en";
-import { ruLandingContent } from "./ru";
-import { ukLandingContent } from "./uk";
+export async function getLandingContent(locale: AppLocale): Promise<LandingContent> {
+  if (!isSanityConfigured()) {
+    return getStaticLandingContent(locale);
+  }
 
-const landingByLocale = {
-  en: enLandingContent,
-  uk: ukLandingContent,
-  ru: ruLandingContent,
-} satisfies Record<AppLocale, LandingContent>;
-
-export function getLandingContent(locale: AppLocale): LandingContent {
-  return landingByLocale[locale] ?? landingByLocale.en;
+  const raw = await fetchLandingPage(locale);
+  return mapLandingPageSafe(raw, locale);
 }
 
-export { enLandingContent as content };
+export { getStaticLandingContent } from "@/lib/content/static";
+export { enLandingContent as content } from "./en";
 export type { LandingContent } from "@/lib/types/content";

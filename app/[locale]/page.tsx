@@ -34,7 +34,7 @@ export default async function Home({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const landingContent = getLandingContent(locale as AppLocale);
+  const landingContent = await getLandingContent(locale as AppLocale);
 
   return (
     <>

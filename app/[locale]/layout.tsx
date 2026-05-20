@@ -126,7 +126,7 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
   const t = await getTranslations("Accessibility");
-  const landingContent = getLandingContent(locale as AppLocale);
+  const landingContent = await getLandingContent(locale as AppLocale);
 
   return (
     <html

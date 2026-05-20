@@ -48,7 +48,7 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const landingContent = getLandingContent(locale as AppLocale);
+  const landingContent = await getLandingContent(locale as AppLocale);
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -63,7 +63,7 @@ export default async function ServicesPage({
   const recommended = selectedGoal
     ? getGoalRecommendations(selectedGoal, 10)
     : [];
-  const hubFaq = getServicesHubFaq(locale as AppLocale, 6);
+  const hubFaq = await getServicesHubFaq(locale as AppLocale, 6);
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">

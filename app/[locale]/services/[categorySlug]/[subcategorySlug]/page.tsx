@@ -73,7 +73,12 @@ export default async function ServicesSubcategoryPage({
   setRequestLocale(locale);
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
-  const subcategoryFaq = getServicesSubcategoryFaq(category, subcategory, locale as AppLocale, 6);
+  const subcategoryFaq = await getServicesSubcategoryFaq(
+    category,
+    subcategory,
+    locale as AppLocale,
+    6,
+  );
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },

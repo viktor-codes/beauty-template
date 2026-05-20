@@ -59,7 +59,7 @@ export default async function ServicesCategoryPage({
   const { locale, categorySlug } = await params;
   setRequestLocale(locale);
   const category = getCategoryOrThrow(categorySlug);
-  const categoryFaq = getServicesCategoryFaq(category, locale as AppLocale, 6);
+  const categoryFaq = await getServicesCategoryFaq(category, locale as AppLocale, 6);
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },

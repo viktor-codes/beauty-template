@@ -106,7 +106,7 @@ export default async function ServiceProcedurePage({
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
   const procedure = getProcedureOrThrow(categorySlug, subcategorySlug, procedureSlug);
-  const procedureFaq = getServicesProcedureFaq(
+  const procedureFaq = await getServicesProcedureFaq(
     category,
     subcategory,
     procedure,

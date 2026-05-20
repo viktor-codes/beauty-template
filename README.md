@@ -44,7 +44,11 @@ Next.js reads CMS via `lib/sanity/` (queries → **mappers with fallbacks** → 
 
 1. Create a project at [sanity.io/manage](https://www.sanity.io/manage).
 2. Set `NEXT_PUBLIC_SANITY_*` in `.env.local` (Next) and `SANITY_STUDIO_*` in `sanity/.env` (Studio — same project/dataset).
-3. `pnpm studio` — Sanity Studio in `sanity/`.
+3. Install Studio deps (from repo root): `pnpm install`
+4. Copy `sanity/.env.example` → `sanity/.env`, set `SANITY_STUDIO_PROJECT_ID` and dataset.
+5. `pnpm studio` — Sanity Studio in `sanity/`.
+
+If `pnpm install` inside `sanity/` finishes in under a second with no new packages, run `pnpm install` from the repo root instead (workspace includes `sanity/`).
 
 ## Stripe (gift vouchers)
 

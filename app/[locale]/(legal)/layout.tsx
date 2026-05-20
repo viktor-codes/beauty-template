@@ -10,7 +10,7 @@ export default async function LegalPagesLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  const landingContent = getLandingContent(locale as AppLocale);
+  const landingContent = await getLandingContent(locale as AppLocale);
 
   return <MarketingChrome content={landingContent}>{children}</MarketingChrome>;
 }
