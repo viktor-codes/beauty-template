@@ -1,5 +1,7 @@
 import {
   contentLinkFields,
+  faqGroupFields,
+  faqItemFields,
   footerLinkGroupFields,
   sanityImageFields,
 } from "@/lib/sanity/queries/fragments";
@@ -82,6 +84,32 @@ export const landingPageQuery = /* groq */ `
         image {
           ${sanityImageFields}
         }
+      }
+    },
+    gallery {
+      eyebrow,
+      title,
+      instagramUrl
+    },
+    reviews {
+      eyebrow,
+      title,
+      items[] {
+        quote,
+        authorName,
+        authorRole
+      }
+    },
+    faq {
+      eyebrow,
+      title,
+      description,
+      introBullets,
+      groups[] {
+        ${faqGroupFields}
+      },
+      items[] {
+        ${faqItemFields}
       }
     }
   }

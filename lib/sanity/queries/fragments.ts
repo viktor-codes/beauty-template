@@ -11,6 +11,22 @@ export const footerLinkGroupFields = /* groq */ `
   }
 `;
 
+export const faqItemFields = /* groq */ `
+  "id": id.current,
+  question,
+  answer,
+  isDefaultOpen
+`;
+
+export const faqGroupFields = /* groq */ `
+  "id": id.current,
+  title,
+  subtitle,
+  items[] {
+    ${faqItemFields}
+  }
+`;
+
 /** GROQ projection for Sanity `image` fields (hero, etc.). */
 export const sanityImageFields = /* groq */ `
   asset->{

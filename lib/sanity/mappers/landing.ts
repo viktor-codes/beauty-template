@@ -9,6 +9,9 @@ import {
   type SanityNavLike,
 } from "@/lib/sanity/mappers/chrome";
 import { mapAboutSafe, type SanityAboutLike } from "@/lib/sanity/mappers/about";
+import { mapFaqSafe, type SanityFaqLike } from "@/lib/sanity/mappers/faq";
+import { mapGallerySafe, type SanityGalleryLike } from "@/lib/sanity/mappers/gallery";
+import { mapReviewsSafe, type SanityReviewsLike } from "@/lib/sanity/mappers/reviews";
 import type { SanitySiteSettingsLike } from "@/lib/sanity/mappers/site-settings";
 import { mapHeroSafe, type SanityImageLike } from "@/lib/sanity/mappers/safe";
 
@@ -29,6 +32,9 @@ export interface SanityLandingPageLike {
     image?: SanityImageLike | null;
   } | null;
   about?: SanityAboutLike | null;
+  gallery?: SanityGalleryLike | null;
+  reviews?: SanityReviewsLike | null;
+  faq?: SanityFaqLike | null;
 }
 
 /**
@@ -50,5 +56,8 @@ export function mapLandingPageSafe(
     footer: mapFooterSafe(raw.footer, fallback.footer, settings),
     hero: mapHeroSafe(raw.hero, locale, fallback.hero),
     about: mapAboutSafe(raw.about, fallback.about),
+    gallery: mapGallerySafe(raw.gallery, fallback.gallery, settings?.instagramUrl),
+    reviews: mapReviewsSafe(raw.reviews, fallback.reviews),
+    faq: mapFaqSafe(raw.faq, fallback.faq),
   };
 }
