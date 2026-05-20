@@ -33,11 +33,18 @@ UI strings live in `messages/{locale}.json`. Page content will move to Sanity wi
 
 ## Sanity CMS
 
-1. Create a project at [sanity.io/manage](https://www.sanity.io/manage).
-2. Set `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, and optionally `SANITY_API_READ_TOKEN` in `.env.local`.
-3. Sanity Studio lives in `sanity/` (added in Phase 2). Deploy Studio separately or use `*.sanity.studio`.
+See [docs/adr/001-sanity-i18n-strategy.md](./docs/adr/001-sanity-i18n-strategy.md).
 
-Content is fetched at build/request time via GROQ in Server Components.
+| Content | Studio i18n | Why |
+|---------|-------------|-----|
+| Landing, site settings | **Document** (one doc per locale) | Large page blobs |
+| Services tree | **Field** (`localeString` / `localeText`) | Same `_id` and references for all languages |
+
+Next.js reads CMS via `lib/sanity/` (queries → **mappers with fallbacks** → `LandingContent` / `ServicesCatalog`). Pages keep calling `getLandingContent(locale)`; static files remain fallback until migration.
+
+1. Create a project at [sanity.io/manage](https://www.sanity.io/manage).
+2. Set `NEXT_PUBLIC_SANITY_*` in `.env.local` (Next) and `SANITY_STUDIO_*` in `sanity/.env` (Studio — same project/dataset).
+3. `pnpm studio` — Sanity Studio in `sanity/`.
 
 ## Stripe (gift vouchers)
 
@@ -50,6 +57,7 @@ Content is fetched at build/request time via GROQ in Server Components.
 
 ```bash
 pnpm dev      # development server
+pnpm studio   # Sanity Studio (sanity/)
 pnpm build    # production build
 pnpm start    # run production build locally
 pnpm lint     # ESLint

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "studio": "pnpm --dir sanity dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
