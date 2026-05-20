@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Skinbar — cosmetology landing (Next.js 16)
 
-## Getting Started
+Marketing site for Skinbar · Inna Chernovol. Hosted on [Vercel](https://vercel.com).
 
-First, run the development server:
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+cp .env.example .env.local   # fill in values (see below)
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy [`.env.example`](./.env.example) to `.env.local`. Required for production:
 
-## Learn More
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL (metadata, JSON-LD, Stripe redirects) |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 (optional) |
 
-To learn more about Next.js, take a look at the following resources:
+See `.env.example` for the full list including Sanity, Stripe, and Resend.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Locales (i18n)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Supported locales: **en** (default), **uk**, **ru**.
 
-## Deploy on Vercel
+Routing uses `next-intl` with a `[locale]` segment (e.g. `/uk/services`). Default locale `en` is served at `/` without a prefix once Phase 1 is merged.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+UI strings live in `messages/{locale}.json`. Page content will move to Sanity with per-locale documents.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Sanity CMS
+
+1. Create a project at [sanity.io/manage](https://www.sanity.io/manage).
+2. Set `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, and optionally `SANITY_API_READ_TOKEN` in `.env.local`.
+3. Sanity Studio lives in `sanity/` (added in Phase 2). Deploy Studio separately or use `*.sanity.studio`.
+
+Content is fetched at build/request time via GROQ in Server Components.
+
+## Stripe (gift vouchers)
+
+1. Create products/prices in [Stripe Dashboard](https://dashboard.stripe.com) or use dynamic Checkout amounts.
+2. Set `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, and `STRIPE_WEBHOOK_SECRET` in Vercel env.
+3. **Production webhook URL:** `https://<your-domain>/api/stripe/webhook`
+4. **Local dev:** `stripe listen --forward-to localhost:3000/api/stripe/webhook` — use the signing secret from CLI output as `STRIPE_WEBHOOK_SECRET`.
+
+## Scripts
+
+```bash
+pnpm dev      # development server
+pnpm build    # production build
+pnpm start    # run production build locally
+pnpm lint     # ESLint
+```
+
+## Stack
+
+Next.js 16 · React 19 · Tailwind CSS v4 · next-intl · Sanity · Stripe · Vercel
