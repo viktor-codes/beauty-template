@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
@@ -38,10 +39,15 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },

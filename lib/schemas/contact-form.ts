@@ -1,17 +1,31 @@
 import { z } from "zod";
 
-export const ContactFormSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, "Please enter your name.")
-    .max(120, "Name is too long."),
-  email: z.string().trim().email("Enter a valid email address."),
-  message: z
-    .string()
-    .trim()
-    .min(10, "Please write at least 10 characters.")
-    .max(4000, "Message is too long."),
-});
+export interface ContactFormValidationMessages {
+  nameRequired: string;
+  nameTooLong: string;
+  emailInvalid: string;
+  messageMin: string;
+  messageTooLong: string;
+}
 
-export type ContactFormValues = z.infer<typeof ContactFormSchema>;
+export function createContactFormSchema(messages: ContactFormValidationMessages) {
+  return z.object({
+    name: z
+      .string()
+      .trim()
+      .min(1, messages.nameRequired)
+      .max(120, messages.nameTooLong),
+    email: z.string().trim().email(messages.emailInvalid),
+    message: z
+      .string()
+      .trim()
+      .min(10, messages.messageMin)
+      .max(4000, messages.messageTooLong),
+  });
+}
+
+export type ContactFormValues = {
+  name: string;
+  email: string;
+  message: string;
+};

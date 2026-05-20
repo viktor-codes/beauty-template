@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
@@ -65,9 +66,10 @@ export async function generateMetadata({
 export default async function ServicesSubcategoryPage({
   params,
 }: {
-  params: Promise<{ categorySlug: string; subcategorySlug: string }>;
+  params: Promise<{ locale: string; categorySlug: string; subcategorySlug: string }>;
 }) {
-  const { categorySlug, subcategorySlug } = await params;
+  const { locale, categorySlug, subcategorySlug } = await params;
+  setRequestLocale(locale);
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
   const subcategoryFaq = getServicesSubcategoryFaq(category, subcategory, 6);

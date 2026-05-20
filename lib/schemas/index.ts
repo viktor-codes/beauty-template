@@ -1,6 +1,7 @@
 /** Zod schemas and shared validation types (contact, etc.). */
 
 export {
-  ContactFormSchema,
+  createContactFormSchema,
+  type ContactFormValidationMessages,
   type ContactFormValues,
 } from "@/lib/schemas/contact-form";

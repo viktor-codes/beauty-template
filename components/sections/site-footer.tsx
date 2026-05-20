@@ -3,7 +3,7 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from "@phosphor-icons/react/ssr";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 import { CookieSettingsButton } from "@/components/consent/cookie-settings-button";
 import { SiteFooterLinkGroup } from "@/components/sections/site-footer-link-group";

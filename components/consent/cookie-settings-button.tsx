@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useCookieConsent } from "@/components/consent/cookie-consent-context";
 import { cn } from "@/lib/cn";
 
@@ -8,6 +10,7 @@ export interface CookieSettingsButtonProps {
 }
 
 export function CookieSettingsButton({ className }: CookieSettingsButtonProps) {
+  const t = useTranslations("Cookie");
   const { openPreferences } = useCookieConsent();
 
   return (
@@ -19,7 +22,7 @@ export function CookieSettingsButton({ className }: CookieSettingsButtonProps) {
         className,
       )}
     >
-      Cookie settings
+      {t("settings")}
     </button>
   );
 }

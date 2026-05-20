@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 import { PrivacyContactChannels } from "@/components/sections/privacy-contact-channels";
 import { cn } from "@/lib/cn";

@@ -1,5 +1,5 @@
 import { CalendarHeartIcon } from "@phosphor-icons/react/ssr";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 
 import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";

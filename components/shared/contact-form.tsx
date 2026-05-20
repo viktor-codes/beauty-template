@@ -1,11 +1,12 @@
 "use client";
 
-import { type ComponentPropsWithoutRef, type FormEvent, useState } from "react";
+import { useTranslations } from "next-intl";
+import { type ComponentPropsWithoutRef, type FormEvent, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import {
-  ContactFormSchema,
+  createContactFormSchema,
   type ContactFormValues,
 } from "@/lib/schemas/contact-form";
 
@@ -42,12 +43,25 @@ function fieldErrorsFromIssues(
 }
 
 export function ContactForm({ className, ...rest }: ContactFormProps) {
+  const t = useTranslations("ContactForm");
   const [errors, setErrors] = useState<FieldErrors>({});
+
+  const schema = useMemo(
+    () =>
+      createContactFormSchema({
+        nameRequired: t("validation.nameRequired"),
+        nameTooLong: t("validation.nameTooLong"),
+        emailInvalid: t("validation.emailInvalid"),
+        messageMin: t("validation.messageMin"),
+        messageTooLong: t("validation.messageTooLong"),
+      }),
+    [t],
+  );
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
-    const parsed = ContactFormSchema.safeParse(readFormPayload(form));
+    const parsed = schema.safeParse(readFormPayload(form));
     if (!parsed.success) {
       setErrors(fieldErrorsFromIssues(parsed.error.issues));
       return;
@@ -65,14 +79,14 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
     >
       <div className="flex flex-col gap-2">
         <label htmlFor="contact-name" className="text-sm font-medium text-primary">
-          Name
+          {t("nameLabel")}
         </label>
         <input
           id="contact-name"
           name="name"
           type="text"
           autoComplete="name"
-          placeholder="Alex Morgan"
+          placeholder={t("namePlaceholder")}
           className={cn(fieldClass, errors.name && "border-red-700/60 focus:border-red-700 focus:ring-red-700/40")}
           aria-invalid={errors.name ? true : undefined}
           aria-describedby={errors.name ? "contact-name-error" : undefined}
@@ -85,14 +99,14 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="contact-email" className="text-sm font-medium text-primary">
-          Email
+          {t("emailLabel")}
         </label>
         <input
           id="contact-email"
           name="email"
           type="email"
           autoComplete="email"
-          placeholder="you@example.com"
+          placeholder={t("emailPlaceholder")}
           className={cn(fieldClass, errors.email && "border-red-700/60 focus:border-red-700 focus:ring-red-700/40")}
           aria-invalid={errors.email ? true : undefined}
           aria-describedby={errors.email ? "contact-email-error" : undefined}
@@ -105,13 +119,13 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="contact-message" className="text-sm font-medium text-primary">
-          Message
+          {t("messageLabel")}
         </label>
         <textarea
           id="contact-message"
           name="message"
           rows={4}
-          placeholder="What would you like me to know?"
+          placeholder={t("messagePlaceholder")}
           className={cn(
             fieldClass,
             "resize-y min-h-[120px]",
@@ -127,7 +141,7 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
         ) : null}
       </div>
       <Button type="submit" className="self-start">
-        Send message
+        {t("submit")}
       </Button>
     </form>
   );

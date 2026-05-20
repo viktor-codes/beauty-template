@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
@@ -52,9 +53,10 @@ export async function generateMetadata({
 export default async function ServicesCategoryPage({
   params,
 }: {
-  params: Promise<{ categorySlug: string }>;
+  params: Promise<{ locale: string; categorySlug: string }>;
 }) {
-  const { categorySlug } = await params;
+  const { locale, categorySlug } = await params;
+  setRequestLocale(locale);
   const category = getCategoryOrThrow(categorySlug);
   const categoryFaq = getServicesCategoryFaq(category, 6);
   const breadcrumbs = [

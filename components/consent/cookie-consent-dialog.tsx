@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { XIcon } from "@phosphor-icons/react";
 import { useEffect, useId, useState } from "react";
 
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
 export function CookieConsentDialog() {
+  const t = useTranslations("Cookie");
   const {
     hasAnswered,
     analyticsEnabled,
@@ -51,7 +53,7 @@ export function CookieConsentDialog() {
     >
       <button
         type="button"
-        aria-label={isBlocking ? undefined : "Close cookie preferences"}
+        aria-label={isBlocking ? undefined : t("closePreferences")}
         disabled={isBlocking}
         onClick={() => !isBlocking && closePreferences()}
         className={cn(
@@ -67,14 +69,14 @@ export function CookieConsentDialog() {
       >
         <div className="flex items-start justify-between gap-4">
           <h2 id={titleId} className="type-h4 text-primary">
-            Cookie preferences
+            {t("title")}
           </h2>
           {hasAnswered ? (
             <button
               type="button"
               onClick={closePreferences}
               className="rounded-full p-1 text-muted transition-colors hover:bg-surface hover:text-primary"
-              aria-label="Close"
+              aria-label={t("close")}
             >
               <XIcon className="size-5" weight="thin" aria-hidden />
             </button>
@@ -88,7 +90,7 @@ export function CookieConsentDialog() {
 
         <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-end">
           <Button type="button" variant="secondary" size="md" onClick={rejectOptional}>
-            Reject optional
+            {t("rejectOptional")}
           </Button>
           <Button
             type="button"
@@ -96,10 +98,10 @@ export function CookieConsentDialog() {
             size="md"
             onClick={() => savePreferences(analyticsToggle)}
           >
-            Save choices
+            {t("saveChoices")}
           </Button>
           <Button type="button" variant="primary" size="md" onClick={acceptAll}>
-            Accept all
+            {t("acceptAll")}
           </Button>
         </div>
       </div>

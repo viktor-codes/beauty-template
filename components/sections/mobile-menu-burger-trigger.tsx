@@ -1,7 +1,8 @@
 "use client";
 
 import { ListHeartIcon, XIcon } from "@phosphor-icons/react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ export interface MobileMenuBurgerTriggerProps {
 }
 
 export function MobileMenuBurgerTrigger({ nav }: MobileMenuBurgerTriggerProps) {
+  const t = useTranslations("Navigation");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export function MobileMenuBurgerTrigger({ nav }: MobileMenuBurgerTriggerProps) {
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
         aria-controls="mobile-menu-panel"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-label={isOpen ? t("closeMenu") : t("openMenu")}
       >
         {isOpen ? (
           <XIcon className="h-6 w-6" weight="light" aria-hidden />
@@ -67,7 +69,7 @@ export function MobileMenuBurgerTrigger({ nav }: MobileMenuBurgerTriggerProps) {
           <button
             type="button"
             className="fixed inset-x-0 top-19 bottom-0 z-(--z-dropdown) bg-primary/20 backdrop-blur-[2px] md:hidden"
-            aria-label="Close menu"
+            aria-label={t("closeMenu")}
             onClick={() => setIsOpen(false)}
           />
           <div
@@ -75,9 +77,9 @@ export function MobileMenuBurgerTrigger({ nav }: MobileMenuBurgerTriggerProps) {
             id="mobile-menu-panel"
             role="dialog"
             aria-modal="true"
-            aria-label="Site menu"
+            aria-label={t("siteMenu")}
           >
-            <nav aria-label="Primary mobile">
+            <nav aria-label={t("primaryMobile")}>
               <ul className="flex flex-col gap-2">
                 {nav.links.map((link) => (
                   <li key={`${link.label}-${link.href}`}>

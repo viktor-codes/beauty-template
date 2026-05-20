@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
@@ -92,12 +93,14 @@ export default async function ServiceProcedurePage({
   params,
 }: {
   params: Promise<{
+    locale: string;
     categorySlug: string;
     subcategorySlug: string;
     procedureSlug: string;
   }>;
 }) {
-  const { categorySlug, subcategorySlug, procedureSlug } = await params;
+  const { locale, categorySlug, subcategorySlug, procedureSlug } = await params;
+  setRequestLocale(locale);
 
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);

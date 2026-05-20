@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 
 import { LegalStaticPage } from "@/components/sections/legal-static-page";
 import { TermsPolicyDocument } from "@/components/sections/terms-policy-document";
@@ -20,7 +21,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TermsPage() {
+export default async function TermsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">
       <WebPageJsonLd
