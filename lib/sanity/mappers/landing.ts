@@ -16,6 +16,8 @@ export interface SanityLandingPageLike {
     subtitle?: string;
     primaryCtaLabel?: string;
     secondaryCtaLabel?: string;
+    primaryCtaHref?: string;
+    secondaryCtaHref?: string;
     image?: SanityImageLike | null;
   } | null;
 }

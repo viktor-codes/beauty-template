@@ -64,6 +64,8 @@ interface SanityHeroLike {
   subtitle?: LocalizedFieldInput;
   primaryCtaLabel?: LocalizedFieldInput;
   secondaryCtaLabel?: LocalizedFieldInput;
+  primaryCtaHref?: string;
+  secondaryCtaHref?: string;
   image?: SanityImageLike | null;
 }
 
@@ -80,7 +82,7 @@ export function mapHeroSafe(
     subtitle: readLocalizedValue(raw.subtitle, locale, fallback.subtitle),
     primaryCta: {
       label: readLocalizedValue(raw.primaryCtaLabel, locale, fallback.primaryCta.label),
-      href: fallback.primaryCta.href,
+      href: raw.primaryCtaHref?.trim() || fallback.primaryCta.href,
     },
     secondaryCta: {
       label: readLocalizedValue(
@@ -88,7 +90,7 @@ export function mapHeroSafe(
         locale,
         fallback.secondaryCta.label,
       ),
-      href: fallback.secondaryCta.href,
+      href: raw.secondaryCtaHref?.trim() || fallback.secondaryCta.href,
     },
     image: mapHeroImageSafe(raw.image, locale, fallback.image),
   };

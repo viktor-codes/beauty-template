@@ -5,31 +5,30 @@ export const landingPage = defineType({
   name: "landingPage",
   title: "Landing page",
   type: "document",
+  groups: [
+    { name: "chrome", title: "Header & footer", default: true },
+    { name: "hero", title: "Hero" },
+    { name: "about", title: "About" },
+    { name: "services", title: "Services preview" },
+    { name: "marketing", title: "Gallery, reviews, FAQ" },
+    { name: "contact", title: "Contact" },
+  ],
   fields: [
-    defineField({
-      name: "hero",
-      title: "Hero",
-      type: "object",
-      fields: [
-        defineField({ name: "eyebrow", type: "string" }),
-        defineField({ name: "title", type: "string", validation: (r) => r.required() }),
-        defineField({ name: "subtitle", type: "text", rows: 3 }),
-        defineField({ name: "primaryCtaLabel", title: "Primary CTA label", type: "string" }),
-        defineField({
-          name: "secondaryCtaLabel",
-          title: "Secondary CTA label",
-          type: "string",
-        }),
-        defineField({
-          name: "image",
-          type: "image",
-          options: { hotspot: true },
-          fields: [defineField({ name: "alt", type: "string", title: "Alt text" })],
-        }),
-      ],
-    }),
+    defineField({ name: "nav", type: "landingNavSection", group: "chrome" }),
+    defineField({ name: "footer", type: "landingFooterSection", group: "chrome" }),
+    defineField({ name: "hero", type: "landingHeroSection", group: "hero" }),
+    defineField({ name: "about", type: "landingAboutSection", group: "about" }),
+    defineField({ name: "services", type: "landingServicesSection", group: "services" }),
+    defineField({ name: "gallery", type: "landingGallerySection", group: "marketing" }),
+    defineField({ name: "reviews", type: "landingReviewsSection", group: "marketing" }),
+    defineField({ name: "faq", type: "landingFaqSection", group: "marketing" }),
+    defineField({ name: "contact", type: "landingContactSection", group: "contact" }),
   ],
   preview: {
-    prepare: () => ({ title: "Landing page" }),
+    select: { language: "language", title: "hero.title" },
+    prepare: ({ language, title }) => ({
+      title: title ?? "Landing page",
+      subtitle: language ? `Locale: ${language}` : undefined,
+    }),
   },
 });

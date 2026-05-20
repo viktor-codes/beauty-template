@@ -11,6 +11,8 @@ export const landingPageQuery = /* groq */ `
       subtitle,
       primaryCtaLabel,
       secondaryCtaLabel,
+      primaryCtaHref,
+      secondaryCtaHref,
       image {
         ${sanityImageFields}
       }

@@ -7,7 +7,8 @@
     "studio": "pnpm --dir sanity dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:sanity": "npx tsx scripts/seed-sanity-landing.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
