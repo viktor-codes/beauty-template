@@ -1,0 +1,51 @@
+{
+  "Accessibility": {
+    "skipToContent": "Перейти до основного вмісту"
+  },
+  "Navigation": {
+    "openMenu": "Відкрити меню",
+    "closeMenu": "Закрити меню",
+    "siteMenu": "Меню сайту",
+    "primaryMobile": "Головна навігація (мобільна)"
+  },
+  "Cookie": {
+    "title": "Налаштування файлів cookie",
+    "closePreferences": "Закрити налаштування cookie",
+    "close": "Закрити",
+    "rejectOptional": "Відхилити необов'язкові",
+    "saveChoices": "Зберегти вибір",
+    "acceptAll": "Прийняти всі",
+    "settings": "Налаштування cookie",
+    "descriptionBeforePrivacy": "Ми використовуємо необхідні cookie, щоб запам'ятати ваш вибір. З вашого дозволу ми застосовуємо Google Analytics, щоб розуміти, як користуються сайтом. Детальніше — у",
+    "privacyLink": "Політиці конфіденційності",
+    "descriptionBetweenLinks": "та",
+    "termsLink": "Умовах",
+    "descriptionAfterTerms": ".",
+    "strictlyNecessaryTitle": "Обов'язкові",
+    "strictlyNecessaryDescription": "Потрібні для збереження вашої згоди та роботи основних функцій сайту. Завжди увімкнені.",
+    "alwaysOn": "Увімк.",
+    "analyticsTitle": "Аналітика (Google Analytics)",
+    "analyticsDescription": "Допомагає вимірювати трафік і покращувати досвід користування. Необов'язково."
+  },
+  "ContactForm": {
+    "nameLabel": "Ім'я",
+    "namePlaceholder": "Олена Коваленко",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Повідомлення",
+    "messagePlaceholder": "Що б ви хотіли мені повідомити?",
+    "submit": "Надіслати повідомлення",
+    "validation": {
+      "nameRequired": "Будь ласка, введіть ім'я.",
+      "nameTooLong": "Ім'я занадто довге.",
+      "emailInvalid": "Введіть коректну email-адресу.",
+      "messageMin": "Напишіть щонайменше 10 символів.",
+      "messageTooLong": "Повідомлення занадто довге."
+    }
+  },
+  "Locale": {
+    "en": "English",
+    "uk": "Українська",
+    "ru": "Російська"
+  }
+}

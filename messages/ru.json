@@ -1,0 +1,51 @@
+{
+  "Accessibility": {
+    "skipToContent": "Перейти к основному содержимому"
+  },
+  "Navigation": {
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "siteMenu": "Меню сайта",
+    "primaryMobile": "Основная навигация (мобильная)"
+  },
+  "Cookie": {
+    "title": "Настройки файлов cookie",
+    "closePreferences": "Закрыть настройки cookie",
+    "close": "Закрыть",
+    "rejectOptional": "Отклонить необязательные",
+    "saveChoices": "Сохранить выбор",
+    "acceptAll": "Принять все",
+    "settings": "Настройки cookie",
+    "descriptionBeforePrivacy": "Мы используем необходимые cookie, чтобы запомнить ваш выбор. С вашего разрешения мы применяем Google Analytics, чтобы понимать, как используется сайт. Подробнее — в",
+    "privacyLink": "Политике конфиденциальности",
+    "descriptionBetweenLinks": "и",
+    "termsLink": "Условиях",
+    "descriptionAfterTerms": ".",
+    "strictlyNecessaryTitle": "Обязательные",
+    "strictlyNecessaryDescription": "Нужны для сохранения вашего согласия и работы основных функций сайта. Всегда включены.",
+    "alwaysOn": "Вкл.",
+    "analyticsTitle": "Аналитика (Google Analytics)",
+    "analyticsDescription": "Помогает измерять трафик и улучшать опыт использования. Необязательно."
+  },
+  "ContactForm": {
+    "nameLabel": "Имя",
+    "namePlaceholder": "Анна Иванова",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Сообщение",
+    "messagePlaceholder": "Что бы вы хотели мне сообщить?",
+    "submit": "Отправить сообщение",
+    "validation": {
+      "nameRequired": "Пожалуйста, введите имя.",
+      "nameTooLong": "Имя слишком длинное.",
+      "emailInvalid": "Введите корректный email.",
+      "messageMin": "Напишите не менее 10 символов.",
+      "messageTooLong": "Сообщение слишком длинное."
+    }
+  },
+  "Locale": {
+    "en": "English",
+    "uk": "Украинский",
+    "ru": "Русский"
+  }
+}

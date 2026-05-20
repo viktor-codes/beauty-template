@@ -11,7 +11,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    // Step 1.2 will load JSON namespaces from messages/{locale}.json
-    messages: {},
+    messages: (await import(`../messages/${locale}.json`)).default,
   };
 });
