@@ -4,7 +4,8 @@ import { setRequestLocale } from "next-intl/server";
 import { LegalStaticPage } from "@/components/sections/legal-static-page";
 import { PrivacyPolicyDocument } from "@/components/sections/privacy-policy-document";
 import { WebPageJsonLd } from "@/components/shared/web-page-jsonld";
-import { content } from "@/lib/content";
+import { getLandingContent } from "@/lib/content";
+import type { AppLocale } from "@/i18n/routing";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 const PAGE_TITLE = "Privacy policy";
@@ -29,8 +30,8 @@ export default async function PrivacyPolicyPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-
-  const { email, phone } = content.contact;
+  const landingContent = getLandingContent(locale as AppLocale);
+  const { email, phone } = landingContent.contact;
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">

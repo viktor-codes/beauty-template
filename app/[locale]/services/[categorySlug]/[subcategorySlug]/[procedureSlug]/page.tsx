@@ -13,6 +13,7 @@ import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ServiceJsonLd } from "@/components/shared/service-jsonld";
 import { getServicesProcedureFaq } from "@/lib/services-faq";
+import type { AppLocale } from "@/i18n/routing";
 import {
   getServicesCategory,
   getServicesProcedure,
@@ -105,7 +106,13 @@ export default async function ServiceProcedurePage({
   const category = getCategoryOrThrow(categorySlug);
   const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
   const procedure = getProcedureOrThrow(categorySlug, subcategorySlug, procedureSlug);
-  const procedureFaq = getServicesProcedureFaq(category, subcategory, procedure, 5);
+  const procedureFaq = getServicesProcedureFaq(
+    category,
+    subcategory,
+    procedure,
+    locale as AppLocale,
+    5,
+  );
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },

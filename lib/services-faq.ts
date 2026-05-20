@@ -1,4 +1,5 @@
-import { content } from "@/lib/content";
+import type { AppLocale } from "@/i18n/routing";
+import { getLandingContent } from "@/lib/content";
 import type { FAQItem } from "@/lib/types/content";
 import type { ServiceCategory, ServiceProcedure, ServiceSubcategory } from "@/lib/types/services";
 import { servicesCatalog } from "@/lib/services";
@@ -56,14 +57,13 @@ function scoreFaqAgainstContext(item: FAQItem, context: string): number {
     if (includesAny(blob, ["cold sore", "herpes"])) score += 5;
   }
 
-  // Light general relevance boost (helps “lost” visitors on hub pages).
   if (includesAny(blob, ["consultation", "sessions", "downtime", "expect"])) score += 1;
 
   return score;
 }
 
-function byId(id: string): FAQItem | null {
-  return content.faq.items.find((i) => i.id === id) ?? null;
+function byId(id: string, locale: AppLocale): FAQItem | null {
+  return getLandingContent(locale).faq.items.find((i) => i.id === id) ?? null;
 }
 
 function dedupe(items: FAQItem[]): FAQItem[] {
@@ -97,13 +97,14 @@ function buildProcedureContext(
   return `${buildSubcategoryContext(category, subcategory)} ${procedure.title} ${procedure.description}`;
 }
 
-function pickFaqForContext(context: string, limit: number): FAQItem[] {
+function pickFaqForContext(context: string, locale: AppLocale, limit: number): FAQItem[] {
+  const faqItems = getLandingContent(locale).faq.items;
   const always: FAQItem[] = [
-    byId("faq-how-do-i-choose-the-right-treatment"),
-    byId("faq-when-not-to-book"),
+    byId("faq-how-do-i-choose-the-right-treatment", locale),
+    byId("faq-when-not-to-book", locale),
   ].filter(Boolean) as FAQItem[];
 
-  const scored = content.faq.items
+  const scored = faqItems
     .map((item) => ({ item, score: scoreFaqAgainstContext(item, context) }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
@@ -112,31 +113,41 @@ function pickFaqForContext(context: string, limit: number): FAQItem[] {
   return dedupe([...always, ...scored]).slice(0, limit);
 }
 
-export function getServicesHubFaq(limit = 6): FAQItem[] {
+export function getServicesHubFaq(locale: AppLocale, limit = 6): FAQItem[] {
   const context = servicesCatalog.categories
     .flatMap((c) => [c.title, c.description, ...c.subcategories.flatMap((s) => [s.title, s.description])])
     .join(" ");
 
-  return pickFaqForContext(context, limit);
+  return pickFaqForContext(context, locale, limit);
 }
 
-export function getServicesCategoryFaq(category: ServiceCategory, limit = 6): FAQItem[] {
-  return pickFaqForContext(buildCategoryContext(category), limit);
+export function getServicesCategoryFaq(
+  category: ServiceCategory,
+  locale: AppLocale,
+  limit = 6,
+): FAQItem[] {
+  return pickFaqForContext(buildCategoryContext(category), locale, limit);
 }
 
 export function getServicesSubcategoryFaq(
   category: ServiceCategory,
   subcategory: ServiceSubcategory,
+  locale: AppLocale,
   limit = 6,
 ): FAQItem[] {
-  return pickFaqForContext(buildSubcategoryContext(category, subcategory), limit);
+  return pickFaqForContext(buildSubcategoryContext(category, subcategory), locale, limit);
 }
 
 export function getServicesProcedureFaq(
   category: ServiceCategory,
   subcategory: ServiceSubcategory,
   procedure: ServiceProcedure,
+  locale: AppLocale,
   limit = 5,
 ): FAQItem[] {
-  return pickFaqForContext(buildProcedureContext(category, subcategory, procedure), limit);
+  return pickFaqForContext(
+    buildProcedureContext(category, subcategory, procedure),
+    locale,
+    limit,
+  );
 }

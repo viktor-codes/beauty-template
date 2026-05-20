@@ -2,32 +2,31 @@ import type { ReactNode } from "react";
 
 import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
-import { content } from "@/lib/content";
+import type { LandingContent } from "@/lib/types/content";
 
-function buildSubpageNav() {
+function buildSubpageNav(nav: LandingContent["nav"]) {
   return {
-    ...content.nav,
-    links: content.nav.links.map((link) => ({
+    ...nav,
+    links: nav.links.map((link) => ({
       ...link,
       href: link.href.startsWith("#") ? `/${link.href}` : link.href,
     })),
     cta: {
-      ...content.nav.cta,
-      href: content.nav.cta.href.startsWith("#")
-        ? `/${content.nav.cta.href}`
-        : content.nav.cta.href,
+      ...nav.cta,
+      href: nav.cta.href.startsWith("#") ? `/${nav.cta.href}` : nav.cta.href,
     },
   };
 }
 
-export function MarketingChrome({
-  children,
-}: Readonly<{
+export interface MarketingChromeProps {
   children: ReactNode;
-}>) {
+  content: LandingContent;
+}
+
+export function MarketingChrome({ children, content }: MarketingChromeProps) {
   return (
     <>
-      <SiteHeader content={buildSubpageNav()} homeHref="/" />
+      <SiteHeader content={buildSubpageNav(content.nav)} homeHref="/" />
       {children}
       <SiteFooter content={content.footer} />
     </>

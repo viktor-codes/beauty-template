@@ -9,7 +9,8 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ServiceCard } from "@/components/shared/service-card";
-import { content } from "@/lib/content";
+import { getLandingContent } from "@/lib/content";
+import type { AppLocale } from "@/i18n/routing";
 import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
@@ -47,6 +48,7 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const landingContent = getLandingContent(locale as AppLocale);
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -61,7 +63,7 @@ export default async function ServicesPage({
   const recommended = selectedGoal
     ? getGoalRecommendations(selectedGoal, 10)
     : [];
-  const hubFaq = getServicesHubFaq(6);
+  const hubFaq = getServicesHubFaq(locale as AppLocale, 6);
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">
@@ -152,7 +154,7 @@ export default async function ServicesPage({
             Treatment categories
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2">
-            {content.services.categories.map((category) => (
+            {landingContent.services.categories.map((category) => (
               <li key={category.id}>
                 <ServiceCard
                   title={category.title}
@@ -175,7 +177,7 @@ export default async function ServicesPage({
             Choose by goal
           </h2>
           <ul className="mt-4 flex flex-wrap gap-2">
-            {content.services.goals.map((goal) => (
+            {landingContent.services.goals.map((goal) => (
               <li key={goal.id}>
                 <Link href={goal.href} className="no-underline">
                   <Badge variant="outline">{goal.title}</Badge>

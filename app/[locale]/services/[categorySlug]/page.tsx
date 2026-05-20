@@ -12,6 +12,7 @@ import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
 import { getServicesCategoryFaq } from "@/lib/services-faq";
+import type { AppLocale } from "@/i18n/routing";
 import { servicesCatalog } from "@/lib/services";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
@@ -58,7 +59,7 @@ export default async function ServicesCategoryPage({
   const { locale, categorySlug } = await params;
   setRequestLocale(locale);
   const category = getCategoryOrThrow(categorySlug);
-  const categoryFaq = getServicesCategoryFaq(category, 6);
+  const categoryFaq = getServicesCategoryFaq(category, locale as AppLocale, 6);
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },

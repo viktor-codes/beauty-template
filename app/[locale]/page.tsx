@@ -10,7 +10,8 @@ import { ReviewsSection } from "@/components/sections/reviews-section";
 import { ServicesSection } from "@/components/sections/services-section";
 import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
-import { content } from "@/lib/content";
+import { getLandingContent } from "@/lib/content";
+import type { AppLocale } from "@/i18n/routing";
 import {
   SITE_DEFAULT_DESCRIPTION,
   SITE_DEFAULT_TITLE,
@@ -33,20 +34,21 @@ export default async function Home({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const landingContent = getLandingContent(locale as AppLocale);
 
   return (
     <>
-      <SiteHeader content={content.nav} />
+      <SiteHeader content={landingContent.nav} />
       <main id="main-content" className="flex-1 pt-20 md:pt-0">
-        <HeroSection content={content.hero} />
-        <AboutSection content={content.about} />
-        <ServicesSection content={content.services} />
-        <GallerySection content={content.gallery} />
-        <ReviewsSection content={content.reviews} />
-        <FAQSection content={content.faq} />
-        <ContactSection content={content.contact} />
+        <HeroSection content={landingContent.hero} />
+        <AboutSection content={landingContent.about} />
+        <ServicesSection content={landingContent.services} />
+        <GallerySection content={landingContent.gallery} />
+        <ReviewsSection content={landingContent.reviews} />
+        <FAQSection content={landingContent.faq} />
+        <ContactSection content={landingContent.contact} />
       </main>
-      <SiteFooter content={content.footer} />
+      <SiteFooter content={landingContent.footer} />
     </>
   );
 }

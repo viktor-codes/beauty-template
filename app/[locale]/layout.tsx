@@ -9,7 +9,7 @@ import { CookieConsentRoot } from "@/components/consent/cookie-consent-root";
 import { SiteGraphJsonLd } from "@/components/shared/site-graph-jsonld";
 import { SmoothHashNavigation } from "@/components/shared/smooth-hash-navigation";
 import { routing, type AppLocale } from "@/i18n/routing";
-import { content } from "@/lib/content";
+import { getLandingContent } from "@/lib/content";
 import {
   buildLanguageAlternates,
   getOpenGraphLocale,
@@ -126,6 +126,7 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
   const t = await getTranslations("Accessibility");
+  const landingContent = getLandingContent(locale as AppLocale);
 
   return (
     <html
@@ -144,8 +145,8 @@ export default async function LocaleLayout({
         >
           {t("skipToContent")}
         </a>
-        <NextIntlClientProvider messages={messages}>
-          <SiteGraphJsonLd contact={content.contact} />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <SiteGraphJsonLd contact={landingContent.contact} />
           <SmoothHashNavigation />
           <ConsentModeDefaultScript />
           <CookieConsentRoot>{children}</CookieConsentRoot>
