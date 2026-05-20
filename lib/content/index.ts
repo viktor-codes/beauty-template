@@ -2,6 +2,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { getStaticLandingContent } from "@/lib/content/static";
 import { isSanityConfigured } from "@/lib/sanity/env";
 import { fetchLandingPage } from "@/lib/sanity/fetch/fetch-landing-page";
+import { fetchSiteSettings } from "@/lib/sanity/fetch/fetch-site-settings";
 import { mapLandingPageSafe } from "@/lib/sanity/mappers/landing";
 import type { LandingContent } from "@/lib/types/content";
 
@@ -10,8 +11,11 @@ export async function getLandingContent(locale: AppLocale): Promise<LandingConte
     return getStaticLandingContent(locale);
   }
 
-  const raw = await fetchLandingPage(locale);
-  return mapLandingPageSafe(raw, locale);
+  const [raw, settings] = await Promise.all([
+    fetchLandingPage(locale),
+    fetchSiteSettings(locale),
+  ]);
+  return mapLandingPageSafe(raw, locale, settings);
 }
 
 export { getStaticLandingContent } from "@/lib/content/static";

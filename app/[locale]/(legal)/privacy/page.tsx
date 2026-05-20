@@ -10,7 +10,7 @@ import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 const PAGE_TITLE = "Privacy policy";
 const DESCRIPTION =
-  "GDPR-aligned privacy policy for Skinbar: data controller, legal bases, Resend and analytics processors, retention, cookies, and your rights.";
+  "GDPR-aligned privacy policy for The Skinbar: data controller, legal bases, Resend and analytics processors, retention, cookies, and your rights.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,

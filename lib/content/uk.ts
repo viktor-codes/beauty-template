@@ -21,7 +21,7 @@ export const ukLandingContent = {
     cta: { label: "Записатися на консультацію", href: "#contact" },
   },
   hero: {
-    eyebrow: "Skinbar · Inna Chernovol",
+    eyebrow: "The Skinbar · Inna Chernovol",
     title: "Впевненість, яка видно в кожному відображенні",
     subtitle:
       "Персональний план процедур у спокійному просторі — результат, який видно, без нав’язливих продажів.",
@@ -34,9 +34,9 @@ export const ukLandingContent = {
   },
   about: {
     eyebrow: "Про Інну",
-    title: "Skinbar by Inna Chernovol",
+    title: "The Skinbar by Inna Chernovol",
     description:
-      "Ласкаво просимо до Skinbar by Inna Chernovol — тут ваші цілі на першому місці.\n\nПонад 15 років досвіду в естетичній медицини: процедури, після яких ви відчуваєте себе оновленою та впевненою. Від делікатної корекції губ до просунутих лазерних протоколів — індивідуальний підхід, якісні препарати, безпека, комфорт і помітний результат.\n\nРазом складемо персональний план для вашої унікальної beauty-подорожі.",
+      "Ласкаво просимо до The Skinbar by Inna Chernovol — тут ваші цілі на першому місці.\n\nПонад 15 років досвіду в естетичній медицини: процедури, після яких ви відчуваєте себе оновленою та впевненою. Від делікатної корекції губ до просунутих лазерних протоколів — індивідуальний підхід, якісні препарати, безпека, комфорт і помітний результат.\n\nРазом складемо персональний план для вашої унікальної beauty-подорожі.",
     stats: [
       { value: "15+", label: "Років практики" },
       { value: "2.5k+", label: "Проведених процедур" },
@@ -94,13 +94,17 @@ export const ukLandingContent = {
         title: "Пружність",
         href: "/services?goal=firmness",
       },
-      { id: "goal-hair", title: "Випадіння волосся", href: "/services?goal=hair" },
+      {
+        id: "goal-hair",
+        title: "Випадіння волосся",
+        href: "/services?goal=hair",
+      },
     ],
     cta: { label: "Усі послуги", href: "/services" },
   },
   gallery: {
     eyebrow: "Результати та атмосфера",
-    title: "Загляд у Skinbar",
+    title: "Загляд у The Skinbar",
     instagramUrl: INSTAGRAM_PROFILE_HREF,
   },
   reviews: {
@@ -168,7 +172,7 @@ export const ukLandingContent = {
     address: studioContact.address,
     phoneLabel: "Телефон",
     emailLabel: "Email",
-    locationTitle: "Skinbar · Inna Chernovol",
+    locationTitle: "The Skinbar · Inna Chernovol",
     messengers: [
       {
         id: "telegram",
@@ -188,7 +192,7 @@ export const ukLandingContent = {
     ],
   },
   footer: {
-    brandTitle: "Skinbar · Inna Chernovol",
+    brandTitle: "The Skinbar · Inna Chernovol",
     tagline:
       "Уважний догляд, видимий результат — персональні естетичні процедури в спокійній студії.",
     navigation: {
@@ -240,7 +244,7 @@ export const ukLandingContent = {
       links: [{ label: "Instagram", href: INSTAGRAM_PROFILE_HREF }],
     },
     legal: {
-      notice: "© 2026 Inna Chernovol · Skinbar. Усі права захищені.",
+      notice: "© 2026 Inna Chernovol · The Skinbar. Усі права захищені.",
       links: [
         { label: "Політика конфіденційності", href: "/privacy" },
         { label: "Умови використання", href: "/terms" },

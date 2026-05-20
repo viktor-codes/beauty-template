@@ -6,7 +6,8 @@ import { cn } from "@/lib/cn";
 const hrClass = "border-border";
 const h2Class =
   "type-h3 scroll-mt-24 font-heading font-medium tracking-tight text-primary";
-const pClass = "text-base leading-[var(--text-base--line-height)] text-primary/90";
+const pClass =
+  "text-base leading-[var(--text-base--line-height)] text-primary/90";
 const listClass =
   "list-disc space-y-2 pl-6 text-base leading-[var(--text-base--line-height)] text-primary/90 marker:text-accent";
 const strongClass = "font-semibold text-primary";
@@ -27,7 +28,7 @@ export function PrivacyPolicySectionsPrimary({
           1. Data Controller
         </h2>
         <p className={cn(pClass, "mt-4")}>
-          <strong className={strongClass}>Skinbar by Inna Chernovol</strong>
+          <strong className={strongClass}>The Skinbar by Inna Chernovol</strong>
           {", "}
           located in Athlone, Ireland, is the Data Controller for your personal
           data. For inquiries, contact us at{" "}
@@ -73,11 +74,12 @@ export function PrivacyPolicySectionsPrimary({
             <strong className={strongClass}>Phone number</strong>
           </li>
           <li>
-            <strong className={strongClass}>Email address</strong> (if
-            provided)
+            <strong className={strongClass}>Email address</strong> (if provided)
           </li>
           <li>
-            <strong className={strongClass}>Relevant medical information</strong>{" "}
+            <strong className={strongClass}>
+              Relevant medical information
+            </strong>{" "}
             (for treatment safety)
           </li>
           <li>
@@ -101,12 +103,10 @@ export function PrivacyPolicySectionsPrimary({
             processes data only as instructed.
           </li>
           <li>
-            <strong className={strongClass}>
-              Google Analytics (optional)
-            </strong>
+            <strong className={strongClass}>Google Analytics (optional)</strong>
             : If you enable analytics in our cookie banner, Google Analytics
-            (GA4) may process usage data as described in Google&apos;s terms.
-            We load GA4 only after you grant analytics consent. We use{" "}
+            (GA4) may process usage data as described in Google&apos;s terms. We
+            load GA4 only after you grant analytics consent. We use{" "}
             <strong className={strongClass}>Google Consent Mode v2</strong> so
             that analytics and advertising storage signals default to denied
             until you consent, and are updated when you make a choice in the
@@ -143,9 +143,12 @@ export function PrivacyPolicySectionsPrimary({
             &quot;Cookie settings&quot; in the footer).
           </li>
           <li>
-            <strong className={strongClass}>Analytics cookies (if enabled)</strong>
-            : Retained for up to <strong className={strongClass}>26 months</strong>{" "}
-            (or as specified by Google Analytics / your browser).
+            <strong className={strongClass}>
+              Analytics cookies (if enabled)
+            </strong>
+            : Retained for up to{" "}
+            <strong className={strongClass}>26 months</strong> (or as specified
+            by Google Analytics / your browser).
           </li>
         </ul>
       </section>

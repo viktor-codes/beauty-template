@@ -21,7 +21,7 @@ export const enLandingContent = {
     cta: { label: "Book a consultation", href: "#contact" },
   },
   hero: {
-    eyebrow: "Skinbar · Inna Chernovol",
+    eyebrow: "The Skinbar · Inna Chernovol",
     title: "Confidence that shows in every reflection",
     subtitle:
       "I personalize every treatment plan in a calm space—results you can see without the hard sell.",
@@ -34,9 +34,9 @@ export const enLandingContent = {
   },
   about: {
     eyebrow: "About Inna",
-    title: "Skinbar by Inna Chernovol",
+    title: "The Skinbar by Inna Chernovol",
     description:
-      "Welcome to Skinbar by Inna Chernovol, where your goals are my priority.\n\nWith over 15 years of experience, I specialize in aesthetic treatments that help you feel rejuvenated and confident. Whether it’s enhancing your lips or providing advanced laser treatments, I offer personalized care using high-quality products to ensure your safety, comfort, and effective results.\n\nI’ll build a personalized plan with you for your unique beauty journey.",
+      "Welcome to The Skinbar by Inna Chernovol, where your goals are my priority.\n\nWith over 15 years of experience, I specialize in aesthetic treatments that help you feel rejuvenated and confident. Whether it’s enhancing your lips or providing advanced laser treatments, I offer personalized care using high-quality products to ensure your safety, comfort, and effective results.\n\nI’ll build a personalized plan with you for your unique beauty journey.",
     stats: [
       { value: "15+", label: "Years of practice" },
       { value: "2.5k+", label: "Treatments performed" },
@@ -100,7 +100,7 @@ export const enLandingContent = {
   },
   gallery: {
     eyebrow: "Results & mood",
-    title: "A glimpse inside Skinbar",
+    title: "A glimpse inside The Skinbar",
     instagramUrl: INSTAGRAM_PROFILE_HREF,
   },
   reviews: {
@@ -168,7 +168,7 @@ export const enLandingContent = {
     address: studioContact.address,
     phoneLabel: "Phone",
     emailLabel: "Email",
-    locationTitle: "Skinbar · Inna Chernovol",
+    locationTitle: "The Skinbar · Inna Chernovol",
     messengers: [
       {
         id: "telegram",
@@ -188,7 +188,7 @@ export const enLandingContent = {
     ],
   },
   footer: {
-    brandTitle: "Skinbar · Inna Chernovol",
+    brandTitle: "The Skinbar · Inna Chernovol",
     tagline:
       "Thoughtful care, visible results — personalized aesthetic treatments in a calm studio setting.",
     navigation: {
@@ -240,7 +240,7 @@ export const enLandingContent = {
       links: [{ label: "Instagram", href: INSTAGRAM_PROFILE_HREF }],
     },
     legal: {
-      notice: "© 2026 Inna Chernovol · Skinbar. All rights reserved.",
+      notice: "© 2026 Inna Chernovol · The Skinbar. All rights reserved.",
       links: [
         { label: "Privacy policy", href: "/privacy" },
         { label: "Terms of use", href: "/terms" },

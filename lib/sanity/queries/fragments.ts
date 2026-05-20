@@ -1,3 +1,16 @@
+/** Inline link object used in nav, footer, etc. */
+export const contentLinkFields = /* groq */ `
+  label,
+  href
+`;
+
+export const footerLinkGroupFields = /* groq */ `
+  heading,
+  links[] {
+    ${contentLinkFields}
+  }
+`;
+
 /** GROQ projection for Sanity `image` fields (hero, etc.). */
 export const sanityImageFields = /* groq */ `
   asset->{

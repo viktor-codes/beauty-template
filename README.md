@@ -1,6 +1,6 @@
-# Skinbar — cosmetology landing (Next.js 16)
+# The Skinbar — cosmetology landing (Next.js 16)
 
-Marketing site for Skinbar · Inna Chernovol. Hosted on [Vercel](https://vercel.com).
+Marketing site for The Skinbar · Inna Chernovol. Hosted on [Vercel](https://vercel.com).
 
 ## Quick start
 
@@ -16,10 +16,10 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Copy [`.env.example`](./.env.example) to `.env.local`. Required for production:
 
-| Variable | Purpose |
-|----------|---------|
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL (metadata, JSON-LD, Stripe redirects) |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 (optional) |
+| Variable                        | Purpose                                             |
+| ------------------------------- | --------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`          | Canonical URL (metadata, JSON-LD, Stripe redirects) |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 (optional)                       |
 
 See `.env.example` for the full list including Sanity, Stripe, and Resend.
 
@@ -35,10 +35,10 @@ UI strings live in `messages/{locale}.json`. Page content will move to Sanity wi
 
 See [docs/adr/001-sanity-i18n-strategy.md](./docs/adr/001-sanity-i18n-strategy.md).
 
-| Content | Studio i18n | Why |
-|---------|-------------|-----|
-| Landing, site settings | **Document** (one doc per locale) | Large page blobs |
-| Services tree | **Field** (`localeString` / `localeText`) | Same `_id` and references for all languages |
+| Content                | Studio i18n                               | Why                                         |
+| ---------------------- | ----------------------------------------- | ------------------------------------------- |
+| Landing, site settings | **Document** (one doc per locale)         | Large page blobs                            |
+| Services tree          | **Field** (`localeString` / `localeText`) | Same `_id` and references for all languages |
 
 Next.js reads CMS via `lib/sanity/` (queries → **mappers with fallbacks** → `LandingContent` / `ServicesCatalog`). Pages keep calling `getLandingContent(locale)`; static files remain fallback until migration.
 

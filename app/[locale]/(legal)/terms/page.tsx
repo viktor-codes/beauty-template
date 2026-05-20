@@ -8,7 +8,7 @@ import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 const PAGE_TITLE = "Terms & conditions";
 const DESCRIPTION =
-  "Full Terms & Conditions for Skinbar: services, client duties, cancellations (€20 fee), payment, liability, age rules, IP, Irish law, and cookie consent.";
+  "Full Terms & Conditions for The Skinbar: services, client duties, cancellations (€20 fee), payment, liability, age rules, IP, Irish law, and cookie consent.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,

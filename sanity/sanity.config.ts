@@ -10,8 +10,8 @@ const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? "";
 const dataset = process.env.SANITY_STUDIO_DATASET ?? "production";
 
 export default defineConfig({
-  name: "skinbar",
-  title: "Skinbar",
+  name: "the-skinbar",
+  title: "The Skinbar",
   projectId,
   dataset,
   plugins: [

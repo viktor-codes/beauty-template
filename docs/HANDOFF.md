@@ -1,4 +1,4 @@
-# Handoff: Skinbar (beauty-template) — состояние и backlog
+# Handoff: The Skinbar (beauty-template) — состояние и backlog
 
 **Дата:** 2026-05-20  
 **Репозиторий:** `/Users/a123/Freelance Projects/beauty-template`  
@@ -9,7 +9,7 @@
 
 ## 1. Цель продукта
 
-Лендинг косметологии (Skinbar · Inna Chernovol) с:
+Лендинг косметологии (The Skinbar · Inna Chernovol) с:
 
 - **3 локали:** `en` (default, без префикса), `uk`, `ru` — `next-intl`
 - **CMS:** Sanity (Studio в `sanity/`)
@@ -24,37 +24,37 @@
 
 ### Фаза 0 — подготовка ✅
 
-| Шаг | Содержание |
-|-----|------------|
+| Шаг | Содержание                                        |
+| --- | ------------------------------------------------- |
 | 0.1 | `.env.example` (Sanity, Stripe, Resend, site URL) |
-| 0.2 | `next-intl` в dependencies |
-| 0.3 | README: quick start, locales, Sanity, Stripe |
+| 0.2 | `next-intl` в dependencies                        |
+| 0.3 | README: quick start, locales, Sanity, Stripe      |
 
 ### Фаза 1 — i18n ✅
 
-| Шаг | Содержание |
-|-----|------------|
-| 1.1 | `i18n/routing.ts`, `i18n/request.ts`, `i18n/navigation.ts`, `withNextIntl` в `next.config.ts` |
-| 1.2 | `messages/{en,uk,ru}.json` — UI: cookie, contact form, navigation, accessibility |
+| Шаг | Содержание                                                                                               |
+| --- | -------------------------------------------------------------------------------------------------------- |
+| 1.1 | `i18n/routing.ts`, `i18n/request.ts`, `i18n/navigation.ts`, `withNextIntl` в `next.config.ts`            |
+| 1.2 | `messages/{en,uk,ru}.json` — UI: cookie, contact form, navigation, accessibility                         |
 | 1.3 | `proxy.ts` (Next.js 16), `app/[locale]/…`, `NextIntlClientProvider`, `app/sitemap.ts`, hreflang в layout |
-| — | Локализованный **лендинг-контент** в `lib/content/{en,uk,ru}.ts` + `lib/content/faq/` |
-| — | `getLandingContent(locale)` — статика, не CMS |
-| — | Внутренние ссылки: `@/i18n/navigation` (`Link`) |
+| —   | Локализованный **лендинг-контент** в `lib/content/{en,uk,ru}.ts` + `lib/content/faq/`                    |
+| —   | `getLandingContent(locale)` — статика, не CMS                                                            |
+| —   | Внутренние ссылки: `@/i18n/navigation` (`Link`)                                                          |
 
 **Не переведено через CMS (ожидаемо):** `lib/services.ts` (~1000 строк, EN), legal pages (privacy/terms) — статичный React.
 
 ### Фаза 2 — Sanity (частично) 🟡
 
-| Сделано | Не сделано |
-|---------|------------|
-| Каркас `sanity/`: config, schemas, structure | `@sanity/client` в Next root `package.json` |
-| `lib/sanity/env.ts`, mappers (`safe`, `landing`, `services`) | `lib/sanity/client.ts` |
-| ADR document vs field i18n | `lib/sanity/queries/*.ts` |
-| `pnpm-workspace.yaml` включает `sanity` | GROQ fetch + переключение `getLandingContent` / catalog |
-| Studio deps установлены (user), `.env` в `sanity/` | Seed/migration скрипт статики → Sanity |
+| Сделано                                                                                            | Не сделано                                                        |
+| -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Каркас `sanity/`: config, schemas, structure                                                       | `@sanity/client` в Next root `package.json`                       |
+| `lib/sanity/env.ts`, mappers (`safe`, `landing`, `services`)                                       | `lib/sanity/client.ts`                                            |
+| ADR document vs field i18n                                                                         | `lib/sanity/queries/*.ts`                                         |
+| `pnpm-workspace.yaml` включает `sanity`                                                            | GROQ fetch + переключение `getLandingContent` / catalog           |
+| Studio deps установлены (user), `.env` в `sanity/`                                                 | Seed/migration скрипт статики → Sanity                            |
 | Схемы: `landingPage`, `siteSettings`, `serviceCategory/Subcategory/Procedure`, `localeString/Text` | Схема `legalPage`, полные поля в `landingPage` (только hero stub) |
-| | `app/api/revalidate` webhook |
-| | `next.config` remotePatterns `cdn.sanity.io` |
+|                                                                                                    | `app/api/revalidate` webhook                                      |
+|                                                                                                    | `next.config` remotePatterns `cdn.sanity.io`                      |
 
 **Сайт сейчас не читает Sanity API** — все страницы импортируют `getLandingContent` из `@/lib/content`.
 
@@ -64,10 +64,10 @@
 
 ### 3.1 i18n в Sanity (ADR 001)
 
-| Контент | Стратегия | Файлы |
-|---------|-----------|--------|
-| `landingPage`, `siteSettings` (+ будущий `legalPage`) | **Document i18n** — отдельный документ на язык | `@sanity/document-internationalization` в `sanity/sanity.config.ts` |
-| `serviceCategory` → `serviceSubcategory` → `serviceProcedure` | **Field i18n** — один `_id`, поля `{ en, uk, ru }` | `localeString`, `localeText` в `sanity/schemaTypes/objects/` |
+| Контент                                                       | Стратегия                                          | Файлы                                                               |
+| ------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------- |
+| `landingPage`, `siteSettings` (+ будущий `legalPage`)         | **Document i18n** — отдельный документ на язык     | `@sanity/document-internationalization` в `sanity/sanity.config.ts` |
+| `serviceCategory` → `serviceSubcategory` → `serviceProcedure` | **Field i18n** — один `_id`, поля `{ en, uk, ru }` | `localeString`, `localeText` в `sanity/schemaTypes/objects/`        |
 
 **Не использовать document i18n для services tree** — иначе разные `_id` и hell с `reference` filters.
 
@@ -115,23 +115,23 @@ proxy.ts
 
 ### Next (`.env.local` — корень)
 
-| Variable | Назначение |
-|----------|------------|
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 (optional) |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project |
-| `NEXT_PUBLIC_SANITY_DATASET` | e.g. `production` |
-| `NEXT_PUBLIC_SANITY_API_VERSION` | e.g. `2025-05-05` |
-| `SANITY_API_READ_TOKEN` | Server read (draft/private) |
-| `SANITY_REVALIDATE_SECRET` | Webhook revalidation |
-| `STRIPE_*`, `RESEND_*` | Фазы 5–6 |
+| Variable                         | Назначение                  |
+| -------------------------------- | --------------------------- |
+| `NEXT_PUBLIC_SITE_URL`           | Canonical URL               |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID`  | GA4 (optional)              |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Sanity project              |
+| `NEXT_PUBLIC_SANITY_DATASET`     | e.g. `production`           |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | e.g. `2025-05-05`           |
+| `SANITY_API_READ_TOKEN`          | Server read (draft/private) |
+| `SANITY_REVALIDATE_SECRET`       | Webhook revalidation        |
+| `STRIPE_*`, `RESEND_*`           | Фазы 5–6                    |
 
 ### Studio (`sanity/.env`)
 
-| Variable | Назначение |
-|----------|------------|
+| Variable                   | Назначение   |
+| -------------------------- | ------------ |
 | `SANITY_STUDIO_PROJECT_ID` | = project id |
-| `SANITY_STUDIO_DATASET` | = dataset |
+| `SANITY_STUDIO_DATASET`    | = dataset    |
 
 **User:** Studio `.env` заполнен, project создан.
 
@@ -161,7 +161,9 @@ pnpm studio           # Sanity Studio
 - [ ] Рефактор `lib/content/index.ts`:
 
   ```ts
-  export async function getLandingContent(locale: AppLocale): Promise<LandingContent> {
+  export async function getLandingContent(
+    locale: AppLocale,
+  ): Promise<LandingContent> {
     if (!isSanityConfigured()) return staticLanding(locale);
     const raw = await fetchLandingPage(locale); // document i18n: language == locale
     return mapLandingPageSafe(raw, locale);
@@ -182,15 +184,15 @@ pnpm studio           # Sanity Studio
 
 Каждый шаг = seed + переключение fetch + проверка 3 локалей. Статику не удалять до полной миграции.
 
-| Шаг | Коммит (пример) | Задачи |
-|-----|-----------------|--------|
-| 3.0 | `feat(cms): extend landing and settings schemas` | Расширить `landingPage` schema: nav, about, services preview, gallery, reviews, faq, contact, footer. `siteSettings`. Опционально seed script `scripts/seed-sanity.ts` |
-| 3.1 | `feat(cms): load site chrome from sanity` | settings + nav/footer |
-| 3.2 | `feat(cms): load hero and about from sanity` | |
-| 3.3 | `feat(cms): load marketing sections from sanity` | reviews, gallery, faq |
-| 3.4 | `feat(cms): load services catalog from sanity` | `getServicesCatalog(locale)`, заменить `lib/services.ts` usage; GROQ tree |
-| 3.5 | `feat(cms): load legal pages from sanity` | schema `legalPage` (document i18n), перенести privacy/terms |
-| 3.6 | `refactor: remove migrated static content modules` | Удалить лишнее из `lib/content/`, `lib/services.ts` когда всё в CMS |
+| Шаг | Коммит (пример)                                    | Задачи                                                                                                                                                                 |
+| --- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.0 | `feat(cms): extend landing and settings schemas`   | Расширить `landingPage` schema: nav, about, services preview, gallery, reviews, faq, contact, footer. `siteSettings`. Опционально seed script `scripts/seed-sanity.ts` |
+| 3.1 | `feat(cms): load site chrome from sanity`          | settings + nav/footer                                                                                                                                                  |
+| 3.2 | `feat(cms): load hero and about from sanity`       |                                                                                                                                                                        |
+| 3.3 | `feat(cms): load marketing sections from sanity`   | reviews, gallery, faq                                                                                                                                                  |
+| 3.4 | `feat(cms): load services catalog from sanity`     | `getServicesCatalog(locale)`, заменить `lib/services.ts` usage; GROQ tree                                                                                              |
+| 3.5 | `feat(cms): load legal pages from sanity`          | schema `legalPage` (document i18n), перенести privacy/terms                                                                                                            |
+| 3.6 | `refactor: remove migrated static content modules` | Удалить лишнее из `lib/content/`, `lib/services.ts` когда всё в CMS                                                                                                    |
 
 **FAQ на /services:** `lib/services-faq.ts` уже берёт FAQ из `getLandingContent(locale)` — заработает на CMS автоматически после 3.3.
 
@@ -236,16 +238,16 @@ pnpm studio           # Sanity Studio
 
 ## 6. Ключевые файлы для нового агента
 
-| Задача | Файлы |
-|--------|--------|
-| Routing / locales | `i18n/routing.ts`, `proxy.ts`, `app/[locale]/layout.tsx` |
-| UI strings | `messages/*.json`, `i18n/request.ts` |
-| Static content | `lib/content/index.ts`, `lib/content/{en,uk,ru}.ts` |
-| Services static | `lib/services.ts`, `lib/types/services.ts` |
-| Sanity Studio | `sanity/sanity.config.ts`, `sanity/schemaTypes/` |
-| Mappers | `lib/sanity/mappers/safe.ts`, `landing.ts`, `services.ts` |
-| Types contract | `lib/types/content.ts` |
-| ADR | `docs/adr/001-sanity-i18n-strategy.md` |
+| Задача            | Файлы                                                     |
+| ----------------- | --------------------------------------------------------- |
+| Routing / locales | `i18n/routing.ts`, `proxy.ts`, `app/[locale]/layout.tsx`  |
+| UI strings        | `messages/*.json`, `i18n/request.ts`                      |
+| Static content    | `lib/content/index.ts`, `lib/content/{en,uk,ru}.ts`       |
+| Services static   | `lib/services.ts`, `lib/types/services.ts`                |
+| Sanity Studio     | `sanity/sanity.config.ts`, `sanity/schemaTypes/`          |
+| Mappers           | `lib/sanity/mappers/safe.ts`, `landing.ts`, `services.ts` |
+| Types contract    | `lib/types/content.ts`                                    |
+| ADR               | `docs/adr/001-sanity-i18n-strategy.md`                    |
 
 ---
 
@@ -293,4 +295,4 @@ pnpm studio   # Studio opens, schemas visible
 
 ---
 
-*Конец handoff.*
+_Конец handoff._

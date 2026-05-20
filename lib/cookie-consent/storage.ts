@@ -1,4 +1,4 @@
-export const CONSENT_COOKIE_NAME = "skinbar_cookie_consent_v1";
+export const CONSENT_COOKIE_NAME = "The Skinbar_cookie_consent_v1";
 
 /** ~12 months (RFC 6265 max-age in seconds). */
 export const CONSENT_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
@@ -12,7 +12,9 @@ export function serializeConsent(data: ParsedConsent): string {
   return JSON.stringify(data);
 }
 
-export function parseConsentCookie(raw: string | undefined): ParsedConsent | null {
+export function parseConsentCookie(
+  raw: string | undefined,
+): ParsedConsent | null {
   if (!raw) return null;
   try {
     const decoded = decodeURIComponent(raw);

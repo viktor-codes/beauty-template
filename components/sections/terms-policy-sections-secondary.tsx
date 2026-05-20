@@ -5,7 +5,8 @@ import { cn } from "@/lib/cn";
 const hrClass = "border-border";
 const h2Class =
   "type-h3 scroll-mt-24 font-heading font-medium tracking-tight text-primary";
-const pClass = "text-base leading-[var(--text-base--line-height)] text-primary/90";
+const pClass =
+  "text-base leading-[var(--text-base--line-height)] text-primary/90";
 const listClass =
   "list-disc space-y-2 pl-6 text-base leading-[var(--text-base--line-height)] text-primary/90 marker:text-accent";
 const strongClass = "font-semibold text-primary";
@@ -58,8 +59,8 @@ export function TermsPolicySectionsSecondary() {
         </h2>
         <p className={cn(pClass, "mt-4")}>
           All website content is the property of{" "}
-          <strong className={strongClass}>Skinbar by Inna Chernovol</strong> and
-          may not be copied or used without permission.
+          <strong className={strongClass}>The Skinbar by Inna Chernovol</strong>{" "}
+          and may not be copied or used without permission.
         </p>
       </section>
 
@@ -82,8 +83,8 @@ export function TermsPolicySectionsSecondary() {
           10. Cookie Consent
         </h2>
         <p className={cn(pClass, "mt-4")}>
-          By using our website, you consent to our use of cookies as described in
-          our{" "}
+          By using our website, you consent to our use of cookies as described
+          in our{" "}
           <Link href="/privacy" className={policyLinkClass}>
             Privacy Policy
           </Link>
