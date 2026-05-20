@@ -13,7 +13,7 @@ import { mapFaqSafe, type SanityFaqLike } from "@/lib/sanity/mappers/faq";
 import { mapGallerySafe, type SanityGalleryLike } from "@/lib/sanity/mappers/gallery";
 import { mapReviewsSafe, type SanityReviewsLike } from "@/lib/sanity/mappers/reviews";
 import type { SanitySiteSettingsLike } from "@/lib/sanity/mappers/site-settings";
-import { mapHeroSafe, type SanityImageLike } from "@/lib/sanity/mappers/safe";
+import { mapHeroSafe } from "@/lib/sanity/mappers/safe";
 
 /**
  * Document i18n: one `landingPage` per locale — fields are plain strings, not localeString.
@@ -29,7 +29,6 @@ export interface SanityLandingPageLike {
     secondaryCtaLabel?: string;
     primaryCtaHref?: string;
     secondaryCtaHref?: string;
-    image?: SanityImageLike | null;
   } | null;
   about?: SanityAboutLike | null;
   gallery?: SanityGalleryLike | null;

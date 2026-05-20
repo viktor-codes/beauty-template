@@ -47,6 +47,7 @@ Next.js reads CMS via `lib/sanity/` (queries → **mappers with fallbacks** → 
 3. Install Studio deps (from repo root): `pnpm install`
 4. Copy `sanity/.env.example` → `sanity/.env`, set `SANITY_STUDIO_PROJECT_ID` and dataset.
 5. `pnpm studio` — Sanity Studio in `sanity/`.
+6. **Seed CMS from static content** (optional): add `SANITY_API_WRITE_TOKEN` (Editor) to `.env.local`, then `pnpm seed:sanity`.
 
 If `pnpm install` inside `sanity/` finishes in under a second with no new packages, run `pnpm install` from the repo root instead (workspace includes `sanity/`).
 

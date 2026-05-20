@@ -63,10 +63,7 @@ export const landingPageQuery = /* groq */ `
       primaryCtaLabel,
       secondaryCtaLabel,
       primaryCtaHref,
-      secondaryCtaHref,
-      image {
-        ${sanityImageFields}
-      }
+      secondaryCtaHref
     },
     about {
       eyebrow,

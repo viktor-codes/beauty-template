@@ -3,20 +3,13 @@ import {
   readLocalizedValue,
   type LocaleFieldValues,
 } from "@/lib/i18n/pick-locale-field";
-import type { HeroContent, HeroImage } from "@/lib/types/content";
+import type { HeroContent } from "@/lib/types/content";
 
 /** Minimal Sanity image shape from GROQ (untyped until codegen). */
 export interface SanityImageLike {
   asset?: { _ref?: string; url?: string } | null;
   alt?: LocaleFieldValues | string | null;
 }
-
-const DEFAULT_HERO_IMAGE: HeroImage = {
-  src: "/hero.webp",
-  alt: "Calm treatment room with natural light and minimal decor",
-  width: 920,
-  height: 1170,
-};
 
 /**
  * Builds a CDN URL when the query projects `asset->url`; otherwise returns fallback path.
@@ -41,21 +34,6 @@ export function mapLocalizedAlt(
   );
 }
 
-export function mapHeroImageSafe(
-  raw: SanityImageLike | null | undefined,
-  locale: AppLocale,
-  fallback: HeroImage = DEFAULT_HERO_IMAGE,
-): HeroImage {
-  if (!raw) return fallback;
-
-  return {
-    src: resolveSanityImageUrl(raw, fallback.src),
-    alt: mapLocalizedAlt(raw.alt, locale, fallback.alt),
-    width: fallback.width,
-    height: fallback.height,
-  };
-}
-
 type LocalizedFieldInput = LocaleFieldValues | string | undefined;
 
 interface SanityHeroLike {
@@ -66,7 +44,6 @@ interface SanityHeroLike {
   secondaryCtaLabel?: LocalizedFieldInput;
   primaryCtaHref?: string;
   secondaryCtaHref?: string;
-  image?: SanityImageLike | null;
 }
 
 export function mapHeroSafe(
@@ -92,7 +69,7 @@ export function mapHeroSafe(
       ),
       href: raw.secondaryCtaHref?.trim() || fallback.secondaryCta.href,
     },
-    image: mapHeroImageSafe(raw.image, locale, fallback.image),
+    image: fallback.image,
   };
 }
 

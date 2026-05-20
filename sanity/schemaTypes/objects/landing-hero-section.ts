@@ -22,11 +22,5 @@ export const landingHeroSection = defineType({
       type: "string",
       initialValue: "#services",
     }),
-    defineField({
-      name: "image",
-      type: "image",
-      options: { hotspot: true },
-      fields: [defineField({ name: "alt", type: "string", title: "Alt text" })],
-    }),
   ],
 });

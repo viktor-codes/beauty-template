@@ -27,7 +27,7 @@ export const faqGroupFields = /* groq */ `
   }
 `;
 
-/** GROQ projection for Sanity `image` fields (hero, etc.). */
+/** GROQ projection for Sanity `image` fields (e.g. brand logos). */
 export const sanityImageFields = /* groq */ `
   asset->{
     _id,
