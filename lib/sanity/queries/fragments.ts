@@ -11,6 +11,25 @@ export const footerLinkGroupFields = /* groq */ `
   }
 `;
 
+export const servicesCategoryPreviewFields = /* groq */ `
+  id,
+  title,
+  description,
+  href
+`;
+
+export const servicesGoalPreviewFields = /* groq */ `
+  id,
+  title,
+  href
+`;
+
+export const contactMessengerFields = /* groq */ `
+  id,
+  href,
+  ariaLabel
+`;
+
 export const faqItemFields = /* groq */ `
   "id": id.current,
   question,

@@ -1,9 +1,12 @@
 import {
+  contactMessengerFields,
   contentLinkFields,
   faqGroupFields,
   faqItemFields,
   footerLinkGroupFields,
   sanityImageFields,
+  servicesCategoryPreviewFields,
+  servicesGoalPreviewFields,
 } from "@/lib/sanity/queries/fragments";
 
 /** Document i18n: one `landingPage` per locale (`language` from plugin). */
@@ -83,6 +86,20 @@ export const landingPageQuery = /* groq */ `
         }
       }
     },
+    services {
+      eyebrow,
+      title,
+      description,
+      categories[] {
+        ${servicesCategoryPreviewFields}
+      },
+      goals[] {
+        ${servicesGoalPreviewFields}
+      },
+      cta {
+        ${contentLinkFields}
+      }
+    },
     gallery {
       eyebrow,
       title,
@@ -107,6 +124,20 @@ export const landingPageQuery = /* groq */ `
       },
       items[] {
         ${faqItemFields}
+      }
+    },
+    contact {
+      eyebrow,
+      title,
+      description,
+      phone,
+      email,
+      address,
+      phoneLabel,
+      emailLabel,
+      locationTitle,
+      messengers[] {
+        ${contactMessengerFields}
       }
     }
   }

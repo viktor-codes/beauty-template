@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 
+/** Copy and CTAs only — hero image is fixed in the Next.js app (`lib/content/shared.ts`). */
 export const landingHeroSection = defineType({
   name: "landingHeroSection",
   title: "Hero",

@@ -3,7 +3,6 @@ import {
   readLocalizedValue,
   type LocaleFieldValues,
 } from "@/lib/i18n/pick-locale-field";
-import type { HeroContent } from "@/lib/types/content";
 
 /** Minimal Sanity image shape from GROQ (untyped until codegen). */
 export interface SanityImageLike {
@@ -32,45 +31,6 @@ export function mapLocalizedAlt(
     locale,
     fallback,
   );
-}
-
-type LocalizedFieldInput = LocaleFieldValues | string | undefined;
-
-interface SanityHeroLike {
-  eyebrow?: LocalizedFieldInput;
-  title?: LocalizedFieldInput;
-  subtitle?: LocalizedFieldInput;
-  primaryCtaLabel?: LocalizedFieldInput;
-  secondaryCtaLabel?: LocalizedFieldInput;
-  primaryCtaHref?: string;
-  secondaryCtaHref?: string;
-}
-
-export function mapHeroSafe(
-  raw: SanityHeroLike | null | undefined,
-  locale: AppLocale,
-  fallback: HeroContent,
-): HeroContent {
-  if (!raw) return fallback;
-
-  return {
-    eyebrow: readLocalizedValue(raw.eyebrow, locale, fallback.eyebrow),
-    title: readLocalizedValue(raw.title, locale, fallback.title),
-    subtitle: readLocalizedValue(raw.subtitle, locale, fallback.subtitle),
-    primaryCta: {
-      label: readLocalizedValue(raw.primaryCtaLabel, locale, fallback.primaryCta.label),
-      href: raw.primaryCtaHref?.trim() || fallback.primaryCta.href,
-    },
-    secondaryCta: {
-      label: readLocalizedValue(
-        raw.secondaryCtaLabel,
-        locale,
-        fallback.secondaryCta.label,
-      ),
-      href: raw.secondaryCtaHref?.trim() || fallback.secondaryCta.href,
-    },
-    image: fallback.image,
-  };
 }
 
 export function mapSlugSafe(

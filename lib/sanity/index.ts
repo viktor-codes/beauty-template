@@ -8,16 +8,15 @@ export { mapAboutSafe } from "@/lib/sanity/mappers/about";
 export { mapFaqSafe } from "@/lib/sanity/mappers/faq";
 export { mapGallerySafe } from "@/lib/sanity/mappers/gallery";
 export { mapReviewsSafe } from "@/lib/sanity/mappers/reviews";
+export { mapContactSafe } from "@/lib/sanity/mappers/contact";
 export { mapNavSafe, mapFooterSafe } from "@/lib/sanity/mappers/chrome";
+export { mapHeroSafe } from "@/lib/sanity/mappers/hero";
+export { mapLandingServicesSafe } from "@/lib/sanity/mappers/landing-services";
 export { siteSettingsQuery } from "@/lib/sanity/queries/site-settings";
 export { getStaticLandingContent } from "@/lib/sanity/fetch/get-landing-content";
 export { getStaticServicesCatalog } from "@/lib/sanity/fetch/get-services-catalog";
 export { mapLandingPageSafe } from "@/lib/sanity/mappers/landing";
 export { mapServicesCatalogSafe } from "@/lib/sanity/mappers/services";
-export {
-  mapHeroSafe,
-  mapSlugSafe,
-  resolveSanityImageUrl,
-} from "@/lib/sanity/mappers/safe";
+export { mapSlugSafe, resolveSanityImageUrl } from "@/lib/sanity/mappers/safe";
 export { landingPageQuery } from "@/lib/sanity/queries/landing";
 export { servicesCatalogQuery } from "@/lib/sanity/queries/services";

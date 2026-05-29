@@ -44,6 +44,7 @@ export const brandLogos = [
   { src: "/logos/elemis.png", alt: "Elemis", width: 140, height: 44 },
 ] as const;
 
+/** Landing hero photo — repo asset only; Sanity `landingHeroSection` has no image field. */
 export const heroImage = {
   src: "/hero.webp",
   width: 920,
