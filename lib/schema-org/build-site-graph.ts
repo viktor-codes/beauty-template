@@ -1,3 +1,4 @@
+import { studioAddress } from "@/lib/content/shared";
 import type { ContactContent } from "@/lib/types/content";
 import {
   SITE_BRAND,
@@ -30,7 +31,11 @@ function buildOrganization(contact: ContactContent): Record<string, unknown> {
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: contact.address,
+      streetAddress: `${studioAddress.line1}, ${studioAddress.line2}`,
+      addressLocality: studioAddress.locality,
+      addressRegion: studioAddress.region,
+      postalCode: studioAddress.postalCode,
+      addressCountry: studioAddress.country,
     },
     founder: {
       "@type": "Person",

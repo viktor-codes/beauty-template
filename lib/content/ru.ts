@@ -205,6 +205,7 @@ export const ruLandingContent = {
     phone: studioContact.phone,
     email: studioContact.email,
     address: studioContact.address,
+    directionsHref: studioContact.directionsHref,
     phoneLabel: "Телефон",
     emailLabel: "Email",
     locationTitle: "The Skinbar · Inna Chernovol",

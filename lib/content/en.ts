@@ -201,6 +201,7 @@ export const enLandingContent = {
     phone: studioContact.phone,
     email: studioContact.email,
     address: studioContact.address,
+    directionsHref: studioContact.directionsHref,
     phoneLabel: "Phone",
     emailLabel: "Email",
     locationTitle: "The Skinbar · Inna Chernovol",

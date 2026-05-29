@@ -8,11 +8,27 @@ import {
 export const INSTAGRAM_PROFILE_HREF =
   "https://www.instagram.com/innache.aesthetic.nurse/";
 
+/** Canonical studio address (Athlone) — used on site, in Schema.org, and Sanity seed. */
+export const studioAddress = {
+  line1: "Gray, unit 6",
+  line2: "The Skinbar · Inna Chernovol, Inish house",
+  line3: "Golden Island, Athlone, Co. Westmeath, N37 R658",
+  locality: "Athlone",
+  region: "Co. Westmeath",
+  postalCode: "N37 R658",
+  country: "IE",
+} as const;
+
+export const studioAddressDisplay = [
+  studioAddress.line1,
+  studioAddress.line2,
+  studioAddress.line3,
+].join("\n");
+
 export const studioContact = {
   phone: STUDIO_PHONE_DISPLAY,
   email: "hello@studio.example.com",
-  address:
-    "Gray, unit 6, The Skinbar | Inna Chernovol, Inish house, Golden Island, Athlone, Co. Westmeath, N37 R658",
+  address: studioAddressDisplay,
   phoneTelHref: studioPhoneTelHref(),
   telegramHref: studioPhoneTelegramHref(),
   whatsappHref: studioPhoneWhatsAppHref(),

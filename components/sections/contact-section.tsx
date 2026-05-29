@@ -109,7 +109,18 @@ export function ContactSection({
                 <p className="font-medium text-primary">
                   {content.locationTitle}
                 </p>
-                <p className="text-muted">{content.address}</p>
+                {content.directionsHref ? (
+                  <a
+                    href={content.directionsHref}
+                    className="whitespace-pre-line text-muted transition-colors hover:text-primary hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {content.address}
+                  </a>
+                ) : (
+                  <p className="whitespace-pre-line text-muted">{content.address}</p>
+                )}
               </div>
             </li>
           </ul>

@@ -134,6 +134,8 @@ export interface ContactContent {
   phone: string;
   email: string;
   address: string;
+  /** Google Maps / directions URL for the studio. */
+  directionsHref?: string;
   phoneLabel: string;
   emailLabel: string;
   /** Heading above the address line (e.g. studio name). */

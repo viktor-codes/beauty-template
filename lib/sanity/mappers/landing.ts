@@ -3,8 +3,10 @@ import { getStaticLandingContent } from "@/lib/sanity/fetch/get-landing-content"
 import type { LandingContent } from "@/lib/types/content";
 
 import {
+  mapContactSafe,
   mapFooterSafe,
   mapNavSafe,
+  type SanityContactLike,
   type SanityFooterLike,
   type SanityNavLike,
 } from "@/lib/sanity/mappers/chrome";
@@ -20,6 +22,7 @@ import { mapHeroSafe } from "@/lib/sanity/mappers/safe";
  */
 export interface SanityLandingPageLike {
   nav?: SanityNavLike | null;
+  contact?: SanityContactLike | null;
   footer?: SanityFooterLike | null;
   hero?: {
     eyebrow?: string;
@@ -52,6 +55,7 @@ export function mapLandingPageSafe(
   return {
     ...fallback,
     nav: mapNavSafe(raw.nav, fallback.nav),
+    contact: mapContactSafe(raw.contact, fallback.contact, settings),
     footer: mapFooterSafe(raw.footer, fallback.footer, settings),
     hero: mapHeroSafe(raw.hero, locale, fallback.hero),
     about: mapAboutSafe(raw.about, fallback.about),
