@@ -3,6 +3,7 @@
 # dependencies
 node_modules/
 .sanity/
+sanity/dist/
 /.pnp
 .pnp.*
 .yarn/*
