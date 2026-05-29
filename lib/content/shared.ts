@@ -41,7 +41,6 @@ export const brandLogos = [
   { src: "/logos/obagi.png", alt: "Obagi", width: 140, height: 44 },
   { src: "/logos/is-clinical.png", alt: "Is Clinical", width: 140, height: 44 },
   { src: "/logos/zo.png", alt: "ZO Skin Health", width: 140, height: 44 },
-  { src: "/logos/elemis.png", alt: "Elemis", width: 140, height: 44 },
 ] as const;
 
 /** Landing hero photo — repo asset only; Sanity `landingHeroSection` has no image field. */

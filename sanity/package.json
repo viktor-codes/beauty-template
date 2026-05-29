@@ -7,7 +7,9 @@
     "deploy": "sanity deploy"
   },
   "dependencies": {
+    "@sanity/color": "^3.0.6",
     "@sanity/document-internationalization": "^3.3.0",
+    "@sanity/ui": "^2.16.4",
     "@sanity/vision": "^3.95.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
