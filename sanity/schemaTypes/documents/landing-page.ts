@@ -14,6 +14,21 @@ export const landingPage = defineType({
     { name: "contact", title: "Contact" },
   ],
   fields: [
+    defineField({
+      name: "language",
+      title: "Language",
+      type: "string",
+      readOnly: true,
+      hidden: true,
+      options: {
+        list: [
+          { title: "English", value: "en" },
+          { title: "Ukrainian", value: "uk" },
+          { title: "Russian", value: "ru" },
+        ],
+      },
+      validation: (rule) => rule.required(),
+    }),
     defineField({ name: "nav", type: "landingNavSection", group: "chrome" }),
     defineField({ name: "footer", type: "landingFooterSection", group: "chrome" }),
     defineField({ name: "hero", type: "landingHeroSection", group: "hero" }),

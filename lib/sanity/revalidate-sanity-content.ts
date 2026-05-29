@@ -2,6 +2,7 @@ import { revalidatePath, revalidateTag } from "next/cache";
 
 import { routing, type AppLocale } from "@/i18n/routing";
 import { SANITY_CACHE_TAG } from "@/lib/sanity/cache-tags";
+import { isLegalPageSlug, type LegalPageSlug } from "@/lib/types/legal";
 
 const SERVICE_DOCUMENT_TYPES = new Set([
   "serviceCategory",
@@ -48,6 +49,21 @@ function revalidateLandingLocale(locale: AppLocale, result: SanityRevalidationRe
 
   revalidatePath(localizedPath(locale, "/"), "page");
   result.paths.push(`${localizedPath(locale, "/")} (page)`);
+}
+
+function revalidateLegalPageLocale(
+  locale: AppLocale,
+  slug: LegalPageSlug,
+  result: SanityRevalidationResult,
+): void {
+  const tag = SANITY_CACHE_TAG.legal(locale, slug);
+  revalidateTag(tag, "max");
+  result.tags.push(tag);
+
+  const pathname = slug === "privacy" ? "/privacy" : "/terms";
+  const path = localizedPath(locale, pathname);
+  revalidatePath(path, "page");
+  result.paths.push(`${path} (page)`);
 }
 
 function revalidateSiteSettingsLocale(locale: AppLocale, result: SanityRevalidationResult): void {
@@ -120,6 +136,26 @@ export function revalidateSanityContent(
       revalidateSiteSettingsLocale(payload.language, result);
     } else {
       revalidateAllSanityContent(result);
+    }
+    return result;
+  }
+
+  if (documentType === "legalPage") {
+    const slug =
+      typeof payload.slug === "string" && isLegalPageSlug(payload.slug)
+        ? payload.slug
+        : undefined;
+
+    if (isAppLocale(payload.language) && slug) {
+      revalidateLegalPageLocale(payload.language, slug, result);
+    } else if (isAppLocale(payload.language)) {
+      revalidateLegalPageLocale(payload.language, "privacy", result);
+      revalidateLegalPageLocale(payload.language, "terms", result);
+    } else {
+      for (const locale of routing.locales) {
+        revalidateLegalPageLocale(locale, "privacy", result);
+        revalidateLegalPageLocale(locale, "terms", result);
+      }
     }
     return result;
   }

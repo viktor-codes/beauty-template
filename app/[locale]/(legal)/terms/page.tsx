@@ -1,25 +1,32 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 
+import { LegalPageBody } from "@/components/sections/legal-page-body";
 import { LegalStaticPage } from "@/components/sections/legal-static-page";
-import { TermsPolicyDocument } from "@/components/sections/terms-policy-document";
 import { WebPageJsonLd } from "@/components/shared/web-page-jsonld";
+import { getLegalPageContent } from "@/lib/content/get-legal-content";
+import type { AppLocale } from "@/i18n/routing";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
-const PAGE_TITLE = "Terms & conditions";
-const DESCRIPTION =
-  "Full Terms & Conditions for The Skinbar: services, client duties, cancellations (€20 fee), payment, liability, age rules, IP, Irish law, and cookie consent.";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const page = await getLegalPageContent(locale as AppLocale, "terms");
 
-export const metadata: Metadata = {
-  title: PAGE_TITLE,
-  description: DESCRIPTION,
-  openGraph: {
-    title: `${PAGE_TITLE} | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
-    description: DESCRIPTION,
-    type: "website",
-    url: "/terms",
-  },
-};
+  return {
+    title: page.title,
+    description: page.metaDescription,
+    openGraph: {
+      title: `${page.title} | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
+      description: page.metaDescription,
+      type: "website",
+      url: "/terms",
+    },
+  };
+}
 
 export default async function TermsPage({
   params,
@@ -28,16 +35,17 @@ export default async function TermsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const page = await getLegalPageContent(locale as AppLocale, "terms");
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">
       <WebPageJsonLd
-        title={PAGE_TITLE}
-        description={DESCRIPTION}
+        title={page.title}
+        description={page.metaDescription}
         path="/terms"
       />
-      <LegalStaticPage title={PAGE_TITLE}>
-        <TermsPolicyDocument />
+      <LegalStaticPage title={page.title}>
+        <LegalPageBody sections={page.sections} slug={page.slug} />
       </LegalStaticPage>
     </main>
   );

@@ -1,3 +1,4 @@
+import { legalPage } from "./documents/legal-page";
 import { landingPage } from "./documents/landing-page";
 import { serviceCategory } from "./documents/service-category";
 import { serviceProcedure } from "./documents/service-procedure";
@@ -25,6 +26,8 @@ import { landingServicesSection } from "./objects/landing-services-section";
 import { reviewItem } from "./objects/review-item";
 import { servicesCategoryPreview } from "./objects/services-category-preview";
 import { servicesGoalPreview } from "./objects/services-goal-preview";
+import { legalBlockContent } from "./objects/legal-block-content";
+import { legalSection } from "./objects/legal-section";
 import { localeString, localeText } from "./objects/locale-string";
 import { serviceImage } from "./objects/service-image";
 
@@ -51,6 +54,8 @@ export const schemaTypes = [
   landingFaqSection,
   landingContactSection,
   landingFooterSection,
+  legalBlockContent,
+  legalSection,
   localeString,
   localeText,
   serviceImage,
@@ -58,5 +63,6 @@ export const schemaTypes = [
   serviceSubcategory,
   serviceProcedure,
   landingPage,
+  legalPage,
   siteSettings,
 ];

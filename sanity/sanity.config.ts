@@ -27,6 +27,7 @@ export default defineConfig({
         { id: "uk", title: "Ukrainian" },
         { id: "ru", title: "Russian" },
       ],
+      // legalPage is excluded: two documents per locale (privacy + terms) are not mutual translations.
       schemaTypes: ["landingPage", "siteSettings"],
     }),
   ],

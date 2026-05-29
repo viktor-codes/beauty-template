@@ -1,6 +1,10 @@
 import type { SanityClient } from "@sanity/client";
 
+import { addMissingArrayKeys } from "@/lib/sanity/seed/add-array-keys";
+
 type SeedDocument = Record<string, unknown> & { _id: string; _type: string };
+
+const SEED_COMMIT_OPTIONS = { autoGenerateArrayKeys: true } as const;
 
 export async function commitDocumentsInChunks(
   client: SanityClient,
@@ -14,10 +18,10 @@ export async function commitDocumentsInChunks(
     const tx = client.transaction();
 
     for (const doc of slice) {
-      tx.createOrReplace(doc);
+      tx.createOrReplace(addMissingArrayKeys(doc));
     }
 
-    await tx.commit();
+    await tx.commit(SEED_COMMIT_OPTIONS);
     console.log(`  → ${Math.min(offset + slice.length, documents.length)}/${documents.length}`);
   }
 }

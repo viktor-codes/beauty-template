@@ -9,6 +9,21 @@ export const siteSettings = defineType({
   title: "Site settings",
   type: "document",
   fields: [
+    defineField({
+      name: "language",
+      title: "Language",
+      type: "string",
+      readOnly: true,
+      hidden: true,
+      options: {
+        list: [
+          { title: "English", value: "en" },
+          { title: "Ukrainian", value: "uk" },
+          { title: "Russian", value: "ru" },
+        ],
+      },
+      validation: (rule) => rule.required(),
+    }),
     defineField({ name: "phone", title: "Phone display", type: "string" }),
     defineField({ name: "phoneTelHref", title: "Phone tel: link", type: "string" }),
     defineField({ name: "email", title: "Email", type: "string" }),

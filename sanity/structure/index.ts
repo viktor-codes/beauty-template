@@ -12,6 +12,30 @@ export const structure: StructureResolver = (S) =>
             .items([
               S.documentTypeListItem("landingPage").title("Landing pages"),
               S.documentTypeListItem("siteSettings").title("Site settings"),
+              S.listItem()
+                .title("Legal pages")
+                .child(
+                  S.list()
+                    .title("Legal pages")
+                    .items([
+                      S.listItem()
+                        .title("Privacy policy")
+                        .child(
+                          S.documentList()
+                            .title("Privacy policy")
+                            .filter('_type == "legalPage" && slug == "privacy"')
+                            .defaultOrdering([{ field: "language", direction: "asc" }]),
+                        ),
+                      S.listItem()
+                        .title("Terms & conditions")
+                        .child(
+                          S.documentList()
+                            .title("Terms & conditions")
+                            .filter('_type == "legalPage" && slug == "terms"')
+                            .defaultOrdering([{ field: "language", direction: "asc" }]),
+                        ),
+                    ]),
+                ),
             ]),
         ),
       S.divider(),

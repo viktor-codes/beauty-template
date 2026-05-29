@@ -14,8 +14,10 @@ import type { AppLocale } from "@/i18n/routing";
 import { getStaticLandingContent } from "@/lib/content/static";
 import { INSTAGRAM_PROFILE_HREF, studioContact } from "@/lib/content/shared";
 import { servicesCatalog } from "@/lib/services";
+import { addMissingArrayKeys } from "@/lib/sanity/seed/add-array-keys";
 import { commitDocumentsInChunks } from "@/lib/sanity/seed/commit-documents";
 import { enrichLandingDocumentWithImages } from "@/lib/sanity/seed/enrich-landing-images";
+import { buildLegalDocuments } from "@/lib/sanity/seed/map-legal-documents";
 import { buildServiceDocuments } from "@/lib/sanity/seed/map-services-documents";
 
 const LOCALES: AppLocale[] = ["en", "uk", "ru"];
@@ -80,17 +82,21 @@ async function main() {
   await commitDocumentsInChunks(client, serviceDocs);
   console.log(`Services: ${serviceDocs.length} documents`);
 
-  console.log("Seeding landing pages + site settings (with local images)…");
+  console.log("Seeding landing pages + site settings + legal pages…");
   for (const locale of LOCALES) {
     const content = getStaticLandingContent(locale);
     const landing = await enrichLandingDocumentWithImages(client, locale, content);
     const settings = mapSiteSettings(locale);
+    const legalDocs = buildLegalDocuments(locale);
 
     const tx = client.transaction();
-    tx.createOrReplace(landing);
-    tx.createOrReplace(settings);
-    await tx.commit();
-    console.log(`  ✓ ${locale}: landingPage + siteSettings`);
+    tx.createOrReplace(addMissingArrayKeys(landing));
+    tx.createOrReplace(addMissingArrayKeys(settings));
+    for (const legal of legalDocs) {
+      tx.createOrReplace(addMissingArrayKeys(legal));
+    }
+    await tx.commit({ autoGenerateArrayKeys: true });
+    console.log(`  ✓ ${locale}: landingPage + siteSettings + 2 legal pages`);
   }
 
   console.log("\nDone. Open Studio → Structure; content should be filled. Publish if drafts appear.");
