@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { notFound } from "next/navigation";
-
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
@@ -13,24 +11,10 @@ import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
 import { getServicesSubcategoryFaq } from "@/lib/services-faq";
 import type { AppLocale } from "@/i18n/routing";
-import {
-  getServicesCategory,
-  getServicesSubcategory,
-  servicesCatalog,
-} from "@/lib/services";
+import { resolveServicesCatalog } from "@/lib/services";
+import { servicesCatalog } from "@/lib/services/catalog";
+import { findSubcategory } from "@/lib/services/page-helpers";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
-
-function getCategoryOrThrow(categorySlug: string) {
-  const category = getServicesCategory(categorySlug);
-  if (!category) notFound();
-  return category;
-}
-
-function getSubcategoryOrThrow(categorySlug: string, subcategorySlug: string) {
-  const subcategory = getServicesSubcategory(categorySlug, subcategorySlug);
-  if (!subcategory) notFound();
-  return subcategory;
-}
 
 export async function generateStaticParams(): Promise<
   Array<{ categorySlug: string; subcategorySlug: string }>
@@ -46,11 +30,11 @@ export async function generateStaticParams(): Promise<
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ categorySlug: string; subcategorySlug: string }>;
+  params: Promise<{ locale: string; categorySlug: string; subcategorySlug: string }>;
 }): Promise<Metadata> {
-  const { categorySlug, subcategorySlug } = await params;
-  const category = getCategoryOrThrow(categorySlug);
-  const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
+  const { locale, categorySlug, subcategorySlug } = await params;
+  const catalog = await resolveServicesCatalog(locale as AppLocale);
+  const { category, subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
 
   return {
     title: `${subcategory.title} — ${category.title}`,
@@ -71,12 +55,13 @@ export default async function ServicesSubcategoryPage({
 }) {
   const { locale, categorySlug, subcategorySlug } = await params;
   setRequestLocale(locale);
-  const category = getCategoryOrThrow(categorySlug);
-  const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
+  const appLocale = locale as AppLocale;
+  const catalog = await resolveServicesCatalog(appLocale);
+  const { category, subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
   const subcategoryFaq = await getServicesSubcategoryFaq(
     category,
     subcategory,
-    locale as AppLocale,
+    appLocale,
     6,
   );
   const breadcrumbs = [

@@ -49,13 +49,48 @@ export const ruLandingContent = {
     eyebrow: "Что я предлагаю",
     title: "Процедуры, подобранные под вас",
     description:
-      "От поддерживающих уходовых лиц до продвинутых протоколов — объясняю простым языком, дополнительные опции только по желанию, без давления.",
+      "От уходовых лиц до продвинутых протоколов — объясняю простым языком, дополнительные опции только по желанию, без давления.",
     categories: [
       {
-        id: "services-category-skin",
-        title: "Кожа и поддержка",
+        id: "services-category-cosmetology",
+        title: "Cosmetology",
         description:
-          "Уходовые лица, пилинги и протоколы для чистоты, сияния и долгосрочного баланса кожи.",
+          "Инъекции, биостимуляторы, биоревитализация и аппаратные протоколы для лица и кожи.",
+        href: "/services/cosmetology",
+      },
+      {
+        id: "services-category-body",
+        title: "Body slimming & contouring",
+        description:
+          "CRYO, Emsculpt, пилинги, лазерная коррекция и процедуры для тела.",
+        href: "/services/body-slimming",
+      },
+      {
+        id: "services-category-anti-age",
+        title: "Anti age",
+        description:
+          "Лифтинг, коллаген, нейромодуляторы и anti-age пилинги.",
+        href: "/services/anti-age",
+      },
+      {
+        id: "services-category-vitamins",
+        title: "Vitamin shots",
+        description:
+          "Витаминные инъекции для энергии, иммунитета и поддержки кожи.",
+        href: "/services/vitamin-shots",
+      },
+      {
+        id: "services-category-blood",
+        title: "Blood tests",
+        description:
+          "Анализы крови для wellness и фертильности — основа персонального плана.",
+        href: "/services/blood-tests",
+      },
+      {
+        id: "services-category-skin",
+        title: "Facials & peels",
+        description:
+          "Уходовые лица Jan Marini и пилинги для чистоты, сияния и баланса кожи.",
         href: "/services/aesthetic-treatments",
       },
       {
@@ -209,22 +244,10 @@ export const ruLandingContent = {
     services: {
       heading: "Основные категории",
       links: [
-        {
-          label: "Кожа и поддержка",
-          href: "/services/aesthetic-treatments",
-        },
-        {
-          label: "Инъекции (естественный результат)",
-          href: "/services/aesthetic-injections",
-        },
-        {
-          label: "Продвинутые клинические процедуры",
-          href: "/services/advanced-aesthetic-treatments",
-        },
-        {
-          label: "Лазерная эпиляция",
-          href: "/services/laser-hair-removal",
-        },
+        { label: "Cosmetology", href: "/services/cosmetology" },
+        { label: "Anti age", href: "/services/anti-age" },
+        { label: "Body slimming", href: "/services/body-slimming" },
+        { label: "Blood tests", href: "/services/blood-tests" },
         { label: "Все услуги", href: "/services" },
       ],
     },

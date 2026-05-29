@@ -26,7 +26,8 @@ import {
   SITE_PRACTITIONER,
   SITE_SERVICES_HUB_DESCRIPTION,
 } from "@/lib/site-metadata";
-import { servicesCatalog } from "@/lib/services";
+import { servicesCatalog } from "@/lib/services/catalog";
+import { resolveServicesCatalog } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Cosmetology services & treatment categories",
@@ -48,7 +49,9 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const landingContent = await getLandingContent(locale as AppLocale);
+  const appLocale = locale as AppLocale;
+  const catalog = await resolveServicesCatalog(appLocale);
+  const landingContent = await getLandingContent(appLocale);
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -61,9 +64,9 @@ export default async function ServicesPage({
   const selectedGoal: GoalSlug | null =
     goalValue && isGoalSlug(goalValue) ? goalValue : null;
   const recommended = selectedGoal
-    ? getGoalRecommendations(selectedGoal, 10)
+    ? getGoalRecommendations(selectedGoal, catalog, 10)
     : [];
-  const hubFaq = await getServicesHubFaq(locale as AppLocale, 6);
+  const hubFaq = await getServicesHubFaq(appLocale, 6);
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">
@@ -72,7 +75,7 @@ export default async function ServicesPage({
         <ItemListJsonLd
           name="Cosmetology service categories"
           description={SITE_SERVICES_HUB_DESCRIPTION}
-          items={servicesCatalog.categories.map((category) => ({
+          items={catalog.categories.map((category) => ({
             name: category.title,
             description: category.description,
             url: `/services/${category.id}`,

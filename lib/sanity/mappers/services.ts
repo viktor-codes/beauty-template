@@ -150,17 +150,22 @@ export function mapServicesCatalogSafe(
 
   const categories = raw.categories
     .map((cat) => {
-      const fallbackCat = fallback.categories.find(
-        (c) => c.id === mapSlugSafe(cat.slug, ""),
-      );
+      const slug = mapSlugSafe(cat.slug, "");
+      const fallbackCat = fallback.categories.find((c) => c.id === slug);
       return mapCategory(cat, locale, fallbackCat);
     })
     .filter((c): c is ServiceCategory => c !== null);
+
+  const sanityIds = new Set(categories.map((c) => c.id));
+  const missingFromSanity = fallback.categories.filter((c) => !sanityIds.has(c.id));
 
   return {
     id: fallback.id,
     title: readLocalizedValue(raw.hubTitle, locale, fallback.title),
     description: readLocalizedValue(raw.hubDescription, locale, fallback.description),
-    categories: categories.length > 0 ? categories : fallback.categories,
+    categories:
+      categories.length > 0
+        ? [...categories, ...missingFromSanity]
+        : fallback.categories,
   };
 }

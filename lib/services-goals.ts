@@ -1,5 +1,10 @@
-import type { ServiceCategory, ServiceProcedure, ServiceSubcategory } from "@/lib/types/services";
-import { servicesCatalog } from "@/lib/services";
+import type {
+  ServiceCategory,
+  ServiceProcedure,
+  ServiceSubcategory,
+  ServicesCatalog,
+} from "@/lib/types/services";
+import { servicesCatalog } from "@/lib/services/catalog";
 
 export type GoalSlug =
   | "glow"
@@ -51,12 +56,16 @@ export function getGoalLabel(goal: GoalSlug): string {
   return labels[goal];
 }
 
-export function getGoalRecommendations(goal: GoalSlug, limit = 10): ProcedureHit[] {
+export function getGoalRecommendations(
+  goal: GoalSlug,
+  catalog: ServicesCatalog = servicesCatalog,
+  limit = 10,
+): ProcedureHit[] {
   const keywords = goalKeywords[goal];
 
   const hits: ProcedureHit[] = [];
 
-  servicesCatalog.categories.forEach((category) => {
+  catalog.categories.forEach((category) => {
     const categoryBoost = scoreText(`${category.title} ${category.description}`, keywords) * 2;
     category.subcategories.forEach((subcategory) => {
       const subcategoryBoost =

@@ -49,13 +49,48 @@ export const enLandingContent = {
     eyebrow: "What I offer",
     title: "Treatments designed around you",
     description:
-      "From maintenance facials to advanced protocols—I explain everything in plain language, optional add-ons only, never pressure.",
+      "From facials to advanced protocols—I explain everything in plain language, optional add-ons only, never pressure.",
     categories: [
       {
-        id: "services-category-skin",
-        title: "Skin & maintenance",
+        id: "services-category-cosmetology",
+        title: "Cosmetology",
         description:
-          "Facials, peels, and skin-first protocols chosen for clarity, glow, and long-term balance.",
+          "Injectables, biostimulators, biorevitalisation, and device-led protocols for face and skin.",
+        href: "/services/cosmetology",
+      },
+      {
+        id: "services-category-body",
+        title: "Body slimming & contouring",
+        description:
+          "CRYO, Emsculpt, peels, laser correction, and targeted body treatments.",
+        href: "/services/body-slimming",
+      },
+      {
+        id: "services-category-anti-age",
+        title: "Anti age",
+        description:
+          "Age-focused lifting, collagen support, neuromodulators, and corrective peels.",
+        href: "/services/anti-age",
+      },
+      {
+        id: "services-category-vitamins",
+        title: "Vitamin shots",
+        description:
+          "Intramuscular vitamin injections for energy, immunity, and skin support.",
+        href: "/services/vitamin-shots",
+      },
+      {
+        id: "services-category-blood",
+        title: "Blood tests",
+        description:
+          "Wellness and fertility panels to guide personalised treatment planning.",
+        href: "/services/blood-tests",
+      },
+      {
+        id: "services-category-skin",
+        title: "Facials & peels",
+        description:
+          "Jan Marini facials and clinician-controlled peels for clarity, glow, and balance.",
         href: "/services/aesthetic-treatments",
       },
       {
@@ -205,22 +240,10 @@ export const enLandingContent = {
     services: {
       heading: "Main categories",
       links: [
-        {
-          label: "Skin & maintenance",
-          href: "/services/aesthetic-treatments",
-        },
-        {
-          label: "Injectables (natural results)",
-          href: "/services/aesthetic-injections",
-        },
-        {
-          label: "Advanced clinic treatments",
-          href: "/services/advanced-aesthetic-treatments",
-        },
-        {
-          label: "Laser hair removal",
-          href: "/services/laser-hair-removal",
-        },
+        { label: "Cosmetology", href: "/services/cosmetology" },
+        { label: "Anti age", href: "/services/anti-age" },
+        { label: "Body slimming", href: "/services/body-slimming" },
+        { label: "Blood tests", href: "/services/blood-tests" },
         { label: "All services", href: "/services" },
       ],
     },

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
@@ -11,17 +10,12 @@ import { ServiceCard } from "@/components/shared/service-card";
 import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
-import { getServicesCategoryFaq } from "@/lib/services-faq";
 import type { AppLocale } from "@/i18n/routing";
-import { servicesCatalog } from "@/lib/services";
+import { getServicesCategoryFaq } from "@/lib/services-faq";
+import { resolveServicesCatalog } from "@/lib/services";
+import { servicesCatalog } from "@/lib/services/catalog";
+import { findCategory } from "@/lib/services/page-helpers";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
-
-function getCategoryOrThrow(categorySlug: string) {
-  const category =
-    servicesCatalog.categories.find((c) => c.id === categorySlug) ?? null;
-  if (!category) notFound();
-  return category;
-}
 
 export async function generateStaticParams(): Promise<
   Array<{ categorySlug: string }>
@@ -34,10 +28,11 @@ export async function generateStaticParams(): Promise<
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ categorySlug: string }>;
+  params: Promise<{ locale: string; categorySlug: string }>;
 }): Promise<Metadata> {
-  const { categorySlug } = await params;
-  const category = getCategoryOrThrow(categorySlug);
+  const { locale, categorySlug } = await params;
+  const catalog = await resolveServicesCatalog(locale as AppLocale);
+  const category = findCategory(catalog, categorySlug);
 
   return {
     title: `${category.title} — consultations & protocols`,
@@ -58,8 +53,10 @@ export default async function ServicesCategoryPage({
 }) {
   const { locale, categorySlug } = await params;
   setRequestLocale(locale);
-  const category = getCategoryOrThrow(categorySlug);
-  const categoryFaq = await getServicesCategoryFaq(category, locale as AppLocale, 6);
+  const appLocale = locale as AppLocale;
+  const catalog = await resolveServicesCatalog(appLocale);
+  const category = findCategory(catalog, categorySlug);
+  const categoryFaq = await getServicesCategoryFaq(category, appLocale, 6);
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },

@@ -49,13 +49,48 @@ export const ukLandingContent = {
     eyebrow: "Що я пропоную",
     title: "Процедури, підібрані під вас",
     description:
-      "Від підтримуючих доглядових облич до просунутих протоколів — пояснюю простою мовою, додаткові опції лише за бажанням, без тиску.",
+      "Від доглядових облич до просунутих протоколів — пояснюю простою мовою, додаткові опції лише за бажанням, без тиску.",
     categories: [
       {
-        id: "services-category-skin",
-        title: "Шкіра та підтримка",
+        id: "services-category-cosmetology",
+        title: "Cosmetology",
         description:
-          "Доглядові обличчя, пілінги та протоколи для чистоти, сяйва та довгострокового балансу шкіри.",
+          "Ін’єкції, біостимулятори, біоревіталізація та апаратні протоколи для обличчя та шкіри.",
+        href: "/services/cosmetology",
+      },
+      {
+        id: "services-category-body",
+        title: "Body slimming & contouring",
+        description:
+          "CRYO, Emsculpt, пілінги, лазерна корекція та процедури для тіла.",
+        href: "/services/body-slimming",
+      },
+      {
+        id: "services-category-anti-age",
+        title: "Anti age",
+        description:
+          "Ліфтинг, колаген, нейромодулятори та anti-age пілінги.",
+        href: "/services/anti-age",
+      },
+      {
+        id: "services-category-vitamins",
+        title: "Vitamin shots",
+        description:
+          "Вітамінні ін’єкції для енергії, імунітету та підтримки шкіри.",
+        href: "/services/vitamin-shots",
+      },
+      {
+        id: "services-category-blood",
+        title: "Blood tests",
+        description:
+          "Аналізи крові для wellness і фертильності — основа персонального плану.",
+        href: "/services/blood-tests",
+      },
+      {
+        id: "services-category-skin",
+        title: "Facials & peels",
+        description:
+          "Доглядові обличчя Jan Marini та пілінги для чистоти, сяйва та балансу шкіри.",
         href: "/services/aesthetic-treatments",
       },
       {
@@ -209,22 +244,10 @@ export const ukLandingContent = {
     services: {
       heading: "Основні категорії",
       links: [
-        {
-          label: "Шкіра та підтримка",
-          href: "/services/aesthetic-treatments",
-        },
-        {
-          label: "Ін’єкції (природний результат)",
-          href: "/services/aesthetic-injections",
-        },
-        {
-          label: "Просунуті клінічні процедури",
-          href: "/services/advanced-aesthetic-treatments",
-        },
-        {
-          label: "Лазерна епіляція",
-          href: "/services/laser-hair-removal",
-        },
+        { label: "Cosmetology", href: "/services/cosmetology" },
+        { label: "Anti age", href: "/services/anti-age" },
+        { label: "Body slimming", href: "/services/body-slimming" },
+        { label: "Blood tests", href: "/services/blood-tests" },
         { label: "Усі послуги", href: "/services" },
       ],
     },

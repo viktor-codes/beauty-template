@@ -11,12 +11,12 @@ export const INSTAGRAM_PROFILE_HREF =
 export const studioContact = {
   phone: STUDIO_PHONE_DISPLAY,
   email: "hello@studio.example.com",
-  address: "120 Beauty Lane, Suite 4, New York, NY 10001",
+  address:
+    "Gray, unit 6, The Skinbar | Inna Chernovol, Inish house, Golden Island, Athlone, Co. Westmeath, N37 R658",
   phoneTelHref: studioPhoneTelHref(),
   telegramHref: studioPhoneTelegramHref(),
   whatsappHref: studioPhoneWhatsAppHref(),
-  directionsHref:
-    "https://www.google.com/maps/search/?api=1&query=120%20Beauty%20Lane%20Suite%204%20New%20York%20NY%2010001",
+  directionsHref: "https://maps.app.goo.gl/aemu5BKFy1ks5YvX7",
 } as const;
 
 export const brandLogos = [

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { notFound } from "next/navigation";
-
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
@@ -14,35 +12,10 @@ import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ServiceJsonLd } from "@/components/shared/service-jsonld";
 import { getServicesProcedureFaq } from "@/lib/services-faq";
 import type { AppLocale } from "@/i18n/routing";
-import {
-  getServicesCategory,
-  getServicesProcedure,
-  getServicesSubcategory,
-  servicesCatalog,
-} from "@/lib/services";
+import { resolveServicesCatalog } from "@/lib/services";
+import { servicesCatalog } from "@/lib/services/catalog";
+import { findProcedure } from "@/lib/services/page-helpers";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
-
-function getCategoryOrThrow(categorySlug: string) {
-  const category = getServicesCategory(categorySlug);
-  if (!category) notFound();
-  return category;
-}
-
-function getSubcategoryOrThrow(categorySlug: string, subcategorySlug: string) {
-  const subcategory = getServicesSubcategory(categorySlug, subcategorySlug);
-  if (!subcategory) notFound();
-  return subcategory;
-}
-
-function getProcedureOrThrow(
-  categorySlug: string,
-  subcategorySlug: string,
-  procedureSlug: string,
-) {
-  const procedure = getServicesProcedure(categorySlug, subcategorySlug, procedureSlug);
-  if (!procedure) notFound();
-  return procedure;
-}
 
 export async function generateStaticParams(): Promise<
   Array<{ categorySlug: string; subcategorySlug: string; procedureSlug: string }>
@@ -62,15 +35,20 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{
+    locale: string;
     categorySlug: string;
     subcategorySlug: string;
     procedureSlug: string;
   }>;
 }): Promise<Metadata> {
-  const { categorySlug, subcategorySlug, procedureSlug } = await params;
-  getCategoryOrThrow(categorySlug);
-  const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
-  const procedure = getProcedureOrThrow(categorySlug, subcategorySlug, procedureSlug);
+  const { locale, categorySlug, subcategorySlug, procedureSlug } = await params;
+  const catalog = await resolveServicesCatalog(locale as AppLocale);
+  const { subcategory, procedure } = findProcedure(
+    catalog,
+    categorySlug,
+    subcategorySlug,
+    procedureSlug,
+  );
 
   const priceLabel = procedure.price
     ? `${procedure.price.amount} ${procedure.price.currency}`
@@ -102,15 +80,19 @@ export default async function ServiceProcedurePage({
 }) {
   const { locale, categorySlug, subcategorySlug, procedureSlug } = await params;
   setRequestLocale(locale);
-
-  const category = getCategoryOrThrow(categorySlug);
-  const subcategory = getSubcategoryOrThrow(categorySlug, subcategorySlug);
-  const procedure = getProcedureOrThrow(categorySlug, subcategorySlug, procedureSlug);
+  const appLocale = locale as AppLocale;
+  const catalog = await resolveServicesCatalog(appLocale);
+  const { category, subcategory, procedure } = findProcedure(
+    catalog,
+    categorySlug,
+    subcategorySlug,
+    procedureSlug,
+  );
   const procedureFaq = await getServicesProcedureFaq(
     category,
     subcategory,
     procedure,
-    locale as AppLocale,
+    appLocale,
     5,
   );
   const breadcrumbs = [
