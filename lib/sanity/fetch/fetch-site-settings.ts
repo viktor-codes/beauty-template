@@ -1,9 +1,11 @@
 import type { AppLocale } from "@/i18n/routing";
 import { getSanityClient } from "@/lib/sanity/client";
+import {
+  SANITY_CACHE_TAG,
+  SANITY_REVALIDATE_SECONDS,
+} from "@/lib/sanity/cache-tags";
 import type { SanitySiteSettingsLike } from "@/lib/sanity/mappers/site-settings";
 import { siteSettingsQuery } from "@/lib/sanity/queries/site-settings";
-
-const REVALIDATE_SECONDS = 60;
 
 export async function fetchSiteSettings(
   locale: AppLocale,
@@ -15,7 +17,12 @@ export async function fetchSiteSettings(
     return await client.fetch<SanitySiteSettingsLike | null>(
       siteSettingsQuery,
       { locale },
-      { next: { revalidate: REVALIDATE_SECONDS } },
+      {
+        next: {
+          revalidate: SANITY_REVALIDATE_SECONDS,
+          tags: [SANITY_CACHE_TAG.all, SANITY_CACHE_TAG.siteSettings(locale)],
+        },
+      },
     );
   } catch {
     return null;
