@@ -12,7 +12,7 @@ export const ruLandingContent = {
   nav: {
     links: [
       { label: "Обо мне", href: "#about" },
-      { label: "Процедуры", href: "#treatments" },
+      { label: "Процедуры", href: "/treatments" },
       { label: "Галерея", href: "#gallery" },
       { label: "Отзывы", href: "#reviews" },
       { label: "FAQ", href: "#faq" },

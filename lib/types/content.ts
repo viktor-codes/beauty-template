@@ -8,8 +8,12 @@ export interface ContentLink {
   href: string;
 }
 
+export interface NavLink extends ContentLink {
+  children?: ContentLink[];
+}
+
 export interface NavContent {
-  links: ContentLink[];
+  links: NavLink[];
   cta: ContentLink;
 }
 

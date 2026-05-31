@@ -12,6 +12,7 @@ import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
 import { getLandingContent } from "@/lib/content";
 import type { AppLocale } from "@/i18n/routing";
+import { enrichNavWithTreatmentCategories } from "@/lib/nav/build-nav-links";
 import {
   SITE_DEFAULT_DESCRIPTION,
   SITE_DEFAULT_TITLE,
@@ -35,10 +36,14 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
   const landingContent = await getLandingContent(locale as AppLocale);
+  const nav = enrichNavWithTreatmentCategories(
+    landingContent.nav,
+    landingContent.services.categories,
+  );
 
   return (
     <>
-      <SiteHeader content={landingContent.nav} />
+      <SiteHeader content={nav} />
       <main id="main-content" className="flex-1 pt-20 md:pt-0">
         <HeroSection content={landingContent.hero} />
         <AboutSection content={landingContent.about} />

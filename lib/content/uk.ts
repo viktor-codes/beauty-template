@@ -12,7 +12,7 @@ export const ukLandingContent = {
   nav: {
     links: [
       { label: "Про мене", href: "#about" },
-      { label: "Процедури", href: "#treatments" },
+      { label: "Процедури", href: "/treatments" },
       { label: "Галерея", href: "#gallery" },
       { label: "Відгуки", href: "#reviews" },
       { label: "FAQ", href: "#faq" },

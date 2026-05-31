@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 
 import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";
+import { NavDropdown } from "@/components/sections/nav-dropdown";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
 import type { NavContent } from "@/lib/types/content";
@@ -74,15 +75,22 @@ export function SiteHeader({
             className="hidden min-w-0 flex-1 justify-center gap-4 md:flex lg:gap-6"
             aria-label="Primary"
           >
-            {content.links.map((link) => (
-              <Link
-                key={`${link.label}-${link.href}`}
-                href={link.href}
-                className="text-lg text-muted transition-colors hover:text-primary"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {content.links.map((link) =>
+              link.children?.length ? (
+                <NavDropdown
+                  key={`${link.label}-${link.href}`}
+                  link={link}
+                />
+              ) : (
+                <Link
+                  key={`${link.label}-${link.href}`}
+                  href={link.href}
+                  className="text-lg text-muted transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
           </nav>
           <Button href={content.cta.href} size="sm" className="shrink-0">
             {content.cta.label}

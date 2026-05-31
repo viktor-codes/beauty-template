@@ -2,20 +2,28 @@ import type { ReactNode } from "react";
 
 import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
+import { enrichNavWithTreatmentCategories } from "@/lib/nav/build-nav-links";
 import type { LandingContent } from "@/lib/types/content";
 
-function buildSubpageNav(nav: LandingContent["nav"]) {
-  return {
-    ...nav,
-    links: nav.links.map((link) => ({
+function buildSubpageNav(content: LandingContent) {
+  const navWithAbsoluteHashes = {
+    ...content.nav,
+    links: content.nav.links.map((link) => ({
       ...link,
       href: link.href.startsWith("#") ? `/${link.href}` : link.href,
     })),
     cta: {
-      ...nav.cta,
-      href: nav.cta.href.startsWith("#") ? `/${nav.cta.href}` : nav.cta.href,
+      ...content.nav.cta,
+      href: content.nav.cta.href.startsWith("#")
+        ? `/${content.nav.cta.href}`
+        : content.nav.cta.href,
     },
   };
+
+  return enrichNavWithTreatmentCategories(
+    navWithAbsoluteHashes,
+    content.services.categories,
+  );
 }
 
 export interface MarketingChromeProps {
@@ -26,7 +34,7 @@ export interface MarketingChromeProps {
 export function MarketingChrome({ children, content }: MarketingChromeProps) {
   return (
     <>
-      <SiteHeader content={buildSubpageNav(content.nav)} homeHref="/" />
+      <SiteHeader content={buildSubpageNav(content)} homeHref="/" />
       {children}
       <SiteFooter content={content.footer} />
     </>

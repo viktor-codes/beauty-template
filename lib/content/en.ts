@@ -12,7 +12,7 @@ export const enLandingContent = {
   nav: {
     links: [
       { label: "About", href: "#about" },
-      { label: "Treatments", href: "#treatments" },
+      { label: "Treatments", href: "/treatments" },
       { label: "Gallery", href: "#gallery" },
       { label: "Reviews", href: "#reviews" },
       { label: "FAQ", href: "#faq" },
