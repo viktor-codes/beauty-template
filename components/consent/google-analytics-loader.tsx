@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useCallback, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import { updateGtagAnalyticsConsent } from "@/lib/cookie-consent/gtag-consent";
 
@@ -14,13 +14,28 @@ export function GoogleAnalyticsLoader({
 }: GoogleAnalyticsLoaderProps) {
   const hasConfigured = useRef(false);
 
-  const onLoad = useCallback(() => {
+  useEffect(() => {
     if (hasConfigured.current) return;
-    hasConfigured.current = true;
-    updateGtagAnalyticsConsent(true);
-    if (typeof window.gtag === "function") {
+
+    const configureAnalytics = () => {
+      if (hasConfigured.current || typeof window.gtag !== "function") return;
+
+      hasConfigured.current = true;
+      updateGtagAnalyticsConsent(true);
       window.gtag("config", measurementId);
-    }
+    };
+
+    configureAnalytics();
+
+    const intervalId = window.setInterval(configureAnalytics, 100);
+    const timeoutId = window.setTimeout(() => {
+      window.clearInterval(intervalId);
+    }, 5000);
+
+    return () => {
+      window.clearInterval(intervalId);
+      window.clearTimeout(timeoutId);
+    };
   }, [measurementId]);
 
   if (!measurementId) return null;
@@ -29,7 +44,6 @@ export function GoogleAnalyticsLoader({
     <Script
       src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`}
       strategy="afterInteractive"
-      onLoad={onLoad}
     />
   );
 }

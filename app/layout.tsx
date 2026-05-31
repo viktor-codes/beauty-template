@@ -2,6 +2,7 @@ import { Montserrat, Playfair_Display } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
+import { ConsentModeDefaultScript } from "@/components/consent/consent-mode-default-script";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -31,7 +32,10 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${montserrat.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">
+        <ConsentModeDefaultScript />
+        {children}
+      </body>
     </html>
   );
 }

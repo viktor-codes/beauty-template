@@ -1,4 +1,5 @@
 import type { BreadcrumbItem } from "@/components/shared/breadcrumbs";
+import { JsonLd } from "@/components/shared/json-ld";
 import { toAbsoluteUrl } from "@/lib/site-url";
 
 export interface BreadcrumbsJsonLdProps {
@@ -10,23 +11,18 @@ export function BreadcrumbsJsonLd({ items }: BreadcrumbsJsonLdProps) {
 
   if (visibleItems.length === 0) return null;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: visibleItems.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.label,
-      item: toAbsoluteUrl(item.href as string),
-    })),
-  };
-
   return (
-    <script
-      type="application/ld+json"
-      // JSON-LD must be embedded as raw JSON string.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: visibleItems.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.label,
+          item: toAbsoluteUrl(item.href as string),
+        })),
+      }}
     />
   );
 }
-
