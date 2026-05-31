@@ -16,7 +16,7 @@ export function Divider({
       role="separator"
       aria-orientation={orientation === "vertical" ? "vertical" : "horizontal"}
       className={cn(
-        "shrink-0 border bg-primary",
+        "shrink-0 border-0 bg-border",
         orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
         className,
       )}

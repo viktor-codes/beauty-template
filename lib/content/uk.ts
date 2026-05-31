@@ -57,6 +57,7 @@ export const ukLandingContent = {
         description:
           "Ін’єкції, біостимулятори, біоревіталізація та апаратні протоколи для обличчя та шкіри.",
         href: "/treatments/cosmetology",
+        featuredInNav: true,
       },
       {
         id: "services-category-body",
@@ -70,6 +71,7 @@ export const ukLandingContent = {
         title: "Anti age",
         description: "Ліфтинг, колаген, нейромодулятори та anti-age пілінги.",
         href: "/treatments/anti-age",
+        featuredInNav: true,
       },
       {
         id: "services-category-vitamins",
@@ -77,6 +79,7 @@ export const ukLandingContent = {
         description:
           "Вітамінні ін’єкції для енергії, імунітету та підтримки шкіри.",
         href: "/treatments/vitamin-shots",
+        featuredInNav: true,
       },
       {
         id: "services-category-blood",
@@ -84,6 +87,7 @@ export const ukLandingContent = {
         description:
           "Аналізи крові для wellness і фертильності — основа персонального плану.",
         href: "/treatments/blood-tests",
+        featuredInNav: true,
       },
       {
         id: "services-category-skin",
@@ -98,6 +102,7 @@ export const ukLandingContent = {
         description:
           "Гідратація, підтримка колагену та делікатна структура — консервативне та безпечне планування.",
         href: "/treatments/aesthetic-injections",
+        featuredInNav: true,
       },
       {
         id: "services-category-advanced",

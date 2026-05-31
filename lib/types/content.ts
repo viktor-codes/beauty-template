@@ -65,6 +65,8 @@ export interface ServicesCategoryPreview {
   title: string;
   description: string;
   href: string;
+  /** When true, category appears in the desktop treatments nav dropdown. */
+  featuredInNav?: boolean;
 }
 
 export interface ServicesGoalPreview {

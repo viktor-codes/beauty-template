@@ -14,6 +14,7 @@ interface SanityCategoryPreviewLike {
   title?: string;
   description?: string;
   href?: string;
+  featuredInNav?: boolean;
 }
 
 interface SanityGoalPreviewLike {
@@ -45,6 +46,7 @@ function mapCategoryPreviewSafe(
     title,
     description: raw.description?.trim() || fallback?.description || "",
     href: normalizeLegacyServicesHref(href),
+    featuredInNav: raw.featuredInNav ?? fallback?.featuredInNav,
   };
 }
 

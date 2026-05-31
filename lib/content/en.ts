@@ -57,6 +57,7 @@ export const enLandingContent = {
         description:
           "Injectables, biostimulators, biorevitalisation, and device-led protocols for face and skin.",
         href: "/treatments/cosmetology",
+        featuredInNav: true,
       },
       {
         id: "services-category-body",
@@ -71,6 +72,7 @@ export const enLandingContent = {
         description:
           "Age-focused lifting, collagen support, neuromodulators, and corrective peels.",
         href: "/treatments/anti-age",
+        featuredInNav: true,
       },
       {
         id: "services-category-vitamins",
@@ -78,6 +80,7 @@ export const enLandingContent = {
         description:
           "Intramuscular vitamin injections for energy, immunity, and skin support.",
         href: "/treatments/vitamin-shots",
+        featuredInNav: true,
       },
       {
         id: "services-category-blood",
@@ -85,6 +88,7 @@ export const enLandingContent = {
         description:
           "Wellness and fertility panels to guide personalised treatment planning.",
         href: "/treatments/blood-tests",
+        featuredInNav: true,
       },
       {
         id: "services-category-skin",
@@ -99,6 +103,7 @@ export const enLandingContent = {
         description:
           "Hydration, collagen support, and subtle structure—planned conservatively and safely.",
         href: "/treatments/aesthetic-injections",
+        featuredInNav: true,
       },
       {
         id: "services-category-advanced",

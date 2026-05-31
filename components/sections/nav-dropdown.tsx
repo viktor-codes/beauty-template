@@ -6,6 +6,7 @@ import {
   useContext,
   useRef,
   useState,
+  type CSSProperties,
   type ReactNode,
 } from "react";
 import { ArrowRightIcon, CaretDownIcon } from "@phosphor-icons/react";
@@ -146,8 +147,13 @@ export function NavDropdownPanel({ link, className }: NavDropdownPanelProps) {
   const items = link.children ?? [];
   const viewAll = link.viewAll;
   const { isOpen, panelProps } = useNavDropdownItem(link.href);
+  const columnCount = items.length + (viewAll ? 1 : 0);
 
   if (items.length === 0) return null;
+
+  const gridStyle = {
+    "--nav-dropdown-cols": columnCount,
+  } as CSSProperties;
 
   return (
     <div
@@ -163,7 +169,8 @@ export function NavDropdownPanel({ link, className }: NavDropdownPanelProps) {
     >
       <div className="border border-t border-border bg-surface/95 shadow-[0_28px_56px_-16px_rgba(44,44,44,0.14)] backdrop-blur-md">
         <ul
-          className="grid grid-cols-3 gap-px bg-border/70 lg:grid-cols-6"
+          className="grid grid-cols-3 gap-px bg-border/70 lg:grid-cols-[repeat(var(--nav-dropdown-cols),minmax(0,1fr))]"
+          style={gridStyle}
           role="list"
           aria-label={link.label}
         >
