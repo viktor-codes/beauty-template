@@ -18,7 +18,7 @@ export function NavDropdown({ link, className }: NavDropdownProps) {
     <div
       className={cn("group/nav-dropdown relative hidden md:block", className)}
     >
-      <div className="flex items-center gap-0.5">
+      <div className="flex items-end gap-1">
         <Link
           href={link.href}
           className="text-lg text-muted transition-colors hover:text-primary"
@@ -26,7 +26,7 @@ export function NavDropdown({ link, className }: NavDropdownProps) {
           {link.label}
         </Link>
         <CaretDownIcon
-          className="h-3.5 w-3.5 text-muted transition-transform duration-200 group-hover/nav-dropdown:rotate-180 group-focus-within/nav-dropdown:rotate-180 motion-reduce:transition-none"
+          className="mb-1 h-3.5 w-3.5 shrink-0 text-muted"
           weight="light"
           aria-hidden
         />
@@ -34,7 +34,7 @@ export function NavDropdown({ link, className }: NavDropdownProps) {
 
       <div
         className={cn(
-          "absolute left-1/2 top-full z-(--z-dropdown) hidden min-w-[22rem] max-w-[28rem] -translate-x-1/2 pt-3",
+          "absolute left-1/2 top-full z-(--z-dropdown) hidden min-w-[22rem] max-w-[28rem] -translate-x-1/2 pt-6.5",
           "group-hover/nav-dropdown:block group-focus-within/nav-dropdown:block",
         )}
       >
