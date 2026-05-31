@@ -46,23 +46,22 @@ export function ServiceCard({
   };
 
   const inner = (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col justify-center">
       {image ? (
         <>
-          {/* Mobile: keep a short, quiet image strip for readability */}
-          <div className="relative mb-6 overflow-hidden rounded-xl border border-border/90 bg-surface sm:hidden">
+          {/* Mobile: full-card background with a top gradient for text contrast */}
+          <div className="pointer-events-none absolute inset-0 sm:hidden">
             <Image
               src={image.src}
               alt={imageAlt}
-              width={image.width}
-              height={image.height}
-              className="h-20 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              fill
               sizes="100vw"
+              className="object-cover opacity-80"
             />
-            <div className="pointer-events-none absolute inset-0 bg-background/45" />
+            <div className="absolute inset-0 bg-linear-to-b from-background/95 via-background/55 to-background/20" />
           </div>
 
-          {/* Desktop+: image as a soft background on the right third */}
+          {/* Desktop+: image as a soft background on the side third */}
           <div
             className={cn(
               "pointer-events-none absolute inset-y-0 hidden w-1/3 sm:block",
@@ -83,7 +82,7 @@ export function ServiceCard({
       ) : null}
       <div
         className={cn(
-          "relative",
+          "relative z-10",
           image && (isImageOnLeft ? "sm:pl-[40%]" : "sm:pr-[40%]"),
         )}
       >
@@ -95,10 +94,9 @@ export function ServiceCard({
   );
 
   const cardClass = cn(
-    "group relative flex min-h-[100px] overflow-hidden rounded-2xl border border-border/90 bg-linear-to-b from-background/80 to-surface/25 p-6",
+    "group relative flex overflow-hidden rounded-2xl border border-border/90 bg-linear-to-b from-background/80 to-surface/25 p-6",
     "shadow-[0_2px_12px_-4px_rgba(44,44,44,0.1)] transition-[box-shadow,transform] duration-300",
-    "motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_10px_28px_-8px_rgba(44,44,44,0.14)]",
-    "sm:min-h-[150px]",
+    image ? "min-h-[200px] sm:min-h-[150px]" : "min-h-[100px] sm:min-h-[150px]",
     href && "block h-full",
     className,
   );

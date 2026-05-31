@@ -30,7 +30,7 @@ export function ServicesSection({
         subtitle={content.description}
       />
       <ul className="grid gap-6 sm:grid-cols-2">
-        {content.categories.map((category, index) => (
+        {content.categories.slice(0, 4).map((category, index) => (
           <li key={category.id}>
             {(() => {
               const categorySlug = category.href
