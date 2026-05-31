@@ -43,7 +43,12 @@ export function SiteHeader({
               href={homeHref}
               className="truncate font-heading text-lg tracking-tight text-primary"
             >
-              <Image src="/logo.svg" alt={SITE_NAME_FULL} width={100} height={100} />
+              <Image
+                src="/logo.svg"
+                alt={SITE_NAME_FULL}
+                width={100}
+                height={100}
+              />
             </Link>
           </div>
           <div className="flex items-center justify-end gap-2">
@@ -71,7 +76,12 @@ export function SiteHeader({
             href={homeHref}
             className="shrink-0 font-heading text-lg tracking-tight text-primary"
           >
-            <Image src="/logo.svg" alt={SITE_NAME_FULL} width={100} height={100} />
+            <Image
+              src="/logo.svg"
+              alt={SITE_NAME_FULL}
+              width={100}
+              height={100}
+            />
           </Link>
           <nav
             className="hidden min-w-0 flex-1 justify-center gap-4 md:flex lg:gap-6"
@@ -79,10 +89,7 @@ export function SiteHeader({
           >
             {content.links.map((link) =>
               link.children?.length ? (
-                <NavDropdown
-                  key={`${link.label}-${link.href}`}
-                  link={link}
-                />
+                <NavDropdown key={`${link.label}-${link.href}`} link={link} />
               ) : (
                 <Link
                   key={`${link.label}-${link.href}`}
@@ -95,10 +102,10 @@ export function SiteHeader({
             )}
           </nav>
           <div className="flex shrink-0 items-center gap-3">
-            <LocaleSwitcher />
             <Button href={content.cta.href} size="sm">
               {content.cta.label}
             </Button>
+            <LocaleSwitcher />
           </div>
         </div>
       </div>
