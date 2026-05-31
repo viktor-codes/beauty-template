@@ -6,6 +6,7 @@ import { LocaleSwitcher } from "@/components/shared/locale-switcher";
 import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";
 import { NavDropdown } from "@/components/sections/nav-dropdown";
 import { Button } from "@/components/ui/button";
+import { Divider } from "@/components/ui/divider";
 import { Tooltip } from "@/components/ui/tooltip";
 import type { NavContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
@@ -29,7 +30,7 @@ export function SiteHeader({
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-(--z-sticky) border-b border-border bg-background",
-        "md:sticky md:inset-x-auto md:top-0 md:isolate",
+        "md:sticky md:inset-x-auto md:top-0 md:isolate md:py-2",
         className,
       )}
     >
@@ -52,7 +53,6 @@ export function SiteHeader({
             </Link>
           </div>
           <div className="flex items-center justify-end gap-2">
-            <LocaleSwitcher />
             <Tooltip label={content.cta.label}>
               <Link
                 href={content.cta.href}
@@ -105,6 +105,7 @@ export function SiteHeader({
             <Button href={content.cta.href} size="sm">
               {content.cta.label}
             </Button>
+            <Divider orientation="vertical" className="h-6" aria-hidden />
             <LocaleSwitcher />
           </div>
         </div>

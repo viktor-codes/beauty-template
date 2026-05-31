@@ -95,8 +95,13 @@ export function MobileMenuBurgerTrigger({ nav }: MobileMenuBurgerTriggerProps) {
                 ))}
               </ul>
             </nav>
-            <div className="mt-4 flex flex-col gap-4">
-              <LocaleSwitcher className="justify-center" />
+            <div className="mt-4 flex flex-col gap-8">
+              <div className="overflow-visible">
+                <LocaleSwitcher
+                  menuPlacement="right"
+                  className="w-fit self-start justify-start ps-2.5"
+                />
+              </div>
               <Button
                 href={nav.cta.href}
                 size="lg"
