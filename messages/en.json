@@ -44,6 +44,10 @@
     }
   },
   "Locale": {
+    "switchLanguage": "Language",
+    "enShort": "EN",
+    "ukShort": "UA",
+    "ruShort": "RU",
     "en": "English",
     "uk": "Ukrainian",
     "ru": "Russian"

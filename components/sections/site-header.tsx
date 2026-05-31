@@ -2,6 +2,7 @@ import { CalendarHeartIcon } from "@phosphor-icons/react/ssr";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 
+import { LocaleSwitcher } from "@/components/shared/locale-switcher";
 import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";
 import { NavDropdown } from "@/components/sections/nav-dropdown";
 import { Button } from "@/components/ui/button";
@@ -45,7 +46,8 @@ export function SiteHeader({
               <Image src="/logo.svg" alt={SITE_NAME_FULL} width={100} height={100} />
             </Link>
           </div>
-          <div className="flex justify-end">
+          <div className="flex items-center justify-end gap-2">
+            <LocaleSwitcher />
             <Tooltip label={content.cta.label}>
               <Link
                 href={content.cta.href}
@@ -92,9 +94,12 @@ export function SiteHeader({
               ),
             )}
           </nav>
-          <Button href={content.cta.href} size="sm" className="shrink-0">
-            {content.cta.label}
-          </Button>
+          <div className="flex shrink-0 items-center gap-3">
+            <LocaleSwitcher />
+            <Button href={content.cta.href} size="sm">
+              {content.cta.label}
+            </Button>
+          </div>
         </div>
       </div>
     </header>

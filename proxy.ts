@@ -11,7 +11,7 @@ function rewriteLegacyServicesPath(pathname: string): string | null {
   return rewritten === pathname ? null : rewritten;
 }
 
-export function proxy(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const legacyRewrite = rewriteLegacyServicesPath(request.nextUrl.pathname);
   if (legacyRewrite) {
     const url = request.nextUrl.clone();

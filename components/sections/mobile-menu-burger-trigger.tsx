@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
+import { LocaleSwitcher } from "@/components/shared/locale-switcher";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import type { NavContent } from "@/lib/types/content";
@@ -94,7 +95,8 @@ export function MobileMenuBurgerTrigger({ nav }: MobileMenuBurgerTriggerProps) {
                 ))}
               </ul>
             </nav>
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col gap-4">
+              <LocaleSwitcher className="justify-center" />
               <Button
                 href={nav.cta.href}
                 size="lg"

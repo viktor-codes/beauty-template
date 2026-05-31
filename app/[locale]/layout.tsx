@@ -3,6 +3,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { BrowserLocaleRedirect } from "@/components/shared/browser-locale-redirect";
 import { ConsentModeDefaultScript } from "@/components/consent/consent-mode-default-script";
 import { CookieConsentRoot } from "@/components/consent/cookie-consent-root";
 import { SiteGraphJsonLd } from "@/components/shared/site-graph-jsonld";
@@ -127,6 +128,7 @@ export default async function LocaleLayout({
         {t("skipToContent")}
       </a>
       <NextIntlClientProvider locale={locale} messages={messages}>
+        <BrowserLocaleRedirect />
         <SiteGraphJsonLd contact={landingContent.contact} />
         <SmoothHashNavigation />
         <ConsentModeDefaultScript />
