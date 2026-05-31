@@ -79,7 +79,9 @@ export function SiteFooter({ content, className }: SiteFooterProps) {
                   aria-hidden
                 />
                 <div className="min-w-0">
-                  <p className="whitespace-pre-line leading-snug">{contact.address}</p>
+                  <p className="whitespace-pre-line leading-snug">
+                    {contact.address}
+                  </p>
                   {contact.directionsHref ? (
                     <a
                       href={contact.directionsHref}

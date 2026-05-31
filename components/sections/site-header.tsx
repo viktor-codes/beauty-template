@@ -4,10 +4,13 @@ import Image from "next/image";
 
 import { LocaleSwitcher } from "@/components/shared/locale-switcher";
 import { MobileMenuBurgerTrigger } from "@/components/sections/mobile-menu-burger-trigger";
-import { NavDropdown } from "@/components/sections/nav-dropdown";
+import {
+  NavDropdownPanel,
+  NavDropdownTrigger,
+} from "@/components/sections/nav-dropdown";
+import { SiteHeaderContainer } from "@/components/sections/site-header-container";
 import { Button } from "@/components/ui/button";
 import { Divider } from "@/components/ui/divider";
-import { Tooltip } from "@/components/ui/tooltip";
 import type { NavContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 import { SITE_NAME_FULL } from "@/lib/site-metadata";
@@ -30,11 +33,11 @@ export function SiteHeader({
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-(--z-sticky) border-b border-border bg-background",
-        "md:sticky md:inset-x-auto md:top-0 md:isolate md:py-2",
+        "md:sticky md:inset-x-auto md:top-0 md:isolate md:py-1.5",
         className,
       )}
     >
-      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <SiteHeaderContainer>
         <div className="grid grid-cols-3 items-center gap-2 md:hidden">
           <div className="flex justify-start">
             <MobileMenuBurgerTrigger nav={content} />
@@ -53,22 +56,20 @@ export function SiteHeader({
             </Link>
           </div>
           <div className="flex items-center justify-end gap-2">
-            <Tooltip label={content.cta.label}>
-              <Link
-                href={content.cta.href}
-                className={cn(
-                  iconFrameClass,
-                  "transition-colors hover:bg-surface",
-                )}
-                aria-label={content.cta.label}
-              >
-                <CalendarHeartIcon
-                  className="h-6 w-6"
-                  weight="light"
-                  aria-hidden
-                />
-              </Link>
-            </Tooltip>
+            <Link
+              href={content.cta.href}
+              className={cn(
+                iconFrameClass,
+                "transition-colors hover:bg-surface",
+              )}
+              aria-label={content.cta.label}
+            >
+              <CalendarHeartIcon
+                className="h-6 w-6"
+                weight="light"
+                aria-hidden
+              />
+            </Link>
           </div>
         </div>
         <div className="hidden items-center justify-between gap-4 md:flex">
@@ -89,7 +90,10 @@ export function SiteHeader({
           >
             {content.links.map((link) =>
               link.children?.length ? (
-                <NavDropdown key={`${link.label}-${link.href}`} link={link} />
+                <NavDropdownTrigger
+                  key={`${link.label}-${link.href}`}
+                  link={link}
+                />
               ) : (
                 <Link
                   key={`${link.label}-${link.href}`}
@@ -109,7 +113,15 @@ export function SiteHeader({
             <LocaleSwitcher />
           </div>
         </div>
-      </div>
+        {content.links.map((link) =>
+          link.children?.length ? (
+            <NavDropdownPanel
+              key={`${link.label}-${link.href}-panel`}
+              link={link}
+            />
+          ) : null,
+        )}
+      </SiteHeaderContainer>
     </header>
   );
 }

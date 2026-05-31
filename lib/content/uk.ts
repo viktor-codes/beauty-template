@@ -68,8 +68,7 @@ export const ukLandingContent = {
       {
         id: "services-category-anti-age",
         title: "Anti age",
-        description:
-          "Ліфтинг, колаген, нейромодулятори та anti-age пілінги.",
+        description: "Ліфтинг, колаген, нейромодулятори та anti-age пілінги.",
         href: "/treatments/anti-age",
       },
       {
@@ -95,7 +94,7 @@ export const ukLandingContent = {
       },
       {
         id: "services-category-injections",
-        title: "Ін’єкції (природний результат)",
+        title: "Ін’єкції",
         description:
           "Гідратація, підтримка колагену та делікатна структура — консервативне та безпечне планування.",
         href: "/treatments/aesthetic-injections",
@@ -117,8 +116,16 @@ export const ukLandingContent = {
     ],
     goals: [
       { id: "goal-glow", title: "Сяйво", href: "/treatments?goal=glow" },
-      { id: "goal-texture", title: "Текстура", href: "/treatments?goal=texture" },
-      { id: "goal-acne", title: "Контроль акне", href: "/treatments?goal=acne" },
+      {
+        id: "goal-texture",
+        title: "Текстура",
+        href: "/treatments?goal=texture",
+      },
+      {
+        id: "goal-acne",
+        title: "Контроль акне",
+        href: "/treatments?goal=acne",
+      },
       {
         id: "goal-pigmentation",
         title: "Пігментація",

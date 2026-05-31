@@ -23,6 +23,7 @@ function buildSubpageNav(content: LandingContent) {
   return enrichNavWithTreatmentCategories(
     navWithAbsoluteHashes,
     content.services.categories,
+    content.services.cta,
   );
 }
 

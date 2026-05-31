@@ -10,6 +10,7 @@ export interface ContentLink {
 
 export interface NavLink extends ContentLink {
   children?: ContentLink[];
+  viewAll?: ContentLink;
 }
 
 export interface NavContent {

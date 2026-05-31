@@ -95,7 +95,7 @@ export const enLandingContent = {
       },
       {
         id: "services-category-injections",
-        title: "Injectables (natural results)",
+        title: "Injectables",
         description:
           "Hydration, collagen support, and subtle structure—planned conservatively and safely.",
         href: "/treatments/aesthetic-injections",
@@ -117,7 +117,11 @@ export const enLandingContent = {
     ],
     goals: [
       { id: "goal-glow", title: "Glow", href: "/treatments?goal=glow" },
-      { id: "goal-texture", title: "Texture", href: "/treatments?goal=texture" },
+      {
+        id: "goal-texture",
+        title: "Texture",
+        href: "/treatments?goal=texture",
+      },
       { id: "goal-acne", title: "Acne control", href: "/treatments?goal=acne" },
       {
         id: "goal-pigmentation",

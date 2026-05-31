@@ -39,6 +39,7 @@ export default async function Home({
   const nav = enrichNavWithTreatmentCategories(
     landingContent.nav,
     landingContent.services.categories,
+    landingContent.services.cta,
   );
 
   return (
