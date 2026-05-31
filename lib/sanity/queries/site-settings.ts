@@ -10,12 +10,6 @@ export const siteSettingsQuery = /* groq */ `
     instagramUrl,
     telegramHref,
     whatsappHref,
-    directionsHref,
-    developerCredit {
-      lead,
-      brandLabel,
-      tail,
-      href
-    }
+    directionsHref
   }
 `;

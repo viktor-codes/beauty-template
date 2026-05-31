@@ -11,7 +11,6 @@ import { contentLink } from "./objects/content-link";
 import { faqGroup } from "./objects/faq-group";
 import { faqItem } from "./objects/faq-item";
 import { footerContactBlock } from "./objects/footer-contact-block";
-import { footerDeveloperCredit } from "./objects/footer-developer-credit";
 import { footerLegal } from "./objects/footer-legal";
 import { footerLinkGroup } from "./objects/footer-link-group";
 import { landingAboutSection } from "./objects/landing-about-section";
@@ -44,7 +43,6 @@ export const schemaTypes = [
   footerLinkGroup,
   footerContactBlock,
   footerLegal,
-  footerDeveloperCredit,
   landingNavSection,
   landingHeroSection,
   landingAboutSection,

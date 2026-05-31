@@ -32,7 +32,6 @@ export const siteSettings = defineType({
     defineField({ name: "telegramHref", title: "Telegram URL", type: "url" }),
     defineField({ name: "whatsappHref", title: "WhatsApp URL", type: "url" }),
     defineField({ name: "directionsHref", title: "Directions URL", type: "url" }),
-    defineField({ name: "developerCredit", title: "Developer credit", type: "footerDeveloperCredit" }),
   ],
   preview: {
     select: { language: "language", phone: "phone" },

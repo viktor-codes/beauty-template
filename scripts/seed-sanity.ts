@@ -48,8 +48,6 @@ function getWriteClient() {
 }
 
 function mapSiteSettings(locale: AppLocale) {
-  const footer = getStaticLandingContent(locale).footer;
-
   return {
     _id: `siteSettings-${locale}`,
     _type: "siteSettings" as const,
@@ -62,15 +60,6 @@ function mapSiteSettings(locale: AppLocale) {
     telegramHref: studioContact.telegramHref,
     whatsappHref: studioContact.whatsappHref,
     directionsHref: studioContact.directionsHref,
-    developerCredit: footer.developerCredit
-      ? {
-          _type: "footerDeveloperCredit" as const,
-          lead: footer.developerCredit.lead,
-          brandLabel: footer.developerCredit.brandLabel,
-          tail: footer.developerCredit.tail,
-          href: footer.developerCredit.href,
-        }
-      : undefined,
   };
 }
 

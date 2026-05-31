@@ -2,7 +2,6 @@ import type {
   ContentLink,
   FooterContactBlock,
   FooterContent,
-  FooterDeveloperCredit,
   FooterLegal,
   FooterLinkGroup,
   NavContent,
@@ -35,13 +34,6 @@ export interface SanityFooterContactLike {
   directionsLabel?: string;
 }
 
-export interface SanityFooterDeveloperCreditLike {
-  lead?: string;
-  brandLabel?: string;
-  tail?: string;
-  href?: string;
-}
-
 export interface SanityFooterLike {
   brandTitle?: string;
   tagline?: string;
@@ -53,7 +45,6 @@ export interface SanityFooterLike {
     notice?: string;
     links?: SanityContentLinkLike[] | null;
   } | null;
-  developerCredit?: SanityFooterDeveloperCreditLike | null;
 }
 
 export function mapContentLinkSafe(
@@ -79,19 +70,6 @@ function mapLinkGroupSafe(
   return {
     heading: raw.heading?.trim() || fallback.heading,
     links: links.length > 0 ? links : fallback.links,
-  };
-}
-
-function mapDeveloperCreditSafe(
-  raw: SanityFooterDeveloperCreditLike | null | undefined,
-  fallback?: FooterDeveloperCredit,
-): FooterDeveloperCredit | undefined {
-  if (!raw?.brandLabel?.trim() || !raw.href?.trim()) return fallback;
-  return {
-    lead: raw.lead?.trim() ?? fallback?.lead ?? "",
-    brandLabel: raw.brandLabel.trim(),
-    tail: raw.tail?.trim() ?? fallback?.tail ?? "",
-    href: raw.href.trim(),
   };
 }
 
@@ -201,10 +179,6 @@ export function mapFooterSafe(
     links: legalLinks.length > 0 ? legalLinks : fallback.legal.links,
   };
 
-  const developerCredit =
-    mapDeveloperCreditSafe(settings?.developerCredit, fallback.developerCredit) ??
-    mapDeveloperCreditSafe(raw.developerCredit, fallback.developerCredit);
-
   return {
     brandTitle: raw.brandTitle?.trim() || fallback.brandTitle,
     tagline: raw.tagline?.trim() || fallback.tagline,
@@ -213,6 +187,6 @@ export function mapFooterSafe(
     contact,
     social,
     legal,
-    developerCredit,
+    developerCredit: fallback.developerCredit,
   };
 }

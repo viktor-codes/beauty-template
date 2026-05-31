@@ -12,6 +12,5 @@ export const landingFooterSection = defineType({
     defineField({ name: "contact", type: "footerContactBlock", validation: (r) => r.required() }),
     defineField({ name: "social", type: "footerLinkGroup", validation: (r) => r.required() }),
     defineField({ name: "legal", type: "footerLegal", validation: (r) => r.required() }),
-    defineField({ name: "developerCredit", type: "footerDeveloperCredit" }),
   ],
 });

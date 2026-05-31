@@ -51,12 +51,6 @@ export const landingPageQuery = /* groq */ `
         links[] {
           ${contentLinkFields}
         }
-      },
-      developerCredit {
-        lead,
-        brandLabel,
-        tail,
-        href
       }
     },
     hero {

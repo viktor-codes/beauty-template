@@ -173,15 +173,6 @@ export function mapLandingContentToSanityDocument(
         notice: content.footer.legal.notice,
         links: content.footer.legal.links.map(mapLink),
       },
-      developerCredit: content.footer.developerCredit
-        ? {
-            _type: "footerDeveloperCredit" as const,
-            lead: content.footer.developerCredit.lead,
-            brandLabel: content.footer.developerCredit.brandLabel,
-            tail: content.footer.developerCredit.tail,
-            href: content.footer.developerCredit.href,
-          }
-        : undefined,
     },
   };
 }
