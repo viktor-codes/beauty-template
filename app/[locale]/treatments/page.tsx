@@ -30,13 +30,13 @@ import { servicesCatalog } from "@/lib/services/catalog";
 import { resolveServicesCatalog } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Cosmetology services & treatment categories",
+  title: "Cosmetology treatments & categories",
   description: SITE_SERVICES_HUB_DESCRIPTION,
   openGraph: {
-    title: `Cosmetology services | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
+    title: `Cosmetology treatments | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
     description: SITE_SERVICES_HUB_DESCRIPTION,
     type: "website",
-    url: "/services",
+    url: "/treatments",
   },
 };
 
@@ -55,7 +55,7 @@ export default async function ServicesPage({
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
+    { label: "Treatments", href: "/treatments" },
   ];
 
   const resolvedSearchParams = await searchParams;
@@ -78,14 +78,14 @@ export default async function ServicesPage({
           items={catalog.categories.map((category) => ({
             name: category.title,
             description: category.description,
-            url: `/services/${category.id}`,
+            url: `/treatments/${category.id}`,
           }))}
         />
         <Breadcrumbs items={breadcrumbs} />
         <SectionHeading
           titleId="services-hub-title"
           titleLevel={1}
-          title="Explore services by category"
+          title="Explore treatments by category"
           subtitle="Start with a direction or choose a goal. I keep it clear and calm—no overwhelming menus."
         />
 
@@ -192,7 +192,7 @@ export default async function ServicesPage({
             <Button href="/#contact" size="lg">
               Book a consultation
             </Button>
-            <Button href="/#services" variant="secondary" size="lg">
+            <Button href="/#treatments" variant="secondary" size="lg">
               Back to landing
             </Button>
           </div>

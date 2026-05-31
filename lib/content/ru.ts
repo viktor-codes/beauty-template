@@ -12,7 +12,7 @@ export const ruLandingContent = {
   nav: {
     links: [
       { label: "Обо мне", href: "#about" },
-      { label: "Услуги", href: "#services" },
+      { label: "Процедуры", href: "#treatments" },
       { label: "Галерея", href: "#gallery" },
       { label: "Отзывы", href: "#reviews" },
       { label: "FAQ", href: "#faq" },
@@ -26,7 +26,7 @@ export const ruLandingContent = {
     subtitle:
       "Персональный план процедур в спокойном пространстве — результат, который видно, без навязчивых продаж.",
     primaryCta: { label: "Записаться на консультацию", href: "#contact" },
-    secondaryCta: { label: "Посмотреть услуги", href: "#services" },
+    secondaryCta: { label: "Посмотреть процедуры", href: "#treatments" },
     image: {
       ...heroImage,
       alt: "Calm treatment room with natural light and minimal decor",
@@ -56,86 +56,86 @@ export const ruLandingContent = {
         title: "Cosmetology",
         description:
           "Инъекции, биостимуляторы, биоревитализация и аппаратные протоколы для лица и кожи.",
-        href: "/services/cosmetology",
+        href: "/treatments/cosmetology",
       },
       {
         id: "services-category-body",
         title: "Body slimming & contouring",
         description:
           "CRYO, Emsculpt, пилинги, лазерная коррекция и процедуры для тела.",
-        href: "/services/body-slimming",
+        href: "/treatments/body-slimming",
       },
       {
         id: "services-category-anti-age",
         title: "Anti age",
         description:
           "Лифтинг, коллаген, нейромодуляторы и anti-age пилинги.",
-        href: "/services/anti-age",
+        href: "/treatments/anti-age",
       },
       {
         id: "services-category-vitamins",
         title: "Vitamin shots",
         description:
           "Витаминные инъекции для энергии, иммунитета и поддержки кожи.",
-        href: "/services/vitamin-shots",
+        href: "/treatments/vitamin-shots",
       },
       {
         id: "services-category-blood",
         title: "Blood tests",
         description:
           "Анализы крови для wellness и фертильности — основа персонального плана.",
-        href: "/services/blood-tests",
+        href: "/treatments/blood-tests",
       },
       {
         id: "services-category-skin",
         title: "Facials & peels",
         description:
           "Уходовые лица Jan Marini и пилинги для чистоты, сияния и баланса кожи.",
-        href: "/services/aesthetic-treatments",
+        href: "/treatments/aesthetic-treatments",
       },
       {
         id: "services-category-injections",
         title: "Инъекции (естественный результат)",
         description:
           "Гидратация, поддержка коллагена и деликатная структура — консервативное и безопасное планирование.",
-        href: "/services/aesthetic-injections",
+        href: "/treatments/aesthetic-injections",
       },
       {
         id: "services-category-advanced",
         title: "Продвинутые клинические процедуры",
         description:
           "Аппаратное подтягивание и реновация, когда нужна более выраженная смена по протоколу.",
-        href: "/services/advanced-aesthetic-treatments",
+        href: "/treatments/advanced-aesthetic-treatments",
       },
       {
         id: "services-category-laser",
         title: "Лазерная эпиляция",
         description:
           "Курсовые сеансы под тип волос и оттенок кожи для стабильного и комфортного результата.",
-        href: "/services/laser-hair-removal",
+        href: "/treatments/laser-hair-removal",
       },
     ],
     goals: [
-      { id: "goal-glow", title: "Сияние", href: "/services?goal=glow" },
-      { id: "goal-texture", title: "Текстура", href: "/services?goal=texture" },
-      { id: "goal-acne", title: "Контроль акне", href: "/services?goal=acne" },
+      { id: "goal-glow", title: "Сияние", href: "/treatments?goal=glow" },
+      { id: "goal-texture", title: "Текстура", href: "/treatments?goal=texture" },
+      { id: "goal-acne", title: "Контроль акне", href: "/treatments?goal=acne" },
       {
         id: "goal-pigmentation",
         title: "Пигментация",
-        href: "/services?goal=pigmentation",
+        href: "/treatments?goal=pigmentation",
       },
       {
         id: "goal-firmness",
         title: "Упругость",
-        href: "/services?goal=firmness",
+        href: "/treatments?goal=firmness",
       },
       {
         id: "goal-hair",
         title: "Выпадение волос",
-        href: "/services?goal=hair",
+        href: "/treatments?goal=hair",
       },
     ],
-    cta: { label: "Все услуги", href: "/services" },
+    cta: { label: "Все процедуры", href: "/treatments" },
   },
   gallery: {
     eyebrow: "Результаты и атмосфера",
@@ -235,7 +235,7 @@ export const ruLandingContent = {
       heading: "Навигация",
       links: [
         { label: "Обо мне", href: "/#about" },
-        { label: "Услуги", href: "/#services" },
+        { label: "Процедуры", href: "/#treatments" },
         { label: "Галерея", href: "/#gallery" },
         { label: "Отзывы", href: "/#reviews" },
         { label: "FAQ", href: "/#faq" },
@@ -245,11 +245,11 @@ export const ruLandingContent = {
     services: {
       heading: "Основные категории",
       links: [
-        { label: "Cosmetology", href: "/services/cosmetology" },
-        { label: "Anti age", href: "/services/anti-age" },
-        { label: "Body slimming", href: "/services/body-slimming" },
-        { label: "Blood tests", href: "/services/blood-tests" },
-        { label: "Все услуги", href: "/services" },
+        { label: "Cosmetology", href: "/treatments/cosmetology" },
+        { label: "Anti age", href: "/treatments/anti-age" },
+        { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Blood tests", href: "/treatments/blood-tests" },
+        { label: "Все процедуры", href: "/treatments" },
       ],
     },
     contact: {

@@ -12,7 +12,7 @@ export const enLandingContent = {
   nav: {
     links: [
       { label: "About", href: "#about" },
-      { label: "Services", href: "#services" },
+      { label: "Treatments", href: "#treatments" },
       { label: "Gallery", href: "#gallery" },
       { label: "Reviews", href: "#reviews" },
       { label: "FAQ", href: "#faq" },
@@ -26,7 +26,7 @@ export const enLandingContent = {
     subtitle:
       "I personalize every treatment plan in a calm space—results you can see without the hard sell.",
     primaryCta: { label: "Book a consultation", href: "#contact" },
-    secondaryCta: { label: "View services", href: "#services" },
+    secondaryCta: { label: "View treatments", href: "#treatments" },
     image: {
       ...heroImage,
       alt: "Calm treatment room with natural light and minimal decor",
@@ -56,82 +56,82 @@ export const enLandingContent = {
         title: "Cosmetology",
         description:
           "Injectables, biostimulators, biorevitalisation, and device-led protocols for face and skin.",
-        href: "/services/cosmetology",
+        href: "/treatments/cosmetology",
       },
       {
         id: "services-category-body",
         title: "Body slimming & contouring",
         description:
           "CRYO, Emsculpt, peels, laser correction, and targeted body treatments.",
-        href: "/services/body-slimming",
+        href: "/treatments/body-slimming",
       },
       {
         id: "services-category-anti-age",
         title: "Anti age",
         description:
           "Age-focused lifting, collagen support, neuromodulators, and corrective peels.",
-        href: "/services/anti-age",
+        href: "/treatments/anti-age",
       },
       {
         id: "services-category-vitamins",
         title: "Vitamin shots",
         description:
           "Intramuscular vitamin injections for energy, immunity, and skin support.",
-        href: "/services/vitamin-shots",
+        href: "/treatments/vitamin-shots",
       },
       {
         id: "services-category-blood",
         title: "Blood tests",
         description:
           "Wellness and fertility panels to guide personalised treatment planning.",
-        href: "/services/blood-tests",
+        href: "/treatments/blood-tests",
       },
       {
         id: "services-category-skin",
         title: "Facials & peels",
         description:
           "Jan Marini facials and clinician-controlled peels for clarity, glow, and balance.",
-        href: "/services/aesthetic-treatments",
+        href: "/treatments/aesthetic-treatments",
       },
       {
         id: "services-category-injections",
         title: "Injectables (natural results)",
         description:
           "Hydration, collagen support, and subtle structure—planned conservatively and safely.",
-        href: "/services/aesthetic-injections",
+        href: "/treatments/aesthetic-injections",
       },
       {
         id: "services-category-advanced",
         title: "Advanced clinic treatments",
         description:
           "Device-based tightening and resurfacing when you want more visible change with a protocol.",
-        href: "/services/advanced-aesthetic-treatments",
+        href: "/treatments/advanced-aesthetic-treatments",
       },
       {
         id: "services-category-laser",
         title: "Laser hair removal",
         description:
           "Course-based sessions tailored to hair type and skin tone for consistent, comfortable results.",
-        href: "/services/laser-hair-removal",
+        href: "/treatments/laser-hair-removal",
       },
     ],
     goals: [
-      { id: "goal-glow", title: "Glow", href: "/services?goal=glow" },
-      { id: "goal-texture", title: "Texture", href: "/services?goal=texture" },
-      { id: "goal-acne", title: "Acne control", href: "/services?goal=acne" },
+      { id: "goal-glow", title: "Glow", href: "/treatments?goal=glow" },
+      { id: "goal-texture", title: "Texture", href: "/treatments?goal=texture" },
+      { id: "goal-acne", title: "Acne control", href: "/treatments?goal=acne" },
       {
         id: "goal-pigmentation",
         title: "Pigmentation",
-        href: "/services?goal=pigmentation",
+        href: "/treatments?goal=pigmentation",
       },
       {
         id: "goal-firmness",
         title: "Firmness",
-        href: "/services?goal=firmness",
+        href: "/treatments?goal=firmness",
       },
-      { id: "goal-hair", title: "Hair loss", href: "/services?goal=hair" },
+      { id: "goal-hair", title: "Hair loss", href: "/treatments?goal=hair" },
     ],
-    cta: { label: "View all services", href: "/services" },
+    cta: { label: "View all treatments", href: "/treatments" },
   },
   gallery: {
     eyebrow: "Results & mood",
@@ -231,7 +231,7 @@ export const enLandingContent = {
       heading: "Navigate",
       links: [
         { label: "About", href: "/#about" },
-        { label: "Services", href: "/#services" },
+        { label: "Treatments", href: "/#treatments" },
         { label: "Gallery", href: "/#gallery" },
         { label: "Reviews", href: "/#reviews" },
         { label: "FAQ", href: "/#faq" },
@@ -241,11 +241,11 @@ export const enLandingContent = {
     services: {
       heading: "Main categories",
       links: [
-        { label: "Cosmetology", href: "/services/cosmetology" },
-        { label: "Anti age", href: "/services/anti-age" },
-        { label: "Body slimming", href: "/services/body-slimming" },
-        { label: "Blood tests", href: "/services/blood-tests" },
-        { label: "All services", href: "/services" },
+        { label: "Cosmetology", href: "/treatments/cosmetology" },
+        { label: "Anti age", href: "/treatments/anti-age" },
+        { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Blood tests", href: "/treatments/blood-tests" },
+        { label: "All treatments", href: "/treatments" },
       ],
     },
     contact: {

@@ -15,7 +15,7 @@ export const contentLink = defineType({
       name: "href",
       title: "URL or hash",
       type: "string",
-      description: "e.g. #contact, /services, https://…",
+      description: "e.g. #contact, /treatments, https://…",
       validation: (rule) => rule.required(),
     }),
   ],

@@ -59,8 +59,8 @@ export default async function ServicesCategoryPage({
   const categoryFaq = await getServicesCategoryFaq(category, appLocale, 6);
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: category.title, href: `/services/${categorySlug}` },
+    { label: "Treatments", href: "/treatments" },
+    { label: category.title, href: `/treatments/${categorySlug}` },
   ];
 
   const pageTitleId = `category-${categorySlug}-title`;
@@ -75,7 +75,7 @@ export default async function ServicesCategoryPage({
           items={category.subcategories.map((subcategory) => ({
             name: subcategory.title,
             description: subcategory.description,
-            url: `/services/${categorySlug}/${subcategory.id}`,
+            url: `/treatments/${categorySlug}/${subcategory.id}`,
           }))}
         />
         <Breadcrumbs items={breadcrumbs} />
@@ -97,7 +97,7 @@ export default async function ServicesCategoryPage({
                 <ServiceCard
                   title={subcategory.title}
                   description={subcategory.description}
-                  href={`/services/${categorySlug}/${subcategory.id}`}
+                  href={`/treatments/${categorySlug}/${subcategory.id}`}
                 />
               </li>
             ))}
@@ -129,7 +129,7 @@ export default async function ServicesCategoryPage({
 
         <div className="mt-10">
           <Link
-            href="/services"
+            href="/treatments"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
             Back to all categories

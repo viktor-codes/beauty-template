@@ -10,7 +10,7 @@ const SERVICE_DOCUMENT_TYPES = new Set([
   "serviceProcedure",
 ]);
 
-const MARKETING_PATHS = ["/", "/services", "/privacy", "/terms"] as const;
+const MARKETING_PATHS = ["/", "/treatments", "/privacy", "/terms"] as const;
 
 export interface SanityWebhookPayload {
   _type?: string;
@@ -83,12 +83,12 @@ function revalidateServicesCatalog(result: SanityRevalidationResult, slug?: stri
   result.tags.push(SANITY_CACHE_TAG.servicesCatalog);
 
   for (const locale of routing.locales) {
-    const servicesPath = localizedPath(locale, "/services");
+    const servicesPath = localizedPath(locale, "/treatments");
     revalidatePath(servicesPath, "layout");
     result.paths.push(`${servicesPath} (layout)`);
 
     if (slug) {
-      const categoryPath = localizedPath(locale, `/services/${slug}`);
+      const categoryPath = localizedPath(locale, `/treatments/${slug}`);
       revalidatePath(categoryPath, "page");
       result.paths.push(`${categoryPath} (page)`);
     }

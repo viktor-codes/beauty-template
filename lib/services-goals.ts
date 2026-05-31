@@ -84,7 +84,7 @@ export function getGoalRecommendations(
           category,
           subcategory,
           procedure,
-          href: `/services/${category.id}/${subcategory.id}/${procedure.id}`,
+          href: `/treatments/${category.id}/${subcategory.id}/${procedure.id}`,
           score,
         });
       });

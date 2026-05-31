@@ -97,20 +97,20 @@ export default async function ServiceProcedurePage({
   );
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: category.title, href: `/services/${categorySlug}` },
+    { label: "Treatments", href: "/treatments" },
+    { label: category.title, href: `/treatments/${categorySlug}` },
     {
       label: subcategory.title,
-      href: `/services/${categorySlug}/${subcategorySlug}`,
+      href: `/treatments/${categorySlug}/${subcategorySlug}`,
     },
-    { label: procedure.title, href: `/services/${categorySlug}/${subcategorySlug}/${procedureSlug}` },
+    { label: procedure.title, href: `/treatments/${categorySlug}/${subcategorySlug}/${procedureSlug}` },
   ];
 
   const priceLabel = procedure.price
     ? `${procedure.price.amount} ${procedure.price.currency}`
     : null;
 
-  const procedurePath = `/services/${categorySlug}/${subcategorySlug}/${procedureSlug}`;
+  const procedurePath = `/treatments/${categorySlug}/${subcategorySlug}/${procedureSlug}`;
   const pageTitleId = `procedure-${categorySlug}-${subcategorySlug}-${procedureSlug}-title`;
 
   return (
@@ -152,7 +152,7 @@ export default async function ServiceProcedurePage({
                   Book a consultation
                 </Button>
                 <Button
-                  href={`/services/${categorySlug}/${subcategorySlug}`}
+                  href={`/treatments/${categorySlug}/${subcategorySlug}`}
                   variant="secondary"
                   size="lg"
                 >
@@ -170,7 +170,7 @@ export default async function ServiceProcedurePage({
 
               <div className="mt-10">
                 <Link
-                  href="/services"
+                  href="/treatments"
                   className="text-sm text-muted underline underline-offset-4 hover:text-primary"
                 >
                   Back to all categories

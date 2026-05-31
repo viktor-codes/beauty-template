@@ -66,11 +66,11 @@ export default async function ServicesSubcategoryPage({
   );
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: category.title, href: `/services/${categorySlug}` },
+    { label: "Treatments", href: "/treatments" },
+    { label: category.title, href: `/treatments/${categorySlug}` },
     {
       label: subcategory.title,
-      href: `/services/${categorySlug}/${subcategorySlug}`,
+      href: `/treatments/${categorySlug}/${subcategorySlug}`,
     },
   ];
 
@@ -86,7 +86,7 @@ export default async function ServicesSubcategoryPage({
           items={subcategory.procedures.map((procedure) => ({
             name: procedure.title,
             description: procedure.description,
-            url: `/services/${categorySlug}/${subcategorySlug}/${procedure.id}`,
+            url: `/treatments/${categorySlug}/${subcategorySlug}/${procedure.id}`,
           }))}
         />
         <Breadcrumbs items={breadcrumbs} />
@@ -135,7 +135,7 @@ export default async function ServicesSubcategoryPage({
 
                     <div className="flex shrink-0 items-center gap-3">
                       <Button
-                        href={`/services/${categorySlug}/${subcategorySlug}/${procedure.id}`}
+                        href={`/treatments/${categorySlug}/${subcategorySlug}/${procedure.id}`}
                         variant="secondary"
                         size="sm"
                         className="whitespace-nowrap"
@@ -183,7 +183,7 @@ export default async function ServicesSubcategoryPage({
               Book a consultation
             </Button>
             <Button
-              href={`/services/${categorySlug}`}
+              href={`/treatments/${categorySlug}`}
               variant="secondary"
               size="lg"
             >
@@ -194,7 +194,7 @@ export default async function ServicesSubcategoryPage({
 
         <div className="mt-10">
           <Link
-            href="/services"
+            href="/treatments"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
             Back to all categories

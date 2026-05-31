@@ -18,7 +18,7 @@ export interface ServicesSectionProps extends Omit<
 export function ServicesSection({
   content,
   className,
-  id = "services",
+  id = "treatments",
   ...rest
 }: ServicesSectionProps) {
   return (

@@ -12,7 +12,7 @@ export const ukLandingContent = {
   nav: {
     links: [
       { label: "Про мене", href: "#about" },
-      { label: "Послуги", href: "#services" },
+      { label: "Процедури", href: "#treatments" },
       { label: "Галерея", href: "#gallery" },
       { label: "Відгуки", href: "#reviews" },
       { label: "FAQ", href: "#faq" },
@@ -26,7 +26,7 @@ export const ukLandingContent = {
     subtitle:
       "Персональний план процедур у спокійному просторі — результат, який видно, без нав’язливих продажів.",
     primaryCta: { label: "Записатися на консультацію", href: "#contact" },
-    secondaryCta: { label: "Переглянути послуги", href: "#services" },
+    secondaryCta: { label: "Переглянути процедури", href: "#treatments" },
     image: {
       ...heroImage,
       alt: "Calm treatment room with natural light and minimal decor",
@@ -56,86 +56,86 @@ export const ukLandingContent = {
         title: "Cosmetology",
         description:
           "Ін’єкції, біостимулятори, біоревіталізація та апаратні протоколи для обличчя та шкіри.",
-        href: "/services/cosmetology",
+        href: "/treatments/cosmetology",
       },
       {
         id: "services-category-body",
         title: "Body slimming & contouring",
         description:
           "CRYO, Emsculpt, пілінги, лазерна корекція та процедури для тіла.",
-        href: "/services/body-slimming",
+        href: "/treatments/body-slimming",
       },
       {
         id: "services-category-anti-age",
         title: "Anti age",
         description:
           "Ліфтинг, колаген, нейромодулятори та anti-age пілінги.",
-        href: "/services/anti-age",
+        href: "/treatments/anti-age",
       },
       {
         id: "services-category-vitamins",
         title: "Vitamin shots",
         description:
           "Вітамінні ін’єкції для енергії, імунітету та підтримки шкіри.",
-        href: "/services/vitamin-shots",
+        href: "/treatments/vitamin-shots",
       },
       {
         id: "services-category-blood",
         title: "Blood tests",
         description:
           "Аналізи крові для wellness і фертильності — основа персонального плану.",
-        href: "/services/blood-tests",
+        href: "/treatments/blood-tests",
       },
       {
         id: "services-category-skin",
         title: "Facials & peels",
         description:
           "Доглядові обличчя Jan Marini та пілінги для чистоти, сяйва та балансу шкіри.",
-        href: "/services/aesthetic-treatments",
+        href: "/treatments/aesthetic-treatments",
       },
       {
         id: "services-category-injections",
         title: "Ін’єкції (природний результат)",
         description:
           "Гідратація, підтримка колагену та делікатна структура — консервативне та безпечне планування.",
-        href: "/services/aesthetic-injections",
+        href: "/treatments/aesthetic-injections",
       },
       {
         id: "services-category-advanced",
         title: "Просунуті клінічні процедури",
         description:
           "Апаратне підтягнення та реновація, коли потрібна більш виразна зміна за протоколом.",
-        href: "/services/advanced-aesthetic-treatments",
+        href: "/treatments/advanced-aesthetic-treatments",
       },
       {
         id: "services-category-laser",
         title: "Лазерна епіляція",
         description:
           "Курсові сеанси під тип волосся та відтінок шкіри для стабільного та комфортного результату.",
-        href: "/services/laser-hair-removal",
+        href: "/treatments/laser-hair-removal",
       },
     ],
     goals: [
-      { id: "goal-glow", title: "Сяйво", href: "/services?goal=glow" },
-      { id: "goal-texture", title: "Текстура", href: "/services?goal=texture" },
-      { id: "goal-acne", title: "Контроль акне", href: "/services?goal=acne" },
+      { id: "goal-glow", title: "Сяйво", href: "/treatments?goal=glow" },
+      { id: "goal-texture", title: "Текстура", href: "/treatments?goal=texture" },
+      { id: "goal-acne", title: "Контроль акне", href: "/treatments?goal=acne" },
       {
         id: "goal-pigmentation",
         title: "Пігментація",
-        href: "/services?goal=pigmentation",
+        href: "/treatments?goal=pigmentation",
       },
       {
         id: "goal-firmness",
         title: "Пружність",
-        href: "/services?goal=firmness",
+        href: "/treatments?goal=firmness",
       },
       {
         id: "goal-hair",
         title: "Випадіння волосся",
-        href: "/services?goal=hair",
+        href: "/treatments?goal=hair",
       },
     ],
-    cta: { label: "Усі послуги", href: "/services" },
+    cta: { label: "Усі процедури", href: "/treatments" },
   },
   gallery: {
     eyebrow: "Результати та атмосфера",
@@ -235,7 +235,7 @@ export const ukLandingContent = {
       heading: "Навігація",
       links: [
         { label: "Про мене", href: "/#about" },
-        { label: "Послуги", href: "/#services" },
+        { label: "Процедури", href: "/#treatments" },
         { label: "Галерея", href: "/#gallery" },
         { label: "Відгуки", href: "/#reviews" },
         { label: "FAQ", href: "/#faq" },
@@ -245,11 +245,11 @@ export const ukLandingContent = {
     services: {
       heading: "Основні категорії",
       links: [
-        { label: "Cosmetology", href: "/services/cosmetology" },
-        { label: "Anti age", href: "/services/anti-age" },
-        { label: "Body slimming", href: "/services/body-slimming" },
-        { label: "Blood tests", href: "/services/blood-tests" },
-        { label: "Усі послуги", href: "/services" },
+        { label: "Cosmetology", href: "/treatments/cosmetology" },
+        { label: "Anti age", href: "/treatments/anti-age" },
+        { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Blood tests", href: "/treatments/blood-tests" },
+        { label: "Усі процедури", href: "/treatments" },
       ],
     },
     contact: {

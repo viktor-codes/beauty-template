@@ -43,13 +43,13 @@ function createEntry(pathname: string, priority: number): SitemapEntry[] {
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: SitemapEntry[] = [
     ...createEntry("/", 1),
-    ...createEntry("/services", 0.9),
+    ...createEntry("/treatments", 0.9),
     ...createEntry("/privacy", 0.3),
     ...createEntry("/terms", 0.3),
   ];
 
   for (const category of servicesCatalog.categories) {
-    const categoryPath = `/services/${category.id}`;
+    const categoryPath = `/treatments/${category.id}`;
     entries.push(...createEntry(categoryPath, 0.8));
 
     for (const subcategory of category.subcategories) {

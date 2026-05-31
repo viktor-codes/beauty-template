@@ -11,8 +11,8 @@ import { laserHairRemovalCategory } from "@/lib/services/categories/laser-hair-r
 import { vitaminShotsCategory } from "@/lib/services/categories/vitamin-shots";
 
 export const servicesCatalog: ServicesCatalog = {
-  id: "services",
-  title: "Services",
+  id: "treatments",
+  title: "Treatments",
   description:
     "Dermatology-informed treatments designed to improve skin quality, restore balance, and support natural-looking results.",
   categories: [
