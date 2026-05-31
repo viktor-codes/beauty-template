@@ -8,6 +8,7 @@ import type {
 } from "@/lib/types/content";
 
 import { normalizeLegacyServicesHref } from "@/lib/i18n/normalize-href";
+import { isContactNavHref } from "@/lib/nav/is-contact-nav-href";
 import type { SanitySiteSettingsLike } from "@/lib/sanity/mappers/site-settings";
 
 export interface SanityContentLinkLike {
@@ -55,6 +56,15 @@ export function mapContentLinkSafe(
   const href = raw?.href?.trim();
   if (!label || !href) return fallback;
   return { label, href: normalizeLegacyServicesHref(href) };
+}
+
+/** Nav/header CTA copy is owned by locale fallbacks (short “Consultation”), not Sanity labels. */
+function mapNavCtaSafe(
+  raw: SanityContentLinkLike | null | undefined,
+  fallback: ContentLink,
+): ContentLink {
+  const mapped = mapContentLinkSafe(raw, fallback);
+  return { label: fallback.label, href: mapped.href };
 }
 
 function mapLinkGroupSafe(
@@ -131,11 +141,14 @@ export function mapNavSafe(
 
   const links = raw.links
     .map((link, index) => mapContentLinkSafe(link, fallback.links[index] ?? fallback.links[0]))
-    .filter((l) => l.label && l.href);
+    .filter((l) => l.label && l.href)
+    .filter((l) => !isContactNavHref(l.href));
+
+  const fallbackLinks = fallback.links.filter((l) => !isContactNavHref(l.href));
 
   return {
-    links: links.length > 0 ? links : fallback.links,
-    cta: mapContentLinkSafe(raw.cta, fallback.cta),
+    links: links.length > 0 ? links : fallbackLinks,
+    cta: mapNavCtaSafe(raw.cta, fallback.cta),
   };
 }
 

@@ -190,7 +190,7 @@ export default async function ServicesPage({
           </ul>
           <div className="mt-6 flex flex-wrap gap-4">
             <Button href="/#contact" size="lg">
-              Book a consultation
+              {landingContent.nav.cta.label}
             </Button>
             <Button href="/#treatments" variant="secondary" size="lg">
               Back to landing

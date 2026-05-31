@@ -15,6 +15,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
 import { findProcedure } from "@/lib/services/page-helpers";
+import { getLandingContent } from "@/lib/content";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
@@ -88,6 +89,7 @@ export default async function ServiceProcedurePage({
     subcategorySlug,
     procedureSlug,
   );
+  const landingContent = await getLandingContent(appLocale);
   const procedureFaq = await getServicesProcedureFaq(
     category,
     subcategory,
@@ -149,7 +151,7 @@ export default async function ServiceProcedurePage({
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <Button href="/#contact" size="lg">
-                  Book a consultation
+                  {landingContent.nav.cta.label}
                 </Button>
                 <Button
                   href={`/treatments/${categorySlug}/${subcategorySlug}`}

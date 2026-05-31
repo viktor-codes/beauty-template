@@ -11,10 +11,12 @@ import { cn } from "@/lib/cn";
 export interface FAQSectionProps
   extends Omit<HTMLAttributes<HTMLElement>, "content"> {
   content: FAQContent;
+  consultationCtaLabel: string;
 }
 
 export function FAQSection({
   content,
+  consultationCtaLabel,
   className,
   id = "faq",
   ...rest
@@ -28,7 +30,10 @@ export function FAQSection({
         subtitle={content.description}
       />
       {content.groups && content.groups.length > 0 ? (
-        <FaqLanding content={content} />
+        <FaqLanding
+          content={content}
+          consultationCtaLabel={consultationCtaLabel}
+        />
       ) : (
         <FaqAccordion items={content.items} />
       )}

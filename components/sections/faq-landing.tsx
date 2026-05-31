@@ -7,7 +7,12 @@ import {
 import type { FAQContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 
-export function FaqLanding({ content }: { content: FAQContent }) {
+export interface FaqLandingProps {
+  content: FAQContent;
+  consultationCtaLabel: string;
+}
+
+export function FaqLanding({ content, consultationCtaLabel }: FaqLandingProps) {
   const groups = content.groups ?? [];
 
   if (groups.length === 0) {
@@ -80,7 +85,7 @@ export function FaqLanding({ content }: { content: FAQContent }) {
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40",
             )}
           >
-            Book a consultation
+            {consultationCtaLabel}
           </a>
         </div>
       </div>

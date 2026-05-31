@@ -10,7 +10,6 @@ import {
 } from "@/components/sections/nav-dropdown";
 import { SiteHeaderContainer } from "@/components/sections/site-header-container";
 import { Button } from "@/components/ui/button";
-import { Divider } from "@/components/ui/divider";
 import type { NavContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 import { SITE_NAME_FULL } from "@/lib/site-metadata";
@@ -85,7 +84,7 @@ export function SiteHeader({
             />
           </Link>
           <nav
-            className="hidden min-w-0 flex-1 justify-center gap-4 md:flex lg:gap-6"
+            className="hidden min-w-0 flex-1 items-center justify-center gap-4 md:flex lg:gap-6"
             aria-label="Primary"
           >
             {content.links.map((link) =>
@@ -98,7 +97,7 @@ export function SiteHeader({
                 <Link
                   key={`${link.label}-${link.href}`}
                   href={link.href}
-                  className="text-lg text-muted transition-colors hover:text-primary"
+                  className="text-nav-link text-muted transition-colors hover:text-primary"
                 >
                   {link.label}
                 </Link>
@@ -106,7 +105,11 @@ export function SiteHeader({
             )}
           </nav>
           <div className="flex shrink-0 items-center gap-3">
-            <Button href={content.cta.href} size="sm">
+            <Button
+              href={content.cta.href}
+              size="sm"
+              aria-label={content.cta.label}
+            >
               {content.cta.label}
             </Button>
             <div className="h-1 w-1 rounded-full bg-primary" />

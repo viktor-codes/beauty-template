@@ -51,7 +51,10 @@ export default async function Home({
         <ServicesSection content={landingContent.services} />
         <GallerySection content={landingContent.gallery} />
         <ReviewsSection content={landingContent.reviews} />
-        <FAQSection content={landingContent.faq} />
+        <FAQSection
+          content={landingContent.faq}
+          consultationCtaLabel={landingContent.nav.cta.label}
+        />
         <ContactSection content={landingContent.contact} />
       </main>
       <SiteFooter content={landingContent.footer} />

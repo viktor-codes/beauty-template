@@ -16,9 +16,8 @@ export const ukLandingContent = {
       { label: "Галерея", href: "#gallery" },
       { label: "Відгуки", href: "#reviews" },
       { label: "FAQ", href: "#faq" },
-      { label: "Контакти", href: "#contact" },
     ],
-    cta: { label: "Записатися на консультацію", href: "#contact" },
+    cta: { label: "Консультація", href: "#contact" },
   },
   hero: {
     eyebrow: "The Skinbar · Inna Chernovol",

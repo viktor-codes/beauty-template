@@ -16,9 +16,8 @@ export const ruLandingContent = {
       { label: "Галерея", href: "#gallery" },
       { label: "Отзывы", href: "#reviews" },
       { label: "FAQ", href: "#faq" },
-      { label: "Контакты", href: "#contact" },
     ],
-    cta: { label: "Записаться на консультацию", href: "#contact" },
+    cta: { label: "Консультация", href: "#contact" },
   },
   hero: {
     eyebrow: "The Skinbar · Inna Chernovol",

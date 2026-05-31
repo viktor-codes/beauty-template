@@ -123,10 +123,10 @@ export function NavDropdownTrigger({
       className={cn("hidden md:block", className)}
       data-open={isOpen || undefined}
     >
-      <div className="flex items-end gap-1 pb-3">
+      <div className="flex items-end gap-1">
         <Link
           href={link.href}
-          className="text-lg text-muted transition-colors hover:text-primary"
+          className="text-nav-link text-muted transition-colors hover:text-primary"
         >
           {link.label}
         </Link>

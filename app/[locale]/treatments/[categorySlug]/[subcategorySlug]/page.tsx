@@ -14,6 +14,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
 import { findSubcategory } from "@/lib/services/page-helpers";
+import { getLandingContent } from "@/lib/content";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
@@ -58,6 +59,7 @@ export default async function ServicesSubcategoryPage({
   const appLocale = locale as AppLocale;
   const catalog = await resolveServicesCatalog(appLocale);
   const { category, subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
+  const landingContent = await getLandingContent(appLocale);
   const subcategoryFaq = await getServicesSubcategoryFaq(
     category,
     subcategory,
@@ -180,7 +182,7 @@ export default async function ServicesSubcategoryPage({
           </p>
           <div className="mt-6 flex flex-wrap gap-4">
             <Button href="/#contact" size="lg">
-              Book a consultation
+              {landingContent.nav.cta.label}
             </Button>
             <Button
               href={`/treatments/${categorySlug}`}
