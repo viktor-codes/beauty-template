@@ -109,7 +109,7 @@ export function SiteHeader({
             <Button href={content.cta.href} size="sm">
               {content.cta.label}
             </Button>
-            <Divider orientation="vertical" className="h-6" aria-hidden />
+            <div className="h-1 w-1 rounded-full bg-primary" />
             <LocaleSwitcher />
           </div>
         </div>
