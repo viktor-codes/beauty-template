@@ -8,6 +8,7 @@ import type {
   NavContent,
 } from "@/lib/types/content";
 
+import { normalizeLegacyServicesHref } from "@/lib/i18n/normalize-href";
 import type { SanitySiteSettingsLike } from "@/lib/sanity/mappers/site-settings";
 
 export interface SanityContentLinkLike {
@@ -62,7 +63,7 @@ export function mapContentLinkSafe(
   const label = raw?.label?.trim();
   const href = raw?.href?.trim();
   if (!label || !href) return fallback;
-  return { label, href };
+  return { label, href: normalizeLegacyServicesHref(href) };
 }
 
 function mapLinkGroupSafe(

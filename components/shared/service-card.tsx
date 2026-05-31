@@ -46,7 +46,7 @@ export function ServiceCard({
   };
 
   const inner = (
-    <div className="flex h-full flex-col justify-center">
+    <div className="flex h-full flex-col sm:justify-start justify-center ">
       {image ? (
         <>
           {/* Mobile: full-card background with a top gradient for text contrast */}
@@ -58,7 +58,7 @@ export function ServiceCard({
               sizes="100vw"
               className="object-cover opacity-80"
             />
-            <div className="absolute inset-0 bg-linear-to-b from-background/95 via-background/55 to-background/20" />
+            <div className="absolute inset-0 bg-linear-to-b from-background/10 to-background/90 backdrop-blur-[0.8px]" />
           </div>
 
           {/* Desktop+: image as a soft background on the side third */}
@@ -74,9 +74,9 @@ export function ServiceCard({
               alt={imageAlt}
               fill
               sizes="(min-width: 640px) 33vw, 100vw"
-              className="object-cover opacity-85"
+              className="object-cover opacity-85 "
             />
-            <div className="absolute inset-0 bg-background/40 backdrop-blur-[0.6px]" />
+            <div className="absolute inset-0 bg-background/25" />
           </div>
         </>
       ) : null}
@@ -88,7 +88,9 @@ export function ServiceCard({
       >
         {icon ? <div className="mb-4 text-accent">{icon}</div> : null}
         <h3 className="font-heading text-xl text-primary">{title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-primary/90 ">
+          {description}
+        </p>
       </div>
     </div>
   );
@@ -96,6 +98,7 @@ export function ServiceCard({
   const cardClass = cn(
     "group relative flex overflow-hidden rounded-2xl border border-border/90 bg-linear-to-b from-background/80 to-surface/25 p-6",
     "shadow-[0_2px_12px_-4px_rgba(44,44,44,0.1)] transition-[box-shadow,transform] duration-300",
+    "motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_10px_28px_-8px_rgba(44,44,44,0.14)]",
     image ? "min-h-[200px] sm:min-h-[150px]" : "min-h-[100px] sm:min-h-[150px]",
     href && "block h-full",
     className,

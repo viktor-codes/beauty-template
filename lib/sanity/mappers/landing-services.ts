@@ -2,6 +2,7 @@ import {
   mapContentLinkSafe,
   type SanityContentLinkLike,
 } from "@/lib/sanity/mappers/chrome";
+import { normalizeLegacyServicesHref } from "@/lib/i18n/normalize-href";
 import type {
   ServicesCategoryPreview,
   ServicesContent,
@@ -43,7 +44,7 @@ function mapCategoryPreviewSafe(
     id,
     title,
     description: raw.description?.trim() || fallback?.description || "",
-    href,
+    href: normalizeLegacyServicesHref(href),
   };
 }
 
@@ -56,7 +57,7 @@ function mapGoalPreviewSafe(
   const href = raw.href?.trim();
   if (!id || !title || !href) return null;
 
-  return { id, title, href };
+  return { id, title, href: normalizeLegacyServicesHref(href) };
 }
 
 export function mapLandingServicesSafe(

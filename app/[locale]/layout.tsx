@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Montserrat, Playfair_Display } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -24,20 +23,6 @@ import {
   SITE_TITLE_TEMPLATE,
   resolveMetadataBase,
 } from "@/lib/site-metadata";
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
-  weight: ["500", "700"],
-});
 
 const metadataBase = resolveMetadataBase();
 
@@ -129,29 +114,24 @@ export default async function LocaleLayout({
   const landingContent = await getLandingContent(locale as AppLocale);
 
   return (
-    <html
-      lang={locale}
-      className={`${montserrat.variable} ${playfairDisplay.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-sans">
-        <a
-          href="#main-content"
-          className={[
-            "fixed left-4 top-[-9999px] z-550 rounded-b-md bg-primary px-4 py-2.5",
-            "text-sm font-medium text-background shadow-md",
-            "transition-[top] duration-200 ease-out",
-            "focus:top-[max(1rem,env(safe-area-inset-top,0px))] focus:outline-none focus:ring-2 focus:ring-accent/50",
-          ].join(" ")}
-        >
-          {t("skipToContent")}
-        </a>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <SiteGraphJsonLd contact={landingContent.contact} />
-          <SmoothHashNavigation />
-          <ConsentModeDefaultScript />
-          <CookieConsentRoot>{children}</CookieConsentRoot>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <a
+        href="#main-content"
+        className={[
+          "fixed left-4 top-[-9999px] z-550 rounded-b-md bg-primary px-4 py-2.5",
+          "text-sm font-medium text-background shadow-md",
+          "transition-[top] duration-200 ease-out",
+          "focus:top-[max(1rem,env(safe-area-inset-top,0px))] focus:outline-none focus:ring-2 focus:ring-accent/50",
+        ].join(" ")}
+      >
+        {t("skipToContent")}
+      </a>
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <SiteGraphJsonLd contact={landingContent.contact} />
+        <SmoothHashNavigation />
+        <ConsentModeDefaultScript />
+        <CookieConsentRoot>{children}</CookieConsentRoot>
+      </NextIntlClientProvider>
+    </>
   );
 }

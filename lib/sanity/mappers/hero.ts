@@ -1,4 +1,5 @@
 import { heroImage } from "@/lib/content/shared";
+import { normalizeLegacyServicesHref } from "@/lib/i18n/normalize-href";
 import type { HeroContent } from "@/lib/types/content";
 
 /** Fixed hero visual — not exposed in Sanity (see `landingHeroSection` schema). */
@@ -26,11 +27,15 @@ export function mapHeroSafe(
     subtitle: raw.subtitle?.trim() || fallback.subtitle,
     primaryCta: {
       label: raw.primaryCtaLabel?.trim() || fallback.primaryCta.label,
-      href: raw.primaryCtaHref?.trim() || fallback.primaryCta.href,
+      href: normalizeLegacyServicesHref(
+        raw.primaryCtaHref?.trim() || fallback.primaryCta.href,
+      ),
     },
     secondaryCta: {
       label: raw.secondaryCtaLabel?.trim() || fallback.secondaryCta.label,
-      href: raw.secondaryCtaHref?.trim() || fallback.secondaryCta.href,
+      href: normalizeLegacyServicesHref(
+        raw.secondaryCtaHref?.trim() || fallback.secondaryCta.href,
+      ),
     },
     image: {
       ...LANDING_HERO_IMAGE,
