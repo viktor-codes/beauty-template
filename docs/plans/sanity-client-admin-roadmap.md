@@ -297,6 +297,7 @@
 | 2026-06-01 | Part 3: brand logos upload в Studio, CMS-first mapper, seed assets | команда |
 | 2026-06-01 | Part 4: site settings UX, validation, messenger URL merge, B.10 doc | команда |
 | 2026-06-01 | Part 5: UK/RU seed — landing×3, category localeString, procedures EN-only fallback | команда |
+| 2026-06-01 | [Матрица полей](./landing-sections-field-matrix.md) синхронизирована с частями 0–5 (колонка «Статус», закрытые баги мапперов) | команда |
 
 ---
 

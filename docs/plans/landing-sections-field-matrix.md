@@ -3,287 +3,275 @@
 Детальный разбор **каждой секции главной** и связанных данных.  
 Дополняет [sanity-client-admin-roadmap.md](./sanity-client-admin-roadmap.md).
 
+**Синхронизация с кодом:** части 0–5 (2026-06-01). Колонка **Статус** — фактическое поведение сайта сейчас.
+
 **Легенда**
 
 | Символ | Значение |
 |--------|----------|
+| ✅ | Реализовано в коде (части 0–5) |
 | 📝 | Редактирует Инна в Sanity |
-| 🌍 | Отдельный перевод на `en` / `uk` / `ru` (отдельный документ `landingPage` или `localeString`) |
+| 🌍 | Отдельный перевод: документ `landingPage` per locale **или** `localeString` на каталоге |
 | 🔒 | Только разработчик (код / не в CMS) |
 | ⚙️ | Считается автоматически на сайте |
-| 📋 | Сейчас в `messages/*.json` (next-intl), не в Sanity |
-| 🔄 | Подтягивается из `siteSettings` (один раз правит — везде обновится) |
-| ⚠️ | Есть в схеме, но маппер **игнорирует** или поле **отсутствует** в схеме |
+| 📋 | В `messages/*.json` (next-intl), не в Sanity |
+| 🔄 | Канон в `siteSettings` → подмешивается в contact/footer |
+| ⏳ | Запланировано, ещё не в коде |
 
-**Модель локалей лендинга:** три документа `landingPage` (document i18n) — открыла «Landing EN» → все строки внутри на английском; «Landing UK» → украинский. Slug URL категорий услуг **не переводятся** (ADR 001).
-
----
-
-## 0. Вне секций лендинга (но влияет на «что переводится»)
-
-| Область | Где сейчас | EN | UK | RU | В Sanity? | Заметка |
-|---------|------------|----|----|-----|-----------|---------|
-| SEO title/description главной | `lib/site-metadata.ts` + `app/[locale]/layout.tsx` | 🔒 | 🔒 | 🔒 | Нет | Отдельный этап: `siteSettings` или document SEO |
-| Форма контакта (лейблы, ошибки) | `messages/*` сейчас → **Sanity** `contactForm` | 📝 | 📝 | 📝 | **План:** фаза 1c | См. roadmap §6c |
-| Cookie-баннер | `messages/*` → `Cookie` | 📋 | 📋 | 📋 | Нет | |
-| A11y / меню (Open menu…) | `messages/*` → `Navigation`, `Accessibility` | 📋 | 📋 | 📋 | Нет | |
-| Переключатель языка | `messages/*` → `Locale` | 📋 | 📋 | 📋 | Нет | |
-| Телефон, email, адрес (канон) | `siteSettings` + `lib/content/shared.ts` | 🔄 | 🔄 | 🔄 | Частично | После seed — править в **Site settings** |
-| Hero-файл `/hero.webp` | `lib/content/shared.ts` | 🔒 | 🔒 | 🔒 | Нет | По решению: dev-only |
-| Фото галереи (6 шт.) | `gallery-section.tsx` | 🔒 | 🔒 | 🔒 | Нет | Слайдер позже, dev-only |
-| Логотипы брендов (файлы) | `shared.ts` + опционально CMS | EN alt в CMS | 🌍 alt | 🌍 alt | Частично | Файлы можно оставить в коде, alt — в CMS |
-| Developer credit в футере | только статика | 🔒 | 🔒 | 🔒 | Нет | Не показывать в Studio |
-
-**Вывод:** лендинг в Sanity — не весь «переводимый» сайт. Перед переводом UK/RU нужен чеклист и для `messages/*`.
+**Модель локалей лендинга:** три документа `landingPage` (document i18n). Slug категорий услуг **не переводятся** (ADR 001). UK/RU пусто → **fallback EN** (`pick-locale-field`).
 
 ---
 
-## 1. Header & footer (`landingPage.nav`, `landingPage.footer`)
+## 0. Вне секций лендинга
+
+| Область | Статус | EN | UK | RU | Где править |
+|---------|--------|----|----|-----|-------------|
+| SEO title/description главной | ⏳ | 🔒 | 🔒 | 🔒 | `lib/site-metadata.ts` — отдельный этап |
+| Форма контакта | ✅ | 📝 | 📝 | 📝 | `landingPage.contactForm` ×3 |
+| Cookie-баннер | 📋 | 📋 | 📋 | 📋 | `messages/Cookie` |
+| A11y / Open menu | 📋 | 📋 | 📋 | 📋 | `messages/Navigation` |
+| Переключатель языка | 📋 | 📋 | 📋 | 📋 | `messages/Locale` |
+| Телефон, email, адрес | ✅ 🔄 | 🔄 | 🔄 | 🔄 | **Site settings** → [merge doc](../checklists/site-settings-merge.md) |
+| Hero `/hero.webp` | 🔒 | 🔒 | 🔒 | 🔒 | dev-only |
+| Фото галереи (6 шт.) | 🔒 | 🔒 | 🔒 | 🔒 | dev-only |
+| Логотипы брендов | ✅ | 📝 upload | 📝 alt | 📝 alt | `landingPage.about.brandLogos` (seed из `/public/logos`) |
+| Developer credit | 🔒 | 🔒 | 🔒 | 🔒 | не в Studio |
+
+**Вывод:** для полного UK/RU ещё нужен проход по `messages/*` и перевод **процедур** в каталоге (сейчас EN-only → fallback).
+
+---
+
+## 1. Header & footer
 
 ### 1.1 Navigation (`nav`)
 
-| Поле на сайте | Sanity (`landingNavSection`) | EN doc | UK/RU doc | Сейчас | Целевое |
-|---------------|------------------------------|--------|-----------|--------|---------|
-| `links[].label` | `links[].label` | 📝🌍 | 📝🌍 | 📝 | 📝 |
-| `links[].href` | `links[].href` | 📝 | 📝 | 📝 | Пресеты: `#about`, `/treatments`, … |
-| `cta.label` | `cta.label` | 📝🌍 | 📝🌍 | ⚠️ маппер **игнорирует** label | **Оставить намеренно:** короткая CTA («Consultation»); починить маппер → читать из CMS |
-| `cta.href` | `cta.href` | 📝 | 📝 | 📝 | Обычно `#contact` |
-| `links[].children` | — | ⚙️ | ⚙️ | ⚙️ | Строится из каталога + `featuredInNav` |
-| `links[].viewAll` | — | ⚙️ | ⚙️ | ⚙️ | Берётся из `services.cta` |
-| Пункт Contact в меню | — | 🔒 | 🔒 | 🔒 | Скрыт кодом (`isContactNavHref`) |
+| Поле | Статус | Sanity | EN/UK/RU | Примечание |
+|------|--------|--------|----------|------------|
+| `links[].label` | ✅ 📝🌍 | `links[].label` | 3 документа | |
+| `links[].href` | ✅ 📝 | `links[].href` | 3 документа | ⏳ presets `#about`, `/treatments` |
+| `cta.label` | ✅ 📝🌍 | `cta.label` | 3 документа | Короткая CTA («Consultation» / «Консультація») |
+| `cta.href` | ✅ 📝 | `cta.href` | обычно `#contact` | |
+| `links[].children` | ✅ ⚙️ | — | | Каталог + `featuredInNav` + **`shortTitle`** |
+| `links[].viewAll` | ✅ ⚙️ | — | | Из `services.cta` |
+| Contact в меню | 🔒 | — | | Скрыт кодом |
 
 ### 1.2 Footer (`footer`)
 
-| Поле | Sanity | Перевод | Сейчас | Целевое |
-|------|--------|---------|--------|---------|
-| `brandTitle` | string | 🌍 | 📝 | 📝 |
-| `tagline` | text | 🌍 | 📝 | 📝 |
-| `navigation.heading` + links | `footerLinkGroup` | 🌍 | 📝 | 📝, href пресеты |
-| `services.heading` + links | `footerLinkGroup` | 🌍 | 📝 | ⚙️ ссылки из каталога (опционально) |
-| `contact.heading` | string | 🌍 | 📝 | 📝 |
-| `contact.phone` label/href | `contentLink` | 🔄/🌍 label | 📝 | phone из **siteSettings** |
-| `contact.email` | `contentLink` | 🔄 | 📝 | email из settings |
-| `contact.address` | text | 🔄 | 📝 | адрес из settings |
-| `contact.directionsHref/Label` | url + string | 🌍 label, 🔄 url | 📝 | |
-| `social.heading` + links | `footerLinkGroup` | 🌍 | 📝 | Instagram href 🔄 из settings |
-| `legal.notice` | string | 🌍 | 📝 | 📝 |
-| `legal.links` | `contentLink[]` | 🌍 labels | 📝 | href фикс: `/privacy`, `/terms` |
-| `developerCredit` | **нет в схеме** | 🔒 | 🔒 | 🔒 |
+| Поле | Статус | Sanity | Перевод | Примечание |
+|------|--------|--------|---------|------------|
+| `brandTitle`, `tagline` | ✅ 📝🌍 | strings | 3 документа | |
+| `navigation` | ✅ 📝🌍 | `footerLinkGroup` | 3 документа | |
+| `services` links | ✅ 📝🌍 | `footerLinkGroup` | 3 документа | Ссылки пока в CMS, не автокаталог |
+| `contact.*` labels | ✅ 📝🌍 | | 3 документа | |
+| `contact.phone/email/address` | ✅ 🔄 | | | Из **siteSettings** |
+| `contact.directions*` | ✅ 🔄🌍 | label в footer | | URL из settings |
+| `social` + Instagram | ✅ 🔄🌍 | | | `instagramUrl` из settings |
+| `legal` | ✅ 📝🌍 | | 3 документа | |
+| `developerCredit` | 🔒 | нет в схеме | | статика |
 
 ---
 
 ## 2. Hero (`landingPage.hero`)
 
-| Поле | Sanity | Перевод | Сейчас | Целевое |
-|------|--------|---------|--------|---------|
-| `eyebrow` | string | 🌍 | 📝 | 📝 |
-| `title` | string | 🌍 | 📝 | 📝 |
-| `subtitle` | text | 🌍 | 📝 | 📝 |
-| `primaryCta.label` | `primaryCtaLabel` | 🌍 | 📝 | ⚠️ маппер берёт только статику | **Длинная** CTA hero — должна идти из CMS (`primaryCtaLabel`) |
-| `primaryCta.href` | `primaryCtaHref` | общий | 📝 | пресет `#contact` |
-| `secondaryCta.label` | `secondaryCtaLabel` | 🌍 | 📝 | 📝 | Короткая вторая кнопка — уже из CMS |
-| `secondaryCta.href` | `secondaryCtaHref` | общий | 📝 | |
-| `image.src` | — | 🔒 | 🔒 | 🔒 dev |
-| `image.alt` | — | ⚠️ | только fallback EN | 🌍 в CMS **или** 🔒 |
+| Поле | Статус | Sanity | Перевод | Примечание |
+|------|--------|--------|---------|------------|
+| `eyebrow`, `title`, `subtitle` | ✅ 📝🌍 | strings/text | 3 документа | |
+| `primaryCta.label` | ✅ 📝🌍 | `primaryCtaLabel` | 3 документа | Длинная CTA |
+| `primaryCta.href` | ✅ 📝 | `primaryCtaHref` | | |
+| `secondaryCta.label` | ✅ 📝🌍 | `secondaryCtaLabel` | 3 документа | |
+| `secondaryCta.href` | ✅ 📝 | `secondaryCtaHref` | | |
+| `image` | 🔒 | — | | `/hero.webp` в коде |
+| `image.alt` | ⏳ | — | | В статике UK/RU часто EN |
 
 ---
 
 ## 3. About (`landingPage.about`)
 
-| Поле | Sanity | Перевод | Сейчас | Целевое |
-|------|--------|---------|--------|---------|
-| `eyebrow`, `title`, `description` | strings/text | 🌍 | 📝 | 📝 |
-| `stats[].value` | string | 🌍* | 📝 | *числа «15+» можно не переводить |
-| `stats[].label` | string | 🌍 | 📝 | 📝 |
-| `brandsEyebrow` | string | 🌍 | 📝 | 📝 |
-| `brandLogos[].image` | image | 🔒/📝 | опционально CMS | dev или CMS |
-| `brandLogos[].alt` | string | 🌍 | 📝 | 📝 |
+| Поле | Статус | Sanity | Перевод | Примечание |
+|------|--------|--------|---------|------------|
+| `eyebrow`, `title`, `description` | ✅ 📝🌍 | | 3 документа | |
+| `stats[]` | ✅ 📝🌍 | | 3 документа | |
+| `brandsEyebrow` | ✅ 📝🌍 | | 3 документа | |
+| `brandLogos[].image` | ✅ 📝 | image | | Upload в Studio |
+| `brandLogos[].alt` | ✅ 📝🌍 | string | per document | Имена брендов часто латиницей |
 
 ---
 
-## 4. Services preview (`landingPage.services`) — **ключевая переделка**
+## 4. Services preview (`landingPage.services`)
 
-Сейчас: 8+ **ручных** карточек (`id`, `title`, `description`, `href`) + отдельно `featuredInNav` в статике, **нет в схеме**.
+### 4.1 Заголовки секции — ✅ в CMS
 
-### 4.1 Заголовки секции
+| Поле | Статус | Sanity | Перевод |
+|------|--------|--------|---------|
+| `eyebrow`, `title`, `description` | ✅ | есть | 🌍 3 документа |
+| `cta` | ✅ | `contentLink` | 🌍 |
 
-| Поле | Sanity | Перевод | Целевое |
-|------|--------|---------|---------|
-| `eyebrow`, `title`, `description` | есть | 🌍 | 📝 |
-| `cta.label`, `cta.href` | `contentLink` | 🌍 / общий href | 📝 |
+### 4.2 Карточки категорий на главной — ✅ из каталога (не ручной список)
 
-### 4.2 Карточки категорий на главной (нужно **4 штуки**)
+| Поле на сайте | Статус | Источник |
+|---------------|--------|----------|
+| 4 карточки | ✅ ⚙️ | `serviceCategory` где `featuredOnHomepage` (max 4) |
+| `title`, `description` | ✅ 🌍 | `serviceCategory.title` / `description` (field i18n) |
+| `href` | ✅ ⚙️ | `/treatments/{slug}` |
+| Ручной `categories[]` на лендинге | ✅ удалён | Больше нет в схеме |
 
-| Поле сейчас | Проблема | Целевая модель |
-|-------------|----------|----------------|
-| `categories[].id` | ручной, легко ошибиться | ⚙️ из `serviceCategory.slug` |
-| `categories[].title` | дубль каталога | 🌍 из `serviceCategory.title` |
-| `categories[].description` | дубль | 🌍 из `serviceCategory.description` (короткий teaser?) |
-| `categories[].href` | дубль | ⚙️ `/treatments/{slug}` |
-| `featuredInNav` | только статика | 📝 на **`serviceCategory`**: `featuredInNav` (**max 5**, dropdown) |
-| (нет поля) | — | 📝 **`featuredOnHomepage`** + `sortOrder`, **max 4** |
+**Studio:** Services → Categories → флаги **Featured on homepage** / **Featured in header menu** + **Short title** (nav).
 
-**Предлагаемый UX в Studio (один источник правды):**
+| Поле на `serviceCategory` | Статус | Примечание |
+|---------------------------|--------|------------|
+| `featuredOnHomepage` | ✅ | max 4 |
+| `featuredInNav` | ✅ | max 5 |
+| `shortTitle` | ✅ | напр. Injectables / Ін'єкції |
+| `sortOrder` | ✅ | порядок в списках |
 
-1. Инна правит категорию в **Services → Categories** (название, описание EN/UK/RU, slug автоген).
-2. Флаги на категории:
-   - `Show on homepage` (не больше 4 активных — валидация).
-   - `Show in header dropdown` (отдельно, можно те же 4 или другой набор).
-3. На лендинге — только заголовки секции + CTA, **без** ручного списка карточек.
+### 4.3 Goal chips (`goals[]`) — ⏳ без изменений
 
-### 4.3 Goal chips (`goals[]`)
-
-| Поле | Sanity | Перевод | Целевое |
-|------|--------|---------|---------|
-| `id` | string | 🔒 технический (`goal-glow`) | ⚙️ константа в коде |
-| `title` | string | 🌍 | 📝 |
-| `href` | string | ⚙️ | `/treatments?goal={id}` |
-
-*Опционально:* вынести goals в `siteSettings` или singleton — не блокер фазы 1.
+| Поле | Статус | Примечание |
+|------|--------|------------|
+| `goals[]` на лендинге | 📝 🌍 | Ручной массив в `landingPage` |
+| Hub `?goal=` | ⏳ | Keyword matching → фаза **2b** `treatmentConcern` |
 
 ---
 
 ## 5. Gallery (`landingPage.gallery`)
 
-| Поле | Sanity | Перевод | Сейчас | Целевое |
-|------|--------|---------|--------|---------|
-| `eyebrow`, `title` | есть | 🌍 | 📝 | 📝 |
-| `instagramUrl` | url | 🔄 | 📝 | из **siteSettings** |
-| Изображения сетки | — | 🔒 | 🔒 | 🔒 dev (слайдер позже) |
+| Поле | Статус | Sanity | Примечание |
+|------|--------|--------|------------|
+| `eyebrow`, `title` | ✅ 📝🌍 | 3 документа |
+| `instagramUrl` | ✅ 🔄 | из **siteSettings** |
+| Изображения | 🔒 | dev-only |
 
 ---
 
 ## 6. Reviews (`landingPage.reviews`)
 
-| Поле | Sanity | Перевод | Сейчас | Целевое |
-|------|--------|---------|--------|---------|
-| `eyebrow`, `title` | есть | 🌍 | 📝 | 📝 |
-| `items[].quote` | text | 🌍 | 📝 | 📝 |
-| `items[].authorName` | string | 🌍 | 📝 | **Реальные имена** (с согласием клиента) |
-| `items[].authorRole` | string | 🌍 | 📝 | подпись «тип процедуры» |
-| `items[].instagramSourceUrl` | **добавить** url | — | нет | ссылка на post / highlight / reel; UI «View on Instagram» |
-
-Рекомендация: max 6–8 отзывов; в Studio — reminder про GDPR/согласие. Автосинхронизация story из IG **не** планируется (ручная ссылка). См. roadmap §6b.
+| Поле | Статус | Sanity | Примечание |
+|------|--------|--------|------------|
+| `eyebrow`, `title` | ✅ 📝🌍 | |
+| `viewOnInstagramLabel` | ✅ 📝🌍 | напр. «View on Instagram» |
+| `items[].quote`, `authorName`, `authorRole` | ✅ 📝🌍 | max 8 в Studio |
+| `items[].instagramSourceUrl` | ✅ 📝 | опционально; UI-ссылка |
 
 ---
 
 ## 7. FAQ (`landingPage.faq`)
 
-| Поле | Sanity | Перевод | Сейчас | Целевое |
-|------|--------|---------|--------|---------|
-| `eyebrow`, `title`, `description` | есть | 🌍 | 📝 | 📝 |
-| `introBullets[]` | string[] | 🌍 | 📝 | 📝 |
-| `groups[].id` | slug | ⚙️ автоген | 📝 | slug из title, **не показывать** Инне |
-| `groups[].title`, `subtitle` | | 🌍 | 📝 | 📝 |
-| `groups[].items[]` | `faqItem` | 🌍 | 📝 | **единственный** источник |
-| `items[]` (flat) | есть | — | legacy | **Убрать из схемы**; flat list ⚙️ из groups |
-| `items[].id` | slug | ⚙️ | 📝 | автоген для matching на `/treatments` |
-
-Treatments-страницы подбирают FAQ по `id` — стабильные slug обязательны, но **не ручной ввод**.
+| Поле | Статус | Sanity | Примечание |
+|------|--------|--------|------------|
+| Заголовки, `introBullets` | ✅ 📝🌍 | |
+| `groups[]` | ✅ 📝🌍 | **единственный** источник |
+| `items[]` flat | ✅ удалён | Flat list ⚙️ из `groups` |
+| `groups[].items[].id` | ✅ slug | для matching на treatments |
 
 ---
 
-## 8. Contact (`landingPage.contact`)
+## 8. Contact (`landingPage.contact` + `contactForm`)
 
-| Поле | Sanity | Перевод | Сейчас | Целевое |
-|------|--------|---------|--------|---------|
-| `eyebrow`, `title`, `description` | есть | 🌍 | 📝 | 📝 |
-| `phoneLabel`, `emailLabel`, `locationTitle` | | 🌍 | 📝 | 📝 |
-| `phone`, `email`, `address` | есть | 🔄 | дубль | убрать с лендинга → только **siteSettings** |
-| `directionsHref` | **нет в схеме contact** | 🔄 | fallback | только settings |
-| `messengers[].id` | enum | 🔒 | 📝 | telegram/whatsapp/instagram |
-| `messengers[].href` | url | 🔄 | 📝 | TG/WA из settings; IG 🔄 |
-| `messengers[].ariaLabel` | string | 🌍 | 📝 | 📝 |
+### 8.1 Секция Contact
 
----
+| Поле | Статус | Sanity | Примечание |
+|------|--------|--------|------------|
+| `eyebrow`, `title`, `description` | ✅ 📝🌍 | |
+| `phoneLabel`, `emailLabel`, `locationTitle` | ✅ 📝🌍 | |
+| `phone`, `email`, `address` | ✅ 🔄 | fallback на лендинге; канон → **siteSettings** |
+| `messengers[].ariaLabel` | ✅ 📝🌍 | |
+| `messengers[].href` | ✅ 🔄 | TG/WA/IG из **siteSettings** |
 
-## 9. Site settings (`siteSettings` × 3 локали)
+### 8.2 Форма (`landingPage.contactForm`)
 
-| Поле | Перевод | Примечание |
-|------|---------|------------|
-| `phone`, `phoneTelHref` | одинаковые | display vs tel: |
-| `email`, `address` | address можно 🌍 | адрес на языке локали |
-| `instagramUrl`, `telegramHref`, `whatsappHref`, `directionsHref` | общие URL | |
-
-Документ на локаль нужен, если адрес/подписи различаются; URL обычно общие.
+| Поле | Статус | Примечание |
+|------|--------|------------|
+| labels, placeholders, submit | ✅ 📝🌍 | 3 документа; не `messages/` |
+| validation messages | ✅ 📝🌍 | |
 
 ---
 
-## 10. Legal (отдельные документы, не секция лендинга)
+## 9. Site settings (`siteSettings` × 3)
 
-Текущая модель: `legalPage` → `sections[]` → `{ heading, body }`.
+| Поле | Статус | Примечание |
+|------|--------|------------|
+| `phone`, `phoneTelHref` | ✅ 📝 | validation `tel:` |
+| `email` | ✅ 📝 | validation email |
+| `address` | ✅ 📝🌍 | можно переводить per locale |
+| Social URLs | ✅ 📝 | validation http(s) |
+| Studio UX | ✅ | группы + «меняете здесь — обновится везде» |
 
-| Поле | Перевод | Замечание |
-|------|---------|-----------|
-| `title`, `metaDescription` | 🌍 | уже заложено |
-| `sections[].heading` | 🌍 | то, что не нравится — «заголовок на каждый блок» |
-| `sections[].body` | 🌍 | Portable Text |
-
-### Как делают обычно (и что предложить Инне)
-
-| Подход | Плюсы | Минусы |
-|--------|-------|--------|
-| **A. Секции (как сейчас)** | Оглавление, якоря, порядок блоков | Больше полей, «ощущение формы» |
-| **B. Один поток текста** (`body` — один Portable Text) | Проще писать и переводить | Сложнее переставлять блоки, слабее структура для SEO-якорей |
-| **C. Гибрид (рекомендация)** | Один документ `body`; заголовки только **H2/H3 внутри редактора**, без отдельного поля `heading` | Нужна миграция seed + компонент рендера |
-
-**Решение зафиксировать до фазы 3 (legal).** Полный текст на **каждую** локаль — да (по твоему ответу).
+См. [site-settings-merge.md](../checklists/site-settings-merge.md).
 
 ---
 
-## 11. Сводка: что упустили / баги мапперов
+## 10. Каталог услуг (не секция лендинга, но влияет на главную и nav)
 
-| # | Проблема | Действие |
-|---|----------|----------|
-| 1 | `nav.cta.label` не из CMS; `hero.primaryCta.label` не из CMS | Nav: **включить** короткий label из CMS. Hero: **включить** `primaryCtaLabel`. Не смешивать одно поле |
-| 2 | `featuredInNav` / выбор 4 категорий на главной | Поля на `serviceCategory`, убрать ручные `categories[]` с лендинга |
-| 3 | `contact.directionsHref` нет в схеме contact | Только settings |
-| 4 | Дубль телефона/email в contact + footer + settings | Один источник: settings |
-| 5 | FAQ `items` + `groups` | Оставить только `groups` |
-| 6 | `hero.image.alt` на UK/RU всё ещё EN в статике | Перевести или CMS |
-| 7 | Форма контакта не в Sanity | Решить: оставить messages или перенести в фазу 2+ |
-| 8 | SEO metadata не в Sanity | Отдельный пункт roadmap |
+| Область | Статус | EN | UK | RU |
+|---------|--------|----|----|-----|
+| Category `title` / `description` | ✅ 🌍 | seed EN | из `uk.ts`/`ru.ts` preview | из `ru.ts` preview |
+| `shortTitle` | ✅ | Injectables | Ін'єкції | Инъекции |
+| Subcategory / procedure | ✅ EN only | seed | fallback EN | fallback EN |
+| Цены в CMS | ✅ | `price` на procedure | | |
+| Фото процедур | ⏳ | D.3 | | |
+| Locale tabs в Studio | ⏳ | D.1 | | |
 
 ---
 
-## 12. План контента EN → UK/RU (без staging)
+## 11. Legal (отдельные документы)
 
-| Шаг | Действие |
-|-----|----------|
-| 1 | Довести **EN** в Sanity (prod): один проход по секциям из этой матрицы |
-| 2 | Сверка EN: Studio ↔ сайт (`/en`) |
-| 3 | Экспорт текстов EN (таблица / CSV / doc) для переводчика |
-| 4 | Перевод **UK** → документы `landingPage` (uk), `legalPage`, поля `*.uk` в services |
-| 5 | Перевод **RU** → то же |
-| 6 | QA: `/uk`, `/ru` — без «дыр»; fallback EN только где явно согласовано |
-| 7 | Чеклист `messages/*` для UK/RU |
-
-**Slug:** автоген из английского названия для `serviceCategory` / `Subcategory` / `Procedure` — **да**, Инне slug не трогать (read-only после создания). FAQ/group slug — автоген, скрыть в UI.
+| Поле | Статус | Примечание |
+|------|--------|------------|
+| `legalPage` × 3 locales × 2 slugs | ✅ 📝🌍 | privacy + terms |
+| Модель `sections[]` heading + body | ✅ | как согласовано |
+| Studio UX (Privacy EN/UK/RU) | ⏳ | E.4 |
 
 ---
 
-## 13. CTA: короткая (nav) vs длинная (hero primary)
+## 12. Сводка мапперов (бывшие баги)
 
-| Место | Роль | Пример EN | Sanity | Маппер сейчас |
-|-------|------|-----------|--------|----------------|
-| Header `nav.cta` | Короткая, всегда в шапке | Consultation | `cta.label` | ❌ label только статика |
-| Hero `primaryCta` | Длинная, главное действие | Book a consultation | `primaryCtaLabel` | ❌ label только статика |
-| Hero `secondaryCta` | Вторая кнопка | View treatments | `secondaryCtaLabel` | ✅ из CMS |
-
-**Правильный подход:** не один тип «CTA», а **два явных поля в схеме** с подсказками в Studio (*Short header button* / *Hero main button*). В коде — два маппера без «fallback label» для hero primary.
+| # | Было | Сейчас |
+|---|------|--------|
+| 1 | nav/hero CTA label не из CMS | ✅ `cta.label` + `primaryCtaLabel` |
+| 2 | Ручные категории на лендинге | ✅ каталог + флаги 4/5 |
+| 3 | Дубль контактов | ✅ siteSettings + merge doc |
+| 4 | FAQ `items` + `groups` | ✅ только `groups` |
+| 5 | Форма в messages | ✅ `contactForm` |
+| 6 | Brand logos только static | ✅ CMS upload |
+| 7 | Reviews без IG | ✅ `instagramSourceUrl` |
+| 8 | SEO не в Sanity | ⏳ |
+| 9 | Nav href presets | ⏳ |
+| 10 | Goals → concerns | ⏳ фаза 2b |
 
 ---
 
-## 14. Закрыто
+## 13. CTA: короткая (nav) vs длинная (hero)
 
-| Вопрос | Решение |
-|--------|---------|
-| Homepage vs dropdown | `featuredOnHomepage` (**max 4**), `featuredInNav` (**max 5**) |
-| Contact form | Перенос в **Sanity** (roadmap §6c) |
+| Место | Статус | Sanity | Пример EN |
+|-------|--------|--------|-----------|
+| Header `nav.cta` | ✅ | `cta.label` | Consultation |
+| Hero `primaryCta` | ✅ | `primaryCtaLabel` | Book a consultation |
+| Hero `secondaryCta` | ✅ | `secondaryCtaLabel` | View treatments |
+
+---
+
+## 14. План контента EN → UK/RU
+
+| Шаг | Статус | Действие |
+|-----|--------|----------|
+| 1 | ✅ | EN в схемах + статика |
+| 2 | ⏳ | Seed prod + [part-5 checklist](../checklists/part-5-uk-ru.md) |
+| 3 | ✅ | `landingPage` uk/ru + legal + category UK/RU в seed |
+| 4 | ⏳ | Процедуры: перевод в Studio (`localeString.uk/ru`) |
+| 5 | ⏳ | QA `/uk`, `/ru` |
+| 6 | ⏳ | `messages/*` для cookie/a11y |
+
+---
+
+## 15. Закрыто (решения)
+
+| Тема | Решение |
+|------|---------|
+| Homepage / nav categories | `featuredOnHomepage` (4), `featuredInNav` (5), `shortTitle` |
+| Contact form | `landingPage.contactForm` |
 | Reviews | Реальные имена + optional Instagram URL |
-| Concern images | **Да** на hub |
-| Legal | Оставить **секции** `heading` + `body` (как сейчас) |
-| Fallback UK/RU | Показывать **EN**, если поле пустое |
-| Concerns / goals | См. [treatment-concerns-spec.md](./treatment-concerns-spec.md) |
+| Legal | Секции `heading` + `body` |
+| Fallback UK/RU | EN если поле пустое |
+| Concerns | [treatment-concerns-spec.md](./treatment-concerns-spec.md) — фаза 2b |
 
-См. журнал в [sanity-client-admin-roadmap.md](./sanity-client-admin-roadmap.md) §7.
+Журнал: [sanity-client-admin-roadmap.md](./sanity-client-admin-roadmap.md) §7.
