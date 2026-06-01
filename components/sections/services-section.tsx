@@ -78,7 +78,7 @@ export function ServicesSection({
 
         <div className="w-full max-w-4xl text-center">
           <p className="type-caption font-semibold uppercase tracking-[0.22em] text-muted">
-            or choose by your goal
+            {content.goalsHeading}
           </p>
           <ul className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-4">
             {content.goals.map((goal) => (

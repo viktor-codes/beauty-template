@@ -15,6 +15,7 @@ export interface SanityLandingServicesLike {
   eyebrow?: string;
   title?: string;
   description?: string;
+  goalsHeading?: string;
   goals?: SanityGoalPreviewLike[] | null;
   cta?: SanityContentLinkLike | null;
 }
@@ -42,6 +43,7 @@ export function mapLandingServicesSafe(
       title: fallback.title,
       description: fallback.description,
       categories: fallback.categories,
+      goalsHeading: fallback.goalsHeading,
       goals: fallback.goals,
       cta: fallback.cta,
     };
@@ -56,6 +58,7 @@ export function mapLandingServicesSafe(
     title: raw.title.trim(),
     description: raw.description?.trim() || fallback.description,
     categories: fallback.categories,
+    goalsHeading: raw.goalsHeading?.trim() || fallback.goalsHeading,
     goals: goals.length > 0 ? goals : fallback.goals,
     cta: mapContentLinkSafe(raw.cta, fallback.cta),
   };

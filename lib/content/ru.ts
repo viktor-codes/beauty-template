@@ -119,6 +119,7 @@ export const ruLandingContent = {
         href: "/treatments/laser-hair-removal",
       },
     ],
+    goalsHeading: "или выберите по вашему запросу",
     goals: [
       { id: "goal-glow", title: "Сияние", href: "/treatments?goal=glow" },
       {

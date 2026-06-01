@@ -82,6 +82,7 @@ export const landingPageQuery = /* groq */ `
       eyebrow,
       title,
       description,
+      goalsHeading,
       goals[] {
         ${servicesGoalPreviewFields}
       },

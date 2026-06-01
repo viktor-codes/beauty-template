@@ -87,6 +87,7 @@ export function mapLandingContentToSanityDocument(
       eyebrow: content.services.eyebrow,
       title: content.services.title,
       description: content.services.description,
+      goalsHeading: content.services.goalsHeading,
       goals: content.services.goals.map((g) => ({
         _type: "servicesGoalPreview" as const,
         id: g.id,

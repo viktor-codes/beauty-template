@@ -119,6 +119,7 @@ export const ukLandingContent = {
         href: "/treatments/laser-hair-removal",
       },
     ],
+    goalsHeading: "або оберіть за вашим запитом",
     goals: [
       { id: "goal-glow", title: "Сяйво", href: "/treatments?goal=glow" },
       {

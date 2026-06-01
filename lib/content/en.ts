@@ -120,6 +120,7 @@ export const enLandingContent = {
         href: "/treatments/laser-hair-removal",
       },
     ],
+    goalsHeading: "or choose by your concern",
     goals: [
       { id: "goal-glow", title: "Glow", href: "/treatments?goal=glow" },
       {

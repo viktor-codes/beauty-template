@@ -107,7 +107,8 @@ export default async function ServicesPage({
               id="hub-recommended-heading"
               className="text-xs font-medium uppercase tracking-[0.2em] text-muted"
             >
-              {hubUi.recommendedForPrefix} {getConcernTitle(selectedConcern, catalog)}
+              {hubUi.recommendedForPrefix}{" "}
+              {getConcernTitle(selectedConcern, catalog)}
             </h2>
             <ul className="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
               {recommended.map((hit) => {
@@ -144,7 +145,12 @@ export default async function ServicesPage({
                       </div>
 
                       <div className="flex shrink-0 items-center gap-3">
-                        <Button href={hit.href} variant="secondary" size="sm" className="whitespace-nowrap">
+                        <Button
+                          href={hit.href}
+                          variant="secondary"
+                          size="sm"
+                          className="whitespace-nowrap"
+                        >
                           {hubUi.viewDetailsLabel}
                         </Button>
                       </div>
@@ -198,15 +204,15 @@ export default async function ServicesPage({
               <Button href="/#contact" size="lg">
                 {landingContent.nav.cta.label}
               </Button>
-              <Button href="/" variant="secondary" size="lg">
-                {landingContent.hero.secondaryCta.label}
-              </Button>
             </div>
           </section>
         ) : null}
       </Section>
 
-      <Section className="bg-background" aria-labelledby="services-hub-faq-heading">
+      <Section
+        className="bg-background"
+        aria-labelledby="services-hub-faq-heading"
+      >
         <FaqJsonLd items={hubFaq} />
         <SectionHeading
           titleId="services-hub-faq-heading"

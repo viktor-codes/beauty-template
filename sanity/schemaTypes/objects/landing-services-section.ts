@@ -9,6 +9,12 @@ export const landingServicesSection = defineType({
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     defineField({ name: "description", type: "text", rows: 3 }),
     defineField({
+      name: "goalsHeading",
+      title: "Goal chips heading",
+      description: "Caption above concern chips (e.g. “or choose by your goal”).",
+      type: "string",
+    }),
+    defineField({
       name: "goals",
       title: "Goal chips",
       type: "array",

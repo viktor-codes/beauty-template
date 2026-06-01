@@ -82,6 +82,8 @@ export interface ServicesContent {
   title: string;
   description: string;
   categories: ServicesCategoryPreview[];
+  /** Caption above goal concern chips on the landing services section. */
+  goalsHeading: string;
   goals: ServicesGoalPreview[];
   cta: ContentLink;
 }
