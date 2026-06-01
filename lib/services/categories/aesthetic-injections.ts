@@ -1,16 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
+import { injectionImage } from "@/lib/services/helpers";
+
 export const aestheticInjectionsCategory: ServiceCategory = {
   id: "aesthetic-injections",
-      title: "Aesthetic injections",
-      description:
-        "Injectable treatments aimed at hydration, structure, and skin quality—planned with a natural-result philosophy and an emphasis on safety and anatomy.",
-      image: {
-        src: "/injection.webp",
-        alt: "Clean clinical aesthetic setting for injectables",
-        width: 1200,
-        height: 800,
-      },
+  title: "Aesthetic injections",
+  description:
+    "Injectable treatments aimed at hydration, structure, and skin quality—planned with a natural-result philosophy and an emphasis on safety and anatomy.",
+  image: injectionImage,
       subcategories: [
         {
           id: "lip-fillers",

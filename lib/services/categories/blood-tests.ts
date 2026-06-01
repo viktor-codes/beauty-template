@@ -1,13 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
-import { injectionImage, proc } from "@/lib/services/helpers";
+import { bloodTestsCategoryImage, proc } from "@/lib/services/helpers";
 
 export const bloodTestsCategory: ServiceCategory = {
   id: "blood-tests",
   title: "Blood tests",
   description:
     "Laboratory blood panels for energy, fertility, hormones, nutrition, and general wellness—results guide personalised care.",
-  image: injectionImage,
+  image: bloodTestsCategoryImage,
   subcategories: [
     {
       id: "wellness-panels",

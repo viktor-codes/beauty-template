@@ -1,13 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
-import { deviceImage, injectionImage, proc } from "@/lib/services/helpers";
+import { cosmetologyCategoryImage, deviceImage, proc } from "@/lib/services/helpers";
 
 export const cosmetologyCategory: ServiceCategory = {
   id: "cosmetology",
   title: "Cosmetology",
   description:
     "Injectable and device-led cosmetology protocols—from neuromodulators and contouring to biostimulators, biorevitalisation, and targeted correction.",
-  image: injectionImage,
+  image: cosmetologyCategoryImage,
   subcategories: [
     {
       id: "hifu-face-lift",

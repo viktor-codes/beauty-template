@@ -14,6 +14,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
 import { findSubcategory } from "@/lib/services/page-helpers";
+import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
 import { getLandingContent } from "@/lib/content";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
@@ -59,6 +60,7 @@ export default async function ServicesSubcategoryPage({
   const appLocale = locale as AppLocale;
   const catalog = await resolveServicesCatalog(appLocale);
   const { category, subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
+  const { hubUi } = catalog;
   const landingContent = await getLandingContent(appLocale);
   const subcategoryFaq = await getServicesSubcategoryFaq(
     category,
@@ -66,15 +68,13 @@ export default async function ServicesSubcategoryPage({
     appLocale,
     6,
   );
-  const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Treatments", href: "/treatments" },
+  const breadcrumbs = buildTreatmentsBreadcrumbs(hubUi, [
     { label: category.title, href: `/treatments/${categorySlug}` },
     {
       label: subcategory.title,
       href: `/treatments/${categorySlug}/${subcategorySlug}`,
     },
-  ];
+  ]);
 
   const pageTitleId = `subcategory-${categorySlug}-${subcategorySlug}-title`;
 
@@ -142,7 +142,7 @@ export default async function ServicesSubcategoryPage({
                         size="sm"
                         className="whitespace-nowrap"
                       >
-                        View details
+                        {hubUi.viewDetailsLabel}
                       </Button>
                     </div>
                   </div>
@@ -171,7 +171,7 @@ export default async function ServicesSubcategoryPage({
             href="/#faq"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
-            View the full FAQ on the homepage
+            {hubUi.viewFullFaqLabel}
           </Link>
         </div>
 
@@ -189,7 +189,7 @@ export default async function ServicesSubcategoryPage({
               variant="secondary"
               size="lg"
             >
-              Back to category
+              {hubUi.backToCategoryPrefix} {category.title}
             </Button>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default async function ServicesSubcategoryPage({
             href="/treatments"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
-            Back to all categories
+            {hubUi.backToAllCategoriesLabel}
           </Link>
         </div>
       </Section>

@@ -1,13 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
-import { deviceImage, peelImage, proc } from "@/lib/services/helpers";
+import { bodySlimmingCategoryImage, peelImage, proc } from "@/lib/services/helpers";
 
 export const bodySlimmingCategory: ServiceCategory = {
   id: "body-slimming",
   title: "Body slimming & contouring",
   description:
     "Body-focused treatments—cryolipolysis, muscle toning, peels, laser correction, and minor lesion removal.",
-  image: deviceImage,
+  image: bodySlimmingCategoryImage,
   subcategories: [
     {
       id: "cryo-fat-reduction",

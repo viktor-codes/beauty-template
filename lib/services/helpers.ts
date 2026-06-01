@@ -6,33 +6,56 @@ import type {
   ServiceSubcategory,
 } from "@/lib/types/services";
 
-export const injectionImage: ServiceImage = {
-  src: "/injection.webp",
-  alt: "Clean clinical aesthetic setting for injectables",
-  width: 1200,
-  height: 800,
-};
+const CATEGORY_IMAGE_DIR = "/categories";
+const DEFAULT_IMAGE_SIZE = { width: 1200, height: 800 } as const;
 
-export const peelImage: ServiceImage = {
-  src: "/peel.webp",
-  alt: "Skincare products and towels in a calm setting",
-  width: 1200,
-  height: 800,
-};
+function categoryAsset(filename: string, alt: string): ServiceImage {
+  return {
+    src: `${CATEGORY_IMAGE_DIR}/${filename}`,
+    alt,
+    ...DEFAULT_IMAGE_SIZE,
+  };
+}
 
-export const deviceImage: ServiceImage = {
-  src: "/device.webp",
-  alt: "Modern aesthetic device in a minimal clinic",
-  width: 1200,
-  height: 800,
-};
+/** Shared visuals for subcategories and treatment-type fallbacks. */
+export const injectionImage = categoryAsset(
+  "injection.webp",
+  "Clean clinical aesthetic setting for injectables",
+);
+export const peelImage = categoryAsset(
+  "peel.webp",
+  "Skincare products and towels in a calm setting",
+);
+export const deviceImage = categoryAsset(
+  "device.webp",
+  "Modern aesthetic device in a minimal clinic",
+);
+export const laserImage = categoryAsset(
+  "laser.webp",
+  "Laser treatment room with soft neutral tones",
+);
 
-export const laserImage: ServiceImage = {
-  src: "/laser.webp",
-  alt: "Laser treatment room with soft neutral tones",
-  width: 1200,
-  height: 800,
-};
+/** Top-level service category card images (slug-aligned filenames). */
+export const cosmetologyCategoryImage = categoryAsset(
+  "cosmetology.webp",
+  "Cosmetology treatments in a calm clinical setting",
+);
+export const bodySlimmingCategoryImage = categoryAsset(
+  "body-slimming.webp",
+  "Body contouring and slimming treatment",
+);
+export const antiAgeCategoryImage = categoryAsset(
+  "anti-age.webp",
+  "Anti-age aesthetic protocols",
+);
+export const vitaminShotsCategoryImage = categoryAsset(
+  "vitamin-shots.webp",
+  "Vitamin injection wellness support",
+);
+export const bloodTestsCategoryImage = categoryAsset(
+  "blood-test.webp",
+  "Laboratory blood testing for personalised care",
+);
 
 export function eur(amount: number): Money {
   return { amount, currency: "EUR" };

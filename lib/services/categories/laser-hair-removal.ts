@@ -1,16 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
+import { laserImage } from "@/lib/services/helpers";
+
 export const laserHairRemovalCategory: ServiceCategory = {
   id: "laser-hair-removal",
-      title: "Laser hair removal",
-      description:
-        "Laser treatments designed to reduce unwanted hair by targeting follicles. Results build over a course of sessions, with protocols tailored to hair thickness, skin tone, and treatment area.",
-      image: {
-        src: "/laser.webp",
-        alt: "Laser treatment room with soft neutral tones",
-        width: 1200,
-        height: 800,
-      },
+  title: "Laser hair removal",
+  description:
+    "Laser treatments designed to reduce unwanted hair by targeting follicles. Results build over a course of sessions, with protocols tailored to hair thickness, skin tone, and treatment area.",
+  image: laserImage,
       subcategories: [
         {
           id: "laser-hair-removal-sets",

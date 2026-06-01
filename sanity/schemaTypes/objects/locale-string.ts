@@ -1,11 +1,13 @@
 import { defineField, defineType } from "sanity";
 
+import { LocaleTabsInput } from "../../components/locale-tabs-input";
+
 /** Field-level i18n — one document, multiple languages (services tree). */
 export const localeString = defineType({
   name: "localeString",
   title: "Localized string",
   type: "object",
-  options: { collapsible: true, collapsed: false },
+  components: { input: LocaleTabsInput },
   fields: [
     defineField({
       name: "en",
@@ -22,7 +24,7 @@ export const localeText = defineType({
   name: "localeText",
   title: "Localized text",
   type: "object",
-  options: { collapsible: true, collapsed: false },
+  components: { input: LocaleTabsInput },
   fields: [
     defineField({
       name: "en",

@@ -16,6 +16,9 @@ const HUB_COPY: Record<AppLocale, TreatmentsHubUi> = {
     viewDetailsLabel: "View details",
     breadcrumbHome: "Home",
     breadcrumbTreatments: "Treatments",
+    backToAllCategoriesLabel: "Back to all categories",
+    backToCategoryPrefix: "Back to",
+    concernCardFallbackDescription: "See treatments matched to this concern.",
   },
   uk: {
     pageTitle: "Процедури за категоріями",
@@ -31,6 +34,9 @@ const HUB_COPY: Record<AppLocale, TreatmentsHubUi> = {
     viewDetailsLabel: "Детальніше",
     breadcrumbHome: "Головна",
     breadcrumbTreatments: "Процедури",
+    backToAllCategoriesLabel: "Усі категорії",
+    backToCategoryPrefix: "Назад до",
+    concernCardFallbackDescription: "Процедури під цей запит.",
   },
   ru: {
     pageTitle: "Процедуры по категориям",
@@ -46,6 +52,9 @@ const HUB_COPY: Record<AppLocale, TreatmentsHubUi> = {
     viewDetailsLabel: "Подробнее",
     breadcrumbHome: "Главная",
     breadcrumbTreatments: "Процедуры",
+    backToAllCategoriesLabel: "Все категории",
+    backToCategoryPrefix: "Назад к",
+    concernCardFallbackDescription: "Процедуры под этот запрос.",
   },
 };
 

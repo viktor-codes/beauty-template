@@ -7,8 +7,9 @@ import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ServiceCard } from "@/components/shared/service-card";
+import { resolveConcernCardImage } from "@/lib/services/concern-card-image";
+import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
 import { getLandingContent } from "@/lib/content";
 import type { AppLocale } from "@/i18n/routing";
 import { FaqAccordion } from "@/components/shared/faq-accordion";
@@ -67,10 +68,7 @@ export default async function ServicesPage({
   const landingContent = await getLandingContent(appLocale);
   const { hubUi } = catalog;
 
-  const breadcrumbs = [
-    { label: hubUi.breadcrumbHome, href: "/" },
-    { label: hubUi.breadcrumbTreatments, href: "/treatments" },
-  ];
+  const breadcrumbs = buildTreatmentsBreadcrumbs(hubUi);
 
   const resolvedSearchParams = await searchParams;
   const selectedConcern = resolveConcernFromSearchParams(resolvedSearchParams);
@@ -163,7 +161,10 @@ export default async function ServicesPage({
         ) : null}
 
         <section aria-labelledby="hub-categories-heading">
-          <h2 id="hub-categories-heading" className="sr-only">
+          <h2
+            id="hub-categories-heading"
+            className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-muted"
+          >
             {hubUi.breadcrumbTreatments}
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2">
@@ -181,26 +182,29 @@ export default async function ServicesPage({
         </section>
 
         {activeConcerns.length > 0 ? (
-          <section
-            className="mt-10 rounded-2xl border border-border bg-surface/50 p-6"
-            aria-labelledby="hub-goals-heading"
-          >
+          <section className="mt-12" aria-labelledby="hub-concerns-heading">
             <h2
-              id="hub-goals-heading"
-              className="text-xs font-medium uppercase tracking-[0.2em] text-muted"
+              id="hub-concerns-heading"
+              className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-muted"
             >
               {hubUi.goalsSectionTitle}
             </h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
+            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {activeConcerns.map((concern) => (
                 <li key={concern.id}>
-                  <Link href={concern.href} className="no-underline">
-                    <Badge variant="outline">{concern.title}</Badge>
-                  </Link>
+                  <ServiceCard
+                    title={concern.title}
+                    description={
+                      concern.shortDescription?.trim() ||
+                      hubUi.concernCardFallbackDescription
+                    }
+                    href={concern.href}
+                    image={resolveConcernCardImage(concern)}
+                  />
                 </li>
               ))}
             </ul>
-            <div className="mt-6 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <Button href="/#contact" size="lg">
                 {landingContent.nav.cta.label}
               </Button>

@@ -13,6 +13,8 @@ export {
 } from "@/lib/services/category-previews";
 
 export { servicesCatalog };
+export { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
+export { resolveConcernCardImage } from "@/lib/services/concern-card-image";
 
 export function getServicesCategory(slug: string) {
   return servicesCatalog.categories.find((c) => c.id === slug) ?? null;

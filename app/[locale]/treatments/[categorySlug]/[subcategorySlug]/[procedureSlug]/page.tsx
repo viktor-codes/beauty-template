@@ -15,6 +15,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
 import { findProcedure } from "@/lib/services/page-helpers";
+import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
 import { getLandingContent } from "@/lib/content";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
@@ -89,6 +90,7 @@ export default async function ServiceProcedurePage({
     subcategorySlug,
     procedureSlug,
   );
+  const { hubUi } = catalog;
   const landingContent = await getLandingContent(appLocale);
   const procedureFaq = await getServicesProcedureFaq(
     category,
@@ -97,16 +99,17 @@ export default async function ServiceProcedurePage({
     appLocale,
     5,
   );
-  const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Treatments", href: "/treatments" },
+  const breadcrumbs = buildTreatmentsBreadcrumbs(hubUi, [
     { label: category.title, href: `/treatments/${categorySlug}` },
     {
       label: subcategory.title,
       href: `/treatments/${categorySlug}/${subcategorySlug}`,
     },
-    { label: procedure.title, href: `/treatments/${categorySlug}/${subcategorySlug}/${procedureSlug}` },
-  ];
+    {
+      label: procedure.title,
+      href: `/treatments/${categorySlug}/${subcategorySlug}/${procedureSlug}`,
+    },
+  ]);
 
   const priceLabel = procedure.price
     ? `${procedure.price.amount} ${procedure.price.currency}`
@@ -158,7 +161,7 @@ export default async function ServiceProcedurePage({
                   variant="secondary"
                   size="lg"
                 >
-                  Back to list
+                  {hubUi.backToCategoryPrefix} {subcategory.title}
                 </Button>
               </div>
 
@@ -175,7 +178,7 @@ export default async function ServiceProcedurePage({
                   href="/treatments"
                   className="text-sm text-muted underline underline-offset-4 hover:text-primary"
                 >
-                  Back to all categories
+                  {hubUi.backToAllCategoriesLabel}
                 </Link>
               </div>
             </div>
@@ -218,7 +221,7 @@ export default async function ServiceProcedurePage({
             href="/#faq"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
-            View the full FAQ on the homepage
+            {hubUi.viewFullFaqLabel}
           </Link>
         </div>
       </Section>

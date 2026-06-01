@@ -15,6 +15,7 @@ import { getServicesCategoryFaq } from "@/lib/services-faq";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
 import { findCategory } from "@/lib/services/page-helpers";
+import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
@@ -56,12 +57,11 @@ export default async function ServicesCategoryPage({
   const appLocale = locale as AppLocale;
   const catalog = await resolveServicesCatalog(appLocale);
   const category = findCategory(catalog, categorySlug);
+  const { hubUi } = catalog;
   const categoryFaq = await getServicesCategoryFaq(category, appLocale, 6);
-  const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Treatments", href: "/treatments" },
+  const breadcrumbs = buildTreatmentsBreadcrumbs(hubUi, [
     { label: category.title, href: `/treatments/${categorySlug}` },
-  ];
+  ]);
 
   const pageTitleId = `category-${categorySlug}-title`;
 
@@ -123,7 +123,7 @@ export default async function ServicesCategoryPage({
             href="/#faq"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
-            View the full FAQ on the homepage
+            {hubUi.viewFullFaqLabel}
           </Link>
         </div>
 
@@ -132,7 +132,7 @@ export default async function ServicesCategoryPage({
             href="/treatments"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
-            Back to all categories
+            {hubUi.backToAllCategoriesLabel}
           </Link>
         </div>
       </Section>

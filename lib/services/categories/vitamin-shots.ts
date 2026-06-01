@@ -1,13 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
-import { injectionImage, proc } from "@/lib/services/helpers";
+import { proc, vitaminShotsCategoryImage } from "@/lib/services/helpers";
 
 export const vitaminShotsCategory: ServiceCategory = {
   id: "vitamin-shots",
   title: "Vitamin shots",
   description:
     "Intramuscular vitamin injections to support energy, immunity, skin, hair, and overall well-being.",
-  image: injectionImage,
+  image: vitaminShotsCategoryImage,
   subcategories: [
     {
       id: "vitamin-injections",

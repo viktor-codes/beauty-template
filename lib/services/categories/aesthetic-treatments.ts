@@ -1,16 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
+import { peelImage } from "@/lib/services/helpers";
+
 export const aestheticTreatmentsCategory: ServiceCategory = {
   id: "aesthetic-treatments",
   title: "Facials & peels",
   description:
     "Non-invasive treatments focused on texture, clarity, and glow—professional facials and clinician-controlled peels.",
-      image: {
-        src: "/peel.webp",
-        alt: "Skincare products and towels in a calm setting",
-        width: 1200,
-        height: 800,
-      },
+  image: peelImage,
       subcategories: [
         {
           id: "facials",

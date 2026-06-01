@@ -9,7 +9,7 @@ import {
   cloneSubcategories,
   cloneSubcategory,
   filterProcedures,
-  injectionImage,
+  antiAgeCategoryImage,
 } from "@/lib/services/helpers";
 
 const ANTI_AGE_FACIAL_IDS = [
@@ -58,7 +58,7 @@ export const antiAgeCategory: ServiceCategory = {
   title: "Anti age",
   description:
     "Age-focused protocols—lifting, collagen support, biorevitalisation, neuromodulators, and corrective peels.",
-  image: injectionImage,
+  image: antiAgeCategoryImage,
   subcategories: [
     ...cloneSubcategories(cosmetologyCategory, [
       "hifu-face-lift",

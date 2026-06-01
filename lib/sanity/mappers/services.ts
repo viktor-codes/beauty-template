@@ -86,7 +86,7 @@ function mapServiceImageSafe(
 ) {
   if (!raw && !fallback) return undefined;
   const base = fallback ?? {
-    src: "/peel.webp",
+    src: "/categories/peel.webp",
     alt: "Treatment",
     width: 1200,
     height: 800,
@@ -234,6 +234,9 @@ function mapHubUi(raw: SanityHubLike | null | undefined, locale: AppLocale, fall
     viewDetailsLabel: fallback.viewDetailsLabel,
     breadcrumbHome: fallback.breadcrumbHome,
     breadcrumbTreatments: fallback.breadcrumbTreatments,
+    backToAllCategoriesLabel: fallback.backToAllCategoriesLabel,
+    backToCategoryPrefix: fallback.backToCategoryPrefix,
+    concernCardFallbackDescription: fallback.concernCardFallbackDescription,
   };
 }
 

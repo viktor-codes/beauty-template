@@ -44,6 +44,9 @@ export interface TreatmentsHubUi {
   viewDetailsLabel: string;
   breadcrumbHome: string;
   breadcrumbTreatments: string;
+  backToAllCategoriesLabel: string;
+  backToCategoryPrefix: string;
+  concernCardFallbackDescription: string;
 }
 
 export interface ServiceSubcategory {

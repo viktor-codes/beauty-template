@@ -1,16 +1,13 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
+import { deviceImage } from "@/lib/services/helpers";
+
 export const advancedAestheticTreatmentsCategory: ServiceCategory = {
   id: "advanced-aesthetic-treatments",
-      title: "Advanced aesthetic treatments",
-      description:
-        "Device-based and advanced clinic treatments designed for tightening, resurfacing, and targeted correction—ideal when you want more visible change with structured protocols.",
-      image: {
-        src: "/device.webp",
-        alt: "Modern aesthetic device in a minimal clinic",
-        width: 1200,
-        height: 800,
-      },
+  title: "Advanced aesthetic treatments",
+  description:
+    "Device-based and advanced clinic treatments designed for tightening, resurfacing, and targeted correction—ideal when you want more visible change with structured protocols.",
+  image: deviceImage,
       subcategories: [
         {
           id: "hifu-face-lift",
