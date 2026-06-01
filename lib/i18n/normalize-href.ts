@@ -1,8 +1,10 @@
 /**
- * Rewrites legacy `/services` paths from older CMS data to current `/treatments` routes.
+ * Rewrites legacy `/services` and `#treatments` anchor links from CMS to `/treatments` catalog routes.
  */
 export function normalizeLegacyServicesHref(href: string): string {
   return href
     .replace(/\/services(?=\/|\?|#|$)/g, "/treatments")
-    .replace(/#services(?=$|[?#])/g, "#treatments");
+    .replace(/\/#treatments(?=$|[?#])/g, "/treatments")
+    .replace(/^#treatments(?=$|[?#])/g, "/treatments")
+    .replace(/#services(?=$|[?#])/g, "/treatments");
 }

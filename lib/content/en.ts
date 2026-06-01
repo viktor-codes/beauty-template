@@ -26,7 +26,7 @@ export const enLandingContent = {
     subtitle:
       "I personalize every treatment plan in a calm space—results you can see without the hard sell.",
     primaryCta: { label: "Bok a Consultation", href: "#contact" },
-    secondaryCta: { label: "View treatments", href: "#treatments" },
+    secondaryCta: { label: "View treatments", href: "/treatments" },
     image: {
       ...heroImage,
       alt: "Calm treatment room with natural light and minimal decor",
@@ -242,7 +242,7 @@ export const enLandingContent = {
       heading: "Navigate",
       links: [
         { label: "About", href: "/#about" },
-        { label: "Treatments", href: "/#treatments" },
+        { label: "Treatments", href: "/treatments" },
         { label: "Gallery", href: "/#gallery" },
         { label: "Reviews", href: "/#reviews" },
         { label: "FAQ", href: "/#faq" },

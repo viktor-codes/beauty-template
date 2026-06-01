@@ -21,7 +21,7 @@ export const landingHeroSection = defineType({
       name: "secondaryCtaHref",
       title: "Secondary CTA link",
       type: "string",
-      initialValue: "#treatments",
+      initialValue: "/treatments",
     }),
   ],
 });

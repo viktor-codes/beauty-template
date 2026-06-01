@@ -193,7 +193,7 @@ export default async function ServicesPage({
             <Button href="/#contact" size="lg">
               {landingContent.nav.cta.label}
             </Button>
-            <Button href="/#treatments" variant="secondary" size="lg">
+            <Button href="/" variant="secondary" size="lg">
               Back to landing
             </Button>
           </div>

@@ -26,7 +26,7 @@ export const ruLandingContent = {
     subtitle:
       "Персональный план процедур в спокойном пространстве — результат, который видно, без навязчивых продаж.",
     primaryCta: { label: "Записаться на консультацию", href: "#contact" },
-    secondaryCta: { label: "Посмотреть процедуры", href: "#treatments" },
+    secondaryCta: { label: "Посмотреть процедуры", href: "/treatments" },
     image: {
       ...heroImage,
       alt: "Calm treatment room with natural light and minimal decor",
@@ -249,7 +249,7 @@ export const ruLandingContent = {
       heading: "Навигация",
       links: [
         { label: "Обо мне", href: "/#about" },
-        { label: "Процедуры", href: "/#treatments" },
+        { label: "Процедуры", href: "/treatments" },
         { label: "Галерея", href: "/#gallery" },
         { label: "Отзывы", href: "/#reviews" },
         { label: "FAQ", href: "/#faq" },
