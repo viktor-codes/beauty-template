@@ -4,6 +4,8 @@
 
 **Статус документа:** согласовано — **можно выполнять по фазам** (§5, §8). Сводка решений: **§6**.
 
+**Прогресс кода (2026-06-01):** выполнены **части 0–5** (см. §7 журнал). Ниже `[x]` = сделано в репозитории; `[ ]` = ещё впереди.
+
 **Связанные документы:**
 
 - [ADR 001 — i18n в Sanity](../adr/001-sanity-i18n-strategy.md)
@@ -16,12 +18,12 @@
 
 Считаем админку «готовой для клиента», когда:
 
-- [ ] Редактор понимает **с чего начать** за 30 секунд (понятная структура Studio, без «сырых» технических полей).
-- [ ] Любое изменение на сайте делается **в одном ожидаемом месте** (нет дублирования «категория в услугах» vs «карточка на главной» без объяснения).
-- [ ] Ошибки ввода **ловятся в Studio** (валидация, подсказки), а не ломают прод (мапперы по-прежнему с fallback).
-- [ ] Три языка: понятно, **где править EN/UK/RU** для лендинга/legal/settings и для каталога услуг.
+- [ ] Редактор понимает **с чего начать** за 30 секунд (структура Studio улучшена частично — см. H.1).
+- [x] Любое изменение на сайте делается **в одном ожидаемом месте** (категории: `serviceCategory`; контакты: `siteSettings`).
+- [x] Ошибки ввода **ловятся в Studio** для части полей (флаги 4/5, tel/email/url, max reviews); мапперы с fallback.
+- [x] Три языка: лендинг ×3, legal ×3, settings ×3; категории каталога с UK/RU (процедуры — EN + fallback).
 - [ ] Есть **короткая инструкция для клиента** (1–2 страницы PDF/Notion или раздел в Studio).
-- [ ] Seed + preview/revalidate: клиент видит изменения на сайте предсказуемо.
+- [ ] Seed + preview/revalidate: seed готов; **preview/webhook** — см. F.5–F.6, G.1.
 
 ---
 
@@ -38,19 +40,25 @@
 | Studio structure | `sanity/structure/index.ts` | — | Дерево «Site / Services / Browse by category» |
 | Seed | `pnpm seed:sanity` | Источник правды для первичного наполнения | Нужен write token |
 
-### 2.2 Расхождения схема ↔ сайт (важно для плана)
+### 2.2 Расхождения схема ↔ сайт
 
-| Проблема | Где в коде | Влияние на клиента |
-|----------|------------|-------------------|
-| **`featuredInNav`** / **`featuredOnHomepage`** в статике, **нет на `serviceCategory`** | `lib/types/content.ts` | Два флага на категории каталога (см. §7) |
-| **Goals** — keyword matching в коде, чипы на лендинге | `lib/services-goals.ts` | Заменить на `treatmentConcern` + refs на процедурах (фаза 2b) |
-| **Hero-фото** только в коде | `lib/content/shared.ts`, комментарий в `landing-hero-section.ts` | Клиент не меняет главное фото без разработчика |
-| **Галерея — только заголовки в CMS**; 6 фото захардкожены | `gallery-section.tsx` | Клиент не меняет фото галереи |
-| **Категории на лендинге** дублируют каталог (ручные `id`/`href`) | `landing.services.categories` | Риск рассинхрона slug/ссылок при правке каталога |
-| **FAQ: `groups` + `items`** | Схема помечает `items` как legacy | Путаница: что править, что использует treatments FAQ |
-| **Nav dropdown** собирается кодом из `featuredInNav` + каталога | `lib/nav/build-nav-links.ts` | В CMS нет явного «меню процедур» |
-| **Legal document i18n** отключён намеренно | `sanity.config.ts` | 6 отдельных документов — ок, но нужен UX «переводы» |
-| **HANDOFF.md** устарел | `docs/HANDOFF.md` | Вводит в заблуждение команду/клиента |
+| Проблема | Статус | Примечание |
+|----------|--------|------------|
+| Флаги `featuredOnHomepage` / `featuredInNav` | ✅ Исправлено (ч.1) | На `serviceCategory`, max 4/5 |
+| `shortTitle` для длинных названий в nav | ✅ Исправлено | `serviceCategory.shortTitle`, напр. Injectables |
+| Категории на лендинге дублировали каталог | ✅ Исправлено (ч.1) | Превью из каталога, не `categories[]` |
+| CTA hero/nav не из CMS | ✅ Исправлено (ч.2) | `primaryCtaLabel`, `nav.cta.label` |
+| Форма в `messages/` | ✅ Исправлено (ч.2) | `landingPage.contactForm` |
+| FAQ legacy `items` | ✅ Исправлено (ч.2) | Только `groups` |
+| Brand logos только в `/public` | ✅ Исправлено (ч.3) | Upload в Studio + seed |
+| Контакты в трёх местах | ✅ Частично (ч.4) | Канон в `siteSettings`, см. [site-settings-merge.md](../checklists/site-settings-merge.md) |
+| **Goals** → keyword matching | ⏳ Открыто | Фаза **2b** (`treatmentConcern`) |
+| **Hero-фото** dev-only | ⏳ По дизайну | Не в CMS |
+| **Галерея** — фото dev-only | ⏳ По дизайну | Тексты в CMS |
+| **Nav** — presets для `href` | ⏳ Открыто | Dropdown из каталога есть, пресеты нет |
+| **Legal** — UX 6 документов в Studio | ⏳ Открыто | E.4 |
+| **HANDOFF.md** устарел | ⏳ Открыто | J.2 |
+| Процедуры UK/RU в каталоге | ⏳ Частично (ч.5) | Только EN в CMS → fallback EN на `/uk` `/ru` |
 
 ### 2.3 Что клиенту **не должно** попадать в руки (пока не решим иначе)
 
@@ -94,7 +102,7 @@
 
 - [ ] **B.1** Группы и порядок полей в Studio (уже есть groups — проверить с реальным сценарием редактирования).
 - [x] **B.2** **Hero:** фото — **dev-only**; тексты/CTA в CMS (починить маппер `primaryCta.label`).
-- [ ] **B.3** **Nav:** presets для ссылок; dropdown treatments **автоматически** из каталога.
+- [x] **B.3** **Nav:** dropdown treatments из каталога (`featuredInNav` + `shortTitle`). *Осталось: presets для `href`.*
 - [x] **B.4** **About:** brand logos в CMS (upload + alt per locale); `/public/logos` — fallback при пустом CMS.
 - [x] **B.5** **Services preview:** `serviceCategory` + `featuredOnHomepage` (**max 4**) + `featuredInNav` (**max 5**); убрать ручной `categories[]`; валидация в Studio.
 - [x] **B.5b** Починить мапперы CTA: nav label + hero `primaryCtaLabel` из CMS (см. матрица §13).
@@ -148,7 +156,7 @@
 
 ### Блок F — Схемы и технический контракт
 
-- [x] **F.1** Флаги `featuredOnHomepage` / `featuredInNav` на `serviceCategory` (остальное — по мере фаз).
+- [x] **F.1** Флаги `featuredOnHomepage` / `featuredInNav` + `shortTitle` на `serviceCategory` (остальные поля схем — по мере фаз).
 - [ ] **F.2** GROQ queries: покрытие всех полей, без over-fetch.
 - [ ] **F.3** Мапперы: единые правила fallback (документировать в `lib/sanity/mappers/README` или в этом файле).
 - [ ] **F.4** Типы `Sanity*Like` vs codegen (`sanity-typegen`) — нужен ли codegen.
@@ -173,8 +181,8 @@
 
 - [ ] **I.1** Роли Sanity: Editor vs Developer (скрыть schema/raw).
 - [ ] **I.2** Staging dataset для экспериментов клиента.
-- [ ] **I.3** Лимиты массивов (max reviews, max FAQ items).
-- [ ] **I.4** Accessibility: alt-тексты обязательны для загружаемых изображений.
+- [x] **I.3** Лимиты массивов: max **8** reviews (ч.2). *FAQ items limit — открыто.*
+- [x] **I.4** Alt обязателен на `brandLogo` (ч.3). *Процедуры `serviceImage` — открыто (D.3).*
 
 ### Блок J — Порядок в репозитории (после контента, опционально)
 
@@ -188,17 +196,19 @@
 
 ## 5. Предлагаемые фазы
 
-| Фаза | Фокус | Результат для клиента |
-|------|--------|------------------------|
-| **0** | Согласование A + принципы §3 + матрица лендинга | Зафиксированы границы |
-| **1** | **Лендинг EN** в Sanity: B + C + F.1, починить мапперы | Инна правит главную на EN |
-| **1b** | Перевод UK/RU лендинга (по чеклисту матрицы) | `/uk`, `/ru` без дыр |
-| **2** | D (каталог) + flags + slug | Цены, процедуры; 4 на главной, 5 в nav dropdown |
-| **1c** | B.12 форма в Sanity (можно вместе с 1 или 1b) | Инна правит подписи формы |
-| **2b** | D2 treatment concerns | Инна привязывает процедуры к concerns; hub «Browse by concern» |
-| **3** | E (legal, полный текст × 3) + H | Policy/terms |
-| **4** | G + F.5–F.6 (seed, preview, prod) | Go-live |
-| **5** | J (опционально) | Чище репо |
+| Фаза | Статус | Фокус | Результат для клиента |
+|------|--------|--------|------------------------|
+| **0** | ✅ | Согласование A + принципы §3 + [part-0 checklist](../checklists/part-0-sanity-prep.md) | Границы зафиксированы |
+| **1** | ✅ | Лендинг EN: флаги категорий, CTA, services из каталога | Главная + nav из CMS |
+| **1c** | ✅ | Форма, отзывы+IG, FAQ | `contactForm`, reviews |
+| **3** | ✅ | Brand logos в Studio | Инна загружает логотипы |
+| **4** | ✅ | Site settings UX + merge doc | Телефон/URL в одном месте |
+| **1b** | ✅ | UK/RU seed | [part-5 checklist](../checklists/part-5-uk-ru.md); процедуры EN fallback |
+| **2** | ⏳ | D: locale tabs, цены, фото процедур, structure | Полный каталог в Studio |
+| **2b** | ⏳ | D2 treatment concerns | Hub «by concern» |
+| **E+H** | ⏳ | Legal polish (E.2–E.5) + H быстрый старт | Инструкция для Инны |
+| **G+F** | ⏳ | seed prod, revalidate, preview | Go-live |
+| **J** | ⏳ | README, HANDOFF | Чище репо |
 
 ---
 
@@ -221,7 +231,8 @@
 | Slug | Автоген, read-only для Инны |
 | CTA | Nav — короткая; Hero primary — длинная (`primaryCtaLabel`) |
 | Concerns (быв. goals) | Справочник `treatmentConcern` + refs на процедурах; hub с **картинками** |
-| Форма контакта | **Перенести в Sanity** (не `messages/`) |
+| Форма контакта | **`landingPage.contactForm`** (сделано) |
+| `shortTitle` | Nav dropdown, напр. **Injectables** |
 | Отзывы | **Реальные имена** + опциональная ссылка на Instagram |
 | Форма / cookie / a11y UI | См. матрицу §0 — cookie и a11y пока в `messages/` |
 
@@ -291,8 +302,13 @@
 
 ## 8. Следующий шаг
 
-**PR 1:** схемы + Studio — лендинг EN, флаги категорий (4/5), CTA-мапперы, reviews + IG URL, contact form object.  
-**PR 2:** мапперы + GROQ + UI wiring.  
-**PR 3:** seed prod + чеклист EN.  
-**PR 4:** перевод UK/RU.  
-**PR 5 (фаза 2/2b):** каталог, concerns, hub UI.
+**Сделано в коде (части 0–5):** см. чекбоксы в §4 и журнал §7. После коммитов: `pnpm seed:sanity` на prod (бэкап → [part-0](../checklists/part-0-sanity-prep.md)).
+
+**Дальше по приоритету:**
+
+1. **G.1–G.2** — прогон seed + сверка с [part-5-uk-ru.md](../checklists/part-5-uk-ru.md).
+2. **Фаза 2 (D)** — locale tabs, цены, изображения процедур.
+3. **Фаза 2b (D2)** — `treatmentConcern`.
+4. **F.5–F.6 + H.1** — revalidate, preview, быстрый старт для Инны.
+
+*Отдельно (не блокер):* B.3 presets `href`, B.11 подсказки, E.4 legal UX, J.2 HANDOFF.
