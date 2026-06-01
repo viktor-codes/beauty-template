@@ -104,14 +104,14 @@
 - [x] **B.8b** UI: ссылка «View on Instagram» если URL задан (открывает post/highlight в IG).
 - [x] **B.12** **Contact form copy:** перенос `ContactForm` из `messages/*` → Sanity (`contactForm` on `landingPage`).
 - [x] **B.9** **FAQ:** убрать дубль `items` — только `groups`; stable `id` в Studio description.
-- [ ] **B.10** **Contact + Footer:** слияние с `siteSettings`, какие поля override на лендинге.
+- [x] **B.10** **Contact + Footer:** слияние с `siteSettings` — см. [site-settings-merge.md](../checklists/site-settings-merge.md).
 - [ ] **B.11** Подсказки к полям (`description`) на языке редактора + примеры хороших текстов.
 
 ### Блок C — Site settings (`siteSettings`)
 
-- [ ] **C.1** Расширить ли схему: часы работы, WhatsApp label, SEO defaults, favicon?
-- [ ] **C.2** Явная подпись в Studio: «Меняете телефон здесь — обновится везде».
-- [ ] **C.3** Валидация `tel:` / `mailto:` / URL.
+- [ ] **C.1** Расширить ли схему: часы работы, WhatsApp label, SEO defaults, favicon? *(не в Part 4)*
+- [x] **C.2** Явная подпись в Studio: «Меняете телефон здесь — обновится везде».
+- [x] **C.3** Валидация `tel:` / email / URL.
 
 ### Блок D — Каталог услуг (field i18n)
 
@@ -284,6 +284,7 @@
 | 2026-06-01 | A.2/A.3: статика — вечный fallback; Part 1: флаги категорий, homepage/nav из каталога | команда |
 | 2026-06-01 | Part 2: CTA из CMS, contactForm на landingPage, reviews+IG, FAQ без legacy items | команда |
 | 2026-06-01 | Part 3: brand logos upload в Studio, CMS-first mapper, seed assets | команда |
+| 2026-06-01 | Part 4: site settings UX, validation, messenger URL merge, B.10 doc | команда |
 
 ---
 

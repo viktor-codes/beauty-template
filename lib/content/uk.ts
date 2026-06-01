@@ -22,7 +22,7 @@ export const ukLandingContent = {
   },
   hero: {
     eyebrow: "The Skinbar · Inna Chernovol",
-    title: "Впевненість, яка видно в кожному відображенні",
+    title: "Впевненість, яку видно в кожному відображенні",
     subtitle:
       "Персональний план процедур у спокійному просторі — результат, який видно, без нав’язливих продажів.",
     primaryCta: { label: "Записатися на консультацію", href: "#contact" },

@@ -35,6 +35,7 @@ Store the archive outside the repo. Record the date in [sanity-client-admin-road
 - [ ] One category page e.g. `/treatments/cosmetology`
 - [ ] Draft/publish: edit category flag in Studio → revalidate → site updates
 - [ ] About: replace one brand logo in Studio → marquee shows CDN image (not `/public/logos`)
+- [ ] Site settings EN: change phone → contact section + footer update (see [site-settings-merge.md](./site-settings-merge.md))
 
 ## 4. Content fallback policy (agreed)
 

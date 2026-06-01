@@ -36,12 +36,45 @@ function mergeWithSiteSettings(
   const address = settings.address?.trim();
   const directionsHref = settings.directionsHref?.trim();
 
-  return {
+  const withCanonicalFields: ContactContent = {
     ...contact,
     phone: phone || contact.phone,
     email: email || contact.email,
     address: address || contact.address,
     directionsHref: directionsHref || contact.directionsHref,
+  };
+
+  return applySettingsToMessengers(withCanonicalFields, settings);
+}
+
+function applySettingsToMessengers(
+  contact: ContactContent,
+  settings: SanitySiteSettingsLike | null | undefined,
+): ContactContent {
+  if (!settings) return contact;
+
+  const telegramHref = settings.telegramHref?.trim();
+  const whatsappHref = settings.whatsappHref?.trim();
+  const instagramUrl = settings.instagramUrl?.trim();
+
+  if (!telegramHref && !whatsappHref && !instagramUrl) {
+    return contact;
+  }
+
+  return {
+    ...contact,
+    messengers: contact.messengers.map((messenger) => {
+      if (messenger.id === "telegram" && telegramHref) {
+        return { ...messenger, href: telegramHref };
+      }
+      if (messenger.id === "whatsapp" && whatsappHref) {
+        return { ...messenger, href: whatsappHref };
+      }
+      if (messenger.id === "instagram" && instagramUrl) {
+        return { ...messenger, href: instagramUrl };
+      }
+      return messenger;
+    }),
   };
 }
 

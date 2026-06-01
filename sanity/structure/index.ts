@@ -13,7 +13,14 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem("landingPage").title(
                 "Landing pages (About → brand logos)",
               ),
-              S.documentTypeListItem("siteSettings").title("Site settings"),
+              S.listItem()
+                .title("Site settings (phone · email · address)")
+                .child(
+                  S.documentList()
+                    .title("Site settings — updates contact & footer")
+                    .filter('_type == "siteSettings"')
+                    .defaultOrdering([{ field: "language", direction: "asc" }]),
+                ),
               S.listItem()
                 .title("Legal pages")
                 .child(
