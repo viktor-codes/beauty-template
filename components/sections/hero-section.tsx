@@ -57,7 +57,7 @@ export function HeroSection({
             </h1>
           </div>
           <div className="order-3 relative flex w-full justify-center md:order-0 md:col-start-2 md:row-start-2 md:min-h-0 md:items-center md:justify-end lg:row-span-2 lg:row-start-1">
-            <div
+            {/* <div
               aria-hidden
               className="pointer-events-none absolute bottom-[8%] left-[2%] z-1 hidden max-w-[28vw] max-md:block"
             >
@@ -68,7 +68,7 @@ export function HeroSection({
                 height={356}
                 className="h-auto w-full opacity-70 -scale-y-100 blur-[0.6px]"
               />
-            </div>
+            </div> */}
             <div className="relative z-10 w-2/3 md:w-full max-w-full self-end">
               <div
                 aria-hidden
@@ -85,7 +85,7 @@ export function HeroSection({
                 className="relative z-10 h-auto w-full object-contain object-bottom drop-shadow-[0_10px_18px_rgba(0,0,0,0.10)]"
               />
             </div>
-            <div
+            {/* <div
               aria-hidden
               className="pointer-events-none absolute top-[8%] right-[2%] z-20 hidden max-w-[28vw] max-md:block"
             >
@@ -96,7 +96,31 @@ export function HeroSection({
                 height={356}
                 className="h-auto w-full -scale-x-100  opacity-90"
               />
-            </div>
+            </div> */}
+            {/* <div
+              aria-hidden
+              className="pointer-events-none absolute top-[-10%] left-[-20%] z-[-10] hidden w-[min(38%,220px)] md:block lg:left-[-20%] lg:w-[min(42%,260px)]"
+            >
+              <Image
+                src="/leave.svg"
+                alt=""
+                width={187}
+                height={356}
+                className="h-auto w-full -scale-y-100 opacity-75 blur-[1px]"
+              />
+            </div> */}
+            {/* <div
+              aria-hidden
+              className="pointer-events-none absolute top-[10%] right-[-18%] z-100 hidden w-[min(42%,260px)] md:block "
+            >
+              <Image
+                src="/leave.svg"
+                alt=""
+                width={187}
+                height={356}
+                className="h-auto w-full -scale-x-100 opacity-75 blur-[0.4px]"
+              />
+            </div> */}
           </div>
           <div className="order-2 mb-0 text-center md:order-0 md:mb-8 md:col-start-1 md:row-start-2 md:text-left">
             <p className="mx-auto max-w-xl text-base leading-relaxed text-muted md:mx-0">
