@@ -23,7 +23,7 @@
 - [x] Ошибки ввода **ловятся в Studio** для части полей (флаги 4/5, tel/email/url, max reviews); мапперы с fallback.
 - [x] Три языка: лендинг ×3, legal ×3, settings ×3; категории каталога с UK/RU (процедуры — EN + fallback).
 - [ ] Есть **короткая инструкция для клиента** (1–2 страницы PDF/Notion или раздел в Studio).
-- [ ] Seed + preview/revalidate: seed готов; **preview/webhook** — см. F.5–F.6, G.1.
+- [x] Seed on production dataset ([G.1](./../checklists/g2-post-seed-verification.md) §6); **preview/webhook** — см. F.5–F.6.
 
 ---
 
@@ -123,7 +123,7 @@
 
 ### Блок D — Каталог услуг (field i18n)
 
-- [ ] **D.1** Custom input для `localeString` / `localeText` (табы EN | UK | RU вместо трёх полей в столбик) — плагин или свой компонент.
+- [x] **D.1** Custom input для `localeString` / `localeText` (табы EN | UK | RU) — `sanity/components/locale-tabs-input.tsx`.
 - [ ] **D.2** **Цены:** формат отображения (от/от €), опциональная цена, валюта только EUR?
 - [ ] **D.3** **Изображения процедур:** Sanity assets + hotspot; alt на трёх языках.
 - [ ] **D.4** Поля, которых нет в схеме, но есть в статике: duration, badges, contraindications — нужны ли клиенту?
@@ -139,11 +139,11 @@
 
 См. [treatment-concerns-spec.md](./treatment-concerns-spec.md).
 
-- [ ] **D2.1** Документ `treatmentConcern` (`localeString` title, slug автоген).
-- [ ] **D2.2** На `serviceProcedure`: `concerns[]` (references).
-- [ ] **D2.3** Убрать keyword scoring; hub + `?concern=` из явных связей.
-- [ ] **D2.4** UI: сетка concerns на `/treatments` **с изображением**; chips на лендинге из справочника.
-- [ ] **D2.5** Seed + миграция с текущих `goal-*`.
+- [x] **D2.1** Документ `treatmentConcern` (`localeString` title, slug автоген).
+- [x] **D2.2** На `serviceProcedure`: `concerns[]` (references).
+- [ ] **D2.3** Убрать keyword scoring; hub + `?concern=` из явных связей (fallback пока есть).
+- [ ] **D2.4** UI: сетка concerns на `/treatments` ✅; chips на лендинге из справочника — **B.6**.
+- [x] **D2.5** Seed + миграция с текущих `goal-*` (concern refs на процедурах).
 
 ### Блок E — Legal (`legalPage`)
 
@@ -165,9 +165,9 @@
 
 ### Блок G — Миграция и наполнение
 
-- [ ] **G.1** Прогон `pnpm seed:sanity` на **production** dataset (staging нет — бэкап перед seed).
-- [ ] **G.2** Чеклист сравнения: статика vs CMS после seed (секция за секцией).
-- [ ] **G.3** План переключения prod: `isSanityConfigured` + env checklist.
+- [x] **G.1** Прогон `pnpm seed:sanity` на **production** dataset (2026-06-01; бэкап — в командных заметках).
+- [x] **G.2** Чеклист: [g2-post-seed-verification.md](../checklists/g2-post-seed-verification.md) + [part-5](../checklists/part-5-uk-ru.md) (лендинг UK/RU ✓; картинки — D.3).
+- [ ] **G.3** План переключения prod: `isSanityConfigured` + env checklist (см. g2 §2–3).
 - [ ] **G.4** Резервная копия dataset перед массовыми правками схем.
 
 ### Блок H — Документация для клиента
@@ -204,8 +204,9 @@
 | **3** | ✅ | Brand logos в Studio | Инна загружает логотипы |
 | **4** | ✅ | Site settings UX + merge doc | Телефон/URL в одном месте |
 | **1b** | ✅ | UK/RU seed | [part-5 checklist](../checklists/part-5-uk-ru.md); процедуры EN fallback |
-| **2** | ⏳ | D: locale tabs, цены, фото процедур, structure | Полный каталог в Studio |
-| **2b** | ⏳ | D2 treatment concerns | Hub «by concern» |
+| **2** | ⏳ | D: цены, фото процедур, structure (D.1 tabs ✅) | Полный каталог в Studio |
+| **2b** | 🟡 | D2 treatment concerns | Hub ✅; лендинг chips — B.6 |
+| **G** | ✅ | seed prod + g2 checklist | CMS = source of truth |
 | **E+H** | ⏳ | Legal polish (E.2–E.5) + H быстрый старт | Инструкция для Инны |
 | **G+F** | ⏳ | seed prod, revalidate, preview | Go-live |
 | **J** | ⏳ | README, HANDOFF | Чище репо |
@@ -298,18 +299,18 @@
 | 2026-06-01 | Part 4: site settings UX, validation, messenger URL merge, B.10 doc | команда |
 | 2026-06-01 | Part 5: UK/RU seed — landing×3, category localeString, procedures EN-only fallback | команда |
 | 2026-06-01 | [Матрица полей](./landing-sections-field-matrix.md) синхронизирована с частями 0–5 (колонка «Статус», закрытые баги мапперов) | команда |
+| 2026-06-01 | G.1 seed на production; G.2 [g2-post-seed-verification.md](../checklists/g2-post-seed-verification.md); hub + concerns; лендинг UK/RU QA; картинки — D.3 | команда |
 
 ---
 
 ## 8. Следующий шаг
 
-**Сделано в коде (части 0–5):** см. чекбоксы в §4 и журнал §7. После коммитов: `pnpm seed:sanity` на prod (бэкап → [part-0](../checklists/part-0-sanity-prep.md)).
+**G.1–G.2:** seed prod ✅ — политика и чеклисты: [g2-post-seed-verification.md](../checklists/g2-post-seed-verification.md), [lib/README.md](../../lib/README.md).
 
 **Дальше по приоритету:**
 
-1. **G.1–G.2** — прогон seed + сверка с [part-5-uk-ru.md](../checklists/part-5-uk-ru.md).
-2. **Фаза 2 (D)** — locale tabs, цены, изображения процедур.
-3. **Фаза 2b (D2)** — `treatmentConcern`.
-4. **F.5–F.6 + H.1** — revalidate, preview, быстрый старт для Инны.
+1. **B.6 + D2.3** — chips на лендинге из concerns; убрать keyword fallback.
+2. **D.3** — изображения процедур/категорий в CMS (сейчас в основном `/public`).
+3. **F.5–F.6 + H.1** — revalidate, preview, быстрый старт для Инны.
 
 *Отдельно (не блокер):* B.3 presets `href`, B.11 подсказки, E.4 legal UX, J.2 HANDOFF.

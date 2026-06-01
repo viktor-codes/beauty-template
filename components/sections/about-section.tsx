@@ -4,6 +4,10 @@ import Image from "next/image";
 
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
+import {
+  ABOUT_BRAND_MARQUEE_LAYOUT,
+  expandMarqueeTrackItems,
+} from "@/lib/marquee/expand-track-items";
 import type { AboutContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 
@@ -20,6 +24,11 @@ export function AboutSection({
   id = "about",
   ...rest
 }: AboutSectionProps) {
+  const marqueeBrandLogos = expandMarqueeTrackItems(
+    content.brandLogos,
+    ABOUT_BRAND_MARQUEE_LAYOUT,
+  );
+
   return (
     <Section id={id} className={cn("bg-background", className)} {...rest}>
       <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
@@ -78,9 +87,9 @@ export function AboutSection({
         <div className="marquee-viewport mt-8 [--marquee-duration:48s] [--marquee-edge:var(--color-background)]">
           <div className="marquee-inner">
             <ul className="marquee-track list-none gap-4 py-2">
-              {content.brandLogos.map((logo, index) => (
+              {marqueeBrandLogos.map((logo, index) => (
                 <li
-                  key={logo.id ?? `${logo.alt}-${index}`}
+                  key={`${logo.id ?? logo.alt}-${index}`}
                   className="flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
                 >
                   <Image
@@ -93,9 +102,9 @@ export function AboutSection({
                   />
                 </li>
               ))}
-              {content.brandLogos.map((logo, index) => (
+              {marqueeBrandLogos.map((logo, index) => (
                 <li
-                  key={`${logo.id ?? `${logo.alt}-${index}`}-clone`}
+                  key={`${logo.id ?? logo.alt}-${index}-clone`}
                   className="marquee-item--clone flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
                   aria-hidden
                 >

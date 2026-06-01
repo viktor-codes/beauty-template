@@ -39,5 +39,11 @@ Store the archive outside the repo. Record the date in [sanity-client-admin-road
 
 ## 4. Content fallback policy (agreed)
 
-- `lib/content/*` and `lib/services/**` remain **permanent fallbacks** when CMS is empty or offline.
+- **Sanity production** = source of truth for editorial content after seed (see [g2-post-seed-verification.md](./g2-post-seed-verification.md)).
+- `lib/content/*` and `lib/services/**` remain **permanent fallbacks** when CMS is empty or offline — **not** for Inna’s routine edits.
 - UK/RU empty fields → EN on site (`pick-locale-field`).
+
+## 5. After first prod seed (G.1 done)
+
+- [x] `pnpm seed:sanity` on production (2026-06-01)
+- [ ] Complete remaining items in [g2-post-seed-verification.md](./g2-post-seed-verification.md) §4 (publish → revalidate smoke)
