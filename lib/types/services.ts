@@ -18,6 +18,32 @@ export interface ServiceProcedure {
   description: string;
   image?: ServiceImage;
   price?: Money;
+  /** Slugs of linked treatmentConcern documents (for hub filtering). */
+  concernIds?: string[];
+}
+
+export interface TreatmentConcern {
+  id: string;
+  title: string;
+  shortDescription?: string;
+  image?: ServiceImage;
+  href: string;
+  sortOrder?: number;
+  isActive?: boolean;
+}
+
+export interface TreatmentsHubUi {
+  pageTitle: string;
+  pageDescription: string;
+  goalsSectionTitle: string;
+  faqEyebrow: string;
+  faqTitle: string;
+  faqSubtitle: string;
+  viewFullFaqLabel: string;
+  recommendedForPrefix: string;
+  viewDetailsLabel: string;
+  breadcrumbHome: string;
+  breadcrumbTreatments: string;
 }
 
 export interface ServiceSubcategory {
@@ -46,8 +72,11 @@ export interface ServiceCategory {
 
 export interface ServicesCatalog {
   id: string;
+  /** H1 on /treatments — from treatmentsHub, not the catalog id label. */
   title: string;
   description: string;
   categories: ServiceCategory[];
+  concerns: TreatmentConcern[];
+  hubUi: TreatmentsHubUi;
 }
 

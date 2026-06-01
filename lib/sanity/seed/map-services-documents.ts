@@ -2,6 +2,7 @@ import type { ServicesCatalog } from "@/lib/types/services";
 
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
 import { STATIC_CATEGORY_SHORT_TITLES } from "@/lib/services/category-short-titles";
+import { getProcedureConcernRefs } from "@/lib/sanity/seed/map-treatment-concerns";
 import { getCategoryLocaleCopy } from "@/lib/sanity/seed/service-category-locale-copy";
 import {
   toLocaleStringEnOnly,
@@ -68,6 +69,12 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
 
       let procOrder = 0;
       for (const procedure of subcategory.procedures) {
+        const concernRefs = getProcedureConcernRefs(
+          category.id,
+          subcategory.id,
+          procedure.id,
+        );
+
         docs.push({
           _id: procedureDocId(category.id, subcategory.id, procedure.id),
           _type: "serviceProcedure",
@@ -79,6 +86,7 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
             ? { amount: procedure.price.amount, currency: procedure.price.currency }
             : undefined,
           sortOrder: procOrder,
+          ...(concernRefs.length > 0 ? { concerns: concernRefs } : {}),
         });
         procOrder += 1;
       }

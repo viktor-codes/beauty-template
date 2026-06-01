@@ -16,29 +16,42 @@ import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
 import { getServicesHubFaq } from "@/lib/services-faq";
 import {
-  getGoalLabel,
-  getGoalRecommendations,
-  isGoalSlug,
-  type GoalSlug,
-} from "@/lib/services-goals";
-import {
-  SITE_BRAND,
-  SITE_PRACTITIONER,
-  SITE_SERVICES_HUB_DESCRIPTION,
-} from "@/lib/site-metadata";
-import { servicesCatalog } from "@/lib/services/catalog";
+  getConcernRecommendations,
+  getConcernTitle,
+  isConcernSlug,
+} from "@/lib/services/concern-recommendations";
 import { resolveServicesCatalog } from "@/lib/services";
+import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "Cosmetology treatments & categories",
-  description: SITE_SERVICES_HUB_DESCRIPTION,
-  openGraph: {
-    title: `Cosmetology treatments | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
-    description: SITE_SERVICES_HUB_DESCRIPTION,
-    type: "website",
-    url: "/treatments",
-  },
-};
+function resolveConcernFromSearchParams(
+  searchParams: Record<string, string | string[] | undefined>,
+): string | null {
+  const rawConcern = searchParams.concern ?? searchParams.goal;
+  const value = Array.isArray(rawConcern) ? rawConcern[0] : rawConcern;
+  if (!value || !isConcernSlug(value)) return null;
+  return value;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const appLocale = locale as AppLocale;
+  const catalog = await resolveServicesCatalog(appLocale);
+
+  return {
+    title: catalog.title,
+    description: catalog.description,
+    openGraph: {
+      title: `${catalog.title} | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
+      description: catalog.description,
+      type: "website",
+      url: "/treatments",
+    },
+  };
+}
 
 export default async function ServicesPage({
   params,
@@ -52,29 +65,28 @@ export default async function ServicesPage({
   const appLocale = locale as AppLocale;
   const catalog = await resolveServicesCatalog(appLocale);
   const landingContent = await getLandingContent(appLocale);
+  const { hubUi } = catalog;
 
   const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Treatments", href: "/treatments" },
+    { label: hubUi.breadcrumbHome, href: "/" },
+    { label: hubUi.breadcrumbTreatments, href: "/treatments" },
   ];
 
   const resolvedSearchParams = await searchParams;
-  const rawGoal = resolvedSearchParams.goal;
-  const goalValue = Array.isArray(rawGoal) ? rawGoal[0] : rawGoal;
-  const selectedGoal: GoalSlug | null =
-    goalValue && isGoalSlug(goalValue) ? goalValue : null;
-  const recommended = selectedGoal
-    ? getGoalRecommendations(selectedGoal, catalog, 10)
+  const selectedConcern = resolveConcernFromSearchParams(resolvedSearchParams);
+  const recommended = selectedConcern
+    ? getConcernRecommendations(selectedConcern, catalog, 10)
     : [];
   const hubFaq = await getServicesHubFaq(appLocale, 6);
+  const activeConcerns = catalog.concerns.filter((c) => c.isActive !== false);
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">
       <Section className="bg-background" aria-labelledby="services-hub-title">
         <BreadcrumbsJsonLd items={breadcrumbs} />
         <ItemListJsonLd
-          name="Cosmetology service categories"
-          description={SITE_SERVICES_HUB_DESCRIPTION}
+          name={catalog.title}
+          description={catalog.description}
           items={catalog.categories.map((category) => ({
             name: category.title,
             description: category.description,
@@ -85,20 +97,17 @@ export default async function ServicesPage({
         <SectionHeading
           titleId="services-hub-title"
           titleLevel={1}
-          title="Explore treatments by category"
-          subtitle="Start with a direction or choose a goal. I keep it clear and calm—no overwhelming menus."
+          title={catalog.title}
+          subtitle={catalog.description}
         />
 
-        {selectedGoal ? (
-          <section
-            className="mb-10"
-            aria-labelledby="hub-recommended-heading"
-          >
+        {selectedConcern ? (
+          <section className="mb-10" aria-labelledby="hub-recommended-heading">
             <h2
               id="hub-recommended-heading"
               className="text-xs font-medium uppercase tracking-[0.2em] text-muted"
             >
-              Recommended for {getGoalLabel(selectedGoal)}
+              {hubUi.recommendedForPrefix} {getConcernTitle(selectedConcern, catalog)}
             </h2>
             <ul className="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
               {recommended.map((hit) => {
@@ -135,13 +144,8 @@ export default async function ServicesPage({
                       </div>
 
                       <div className="flex shrink-0 items-center gap-3">
-                        <Button
-                          href={hit.href}
-                          variant="secondary"
-                          size="sm"
-                          className="whitespace-nowrap"
-                        >
-                          View details
+                        <Button href={hit.href} variant="secondary" size="sm" className="whitespace-nowrap">
+                          {hubUi.viewDetailsLabel}
                         </Button>
                       </div>
                     </div>
@@ -154,7 +158,7 @@ export default async function ServicesPage({
 
         <section aria-labelledby="hub-categories-heading">
           <h2 id="hub-categories-heading" className="sr-only">
-            Treatment categories
+            {hubUi.breadcrumbTreatments}
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2">
             {catalog.categories.map((category) => (
@@ -170,46 +174,45 @@ export default async function ServicesPage({
           </ul>
         </section>
 
-        <section
-          className="mt-10 rounded-2xl border border-border bg-surface/50 p-6"
-          aria-labelledby="hub-goals-heading"
-        >
-          <h2
-            id="hub-goals-heading"
-            className="text-xs font-medium uppercase tracking-[0.2em] text-muted"
+        {activeConcerns.length > 0 ? (
+          <section
+            className="mt-10 rounded-2xl border border-border bg-surface/50 p-6"
+            aria-labelledby="hub-goals-heading"
           >
-            Choose by goal
-          </h2>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {landingContent.services.goals.map((goal) => (
-              <li key={goal.id}>
-                <Link href={goal.href} className="no-underline">
-                  <Badge variant="outline">{goal.title}</Badge>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6 flex flex-wrap gap-4">
-            <Button href="/#contact" size="lg">
-              {landingContent.nav.cta.label}
-            </Button>
-            <Button href="/" variant="secondary" size="lg">
-              Back to landing
-            </Button>
-          </div>
-        </section>
+            <h2
+              id="hub-goals-heading"
+              className="text-xs font-medium uppercase tracking-[0.2em] text-muted"
+            >
+              {hubUi.goalsSectionTitle}
+            </h2>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {activeConcerns.map((concern) => (
+                <li key={concern.id}>
+                  <Link href={concern.href} className="no-underline">
+                    <Badge variant="outline">{concern.title}</Badge>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Button href="/#contact" size="lg">
+                {landingContent.nav.cta.label}
+              </Button>
+              <Button href="/" variant="secondary" size="lg">
+                {landingContent.hero.secondaryCta.label}
+              </Button>
+            </div>
+          </section>
+        ) : null}
       </Section>
 
-      <Section
-        className="bg-background"
-        aria-labelledby="services-hub-faq-heading"
-      >
+      <Section className="bg-background" aria-labelledby="services-hub-faq-heading">
         <FaqJsonLd items={hubFaq} />
         <SectionHeading
           titleId="services-hub-faq-heading"
-          eyebrow="FAQ"
-          title="Common questions"
-          subtitle="Straight answers for planning, safety, and realistic expectations—before you book."
+          eyebrow={hubUi.faqEyebrow}
+          title={hubUi.faqTitle}
+          subtitle={hubUi.faqSubtitle}
           className="mb-6"
         />
         <FaqAccordion items={hubFaq} />
@@ -218,7 +221,7 @@ export default async function ServicesPage({
             href="/#faq"
             className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
-            View the full FAQ on the homepage
+            {hubUi.viewFullFaqLabel}
           </Link>
         </div>
       </Section>

@@ -5,7 +5,7 @@ import { fetchServicesCatalog } from "@/lib/sanity/fetch/fetch-services-catalog"
 import { mapServicesCatalogSafe } from "@/lib/sanity/mappers/services";
 import type { ServicesCatalog } from "@/lib/types/services";
 
-import { servicesCatalog } from "@/lib/services/catalog";
+import { buildStaticServicesCatalog, servicesCatalog } from "@/lib/services/catalog";
 
 export {
   buildHomepageCategoryPreviews,
@@ -35,8 +35,8 @@ export function getServicesProcedure(
 }
 
 /** Static catalog — seed source and fallback when Sanity is unavailable. */
-export function getStaticServicesCatalog(_locale: AppLocale): ServicesCatalog {
-  return servicesCatalog;
+export function getStaticServicesCatalog(locale: AppLocale): ServicesCatalog {
+  return buildStaticServicesCatalog(locale);
 }
 
 /** Resolves catalog from Sanity with static fallback (client-editable in Studio). */

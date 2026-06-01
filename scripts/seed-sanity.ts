@@ -19,6 +19,8 @@ import { commitDocumentsInChunks } from "@/lib/sanity/seed/commit-documents";
 import { enrichLandingDocumentWithImages } from "@/lib/sanity/seed/enrich-landing-images";
 import { buildLegalDocuments } from "@/lib/sanity/seed/map-legal-documents";
 import { buildServiceDocuments } from "@/lib/sanity/seed/map-services-documents";
+import { buildTreatmentConcernDocuments } from "@/lib/sanity/seed/map-treatment-concerns";
+import { buildTreatmentsHubDocument } from "@/lib/sanity/seed/map-treatments-hub";
 
 const LOCALES: AppLocale[] = ["en", "uk", "ru"];
 
@@ -66,10 +68,14 @@ function mapSiteSettings(locale: AppLocale) {
 async function main() {
   const client = getWriteClient();
 
-  console.log("Seeding services catalog (category UK/RU from static landing, procedures EN-only)…");
+  console.log("Seeding treatments hub + concerns + services catalog…");
+  const hubDoc = buildTreatmentsHubDocument();
+  const concernDocs = buildTreatmentConcernDocuments();
   const serviceDocs = buildServiceDocuments(servicesCatalog);
-  await commitDocumentsInChunks(client, serviceDocs);
-  console.log(`Services: ${serviceDocs.length} documents`);
+  await commitDocumentsInChunks(client, [hubDoc, ...concernDocs, ...serviceDocs]);
+  console.log(
+    `Services: 1 hub + ${concernDocs.length} concerns + ${serviceDocs.length} category tree docs`,
+  );
 
   console.log("Seeding landing pages + site settings + legal pages…");
   for (const locale of LOCALES) {

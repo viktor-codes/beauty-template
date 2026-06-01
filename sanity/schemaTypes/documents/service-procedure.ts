@@ -44,6 +44,14 @@ export const serviceProcedure = defineType({
       type: "number",
       initialValue: 0,
     }),
+    defineField({
+      name: "concerns",
+      title: "Helps with concerns",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "treatmentConcern" }] }],
+      description:
+        "Select which client concerns this procedure addresses. Used on /treatments hub and ?concern= recommendations.",
+    }),
   ],
   preview: {
     select: { title: "title.en", subcategory: "subcategory.title.en" },

@@ -41,5 +41,5 @@ After `pnpm seed:sanity` (with prod backup per [part-0-sanity-prep.md](./part-0-
 ## Gaps (follow-up, not blockers)
 
 - Procedure/subcategory UK/RU: translate in Studio field i18n tabs (phase 6+) or future static export
-- Treatments hub H1 still from `messages` / hardcoded EN — separate task
+- Treatments hub H1/subtitle/FAQ headings: **`treatmentsHub`** singleton in Sanity (seed + Studio); page reads `catalog.title` / `hubUi`
 - Cookie / a11y strings still in `messages/*`

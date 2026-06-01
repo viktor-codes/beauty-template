@@ -54,11 +54,24 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Services")
             .items([
+              S.listItem()
+                .title("Treatments hub page (/treatments)")
+                .child(
+                  S.document().schemaType("treatmentsHub").documentId("treatmentsHub"),
+                ),
+              S.documentTypeListItem("treatmentConcern").title(
+                "Treatment concerns (goals)",
+              ),
+              S.divider(),
               S.documentTypeListItem("serviceCategory").title(
                 "1. Categories (homepage & menu flags)",
               ),
-              S.documentTypeListItem("serviceSubcategory").title("2. Subcategories"),
-              S.documentTypeListItem("serviceProcedure").title("3. Procedures"),
+              S.documentTypeListItem("serviceSubcategory").title(
+                "2. Subcategories — pick a parent category",
+              ),
+              S.documentTypeListItem("serviceProcedure").title(
+                "3. Procedures — pick a subcategory + concerns",
+              ),
               S.divider(),
               S.listItem()
                 .title("Browse by category")

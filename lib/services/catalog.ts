@@ -1,4 +1,7 @@
+import type { AppLocale } from "@/i18n/routing";
 import type { ServicesCatalog } from "@/lib/types/services";
+import { getStaticTreatmentConcerns } from "@/lib/services/static-treatment-concerns";
+import { getStaticTreatmentsHubCopy } from "@/lib/services/treatments-hub-copy";
 
 import { aestheticInjectionsCategory } from "@/lib/services/categories/aesthetic-injections";
 import { aestheticTreatmentsCategory } from "@/lib/services/categories/aesthetic-treatments";
@@ -10,12 +13,7 @@ import { cosmetologyCategory } from "@/lib/services/categories/cosmetology";
 import { laserHairRemovalCategory } from "@/lib/services/categories/laser-hair-removal";
 import { vitaminShotsCategory } from "@/lib/services/categories/vitamin-shots";
 
-export const servicesCatalog: ServicesCatalog = {
-  id: "treatments",
-  title: "Treatments",
-  description:
-    "Dermatology-informed treatments designed to improve skin quality, restore balance, and support natural-looking results.",
-  categories: [
+const staticServiceCategories = [
     cosmetologyCategory,
     bodySlimmingCategory,
     antiAgeCategory,
@@ -25,5 +23,21 @@ export const servicesCatalog: ServicesCatalog = {
     aestheticInjectionsCategory,
     advancedAestheticTreatmentsCategory,
     laserHairRemovalCategory,
-  ],
-};
+];
+
+/** Static catalog for a locale (seed source + Sanity fallback). */
+export function buildStaticServicesCatalog(locale: AppLocale): ServicesCatalog {
+  const hubUi = getStaticTreatmentsHubCopy(locale);
+
+  return {
+    id: "treatments",
+    title: hubUi.pageTitle,
+    description: hubUi.pageDescription,
+    categories: staticServiceCategories,
+    concerns: getStaticTreatmentConcerns(locale),
+    hubUi,
+  };
+}
+
+/** English static catalog — used for generateStaticParams and seed. */
+export const servicesCatalog = buildStaticServicesCatalog("en");

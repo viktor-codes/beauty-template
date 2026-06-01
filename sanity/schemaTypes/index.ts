@@ -3,6 +3,8 @@ import { landingPage } from "./documents/landing-page";
 import { serviceCategory } from "./documents/service-category";
 import { serviceProcedure } from "./documents/service-procedure";
 import { serviceSubcategory } from "./documents/service-subcategory";
+import { treatmentConcern } from "./documents/treatment-concern";
+import { treatmentsHub } from "./documents/treatments-hub";
 import { siteSettings } from "./documents/site-settings";
 import { aboutStat } from "./objects/about-stat";
 import { brandLogo } from "./objects/brand-logo";
@@ -62,6 +64,8 @@ export const schemaTypes = [
   serviceCategory,
   serviceSubcategory,
   serviceProcedure,
+  treatmentConcern,
+  treatmentsHub,
   landingPage,
   legalPage,
   siteSettings,

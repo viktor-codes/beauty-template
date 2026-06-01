@@ -8,6 +8,8 @@ const SERVICE_DOCUMENT_TYPES = new Set([
   "serviceCategory",
   "serviceSubcategory",
   "serviceProcedure",
+  "treatmentConcern",
+  "treatmentsHub",
 ]);
 
 const MARKETING_PATHS = ["/", "/treatments", "/privacy", "/terms"] as const;

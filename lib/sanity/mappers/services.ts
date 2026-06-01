@@ -3,7 +3,14 @@ import { readLocalizedValue, type LocaleFieldValues } from "@/lib/i18n/pick-loca
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
 import { getStaticCategoryShortTitle } from "@/lib/services/category-short-titles";
 import { getStaticServicesCatalog } from "@/lib/sanity/fetch/get-services-catalog";
-import type { ServiceCategory, ServiceProcedure, ServicesCatalog, ServiceSubcategory } from "@/lib/types/services";
+import type {
+  ServiceCategory,
+  ServiceProcedure,
+  ServicesCatalog,
+  ServiceSubcategory,
+  TreatmentConcern,
+  TreatmentsHubUi,
+} from "@/lib/types/services";
 
 import {
   mapLocalizedAlt,
@@ -24,6 +31,7 @@ interface SanityProcedureLike {
   description?: LocaleFieldValues;
   image?: SanityServiceImageLike | null;
   price?: { amount?: number; currency?: string } | null;
+  concernSlugs?: string[] | null;
 }
 
 interface SanitySubcategoryLike {
@@ -46,9 +54,28 @@ interface SanityCategoryLike {
   subcategories?: SanitySubcategoryLike[] | null;
 }
 
-export interface SanityServicesCatalogLike {
+interface SanityHubLike {
   hubTitle?: LocaleFieldValues;
   hubDescription?: LocaleFieldValues;
+  goalsSectionTitle?: LocaleFieldValues;
+  faqEyebrow?: LocaleFieldValues;
+  faqTitle?: LocaleFieldValues;
+  faqSubtitle?: LocaleFieldValues;
+  viewFullFaqLabel?: LocaleFieldValues;
+}
+
+interface SanityConcernLike {
+  slug?: { current?: string } | string;
+  title?: LocaleFieldValues;
+  shortDescription?: LocaleFieldValues;
+  image?: SanityServiceImageLike | null;
+  sortOrder?: number;
+  isActive?: boolean;
+}
+
+export interface SanityServicesCatalogLike {
+  hub?: SanityHubLike | null;
+  concerns?: SanityConcernLike[] | null;
   categories?: SanityCategoryLike[] | null;
 }
 
@@ -72,6 +99,13 @@ function mapServiceImageSafe(
   };
 }
 
+function mapConcernSlugs(raw: SanityProcedureLike): string[] | undefined {
+  const slugs = (raw.concernSlugs ?? []).filter(
+    (slug): slug is string => typeof slug === "string" && slug.length > 0,
+  );
+  return slugs.length > 0 ? slugs : undefined;
+}
+
 function mapProcedure(
   raw: SanityProcedureLike,
   locale: AppLocale,
@@ -90,6 +124,7 @@ function mapProcedure(
     ),
     image: mapServiceImageSafe(raw.image, locale, fallback?.image),
     price: mapMoneySafe(raw.price) ?? fallback?.price,
+    concernIds: mapConcernSlugs(raw) ?? fallback?.concernIds,
   };
 }
 
@@ -104,9 +139,11 @@ function mapSubcategory(
 
   const fallbackProcedures = fallbackSub?.procedures ?? [];
   const procedures = (raw.procedures ?? [])
-    .map((proc, index) =>
-      mapProcedure(proc, locale, fallbackProcedures[index]),
-    )
+    .map((proc, index) => {
+      const fallbackProc = fallbackProcedures.find((p) => p.id === mapSlugSafe(proc.slug, "")) ??
+        fallbackProcedures[index];
+      return mapProcedure(proc, locale, fallbackProc);
+    })
     .filter((p): p is ServiceProcedure => p !== null);
 
   return {
@@ -158,7 +195,11 @@ function mapCategory(
 
   const fallbackSubs = fallback?.subcategories ?? [];
   const subcategories = (raw.subcategories ?? [])
-    .map((sub, index) => mapSubcategory(sub, locale, fallback, fallbackSubs[index]))
+    .map((sub) => {
+      const subId = mapSlugSafe(sub.slug, "");
+      const fallbackSub = fallbackSubs.find((s) => s.id === subId);
+      return mapSubcategory(sub, locale, fallback, fallbackSub);
+    })
     .filter((s): s is ServiceSubcategory => s !== null);
 
   const staticFlags = getStaticCategoryFeatureFlags(id);
@@ -178,6 +219,65 @@ function mapCategory(
   };
 }
 
+function mapHubUi(raw: SanityHubLike | null | undefined, locale: AppLocale, fallback: TreatmentsHubUi): TreatmentsHubUi {
+  if (!raw) return fallback;
+
+  return {
+    pageTitle: readLocalizedValue(raw.hubTitle, locale, fallback.pageTitle),
+    pageDescription: readLocalizedValue(raw.hubDescription, locale, fallback.pageDescription),
+    goalsSectionTitle: readLocalizedValue(raw.goalsSectionTitle, locale, fallback.goalsSectionTitle),
+    faqEyebrow: readLocalizedValue(raw.faqEyebrow, locale, fallback.faqEyebrow),
+    faqTitle: readLocalizedValue(raw.faqTitle, locale, fallback.faqTitle),
+    faqSubtitle: readLocalizedValue(raw.faqSubtitle, locale, fallback.faqSubtitle),
+    viewFullFaqLabel: readLocalizedValue(raw.viewFullFaqLabel, locale, fallback.viewFullFaqLabel),
+    recommendedForPrefix: fallback.recommendedForPrefix,
+    viewDetailsLabel: fallback.viewDetailsLabel,
+    breadcrumbHome: fallback.breadcrumbHome,
+    breadcrumbTreatments: fallback.breadcrumbTreatments,
+  };
+}
+
+function mapConcern(
+  raw: SanityConcernLike,
+  locale: AppLocale,
+  fallback?: TreatmentConcern,
+): TreatmentConcern | null {
+  const id = mapSlugSafe(raw.slug, fallback?.id ?? "");
+  if (!id) return null;
+
+  return {
+    id,
+    title: readLocalizedValue(raw.title, locale, fallback?.title ?? id),
+    shortDescription: readLocalizedValue(
+      raw.shortDescription,
+      locale,
+      fallback?.shortDescription ?? "",
+    ) || undefined,
+    image: mapServiceImageSafe(raw.image, locale, fallback?.image),
+    href: `/treatments?concern=${id}`,
+    sortOrder: raw.sortOrder ?? fallback?.sortOrder,
+    isActive: raw.isActive ?? fallback?.isActive ?? true,
+  };
+}
+
+function mapConcerns(
+  raw: SanityConcernLike[] | null | undefined,
+  locale: AppLocale,
+  fallback: TreatmentConcern[],
+): TreatmentConcern[] {
+  if (!raw?.length) return fallback;
+
+  const mapped = raw
+    .map((item) => {
+      const slug = mapSlugSafe(item.slug, "");
+      const fallbackItem = fallback.find((c) => c.id === slug);
+      return mapConcern(item, locale, fallbackItem);
+    })
+    .filter((c): c is TreatmentConcern => c !== null);
+
+  return mapped.length > 0 ? mapped : fallback;
+}
+
 /**
  * Maps Sanity services tree (field-level i18n, single document IDs) into ServicesCatalog.
  * Always merges with static fallback so missing CMS fields never break the site.
@@ -187,9 +287,19 @@ export function mapServicesCatalogSafe(
   locale: AppLocale,
 ): ServicesCatalog {
   const fallback = getStaticServicesCatalog(locale);
+  const hubUi = mapHubUi(raw?.hub, locale, fallback.hubUi);
+  const concerns = mapConcerns(raw?.concerns, locale, fallback.concerns);
+
+  const base = {
+    id: fallback.id,
+    title: hubUi.pageTitle,
+    description: hubUi.pageDescription,
+    concerns,
+    hubUi,
+  };
 
   if (!raw?.categories?.length) {
-    return applyStaticFlagsToCatalog(fallback, locale);
+    return applyStaticFlagsToCatalog({ ...fallback, ...base }, locale);
   }
 
   const categories = raw.categories
@@ -205,9 +315,7 @@ export function mapServicesCatalogSafe(
 
   return applyStaticFlagsToCatalog(
     {
-      id: fallback.id,
-      title: readLocalizedValue(raw.hubTitle, locale, fallback.title),
-      description: readLocalizedValue(raw.hubDescription, locale, fallback.description),
+      ...base,
       categories:
         categories.length > 0
           ? [...categories, ...missingFromSanity.map((c) => applyStaticFlagsToCategory(c, locale))]
