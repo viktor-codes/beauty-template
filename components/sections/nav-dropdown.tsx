@@ -12,6 +12,7 @@ import {
 import { ArrowRightIcon, CaretDownIcon } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 
+import { NavDropdownCategoryLink } from "@/components/sections/nav-dropdown-category-link";
 import { cn } from "@/lib/cn";
 import type { NavLink } from "@/lib/types/content";
 
@@ -176,14 +177,7 @@ export function NavDropdownPanel({ link, className }: NavDropdownPanelProps) {
         >
           {items.map((item) => (
             <li key={`${item.label}-${item.href}`} className="bg-surface/95">
-              <Link
-                href={item.href}
-                className="group/item flex h-full min-h-28 flex-col justify-end px-3 py-4 transition-colors hover:bg-background sm:px-4"
-              >
-                <span className="font-heading text-base leading-snug text-primary transition-colors group-hover/item:text-accent">
-                  {item.label}
-                </span>
-              </Link>
+              <NavDropdownCategoryLink item={item} />
             </li>
           ))}
           {viewAll ? (
