@@ -2,7 +2,7 @@
 
 **Цель:** админка, в которой владелец студии может **самостоятельно и без страха** править тексты, цены, услуги и юридические страницы на трёх языках (`en`, `uk`, `ru`).
 
-**Статус документа:** согласование с заказчиком — **код и схемы пока не меняем**, только план.
+**Статус документа:** согласовано — **можно выполнять по фазам** (§5, §8). Сводка решений: **§6**.
 
 **Связанные документы:**
 
@@ -86,8 +86,8 @@
 ### Блок A — Инвентаризация и границы контента
 
 - [x] **A.1** Полный список полей лендинга → [landing-sections-field-matrix.md](./landing-sections-field-matrix.md) (каталог + legal — в следующих итерациях матрицы).
-- [ ] **A.2** Решить судьбу **`lib/content/*.ts`**: вечный fallback, только seed, или удалить после миграции.
-- [ ] **A.3** Решить судьбу **`lib/services/**`**: то же для каталога.
+- [x] **A.2** **`lib/content/*.ts`**: вечный fallback (не удаляем).
+- [x] **A.3** **`lib/services/**`**: вечный fallback + источник для seed.
 - [ ] **A.4** Матрица языков: кто переводит UK/RU (клиент, переводчик, вы)?
 
 ### Блок B — Лендинг (`landingPage`)
@@ -96,7 +96,7 @@
 - [x] **B.2** **Hero:** фото — **dev-only**; тексты/CTA в CMS (починить маппер `primaryCta.label`).
 - [ ] **B.3** **Nav:** presets для ссылок; dropdown treatments **автоматически** из каталога.
 - [ ] **B.4** **About:** brand logos — файлы dev или CMS; **alt** переводится.
-- [ ] **B.5** **Services preview:** `serviceCategory` + `featuredOnHomepage` (**max 4**) + `featuredInNav` (**max 5**); убрать ручной `categories[]`; валидация в Studio.
+- [x] **B.5** **Services preview:** `serviceCategory` + `featuredOnHomepage` (**max 4**) + `featuredInNav` (**max 5**); убрать ручной `categories[]`; валидация в Studio.
 - [ ] **B.5b** Починить мапперы CTA: nav label + hero `primaryCtaLabel` из CMS (см. матрица §13).
 - [ ] **B.6** Чипы «by concern» на лендинге — из справочника `treatmentConcern` (фаза **2b**, не ручной `goals[]`).
 - [x] **B.7** **Gallery:** тексты в CMS; фото слайдера — **dev-only**.
@@ -125,7 +125,7 @@
 - [ ] **D.6** Запретить битые references (subcategory → category, procedure → subcategory).
 - [ ] **D.7** Preview в списке: локаль редактора, цена, thumbnail.
 - [ ] **D.8** Синхронизация slug: один slug на документ — документировать, что slug **не переводится**.
-- [ ] **D.9** Флаги на `serviceCategory`: `featuredOnHomepage` (**max 4**), `featuredInNav` (**max 5**); custom validation в Studio.
+- [x] **D.9** Флаги на `serviceCategory`: `featuredOnHomepage` (**max 4**), `featuredInNav` (**max 5**); custom validation в Studio.
 
 ### Блок D2 — Treatment concerns (бывшие «goals»)
 
@@ -148,7 +148,7 @@
 
 ### Блок F — Схемы и технический контракт
 
-- [ ] **F.1** Добавить недостающие поля в схемы (`featuredInNav`, и др. из A.1).
+- [x] **F.1** Флаги `featuredOnHomepage` / `featuredInNav` на `serviceCategory` (остальное — по мере фаз).
 - [ ] **F.2** GROQ queries: покрытие всех полей, без over-fetch.
 - [ ] **F.3** Мапперы: единые правила fallback (документировать в `lib/sanity/mappers/README` или в этом файле).
 - [ ] **F.4** Типы `Sanity*Like` vs codegen (`sanity-typegen`) — нужен ли codegen.
@@ -281,6 +281,7 @@
 | 2026-06-01 | Добавлена [матрица полей лендинга](./landing-sections-field-matrix.md) | — |
 | 2026-06-01 | Два флага категорий; legal секциями; fallback EN; CTA nav vs hero; [treatment concerns](./treatment-concerns-spec.md) | Inna / команда |
 | 2026-06-01 | `featuredInNav` **max 5**; `featuredOnHomepage` max 4; форма → Sanity; concerns с картинками; отзывы — реальные имена + optional IG URL | Inna / команда |
+| 2026-06-01 | A.2/A.3: статика — вечный fallback; Part 1: флаги категорий, homepage/nav из каталога | команда |
 
 ---
 
