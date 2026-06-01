@@ -24,8 +24,8 @@ export const enLandingContent = {
     eyebrow: "The Skinbar · Inna Chernovol",
     title: "Confidence that shows in every reflection",
     subtitle:
-      "I personalize every treatment plan in a calm space—results you can see without the hard sell.",
-    primaryCta: { label: "Bok a Consultation", href: "#contact" },
+      "I personalise every treatment plan in a calm space—results you can see without the hard sell.",
+    primaryCta: { label: "Book a Consultation", href: "#contact" },
     secondaryCta: { label: "View treatments", href: "/treatments" },
     image: {
       ...heroImage,
@@ -36,7 +36,7 @@ export const enLandingContent = {
     eyebrow: "About Inna",
     title: "The Skinbar by Inna Chernovol",
     description:
-      "Welcome to The Skinbar by Inna Chernovol, where your goals are my priority.\n\nWith over 15 years of experience, I specialize in aesthetic treatments that help you feel rejuvenated and confident. Whether it’s enhancing your lips or providing advanced laser treatments, I offer personalized care using high-quality products to ensure your safety, comfort, and effective results.\n\nI’ll build a personalized plan with you for your unique beauty journey.",
+      "Welcome to The Skinbar by Inna Chernovol, where your goals are my priority.\n\nWith over 15 years of experience, I specialize in aesthetic treatments that help you feel rejuvenated and confident. Whether it’s enhancing your lips or providing advanced laser treatments, I offer personalised care using high-quality products to ensure your safety, comfort, and effective results.\n\nI’ll build a personalised plan with you for your unique beauty journey.",
     stats: [
       { value: "15+", label: "Years of practice" },
       { value: "2.5k+", label: "Treatments performed" },
@@ -49,7 +49,7 @@ export const enLandingContent = {
     eyebrow: "What I offer",
     title: "Treatments designed around you",
     description:
-      "From facials to advanced protocols—I explain everything in plain language, optional add-ons only, never pressure.",
+      "From facials to advanced protocols—I explain everything in plain language. Ethical, evidence-based recommendations with zero obligation.",
     categories: [
       {
         id: "services-category-cosmetology",
@@ -154,9 +154,9 @@ export const enLandingContent = {
     items: [
       {
         quote:
-          "I am absolutely glowing! Inna, I had to share this with you. A few days after my biorevitalization, my skin feels completely reborn. My friends keep commenting on how much the texture has smoothed out and how lifted my face looks. I feel so refreshed and confident. Can't wait for my next session this autumn!",
+          "I am absolutely glowing! Inna, I had to share this with you. A few days after my biorevitalisation, my skin feels completely reborn. My friends keep commenting on how much the texture has smoothed out and how lifted my face looks. I feel so refreshed and confident. Can't wait for my next session this autumn!",
         authorName: "Verified client",
-        authorRole: "Biorevitalization & glow",
+        authorRole: "Biorevitalisation & glow",
       },
       {
         quote:
@@ -178,7 +178,7 @@ export const enLandingContent = {
       },
       {
         quote:
-          "My skin is literally radiant. I am so impressed with the Esse products! My skin has never looked this bright and healthy. Everything you and I chose works so well together. It's clear you only select the highest quality cosmetics for your clients.",
+          "My skin is literally radiant. I am so impressed with the Esse products! My skin has never looked this radiant and healthy. Everything you and I chose works so well together. It's clear you only select the highest quality skincare lines/products for your clients.",
         authorName: "Verified client",
         authorRole: "Esse skincare results",
       },
@@ -206,9 +206,9 @@ export const enLandingContent = {
   contactForm: contactFormCopyByLocale.en,
   contact: {
     eyebrow: "Get in touch",
-    title: "I’m one message away",
+    title: "Schedule Your Visit",
     description:
-      "Call, email, or use the form—I reply within one business day.",
+      "Call, email, or use the form — contact me in a way that's convenient for you.",
     phone: studioContact.phone,
     email: studioContact.email,
     address: studioContact.address,
@@ -237,7 +237,7 @@ export const enLandingContent = {
   footer: {
     brandTitle: "The Skinbar · Inna Chernovol",
     tagline:
-      "Thoughtful care, visible results — personalized aesthetic treatments in a calm studio setting.",
+      "Thoughtful care, visible results — personalised aesthetic treatments in a calm studio setting.",
     navigation: {
       heading: "Navigate",
       links: [
@@ -284,7 +284,7 @@ export const enLandingContent = {
     developerCredit: {
       lead: "Design & build — ",
       brandLabel: "RuraMade",
-      tail: " · an independent studio (population: one). Not an agency.",
+      tail: " · independent digital studio.",
       href: "https://ruramade.dev",
     },
   },

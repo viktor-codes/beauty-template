@@ -215,7 +215,7 @@ export const ukLandingContent = {
     eyebrow: "Зв’язатися",
     title: "Консультація та запис",
     description:
-      "Телефон, email або форма. Зв'яжіться зі мною зручним способом.",
+      "Телефон, email або форма — зв'яжіться зі мною зручним способом.",
     phone: studioContact.phone,
     email: studioContact.email,
     address: studioContact.address,
