@@ -45,7 +45,9 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Services")
             .items([
-              S.documentTypeListItem("serviceCategory").title("1. Categories"),
+              S.documentTypeListItem("serviceCategory").title(
+                "1. Categories (homepage & menu flags)",
+              ),
               S.documentTypeListItem("serviceSubcategory").title("2. Subcategories"),
               S.documentTypeListItem("serviceProcedure").title("3. Procedures"),
               S.divider(),

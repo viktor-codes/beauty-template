@@ -13,6 +13,9 @@ export const servicesCatalogQuery = /* groq */ `
       image {
         ${serviceImageFields}
       },
+      sortOrder,
+      featuredOnHomepage,
+      featuredInNav,
       "subcategories": *[_type == "serviceSubcategory" && references(^._id)] | order(sortOrder asc, title.en asc) {
         "slug": slug,
         title { ${localeStringFields} },

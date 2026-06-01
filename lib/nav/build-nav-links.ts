@@ -1,8 +1,7 @@
-import type {
-  ContentLink,
-  NavContent,
-  ServicesCategoryPreview,
-} from "@/lib/types/content";
+import type { ContentLink, NavContent } from "@/lib/types/content";
+import type { ServicesCatalog } from "@/lib/types/services";
+
+import { buildNavCategoryPreviews } from "@/lib/services/category-previews";
 
 const TREATMENTS_HUB_HREF = "/treatments";
 
@@ -18,15 +17,13 @@ function isTreatmentsNavHref(href: string): boolean {
 /** Injects featured treatment category links into the treatments nav item for desktop dropdown. */
 export function enrichNavWithTreatmentCategories(
   nav: NavContent,
-  categories: ServicesCategoryPreview[],
+  catalog: ServicesCatalog,
   viewAll: ContentLink,
 ): NavContent {
-  const children = categories
-    .filter(({ featuredInNav }) => featuredInNav === true)
-    .map(({ title, href }) => ({
-      label: title,
-      href,
-    }));
+  const children = buildNavCategoryPreviews(catalog).map(({ title, href }) => ({
+    label: title,
+    href,
+  }));
 
   return {
     ...nav,

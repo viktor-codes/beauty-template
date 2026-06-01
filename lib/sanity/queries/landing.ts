@@ -5,7 +5,6 @@ import {
   faqItemFields,
   footerLinkGroupFields,
   sanityImageFields,
-  servicesCategoryPreviewFields,
   servicesGoalPreviewFields,
 } from "@/lib/sanity/queries/fragments";
 
@@ -84,9 +83,6 @@ export const landingPageQuery = /* groq */ `
       eyebrow,
       title,
       description,
-      categories[] {
-        ${servicesCategoryPreviewFields}
-      },
       goals[] {
         ${servicesGoalPreviewFields}
       },

@@ -3,19 +3,7 @@ import {
   type SanityContentLinkLike,
 } from "@/lib/sanity/mappers/chrome";
 import { normalizeLegacyServicesHref } from "@/lib/i18n/normalize-href";
-import type {
-  ServicesCategoryPreview,
-  ServicesContent,
-  ServicesGoalPreview,
-} from "@/lib/types/content";
-
-interface SanityCategoryPreviewLike {
-  id?: string;
-  title?: string;
-  description?: string;
-  href?: string;
-  featuredInNav?: boolean;
-}
+import type { ServicesContent, ServicesGoalPreview } from "@/lib/types/content";
 
 interface SanityGoalPreviewLike {
   id?: string;
@@ -27,27 +15,8 @@ export interface SanityLandingServicesLike {
   eyebrow?: string;
   title?: string;
   description?: string;
-  categories?: SanityCategoryPreviewLike[] | null;
   goals?: SanityGoalPreviewLike[] | null;
   cta?: SanityContentLinkLike | null;
-}
-
-function mapCategoryPreviewSafe(
-  raw: SanityCategoryPreviewLike,
-  fallback?: ServicesCategoryPreview,
-): ServicesCategoryPreview | null {
-  const id = raw.id?.trim();
-  const title = raw.title?.trim();
-  const href = raw.href?.trim();
-  if (!id || !title || !href) return null;
-
-  return {
-    id,
-    title,
-    description: raw.description?.trim() || fallback?.description || "",
-    href: normalizeLegacyServicesHref(href),
-    featuredInNav: raw.featuredInNav ?? fallback?.featuredInNav,
-  };
 }
 
 function mapGoalPreviewSafe(
@@ -62,15 +31,21 @@ function mapGoalPreviewSafe(
   return { id, title, href: normalizeLegacyServicesHref(href) };
 }
 
+/** Maps landing services copy from CMS. Category cards come from the services catalog. */
 export function mapLandingServicesSafe(
   raw: SanityLandingServicesLike | null | undefined,
   fallback: ServicesContent,
 ): ServicesContent {
-  if (!raw?.title?.trim()) return fallback;
-
-  const categories = (raw.categories ?? [])
-    .map((item, index) => mapCategoryPreviewSafe(item, fallback.categories[index]))
-    .filter((item): item is ServicesCategoryPreview => item !== null);
+  if (!raw?.title?.trim()) {
+    return {
+      eyebrow: fallback.eyebrow,
+      title: fallback.title,
+      description: fallback.description,
+      categories: fallback.categories,
+      goals: fallback.goals,
+      cta: fallback.cta,
+    };
+  }
 
   const goals = (raw.goals ?? [])
     .map((item, index) => mapGoalPreviewSafe(item, fallback.goals[index]))
@@ -80,7 +55,7 @@ export function mapLandingServicesSafe(
     eyebrow: raw.eyebrow?.trim() || fallback.eyebrow,
     title: raw.title.trim(),
     description: raw.description?.trim() || fallback.description,
-    categories: categories.length > 0 ? categories : fallback.categories,
+    categories: fallback.categories,
     goals: goals.length > 0 ? goals : fallback.goals,
     cta: mapContentLinkSafe(raw.cta, fallback.cta),
   };

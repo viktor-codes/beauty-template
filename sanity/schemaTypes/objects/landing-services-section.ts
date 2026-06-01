@@ -9,12 +9,6 @@ export const landingServicesSection = defineType({
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     defineField({ name: "description", type: "text", rows: 3 }),
     defineField({
-      name: "categories",
-      title: "Category cards",
-      type: "array",
-      of: [defineArrayMember({ type: "servicesCategoryPreview" })],
-    }),
-    defineField({
       name: "goals",
       title: "Goal chips",
       type: "array",

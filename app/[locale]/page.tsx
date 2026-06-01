@@ -13,6 +13,7 @@ import { SiteHeader } from "@/components/sections/site-header";
 import { getLandingContent } from "@/lib/content";
 import type { AppLocale } from "@/i18n/routing";
 import { enrichNavWithTreatmentCategories } from "@/lib/nav/build-nav-links";
+import { resolveServicesCatalog } from "@/lib/services";
 import {
   SITE_DEFAULT_DESCRIPTION,
   SITE_DEFAULT_TITLE,
@@ -35,10 +36,14 @@ export default async function Home({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const landingContent = await getLandingContent(locale as AppLocale);
+  const appLocale = locale as AppLocale;
+  const [landingContent, catalog] = await Promise.all([
+    getLandingContent(appLocale),
+    resolveServicesCatalog(appLocale),
+  ]);
   const nav = enrichNavWithTreatmentCategories(
     landingContent.nav,
-    landingContent.services.categories,
+    catalog,
     landingContent.services.cta,
   );
 

@@ -1,6 +1,7 @@
 import { MarketingChrome } from "@/components/layouts/marketing-chrome";
 import { getLandingContent } from "@/lib/content";
 import type { AppLocale } from "@/i18n/routing";
+import { resolveServicesCatalog } from "@/lib/services";
 
 export default async function LegalPagesLayout({
   children,
@@ -10,7 +11,15 @@ export default async function LegalPagesLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  const landingContent = await getLandingContent(locale as AppLocale);
+  const appLocale = locale as AppLocale;
+  const [landingContent, catalog] = await Promise.all([
+    getLandingContent(appLocale),
+    resolveServicesCatalog(appLocale),
+  ]);
 
-  return <MarketingChrome content={landingContent}>{children}</MarketingChrome>;
+  return (
+    <MarketingChrome content={landingContent} catalog={catalog}>
+      {children}
+    </MarketingChrome>
+  );
 }

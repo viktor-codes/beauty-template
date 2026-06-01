@@ -1,9 +1,16 @@
+import { cache } from "react";
+
 import type { AppLocale } from "@/i18n/routing";
 import { fetchServicesCatalog } from "@/lib/sanity/fetch/fetch-services-catalog";
 import { mapServicesCatalogSafe } from "@/lib/sanity/mappers/services";
 import type { ServicesCatalog } from "@/lib/types/services";
 
 import { servicesCatalog } from "@/lib/services/catalog";
+
+export {
+  buildHomepageCategoryPreviews,
+  buildNavCategoryPreviews,
+} from "@/lib/services/category-previews";
 
 export { servicesCatalog };
 
@@ -33,7 +40,9 @@ export function getStaticServicesCatalog(_locale: AppLocale): ServicesCatalog {
 }
 
 /** Resolves catalog from Sanity with static fallback (client-editable in Studio). */
-export async function resolveServicesCatalog(locale: AppLocale): Promise<ServicesCatalog> {
-  const raw = await fetchServicesCatalog();
-  return mapServicesCatalogSafe(raw, locale);
-}
+export const resolveServicesCatalog = cache(
+  async (locale: AppLocale): Promise<ServicesCatalog> => {
+    const raw = await fetchServicesCatalog();
+    return mapServicesCatalogSafe(raw, locale);
+  },
+);

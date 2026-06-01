@@ -1,5 +1,6 @@
 import type { AppLocale } from "@/i18n/routing";
 import { readLocalizedValue, type LocaleFieldValues } from "@/lib/i18n/pick-locale-field";
+import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
 import { getStaticServicesCatalog } from "@/lib/sanity/fetch/get-services-catalog";
 import type { ServiceCategory, ServiceProcedure, ServicesCatalog, ServiceSubcategory } from "@/lib/types/services";
 
@@ -37,6 +38,9 @@ interface SanityCategoryLike {
   title?: LocaleFieldValues;
   description?: LocaleFieldValues;
   image?: SanityServiceImageLike | null;
+  sortOrder?: number;
+  featuredOnHomepage?: boolean;
+  featuredInNav?: boolean;
   subcategories?: SanitySubcategoryLike[] | null;
 }
 
@@ -112,6 +116,24 @@ function mapSubcategory(
   };
 }
 
+function applyStaticFlagsToCategory(category: ServiceCategory): ServiceCategory {
+  const staticFlags = getStaticCategoryFeatureFlags(category.id);
+
+  return {
+    ...category,
+    sortOrder: category.sortOrder ?? staticFlags.sortOrder,
+    featuredOnHomepage: category.featuredOnHomepage ?? staticFlags.featuredOnHomepage,
+    featuredInNav: category.featuredInNav ?? staticFlags.featuredInNav,
+  };
+}
+
+function applyStaticFlagsToCatalog(catalog: ServicesCatalog): ServicesCatalog {
+  return {
+    ...catalog,
+    categories: catalog.categories.map(applyStaticFlagsToCategory),
+  };
+}
+
 function mapCategory(
   raw: SanityCategoryLike,
   locale: AppLocale,
@@ -125,12 +147,18 @@ function mapCategory(
     .map((sub, index) => mapSubcategory(sub, locale, fallback, fallbackSubs[index]))
     .filter((s): s is ServiceSubcategory => s !== null);
 
+  const staticFlags = getStaticCategoryFeatureFlags(id);
+
   return {
     id,
     title: readLocalizedValue(raw.title, locale, fallback?.title ?? id),
     description: readLocalizedValue(raw.description, locale, fallback?.description ?? ""),
     image: mapServiceImageSafe(raw.image, locale, fallback?.image),
     subcategories: subcategories.length > 0 ? subcategories : fallbackSubs,
+    sortOrder: raw.sortOrder ?? fallback?.sortOrder ?? staticFlags.sortOrder,
+    featuredOnHomepage:
+      raw.featuredOnHomepage ?? fallback?.featuredOnHomepage ?? staticFlags.featuredOnHomepage,
+    featuredInNav: raw.featuredInNav ?? fallback?.featuredInNav ?? staticFlags.featuredInNav,
   };
 }
 
@@ -145,7 +173,7 @@ export function mapServicesCatalogSafe(
   const fallback = getStaticServicesCatalog(locale);
 
   if (!raw?.categories?.length) {
-    return fallback;
+    return applyStaticFlagsToCatalog(fallback);
   }
 
   const categories = raw.categories
@@ -159,13 +187,13 @@ export function mapServicesCatalogSafe(
   const sanityIds = new Set(categories.map((c) => c.id));
   const missingFromSanity = fallback.categories.filter((c) => !sanityIds.has(c.id));
 
-  return {
+  return applyStaticFlagsToCatalog({
     id: fallback.id,
     title: readLocalizedValue(raw.hubTitle, locale, fallback.title),
     description: readLocalizedValue(raw.hubDescription, locale, fallback.description),
     categories:
       categories.length > 0
-        ? [...categories, ...missingFromSanity]
+        ? [...categories, ...missingFromSanity.map(applyStaticFlagsToCategory)]
         : fallback.categories,
-  };
+  });
 }

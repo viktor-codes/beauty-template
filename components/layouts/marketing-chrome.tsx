@@ -4,8 +4,9 @@ import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
 import { enrichNavWithTreatmentCategories } from "@/lib/nav/build-nav-links";
 import type { LandingContent } from "@/lib/types/content";
+import type { ServicesCatalog } from "@/lib/types/services";
 
-function buildSubpageNav(content: LandingContent) {
+function buildSubpageNav(content: LandingContent, catalog: ServicesCatalog) {
   const navWithAbsoluteHashes = {
     ...content.nav,
     links: content.nav.links.map((link) => ({
@@ -22,7 +23,7 @@ function buildSubpageNav(content: LandingContent) {
 
   return enrichNavWithTreatmentCategories(
     navWithAbsoluteHashes,
-    content.services.categories,
+    catalog,
     content.services.cta,
   );
 }
@@ -30,12 +31,13 @@ function buildSubpageNav(content: LandingContent) {
 export interface MarketingChromeProps {
   children: ReactNode;
   content: LandingContent;
+  catalog: ServicesCatalog;
 }
 
-export function MarketingChrome({ children, content }: MarketingChromeProps) {
+export function MarketingChrome({ children, content, catalog }: MarketingChromeProps) {
   return (
     <>
-      <SiteHeader content={buildSubpageNav(content)} homeHref="/" />
+      <SiteHeader content={buildSubpageNav(content, catalog)} homeHref="/" />
       {children}
       <SiteFooter content={content.footer} />
     </>

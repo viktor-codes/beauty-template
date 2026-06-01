@@ -72,7 +72,7 @@ export function LocaleSwitcher({
     <div
       ref={rootRef}
       className={cn(
-        "group/locale-switcher relative inline-flex",
+        "group/locale-switcher relative inline-flex cursor-pointer select-none",
         isTapMenu && isOpen && "z-(--z-dropdown)",
         className,
       )}
@@ -84,13 +84,13 @@ export function LocaleSwitcher({
           aria-controls={menuId}
           aria-haspopup="true"
           aria-label={`${t("switchLanguage")}: ${currentLocaleLabel}`}
-          className="text-muted"
+          className="cursor-pointer text-muted"
           onClick={() => setIsOpen((open) => !open)}
         >
           {currentLocaleLabel}
         </button>
       ) : (
-        <span aria-current="page" className="text-muted">
+        <span aria-current="page" className="cursor-pointer text-muted">
           {currentLocaleLabel}
         </span>
       )}

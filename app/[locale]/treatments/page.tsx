@@ -157,12 +157,13 @@ export default async function ServicesPage({
             Treatment categories
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2">
-            {landingContent.services.categories.map((category) => (
+            {catalog.categories.map((category) => (
               <li key={category.id}>
                 <ServiceCard
                   title={category.title}
                   description={category.description}
-                  href={category.href}
+                  href={`/treatments/${category.id}`}
+                  image={category.image}
                 />
               </li>
             ))}

@@ -34,6 +34,12 @@ export interface ServiceCategory {
   description: string;
   image?: ServiceImage;
   subcategories: ServiceSubcategory[];
+  /** Lower numbers sort first among featured categories. */
+  sortOrder?: number;
+  /** Landing services grid (max 4 across catalog). */
+  featuredOnHomepage?: boolean;
+  /** Header treatments dropdown (max 5 across catalog). */
+  featuredInNav?: boolean;
 }
 
 export interface ServicesCatalog {
