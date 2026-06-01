@@ -78,9 +78,9 @@ export function AboutSection({
         <div className="marquee-viewport mt-8 [--marquee-duration:48s] [--marquee-edge:var(--color-background)]">
           <div className="marquee-inner">
             <ul className="marquee-track list-none gap-4 py-2">
-              {content.brandLogos.map((logo) => (
+              {content.brandLogos.map((logo, index) => (
                 <li
-                  key={logo.src}
+                  key={logo.id ?? `${logo.alt}-${index}`}
                   className="flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
                 >
                   <Image
@@ -93,9 +93,9 @@ export function AboutSection({
                   />
                 </li>
               ))}
-              {content.brandLogos.map((logo) => (
+              {content.brandLogos.map((logo, index) => (
                 <li
-                  key={`${logo.src}-clone`}
+                  key={`${logo.id ?? `${logo.alt}-${index}`}-clone`}
                   className="marquee-item--clone flex h-12 w-36 shrink-0 items-center justify-center rounded-xl bg-primary px-4"
                   aria-hidden
                 >

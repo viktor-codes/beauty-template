@@ -95,7 +95,7 @@
 - [ ] **B.1** Группы и порядок полей в Studio (уже есть groups — проверить с реальным сценарием редактирования).
 - [x] **B.2** **Hero:** фото — **dev-only**; тексты/CTA в CMS (починить маппер `primaryCta.label`).
 - [ ] **B.3** **Nav:** presets для ссылок; dropdown treatments **автоматически** из каталога.
-- [ ] **B.4** **About:** brand logos — файлы dev или CMS; **alt** переводится.
+- [x] **B.4** **About:** brand logos в CMS (upload + alt per locale); `/public/logos` — fallback при пустом CMS.
 - [x] **B.5** **Services preview:** `serviceCategory` + `featuredOnHomepage` (**max 4**) + `featuredInNav` (**max 5**); убрать ручной `categories[]`; валидация в Studio.
 - [x] **B.5b** Починить мапперы CTA: nav label + hero `primaryCtaLabel` из CMS (см. матрица §13).
 - [ ] **B.6** Чипы «by concern» на лендинге — из справочника `treatmentConcern` (фаза **2b**, не ручной `goals[]`).
@@ -283,6 +283,7 @@
 | 2026-06-01 | `featuredInNav` **max 5**; `featuredOnHomepage` max 4; форма → Sanity; concerns с картинками; отзывы — реальные имена + optional IG URL | Inna / команда |
 | 2026-06-01 | A.2/A.3: статика — вечный fallback; Part 1: флаги категорий, homepage/nav из каталога | команда |
 | 2026-06-01 | Part 2: CTA из CMS, contactForm на landingPage, reviews+IG, FAQ без legacy items | команда |
+| 2026-06-01 | Part 3: brand logos upload в Studio, CMS-first mapper, seed assets | команда |
 
 ---
 

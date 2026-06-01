@@ -34,6 +34,7 @@ Store the archive outside the repo. Record the date in [sanity-client-admin-road
 - [ ] `/treatments` hub loads
 - [ ] One category page e.g. `/treatments/cosmetology`
 - [ ] Draft/publish: edit category flag in Studio → revalidate → site updates
+- [ ] About: replace one brand logo in Studio → marquee shows CDN image (not `/public/logos`)
 
 ## 4. Content fallback policy (agreed)
 

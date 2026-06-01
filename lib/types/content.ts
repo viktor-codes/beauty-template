@@ -40,6 +40,8 @@ export interface AboutStat {
 }
 
 export interface AboutBrandLogo {
+  /** Stable key for lists (Sanity asset id when from CMS). */
+  id?: string;
   src: string;
   alt: string;
   width?: number;

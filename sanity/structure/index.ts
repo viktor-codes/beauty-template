@@ -10,7 +10,9 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Site")
             .items([
-              S.documentTypeListItem("landingPage").title("Landing pages"),
+              S.documentTypeListItem("landingPage").title(
+                "Landing pages (About → brand logos)",
+              ),
               S.documentTypeListItem("siteSettings").title("Site settings"),
               S.listItem()
                 .title("Legal pages")

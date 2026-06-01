@@ -75,6 +75,12 @@ export function mapLandingContentToSanityDocument(
         label: s.label,
       })),
       brandsEyebrow: content.about.brandsEyebrow,
+      brandLogos: content.about.brandLogos.map((logo) => ({
+        _type: "brandLogo" as const,
+        alt: logo.alt,
+        width: logo.width,
+        height: logo.height,
+      })),
     },
     services: {
       _type: "landingServicesSection" as const,

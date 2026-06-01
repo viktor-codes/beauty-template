@@ -35,12 +35,13 @@ export const studioContact = {
   directionsHref: "https://maps.app.goo.gl/aemu5BKFy1ks5YvX7",
 } as const;
 
+/** Fallback partner logos when Sanity has no uploads — files live in `/public/logos`. */
 export const brandLogos = [
-  { src: "/logos/esse.png", alt: "Esse", width: 140, height: 44 },
-  { src: "/logos/jan-marini.png", alt: "Jan Marini", width: 140, height: 44 },
-  { src: "/logos/obagi.png", alt: "Obagi", width: 140, height: 44 },
-  { src: "/logos/is-clinical.png", alt: "Is Clinical", width: 140, height: 44 },
-  { src: "/logos/zo.png", alt: "ZO Skin Health", width: 140, height: 44 },
+  { id: "esse", src: "/logos/esse.png", alt: "Esse", width: 140, height: 44 },
+  { id: "jan-marini", src: "/logos/jan-marini.png", alt: "Jan Marini", width: 140, height: 44 },
+  { id: "obagi", src: "/logos/obagi.png", alt: "Obagi", width: 140, height: 44 },
+  { id: "is-clinical", src: "/logos/is-clinical.png", alt: "Is Clinical", width: 140, height: 44 },
+  { id: "zo", src: "/logos/zo.png", alt: "ZO Skin Health", width: 140, height: 44 },
 ] as const;
 
 /** Landing hero photo — repo asset only; Sanity `landingHeroSection` has no image field. */
