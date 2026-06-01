@@ -9,6 +9,7 @@ export const servicesCatalogQuery = /* groq */ `
     "categories": *[_type == "serviceCategory"] | order(sortOrder asc, title.en asc) {
       "slug": slug,
       title { ${localeStringFields} },
+      shortTitle { ${localeStringFields} },
       description { ${localeStringFields} },
       image {
         ${serviceImageFields}

@@ -1,6 +1,7 @@
 import type { AppLocale } from "@/i18n/routing";
 import { readLocalizedValue, type LocaleFieldValues } from "@/lib/i18n/pick-locale-field";
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
+import { getStaticCategoryShortTitle } from "@/lib/services/category-short-titles";
 import { getStaticServicesCatalog } from "@/lib/sanity/fetch/get-services-catalog";
 import type { ServiceCategory, ServiceProcedure, ServicesCatalog, ServiceSubcategory } from "@/lib/types/services";
 
@@ -36,6 +37,7 @@ interface SanitySubcategoryLike {
 interface SanityCategoryLike {
   slug?: { current?: string } | string;
   title?: LocaleFieldValues;
+  shortTitle?: LocaleFieldValues;
   description?: LocaleFieldValues;
   image?: SanityServiceImageLike | null;
   sortOrder?: number;
@@ -116,7 +118,18 @@ function mapSubcategory(
   };
 }
 
-function applyStaticFlagsToCategory(category: ServiceCategory): ServiceCategory {
+function resolveCategoryShortTitle(
+  categoryId: string,
+  title: string,
+  locale: AppLocale,
+  rawShortTitle?: LocaleFieldValues,
+  fallbackShortTitle?: string,
+): string {
+  const staticFallback = getStaticCategoryShortTitle(categoryId, locale, title);
+  return readLocalizedValue(rawShortTitle, locale, fallbackShortTitle ?? staticFallback);
+}
+
+function applyStaticFlagsToCategory(category: ServiceCategory, locale: AppLocale): ServiceCategory {
   const staticFlags = getStaticCategoryFeatureFlags(category.id);
 
   return {
@@ -124,13 +137,14 @@ function applyStaticFlagsToCategory(category: ServiceCategory): ServiceCategory 
     sortOrder: category.sortOrder ?? staticFlags.sortOrder,
     featuredOnHomepage: category.featuredOnHomepage ?? staticFlags.featuredOnHomepage,
     featuredInNav: category.featuredInNav ?? staticFlags.featuredInNav,
+    shortTitle: category.shortTitle ?? getStaticCategoryShortTitle(category.id, locale, category.title),
   };
 }
 
-function applyStaticFlagsToCatalog(catalog: ServicesCatalog): ServicesCatalog {
+function applyStaticFlagsToCatalog(catalog: ServicesCatalog, locale: AppLocale): ServicesCatalog {
   return {
     ...catalog,
-    categories: catalog.categories.map(applyStaticFlagsToCategory),
+    categories: catalog.categories.map((category) => applyStaticFlagsToCategory(category, locale)),
   };
 }
 
@@ -148,10 +162,12 @@ function mapCategory(
     .filter((s): s is ServiceSubcategory => s !== null);
 
   const staticFlags = getStaticCategoryFeatureFlags(id);
+  const title = readLocalizedValue(raw.title, locale, fallback?.title ?? id);
 
   return {
     id,
-    title: readLocalizedValue(raw.title, locale, fallback?.title ?? id),
+    title,
+    shortTitle: resolveCategoryShortTitle(id, title, locale, raw.shortTitle, fallback?.shortTitle),
     description: readLocalizedValue(raw.description, locale, fallback?.description ?? ""),
     image: mapServiceImageSafe(raw.image, locale, fallback?.image),
     subcategories: subcategories.length > 0 ? subcategories : fallbackSubs,
@@ -173,7 +189,7 @@ export function mapServicesCatalogSafe(
   const fallback = getStaticServicesCatalog(locale);
 
   if (!raw?.categories?.length) {
-    return applyStaticFlagsToCatalog(fallback);
+    return applyStaticFlagsToCatalog(fallback, locale);
   }
 
   const categories = raw.categories
@@ -187,13 +203,16 @@ export function mapServicesCatalogSafe(
   const sanityIds = new Set(categories.map((c) => c.id));
   const missingFromSanity = fallback.categories.filter((c) => !sanityIds.has(c.id));
 
-  return applyStaticFlagsToCatalog({
-    id: fallback.id,
-    title: readLocalizedValue(raw.hubTitle, locale, fallback.title),
-    description: readLocalizedValue(raw.hubDescription, locale, fallback.description),
-    categories:
-      categories.length > 0
-        ? [...categories, ...missingFromSanity.map(applyStaticFlagsToCategory)]
-        : fallback.categories,
-  });
+  return applyStaticFlagsToCatalog(
+    {
+      id: fallback.id,
+      title: readLocalizedValue(raw.hubTitle, locale, fallback.title),
+      description: readLocalizedValue(raw.hubDescription, locale, fallback.description),
+      categories:
+        categories.length > 0
+          ? [...categories, ...missingFromSanity.map((c) => applyStaticFlagsToCategory(c, locale))]
+          : fallback.categories,
+    },
+    locale,
+  );
 }

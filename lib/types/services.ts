@@ -40,6 +40,8 @@ export interface ServiceCategory {
   featuredOnHomepage?: boolean;
   /** Header treatments dropdown (max 5 across catalog). */
   featuredInNav?: boolean;
+  /** Shorter label for header nav; falls back to `title` when unset. */
+  shortTitle?: string;
 }
 
 export interface ServicesCatalog {

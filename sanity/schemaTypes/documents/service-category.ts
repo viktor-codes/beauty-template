@@ -23,6 +23,13 @@ export const serviceCategory = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({ name: "title", title: "Title", type: "localeString" }),
+    defineField({
+      name: "shortTitle",
+      title: "Short title (header menu)",
+      type: "localeString",
+      description:
+        "Optional shorter label for the Treatments dropdown (e.g. “Injectables”). Leave empty to use the main title.",
+    }),
     defineField({ name: "description", title: "Description", type: "localeText" }),
     defineField({ name: "image", title: "Image", type: "serviceImage" }),
     defineField({
@@ -52,11 +59,12 @@ export const serviceCategory = defineType({
   preview: {
     select: {
       title: "title.en",
+      shortTitle: "shortTitle.en",
       slug: "slug.current",
       featuredOnHomepage: "featuredOnHomepage",
       featuredInNav: "featuredInNav",
     },
-    prepare: ({ title, slug, featuredOnHomepage, featuredInNav }) => {
+    prepare: ({ title, shortTitle, slug, featuredOnHomepage, featuredInNav }) => {
       const flags = [
         featuredOnHomepage ? "Home" : null,
         featuredInNav ? "Nav" : null,
@@ -64,7 +72,13 @@ export const serviceCategory = defineType({
 
       return {
         title: title ?? "Category",
-        subtitle: [slug, flags.length > 0 ? flags.join(" · ") : null].filter(Boolean).join(" — "),
+        subtitle: [
+          slug,
+          shortTitle ? `Nav: ${shortTitle}` : null,
+          flags.length > 0 ? flags.join(" · ") : null,
+        ]
+          .filter(Boolean)
+          .join(" — "),
       };
     },
   },

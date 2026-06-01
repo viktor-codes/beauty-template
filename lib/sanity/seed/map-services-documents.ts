@@ -1,6 +1,7 @@
 import type { ServicesCatalog } from "@/lib/types/services";
 
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
+import { STATIC_CATEGORY_SHORT_TITLES } from "@/lib/services/category-short-titles";
 import { toLocaleString, toLocaleText } from "@/lib/sanity/seed/to-locale-fields";
 
 type SanitySeedDoc = Record<string, unknown> & { _id: string; _type: string };
@@ -25,11 +26,13 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
   for (const category of catalog.categories) {
     const categoryId = categoryDocId(category.id);
     const flags = getStaticCategoryFeatureFlags(category.id);
+    const shortTitle = STATIC_CATEGORY_SHORT_TITLES[category.id];
     docs.push({
       _id: categoryId,
       _type: "serviceCategory",
       slug: { _type: "slug", current: category.id },
       title: toLocaleString(category.title),
+      ...(shortTitle ? { shortTitle } : {}),
       description: toLocaleText(category.description),
       sortOrder: flags.sortOrder ?? categoryOrder,
       featuredOnHomepage: flags.featuredOnHomepage ?? false,

@@ -8,14 +8,21 @@ function compareBySortOrder(a: ServiceCategory, b: ServiceCategory): number {
   return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
 }
 
-function categoryToPreview(category: ServiceCategory): ServicesCategoryPreview {
+function categoryToPreview(
+  category: ServiceCategory,
+  displayTitle: string,
+): ServicesCategoryPreview {
   return {
     id: category.id,
-    title: category.title,
+    title: displayTitle,
     description: category.description,
     href: `/treatments/${category.id}`,
     featuredInNav: category.featuredInNav,
   };
+}
+
+function navDisplayTitle(category: ServiceCategory): string {
+  return category.shortTitle?.trim() || category.title;
 }
 
 function selectFeaturedCategories(
@@ -40,12 +47,12 @@ export function buildHomepageCategoryPreviews(
     catalog.categories,
     "featuredOnHomepage",
     HOMEPAGE_CATEGORY_LIMIT,
-  ).map(categoryToPreview);
+  ).map((category) => categoryToPreview(category, category.title));
 }
 
 /** Up to 5 categories for the treatments nav dropdown (`featuredInNav`). */
 export function buildNavCategoryPreviews(catalog: ServicesCatalog): ServicesCategoryPreview[] {
   return selectFeaturedCategories(catalog.categories, "featuredInNav", NAV_CATEGORY_LIMIT).map(
-    categoryToPreview,
+    (category) => categoryToPreview(category, navDisplayTitle(category)),
   );
 }
