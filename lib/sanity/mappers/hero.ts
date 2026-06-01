@@ -26,7 +26,7 @@ export function mapHeroSafe(
     title: raw.title.trim(),
     subtitle: raw.subtitle?.trim() || fallback.subtitle,
     primaryCta: {
-      label: fallback.primaryCta.label,
+      label: raw.primaryCtaLabel?.trim() || fallback.primaryCta.label,
       href: normalizeLegacyServicesHref(
         raw.primaryCtaHref?.trim() || fallback.primaryCta.href,
       ),

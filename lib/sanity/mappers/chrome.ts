@@ -58,13 +58,11 @@ export function mapContentLinkSafe(
   return { label, href: normalizeLegacyServicesHref(href) };
 }
 
-/** Nav/header CTA copy is owned by locale fallbacks (short “Consultation”), not Sanity labels. */
 function mapNavCtaSafe(
   raw: SanityContentLinkLike | null | undefined,
   fallback: ContentLink,
 ): ContentLink {
-  const mapped = mapContentLinkSafe(raw, fallback);
-  return { label: fallback.label, href: mapped.href };
+  return mapContentLinkSafe(raw, fallback);
 }
 
 function mapLinkGroupSafe(

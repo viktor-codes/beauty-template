@@ -97,13 +97,13 @@
 - [ ] **B.3** **Nav:** presets для ссылок; dropdown treatments **автоматически** из каталога.
 - [ ] **B.4** **About:** brand logos — файлы dev или CMS; **alt** переводится.
 - [x] **B.5** **Services preview:** `serviceCategory` + `featuredOnHomepage` (**max 4**) + `featuredInNav` (**max 5**); убрать ручной `categories[]`; валидация в Studio.
-- [ ] **B.5b** Починить мапперы CTA: nav label + hero `primaryCtaLabel` из CMS (см. матрица §13).
+- [x] **B.5b** Починить мапперы CTA: nav label + hero `primaryCtaLabel` из CMS (см. матрица §13).
 - [ ] **B.6** Чипы «by concern» на лендинге — из справочника `treatmentConcern` (фаза **2b**, не ручной `goals[]`).
 - [x] **B.7** **Gallery:** тексты в CMS; фото слайдера — **dev-only**.
-- [ ] **B.8** **Reviews:** реальные `authorName`; `authorRole` / treatment tag; опционально `instagramSourceUrl`; подсказка про согласие клиента; max ~6–8.
-- [ ] **B.8b** UI: ссылка «View on Instagram» если URL задан (открывает post/highlight в IG).
-- [ ] **B.12** **Contact form copy:** перенос `ContactForm` из `messages/*` → Sanity (`contactForm` object на `landingPage` или `siteSettings` per locale).
-- [ ] **B.9** **FAQ:** убрать дубль `items` vs только `groups`; правила stable `id` для matching на treatments.
+- [x] **B.8** **Reviews:** реальные `authorName`; `authorRole` / treatment tag; опционально `instagramSourceUrl`; подсказка про согласие клиента; max ~6–8.
+- [x] **B.8b** UI: ссылка «View on Instagram» если URL задан (открывает post/highlight в IG).
+- [x] **B.12** **Contact form copy:** перенос `ContactForm` из `messages/*` → Sanity (`contactForm` on `landingPage`).
+- [x] **B.9** **FAQ:** убрать дубль `items` — только `groups`; stable `id` в Studio description.
 - [ ] **B.10** **Contact + Footer:** слияние с `siteSettings`, какие поля override на лендинге.
 - [ ] **B.11** Подсказки к полям (`description`) на языке редактора + примеры хороших текстов.
 
@@ -282,6 +282,7 @@
 | 2026-06-01 | Два флага категорий; legal секциями; fallback EN; CTA nav vs hero; [treatment concerns](./treatment-concerns-spec.md) | Inna / команда |
 | 2026-06-01 | `featuredInNav` **max 5**; `featuredOnHomepage` max 4; форма → Sanity; concerns с картинками; отзывы — реальные имена + optional IG URL | Inna / команда |
 | 2026-06-01 | A.2/A.3: статика — вечный fallback; Part 1: флаги категорий, homepage/nav из каталога | команда |
+| 2026-06-01 | Part 2: CTA из CMS, contactForm на landingPage, reviews+IG, FAQ без legacy items | команда |
 
 ---
 

@@ -14,6 +14,7 @@ import { footerContactBlock } from "./objects/footer-contact-block";
 import { footerLegal } from "./objects/footer-legal";
 import { footerLinkGroup } from "./objects/footer-link-group";
 import { landingAboutSection } from "./objects/landing-about-section";
+import { landingContactForm } from "./objects/landing-contact-form";
 import { landingContactSection } from "./objects/landing-contact-section";
 import { landingFaqSection } from "./objects/landing-faq-section";
 import { landingFooterSection } from "./objects/landing-footer-section";
@@ -51,6 +52,7 @@ export const schemaTypes = [
   landingReviewsSection,
   landingFaqSection,
   landingContactSection,
+  landingContactForm,
   landingFooterSection,
   legalBlockContent,
   legalSection,

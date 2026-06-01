@@ -12,7 +12,7 @@ import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ContactForm } from "@/components/shared/contact-form";
 import { Tooltip } from "@/components/ui/tooltip";
-import type { ContactMessengerId, ContactContent } from "@/lib/types/content";
+import type { ContactFormCopy, ContactMessengerId, ContactContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 import { toTelHref } from "@/lib/tel-href";
 
@@ -21,6 +21,7 @@ export interface ContactSectionProps extends Omit<
   "content"
 > {
   content: ContactContent;
+  contactForm: ContactFormCopy;
 }
 
 const rowIconClass = "h-5 w-5 shrink-0 text-accent";
@@ -61,6 +62,7 @@ function ContactMessengerIcon({ id }: { id: ContactMessengerId }) {
 
 export function ContactSection({
   content,
+  contactForm,
   className,
   id = "contact",
   ...rest
@@ -145,7 +147,7 @@ export function ContactSection({
             })}
           </div>
         </div>
-        <ContactForm />
+        <ContactForm copy={contactForm} />
       </div>
     </Section>
   );

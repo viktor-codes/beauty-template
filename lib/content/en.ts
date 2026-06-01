@@ -1,5 +1,6 @@
 import type { LandingContent } from "@/lib/types/content";
 
+import { contactFormCopyByLocale } from "./contact-form-copy";
 import { faqGroupsEn, faqItemsEn } from "./faq/en";
 import {
   brandLogos,
@@ -149,6 +150,7 @@ export const enLandingContent = {
   reviews: {
     eyebrow: "Client voices",
     title: "What people say after their visits",
+    viewOnInstagramLabel: "View on Instagram",
     items: [
       {
         quote:
@@ -201,6 +203,7 @@ export const enLandingContent = {
     groups: faqGroupsEn,
     items: faqItemsEn,
   },
+  contactForm: contactFormCopyByLocale.en,
   contact: {
     eyebrow: "Get in touch",
     title: "I’m one message away",

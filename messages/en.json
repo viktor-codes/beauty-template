@@ -27,22 +27,6 @@
     "analyticsTitle": "Analytics (Google Analytics)",
     "analyticsDescription": "Helps us measure traffic and improve the experience. Optional."
   },
-  "ContactForm": {
-    "nameLabel": "Name",
-    "namePlaceholder": "Alex Morgan",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "messageLabel": "Message",
-    "messagePlaceholder": "What would you like me to know?",
-    "submit": "Send message",
-    "validation": {
-      "nameRequired": "Please enter your name.",
-      "nameTooLong": "Name is too long.",
-      "emailInvalid": "Enter a valid email address.",
-      "messageMin": "Please write at least 10 characters.",
-      "messageTooLong": "Message is too long."
-    }
-  },
   "Locale": {
     "switchLanguage": "Language",
     "enShort": "EN",

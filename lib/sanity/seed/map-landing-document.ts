@@ -99,11 +99,13 @@ export function mapLandingContentToSanityDocument(
       _type: "landingReviewsSection" as const,
       eyebrow: content.reviews.eyebrow,
       title: content.reviews.title,
+      viewOnInstagramLabel: content.reviews.viewOnInstagramLabel,
       items: content.reviews.items.map((r) => ({
         _type: "reviewItem" as const,
         quote: r.quote,
         authorName: r.authorName,
         authorRole: r.authorRole,
+        ...(r.instagramSourceUrl ? { instagramSourceUrl: r.instagramSourceUrl } : {}),
       })),
     },
     faq: {
@@ -113,7 +115,10 @@ export function mapLandingContentToSanityDocument(
       description: content.faq.description,
       introBullets: content.faq.introBullets,
       groups: content.faq.groups?.map(mapFaqGroup),
-      items: content.faq.items.map(mapFaqItem),
+    },
+    contactForm: {
+      _type: "landingContactForm" as const,
+      ...content.contactForm,
     },
     contact: {
       _type: "landingContactSection" as const,

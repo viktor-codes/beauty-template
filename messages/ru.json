@@ -27,22 +27,6 @@
     "analyticsTitle": "Аналитика (Google Analytics)",
     "analyticsDescription": "Помогает измерять трафик и улучшать опыт использования. Необязательно."
   },
-  "ContactForm": {
-    "nameLabel": "Имя",
-    "namePlaceholder": "Анна Иванова",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "messageLabel": "Сообщение",
-    "messagePlaceholder": "Что бы вы хотели мне сообщить?",
-    "submit": "Отправить сообщение",
-    "validation": {
-      "nameRequired": "Пожалуйста, введите имя.",
-      "nameTooLong": "Имя слишком длинное.",
-      "emailInvalid": "Введите корректный email.",
-      "messageMin": "Напишите не менее 10 символов.",
-      "messageTooLong": "Сообщение слишком длинное."
-    }
-  },
   "Locale": {
     "switchLanguage": "Язык",
     "enShort": "EN",

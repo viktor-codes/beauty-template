@@ -67,19 +67,23 @@ export const structure: StructureResolver = (S) =>
                                 .schemaType("serviceCategory")
                                 .documentId(categoryId),
                             ),
-                          S.documentTypeList("serviceSubcategory")
+                          S.listItem()
                             .title("Subcategories")
-                            .filter(
-                              '_type == "serviceSubcategory" && category._ref == $categoryId',
-                            )
-                            .params({ categoryId })
-                            .child((subcategoryId) =>
-                              S.documentTypeList("serviceProcedure")
-                                .title("Procedures")
+                            .child(
+                              S.documentTypeList("serviceSubcategory")
+                                .title("Subcategories")
                                 .filter(
-                                  '_type == "serviceProcedure" && subcategory._ref == $subcategoryId',
+                                  '_type == "serviceSubcategory" && category._ref == $categoryId',
                                 )
-                                .params({ subcategoryId }),
+                                .params({ categoryId })
+                                .child((subcategoryId) =>
+                                  S.documentTypeList("serviceProcedure")
+                                    .title("Procedures")
+                                    .filter(
+                                      '_type == "serviceProcedure" && subcategory._ref == $subcategoryId',
+                                    )
+                                    .params({ subcategoryId }),
+                                ),
                             ),
                         ]),
                     ),

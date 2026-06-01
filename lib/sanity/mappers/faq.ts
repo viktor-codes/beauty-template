@@ -22,7 +22,6 @@ export interface SanityFaqLike {
   description?: string;
   introBullets?: string[] | null;
   groups?: SanityFaqGroupLike[] | null;
-  items?: SanityFaqItemLike[] | null;
 }
 
 function mapFaqItemSafe(raw: SanityFaqItemLike, fallback?: FAQItem): FAQItem | null {
@@ -84,17 +83,9 @@ export function mapFaqSafe(raw: SanityFaqLike | null | undefined, fallback: FAQC
     .map((group, index) => mapFaqGroupSafe(group, fallbackGroups[index]))
     .filter((group): group is FAQGroup => group !== null);
 
-  const mappedFlat = (raw.items ?? [])
-    .map((item, index) => mapFaqItemSafe(item, fallback.items[index]))
-    .filter((item): item is FAQItem => item !== null);
-
   const resolvedGroups = groups.length > 0 ? groups : fallbackGroups;
   const items =
-    mappedFlat.length > 0
-      ? mappedFlat
-      : resolvedGroups.length > 0
-        ? flattenFaqItems(resolvedGroups)
-        : fallback.items;
+    resolvedGroups.length > 0 ? flattenFaqItems(resolvedGroups) : fallback.items;
 
   const introBullets = raw.introBullets?.map((b) => b.trim()).filter(Boolean);
 

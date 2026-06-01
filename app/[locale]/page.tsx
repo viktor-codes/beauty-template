@@ -60,7 +60,10 @@ export default async function Home({
           content={landingContent.faq}
           consultationCtaLabel={landingContent.nav.cta.label}
         />
-        <ContactSection content={landingContent.contact} />
+        <ContactSection
+          content={landingContent.contact}
+          contactForm={landingContent.contactForm}
+        />
       </main>
       <SiteFooter content={landingContent.footer} />
     </>

@@ -4,11 +4,13 @@ interface SanityReviewItemLike {
   quote?: string;
   authorName?: string;
   authorRole?: string;
+  instagramSourceUrl?: string;
 }
 
 export interface SanityReviewsLike {
   eyebrow?: string;
   title?: string;
+  viewOnInstagramLabel?: string;
   items?: SanityReviewItemLike[] | null;
 }
 
@@ -20,10 +22,13 @@ function mapReviewItemSafe(
   const authorName = raw.authorName?.trim();
   if (!quote || !authorName) return null;
 
+  const instagramSourceUrl = raw.instagramSourceUrl?.trim();
+
   return {
     quote,
     authorName,
     authorRole: raw.authorRole?.trim() || fallback?.authorRole,
+    ...(instagramSourceUrl ? { instagramSourceUrl } : {}),
   };
 }
 
@@ -40,6 +45,8 @@ export function mapReviewsSafe(
   return {
     eyebrow: raw.eyebrow?.trim() || fallback.eyebrow,
     title: raw.title.trim(),
+    viewOnInstagramLabel:
+      raw.viewOnInstagramLabel?.trim() || fallback.viewOnInstagramLabel,
     items: items.length > 0 ? items : fallback.items,
   };
 }

@@ -1,5 +1,6 @@
 import type { LandingContent } from "@/lib/types/content";
 
+import { contactFormCopyByLocale } from "./contact-form-copy";
 import { faqGroupsUk, faqItemsUk } from "./faq/uk";
 import {
   brandLogos,
@@ -156,6 +157,7 @@ export const ukLandingContent = {
   reviews: {
     eyebrow: "Голоси клієнтів",
     title: "Що кажуть після візитів",
+    viewOnInstagramLabel: "Дивитися в Instagram",
     items: [
       {
         quote:
@@ -208,6 +210,7 @@ export const ukLandingContent = {
     groups: faqGroupsUk,
     items: faqItemsUk,
   },
+  contactForm: contactFormCopyByLocale.uk,
   contact: {
     eyebrow: "Зв’язатися",
     title: "Я на відстані одного повідомлення",

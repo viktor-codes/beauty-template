@@ -5,6 +5,10 @@ import type { LandingContent } from "@/lib/types/content";
 import { mapAboutSafe, type SanityAboutLike } from "@/lib/sanity/mappers/about";
 import { mapContactSafe, type SanityContactLike } from "@/lib/sanity/mappers/contact";
 import {
+  mapContactFormSafe,
+  type SanityContactFormLike,
+} from "@/lib/sanity/mappers/contact-form";
+import {
   mapFooterSafe,
   mapNavSafe,
   type SanityFooterLike,
@@ -30,6 +34,7 @@ export interface SanityLandingPageLike {
   reviews?: SanityReviewsLike | null;
   faq?: SanityFaqLike | null;
   contact?: SanityContactLike | null;
+  contactForm?: SanityContactFormLike | null;
   footer?: SanityFooterLike | null;
 }
 
@@ -55,6 +60,7 @@ export function mapLandingPageSafe(
     reviews: mapReviewsSafe(raw.reviews, fallback.reviews),
     faq: mapFaqSafe(raw.faq, fallback.faq),
     contact: mapContactSafe(raw.contact, fallback.contact, settings),
+    contactForm: mapContactFormSafe(raw.contactForm, fallback.contactForm),
     footer: mapFooterSafe(raw.footer, fallback.footer, settings),
   };
 }

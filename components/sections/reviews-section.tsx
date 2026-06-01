@@ -47,6 +47,8 @@ export function ReviewsSection({
                   quote={item.quote}
                   authorName={item.authorName}
                   authorRole={item.authorRole}
+                  instagramSourceUrl={item.instagramSourceUrl}
+                  instagramLinkLabel={content.viewOnInstagramLabel}
                 />
               </li>
             ))}
@@ -60,6 +62,8 @@ export function ReviewsSection({
                   quote={item.quote}
                   authorName={item.authorName}
                   authorRole={item.authorRole}
+                  instagramSourceUrl={item.instagramSourceUrl}
+                  instagramLinkLabel={content.viewOnInstagramLabel}
                   tabIndex={-1}
                 />
               </li>

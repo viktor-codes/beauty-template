@@ -94,12 +94,35 @@ export interface ReviewItem {
   quote: string;
   authorName: string;
   authorRole?: string;
+  /** Permalink to Instagram post, Reel, or Highlight — optional. */
+  instagramSourceUrl?: string;
 }
 
 export interface ReviewsContent {
   eyebrow: string;
   title: string;
   items: ReviewItem[];
+  /** Link label when `instagramSourceUrl` is set on a review. */
+  viewOnInstagramLabel?: string;
+}
+
+export interface ContactFormValidationCopy {
+  nameRequired: string;
+  nameTooLong: string;
+  emailInvalid: string;
+  messageMin: string;
+  messageTooLong: string;
+}
+
+export interface ContactFormCopy {
+  nameLabel: string;
+  namePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  submit: string;
+  validation: ContactFormValidationCopy;
 }
 
 export interface FAQItem {
@@ -203,5 +226,6 @@ export interface LandingContent {
   reviews: ReviewsContent;
   faq: FAQContent;
   contact: ContactContent;
+  contactForm: ContactFormCopy;
   footer: FooterContent;
 }

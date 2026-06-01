@@ -17,14 +17,9 @@ export const landingFaqSection = defineType({
     defineField({
       name: "groups",
       title: "FAQ groups",
+      description: "Organize questions by topic. Each item needs a stable ID slug for treatment-page matching.",
       type: "array",
       of: [defineArrayMember({ type: "faqGroup" })],
-    }),
-    defineField({
-      name: "items",
-      title: "Flat FAQ list (legacy / services matching)",
-      type: "array",
-      of: [defineArrayMember({ type: "faqItem" })],
     }),
   ],
 });

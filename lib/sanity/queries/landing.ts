@@ -2,7 +2,6 @@ import {
   contactMessengerFields,
   contentLinkFields,
   faqGroupFields,
-  faqItemFields,
   footerLinkGroupFields,
   sanityImageFields,
   servicesGoalPreviewFields,
@@ -98,10 +97,12 @@ export const landingPageQuery = /* groq */ `
     reviews {
       eyebrow,
       title,
+      viewOnInstagramLabel,
       items[] {
         quote,
         authorName,
-        authorRole
+        authorRole,
+        instagramSourceUrl
       }
     },
     faq {
@@ -111,9 +112,22 @@ export const landingPageQuery = /* groq */ `
       introBullets,
       groups[] {
         ${faqGroupFields}
-      },
-      items[] {
-        ${faqItemFields}
+      }
+    },
+    contactForm {
+      nameLabel,
+      namePlaceholder,
+      emailLabel,
+      emailPlaceholder,
+      messageLabel,
+      messagePlaceholder,
+      submit,
+      validation {
+        nameRequired,
+        nameTooLong,
+        emailInvalid,
+        messageMin,
+        messageTooLong
       }
     },
     contact {

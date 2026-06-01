@@ -38,6 +38,12 @@ export const landingPage = defineType({
     defineField({ name: "reviews", type: "landingReviewsSection", group: "marketing" }),
     defineField({ name: "faq", type: "landingFaqSection", group: "marketing" }),
     defineField({ name: "contact", type: "landingContactSection", group: "contact" }),
+    defineField({
+      name: "contactForm",
+      title: "Contact form copy",
+      type: "landingContactForm",
+      group: "contact",
+    }),
   ],
   preview: {
     select: { language: "language", title: "hero.title" },

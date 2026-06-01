@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { type ComponentPropsWithoutRef, type FormEvent, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -9,8 +8,11 @@ import {
   createContactFormSchema,
   type ContactFormValues,
 } from "@/lib/schemas/contact-form";
+import type { ContactFormCopy } from "@/lib/types/content";
 
-export type ContactFormProps = Omit<ComponentPropsWithoutRef<"form">, "onSubmit">;
+export interface ContactFormProps extends Omit<ComponentPropsWithoutRef<"form">, "onSubmit"> {
+  copy: ContactFormCopy;
+}
 
 const fieldClass =
   "w-full rounded-xl border border-border bg-background px-4 py-4 text-sm text-primary placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
@@ -42,20 +44,19 @@ function fieldErrorsFromIssues(
   return next;
 }
 
-export function ContactForm({ className, ...rest }: ContactFormProps) {
-  const t = useTranslations("ContactForm");
+export function ContactForm({ copy, className, ...rest }: ContactFormProps) {
   const [errors, setErrors] = useState<FieldErrors>({});
 
   const schema = useMemo(
     () =>
       createContactFormSchema({
-        nameRequired: t("validation.nameRequired"),
-        nameTooLong: t("validation.nameTooLong"),
-        emailInvalid: t("validation.emailInvalid"),
-        messageMin: t("validation.messageMin"),
-        messageTooLong: t("validation.messageTooLong"),
+        nameRequired: copy.validation.nameRequired,
+        nameTooLong: copy.validation.nameTooLong,
+        emailInvalid: copy.validation.emailInvalid,
+        messageMin: copy.validation.messageMin,
+        messageTooLong: copy.validation.messageTooLong,
       }),
-    [t],
+    [copy.validation],
   );
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -79,14 +80,14 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
     >
       <div className="flex flex-col gap-2">
         <label htmlFor="contact-name" className="text-sm font-medium text-primary">
-          {t("nameLabel")}
+          {copy.nameLabel}
         </label>
         <input
           id="contact-name"
           name="name"
           type="text"
           autoComplete="name"
-          placeholder={t("namePlaceholder")}
+          placeholder={copy.namePlaceholder}
           className={cn(fieldClass, errors.name && "border-red-700/60 focus:border-red-700 focus:ring-red-700/40")}
           aria-invalid={errors.name ? true : undefined}
           aria-describedby={errors.name ? "contact-name-error" : undefined}
@@ -99,14 +100,14 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="contact-email" className="text-sm font-medium text-primary">
-          {t("emailLabel")}
+          {copy.emailLabel}
         </label>
         <input
           id="contact-email"
           name="email"
           type="email"
           autoComplete="email"
-          placeholder={t("emailPlaceholder")}
+          placeholder={copy.emailPlaceholder}
           className={cn(fieldClass, errors.email && "border-red-700/60 focus:border-red-700 focus:ring-red-700/40")}
           aria-invalid={errors.email ? true : undefined}
           aria-describedby={errors.email ? "contact-email-error" : undefined}
@@ -119,13 +120,13 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="contact-message" className="text-sm font-medium text-primary">
-          {t("messageLabel")}
+          {copy.messageLabel}
         </label>
         <textarea
           id="contact-message"
           name="message"
           rows={4}
-          placeholder={t("messagePlaceholder")}
+          placeholder={copy.messagePlaceholder}
           className={cn(
             fieldClass,
             "resize-y min-h-[120px]",
@@ -141,7 +142,7 @@ export function ContactForm({ className, ...rest }: ContactFormProps) {
         ) : null}
       </div>
       <Button type="submit" className="self-start">
-        {t("submit")}
+        {copy.submit}
       </Button>
     </form>
   );

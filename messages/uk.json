@@ -27,22 +27,6 @@
     "analyticsTitle": "Аналітика (Google Analytics)",
     "analyticsDescription": "Допомагає вимірювати трафік і покращувати досвід користування. Необов'язково."
   },
-  "ContactForm": {
-    "nameLabel": "Ім'я",
-    "namePlaceholder": "Олена Коваленко",
-    "emailLabel": "Email",
-    "emailPlaceholder": "you@example.com",
-    "messageLabel": "Повідомлення",
-    "messagePlaceholder": "Що б ви хотіли мені повідомити?",
-    "submit": "Надіслати повідомлення",
-    "validation": {
-      "nameRequired": "Будь ласка, введіть ім'я.",
-      "nameTooLong": "Ім'я занадто довге.",
-      "emailInvalid": "Введіть коректну email-адресу.",
-      "messageMin": "Напишіть щонайменше 10 символів.",
-      "messageTooLong": "Повідомлення занадто довге."
-    }
-  },
   "Locale": {
     "switchLanguage": "Мова",
     "enShort": "EN",

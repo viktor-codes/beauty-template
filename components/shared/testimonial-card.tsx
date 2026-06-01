@@ -7,6 +7,8 @@ export interface TestimonialCardProps extends HTMLAttributes<HTMLElement> {
   authorName: string;
   authorRole?: string;
   rating?: 1 | 2 | 3 | 4 | 5;
+  instagramSourceUrl?: string;
+  instagramLinkLabel?: string;
 }
 
 export function TestimonialCard({
@@ -14,9 +16,13 @@ export function TestimonialCard({
   authorName,
   authorRole,
   rating,
+  instagramSourceUrl,
+  instagramLinkLabel = "View on Instagram",
   className,
   ...rest
 }: TestimonialCardProps) {
+  const hasInstagramLink = Boolean(instagramSourceUrl?.trim());
+
   return (
     <figure
       className={cn(
@@ -38,6 +44,16 @@ export function TestimonialCard({
         <span className="font-medium text-primary">{authorName}</span>
         {authorRole ? (
           <span className="block text-muted">{authorRole}</span>
+        ) : null}
+        {hasInstagramLink ? (
+          <a
+            href={instagramSourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex text-sm font-medium text-accent underline-offset-2 hover:underline"
+          >
+            {instagramLinkLabel}
+          </a>
         ) : null}
       </figcaption>
     </figure>
