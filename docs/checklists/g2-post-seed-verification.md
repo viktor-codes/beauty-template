@@ -73,7 +73,7 @@ flowchart LR
 
 ### B. Site — EN
 
-- [ ] `/` — content matches Studio (edit a headline → publish → site updates after revalidate)
+- [x] `/` — publish in Studio → webhook `/api/revalidate` → site updates (verified 2026-06-01)
 - [ ] `/treatments` — H1/subtitle from hub, category cards, concern cards
 - [ ] `/treatments?concern=glow` — recommended list (CMS links or keyword fallback)
 - [ ] Nav dropdown — 5 categories max, short titles

@@ -33,7 +33,7 @@ Store the archive outside the repo. Record the date in [sanity-client-admin-road
 - [ ] Footer — phone/email match Site settings when CMS on
 - [ ] `/treatments` hub loads
 - [ ] One category page e.g. `/treatments/cosmetology`
-- [ ] Draft/publish: edit category flag in Studio → revalidate → site updates
+- [x] Draft/publish: edit in Studio → revalidate → site updates (verified 2026-06-01)
 - [ ] About: replace one brand logo in Studio → marquee shows CDN image (not `/public/logos`)
 - [ ] Site settings EN: change phone → contact section + footer update (see [site-settings-merge.md](./site-settings-merge.md))
 
@@ -46,4 +46,4 @@ Store the archive outside the repo. Record the date in [sanity-client-admin-road
 ## 5. After first prod seed (G.1 done)
 
 - [x] `pnpm seed:sanity` on production (2026-06-01)
-- [ ] Complete remaining items in [g2-post-seed-verification.md](./g2-post-seed-verification.md) §4 (publish → revalidate smoke)
+- [x] Publish → revalidate smoke — [g2](./g2-post-seed-verification.md) §4B (verified 2026-06-01)

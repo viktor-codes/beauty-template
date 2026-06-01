@@ -23,7 +23,7 @@
 - [x] Ошибки ввода **ловятся в Studio** для части полей (флаги 4/5, tel/email/url, max reviews); мапперы с fallback.
 - [x] Три языка: лендинг ×3, legal ×3, settings ×3; категории каталога с UK/RU (процедуры — EN + fallback).
 - [ ] Есть **короткая инструкция для клиента** (1–2 страницы PDF/Notion или раздел в Studio).
-- [x] Seed on production dataset ([G.1](./../checklists/g2-post-seed-verification.md) §6); **preview/webhook** — см. F.5–F.6.
+- [x] Seed on production + webhook revalidate ([G.1](./../checklists/g2-post-seed-verification.md) §6, F.5 ✅); **preview** — F.6.
 
 ---
 
@@ -160,7 +160,7 @@
 - [ ] **F.2** GROQ queries: покрытие всех полей, без over-fetch.
 - [ ] **F.3** Мапперы: единые правила fallback (документировать в `lib/sanity/mappers/README` или в этом файле).
 - [ ] **F.4** Типы `Sanity*Like` vs codegen (`sanity-typegen`) — нужен ли codegen.
-- [ ] **F.5** Revalidate: webhook, какие документы инвалидируют какие теги.
+- [x] **F.5** Revalidate: `POST /api/revalidate` + `revalidateSanityContent` (webhook on prod verified 2026-06-01).
 - [ ] **F.6** Preview URL в Studio (draft mode) per locale.
 
 ### Блок G — Миграция и наполнение
@@ -188,7 +188,7 @@
 
 *Не блокирует CMS, но снижает путаницу при разработке.*
 
-- [ ] **J.1** `lib/README.md` — куда смотреть: content vs services vs sanity.
+- [x] **J.1** `lib/README.md` — куда смотреть: content vs services vs sanity (+ g2 source of truth).
 - [ ] **J.2** Обновить `docs/HANDOFF.md` под реальность.
 - [ ] **J.3** Перенос `services-faq`, misleading re-exports (отдельный PR).
 
@@ -300,6 +300,7 @@
 | 2026-06-01 | Part 5: UK/RU seed — landing×3, category localeString, procedures EN-only fallback | команда |
 | 2026-06-01 | [Матрица полей](./landing-sections-field-matrix.md) синхронизирована с частями 0–5 (колонка «Статус», закрытые баги мапперов) | команда |
 | 2026-06-01 | G.1 seed на production; G.2 [g2-post-seed-verification.md](../checklists/g2-post-seed-verification.md); hub + concerns; лендинг UK/RU QA; картинки — D.3 | команда |
+| 2026-06-01 | F.5 smoke: Studio publish → webhook → `/` обновляется (редактор) | команда |
 
 ---
 

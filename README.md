@@ -29,18 +29,20 @@ Supported locales: **en** (default), **uk**, **ru**.
 
 Routing uses `next-intl` with a `[locale]` segment (e.g. `/uk/services`). Default locale `en` is served at `/` without a prefix once Phase 1 is merged.
 
-UI strings live in `messages/{locale}.json`. Page content will move to Sanity with per-locale documents.
+UI strings live in `messages/{locale}.json` (cookie, a11y). **Editorial content** lives in Sanity after seed — not in `lib/content/*.ts` for day-to-day edits.
 
 ## Sanity CMS
 
-See [docs/adr/001-sanity-i18n-strategy.md](./docs/adr/001-sanity-i18n-strategy.md).
+See [docs/adr/001-sanity-i18n-strategy.md](./docs/adr/001-sanity-i18n-strategy.md).  
+**Source of truth & post-seed checklist:** [docs/checklists/g2-post-seed-verification.md](./docs/checklists/g2-post-seed-verification.md).  
+**Code layout:** [lib/README.md](./lib/README.md).
 
 | Content                | Studio i18n                               | Why                                         |
 | ---------------------- | ----------------------------------------- | ------------------------------------------- |
 | Landing, site settings | **Document** (one doc per locale)         | Large page blobs                            |
 | Services tree          | **Field** (`localeString` / `localeText`) | Same `_id` and references for all languages |
 
-Next.js reads CMS via `lib/sanity/` (queries → **mappers with fallbacks** → `LandingContent` / `ServicesCatalog`). Pages keep calling `getLandingContent(locale)`; static files remain fallback until migration.
+Next.js reads CMS via `lib/sanity/` (queries → **mappers with fallbacks** → `LandingContent` / `ServicesCatalog`). Static files in `lib/content` and `lib/services` are **fallback only** when CMS is off or a field is empty.
 
 1. Create a project at [sanity.io/manage](https://www.sanity.io/manage).
 2. Set `NEXT_PUBLIC_SANITY_*` in `.env.local` (Next) and `SANITY_STUDIO_*` in `sanity/.env` (Studio — same project/dataset).
