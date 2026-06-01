@@ -88,7 +88,7 @@
 - [x] **A.1** Полный список полей лендинга → [landing-sections-field-matrix.md](./landing-sections-field-matrix.md) (каталог + legal — в следующих итерациях матрицы).
 - [x] **A.2** **`lib/content/*.ts`**: вечный fallback (не удаляем).
 - [x] **A.3** **`lib/services/**`**: вечный fallback + источник для seed.
-- [ ] **A.4** Матрица языков: кто переводит UK/RU (клиент, переводчик, вы)?
+- [x] **A.4** UK/RU: seed из `uk.ts` / `ru.ts` + категории каталога; процедуры EN → fallback на сайте.
 
 ### Блок B — Лендинг (`landingPage`)
 
@@ -285,6 +285,7 @@
 | 2026-06-01 | Part 2: CTA из CMS, contactForm на landingPage, reviews+IG, FAQ без legacy items | команда |
 | 2026-06-01 | Part 3: brand logos upload в Studio, CMS-first mapper, seed assets | команда |
 | 2026-06-01 | Part 4: site settings UX, validation, messenger URL merge, B.10 doc | команда |
+| 2026-06-01 | Part 5: UK/RU seed — landing×3, category localeString, procedures EN-only fallback | команда |
 
 ---
 

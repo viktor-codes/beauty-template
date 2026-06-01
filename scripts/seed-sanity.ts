@@ -66,7 +66,7 @@ function mapSiteSettings(locale: AppLocale) {
 async function main() {
   const client = getWriteClient();
 
-  console.log("Seeding services catalog…");
+  console.log("Seeding services catalog (category UK/RU from static landing, procedures EN-only)…");
   const serviceDocs = buildServiceDocuments(servicesCatalog);
   await commitDocumentsInChunks(client, serviceDocs);
   console.log(`Services: ${serviceDocs.length} documents`);
@@ -88,7 +88,9 @@ async function main() {
     console.log(`  ✓ ${locale}: landingPage + siteSettings + 2 legal pages`);
   }
 
-  console.log("\nDone. Open Studio → Structure; content should be filled. Publish if drafts appear.");
+  console.log(
+    "\nDone. Open Studio → Landing UK/RU + service categories; publish drafts. See docs/checklists/part-5-uk-ru.md",
+  );
 }
 
 main().catch((err) => {

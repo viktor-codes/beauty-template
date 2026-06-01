@@ -2,7 +2,12 @@ import type { ServicesCatalog } from "@/lib/types/services";
 
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
 import { STATIC_CATEGORY_SHORT_TITLES } from "@/lib/services/category-short-titles";
-import { toLocaleString, toLocaleText } from "@/lib/sanity/seed/to-locale-fields";
+import { getCategoryLocaleCopy } from "@/lib/sanity/seed/service-category-locale-copy";
+import {
+  toLocaleStringEnOnly,
+  toLocaleStringI18n,
+  toLocaleTextI18n,
+} from "@/lib/sanity/seed/to-locale-fields";
 
 type SanitySeedDoc = Record<string, unknown> & { _id: string; _type: string };
 
@@ -27,13 +32,20 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
     const categoryId = categoryDocId(category.id);
     const flags = getStaticCategoryFeatureFlags(category.id);
     const shortTitle = STATIC_CATEGORY_SHORT_TITLES[category.id];
+    const ukCopy = getCategoryLocaleCopy(category.id, "uk");
+    const ruCopy = getCategoryLocaleCopy(category.id, "ru");
+
     docs.push({
       _id: categoryId,
       _type: "serviceCategory",
       slug: { _type: "slug", current: category.id },
-      title: toLocaleString(category.title),
+      title: toLocaleStringI18n(category.title, ukCopy?.title, ruCopy?.title),
       ...(shortTitle ? { shortTitle } : {}),
-      description: toLocaleText(category.description),
+      description: toLocaleTextI18n(
+        category.description,
+        ukCopy?.description,
+        ruCopy?.description,
+      ),
       sortOrder: flags.sortOrder ?? categoryOrder,
       featuredOnHomepage: flags.featuredOnHomepage ?? false,
       featuredInNav: flags.featuredInNav ?? false,
@@ -48,8 +60,8 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
         _type: "serviceSubcategory",
         category: { _type: "reference", _ref: categoryId },
         slug: { _type: "slug", current: subcategory.id },
-        title: toLocaleString(subcategory.title),
-        description: toLocaleText(subcategory.description),
+        title: toLocaleStringEnOnly(subcategory.title),
+        description: toLocaleTextI18n(subcategory.description),
         sortOrder: subOrder,
       });
       subOrder += 1;
@@ -61,8 +73,8 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
           _type: "serviceProcedure",
           subcategory: { _type: "reference", _ref: subId },
           slug: { _type: "slug", current: procedure.id },
-          title: toLocaleString(procedure.title),
-          description: toLocaleText(procedure.description),
+          title: toLocaleStringEnOnly(procedure.title),
+          description: toLocaleTextI18n(procedure.description),
           price: procedure.price
             ? { amount: procedure.price.amount, currency: procedure.price.currency }
             : undefined,
