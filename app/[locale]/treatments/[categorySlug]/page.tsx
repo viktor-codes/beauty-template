@@ -34,9 +34,10 @@ export async function generateMetadata({
   const { locale, categorySlug } = await params;
   const catalog = await resolveServicesCatalog(locale as AppLocale);
   const category = findCategory(catalog, categorySlug);
+  const { hubUi } = catalog;
 
   return {
-    title: `${category.title} — consultations & protocols`,
+    title: `${category.title} — ${hubUi.categoryMetaTitleSuffix}`,
     description: category.description,
     openGraph: {
       title: `${category.title} | ${SITE_BRAND}`,
@@ -89,7 +90,7 @@ export default async function ServicesCategoryPage({
 
         <section aria-labelledby={`${pageTitleId}-subcategories`}>
           <h2 id={`${pageTitleId}-subcategories`} className="sr-only">
-            Subcategories
+            {hubUi.subcategoriesSrOnlyLabel}
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2">
             {category.subcategories.map((subcategory) => (
@@ -112,9 +113,9 @@ export default async function ServicesCategoryPage({
         <FaqJsonLd items={categoryFaq} />
         <SectionHeading
           titleId={`${pageTitleId}-faq-heading`}
-          eyebrow="FAQ"
-          title={`${category.title}: common questions`}
-          subtitle="Focused answers for this direction—plus what to ask during consultation."
+          eyebrow={hubUi.faqEyebrow}
+          title={hubUi.categoryFaqTitleTemplate.replace("{title}", category.title)}
+          subtitle={hubUi.categoryFaqSubtitle}
           className="mb-6"
         />
         <FaqAccordion items={categoryFaq} />

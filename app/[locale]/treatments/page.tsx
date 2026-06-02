@@ -179,6 +179,11 @@ export default async function ServicesPage({
               </li>
             ))}
           </ul>
+          <div className="mt-8 flex justify-end gap-4">
+            <Button href="/#contact" size="lg">
+              {landingContent.nav.cta.label}
+            </Button>
+          </div>
         </section>
 
         {activeConcerns.length > 0 ? (
@@ -204,7 +209,7 @@ export default async function ServicesPage({
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex justify-end gap-4">
               <Button href="/#contact" size="lg">
                 {landingContent.nav.cta.label}
               </Button>

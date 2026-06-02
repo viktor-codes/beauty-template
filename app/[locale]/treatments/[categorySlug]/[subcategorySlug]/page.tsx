@@ -102,7 +102,7 @@ export default async function ServicesSubcategoryPage({
 
         <section aria-labelledby={`${pageTitleId}-procedures`}>
           <h2 id={`${pageTitleId}-procedures`} className="sr-only">
-            Procedures
+            {hubUi.proceduresSrOnlyLabel}
           </h2>
           <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
             {subcategory.procedures.map((procedure) => {
@@ -160,9 +160,9 @@ export default async function ServicesSubcategoryPage({
         <FaqJsonLd items={subcategoryFaq} />
         <SectionHeading
           titleId={`${pageTitleId}-faq-heading`}
-          eyebrow="FAQ"
-          title={`${subcategory.title}: what clients ask`}
-          subtitle="Practical guidance for planning, downtime, and safety—tailored to this treatment group."
+          eyebrow={hubUi.faqEyebrow}
+          title={hubUi.subcategoryFaqTitleTemplate.replace("{title}", subcategory.title)}
+          subtitle={hubUi.subcategoryFaqSubtitle}
           className="mb-6"
         />
         <FaqAccordion items={subcategoryFaq} />
@@ -177,8 +177,7 @@ export default async function ServicesSubcategoryPage({
 
         <div className="mt-10 rounded-2xl border border-border bg-surface/50 p-6">
           <p className="text-sm leading-relaxed text-muted">
-            Not sure where to start? Book a consultation and I’ll map out the safest,
-            most effective plan for your goal and timeline.
+            {hubUi.subcategoryConsultationBlurb}
           </p>
           <div className="mt-6 flex flex-wrap gap-4">
             <Button href="/#contact" size="lg">

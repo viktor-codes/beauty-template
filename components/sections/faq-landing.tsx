@@ -14,6 +14,12 @@ export interface FaqLandingProps {
 
 export function FaqLanding({ content, consultationCtaLabel }: FaqLandingProps) {
   const groups = content.groups ?? [];
+  const nextStep = content.nextStep ?? {
+    eyebrow: "Next step",
+    title: "Still deciding?",
+    description:
+      "Share your goal, timeline, and downtime preference—I’ll narrow options quickly in consultation.",
+  };
 
   if (groups.length === 0) {
     return <FaqAccordion items={content.items} />;
@@ -66,14 +72,13 @@ export function FaqLanding({ content, consultationCtaLabel }: FaqLandingProps) {
         >
           <div className="max-w-xl space-y-2">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
-              Next step
+              {nextStep.eyebrow}
             </p>
             <h3 className="font-heading text-h4 tracking-h4 text-primary">
-              Still deciding?
+              {nextStep.title}
             </h3>
             <p className="text-sm leading-relaxed text-muted">
-              Share your goal, timeline, and downtime preference—I’ll narrow
-              options quickly in consultation.
+              {nextStep.description}
             </p>
           </div>
           <a

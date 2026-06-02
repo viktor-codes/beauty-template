@@ -148,7 +148,7 @@ export default async function ServiceProcedurePage({
                   </div>
                 ) : null}
                 <div className="inline-flex items-center rounded-full border border-border bg-surface px-4 py-2 text-sm text-muted">
-                  Consultation recommended
+                  {hubUi.consultationRecommendedLabel}
                 </div>
               </div>
 
@@ -167,9 +167,7 @@ export default async function ServiceProcedurePage({
 
               <div className="mt-10 rounded-2xl border border-border bg-surface/50 p-6">
                 <p className="text-sm leading-relaxed text-muted">
-                  I’ll confirm suitability, expected downtime, and aftercare during your
-                  consultation. If you have upcoming events or active skincare (retinoids,
-                  peels), mention it so I can plan safely.
+                  {hubUi.procedureConsultationBlurb}
                 </p>
               </div>
 
@@ -210,9 +208,9 @@ export default async function ServiceProcedurePage({
         <FaqJsonLd items={procedureFaq} />
         <SectionHeading
           titleId={`${pageTitleId}-faq-heading`}
-          eyebrow="FAQ"
-          title={`Before you book: ${procedure.title}`}
-          subtitle="A shortlist of the most relevant questions—plus the full FAQ library on the homepage."
+          eyebrow={hubUi.faqEyebrow}
+          title={hubUi.procedureFaqTitleTemplate.replace("{title}", procedure.title)}
+          subtitle={hubUi.procedureFaqSubtitle}
           className="mb-6"
         />
         <FaqAccordion items={procedureFaq} />

@@ -39,6 +39,18 @@ export interface TreatmentsHubUi {
   faqEyebrow: string;
   faqTitle: string;
   faqSubtitle: string;
+  categoryMetaTitleSuffix: string;
+  subcategoriesSrOnlyLabel: string;
+  proceduresSrOnlyLabel: string;
+  categoryFaqTitleTemplate: string;
+  categoryFaqSubtitle: string;
+  subcategoryFaqTitleTemplate: string;
+  subcategoryFaqSubtitle: string;
+  procedureFaqTitleTemplate: string;
+  procedureFaqSubtitle: string;
+  consultationRecommendedLabel: string;
+  subcategoryConsultationBlurb: string;
+  procedureConsultationBlurb: string;
   viewFullFaqLabel: string;
   recommendedForPrefix: string;
   viewDetailsLabel: string;

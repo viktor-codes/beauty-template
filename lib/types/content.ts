@@ -143,11 +143,18 @@ export interface FAQGroup {
   items: FAQItem[];
 }
 
+export interface FAQNextStepBlock {
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+
 export interface FAQContent {
   eyebrow: string;
   title: string;
   description?: string;
   introBullets?: string[];
+  nextStep?: FAQNextStepBlock;
   groups?: FAQGroup[];
   items: FAQItem[];
 }

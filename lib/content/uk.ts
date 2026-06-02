@@ -53,7 +53,7 @@ export const ukLandingContent = {
     categories: [
       {
         id: "services-category-cosmetology",
-        title: "Cosmetology",
+        title: "Косметологія",
         description:
           "Ін’єкції, біостимулятори, біоревіталізація та апаратні протоколи для обличчя та шкіри.",
         href: "/treatments/cosmetology",
@@ -61,14 +61,14 @@ export const ukLandingContent = {
       },
       {
         id: "services-category-body",
-        title: "Body slimming & contouring",
+        title: "Корекція фігури та схуднення",
         description:
           "CRYO, Emsculpt, пілінги, лазерна корекція та процедури для тіла.",
         href: "/treatments/body-slimming",
       },
       {
         id: "services-category-anti-age",
-        title: "Anti age",
+        title: "Anti-age",
         description: "Ліфтинг, колаген, нейромодулятори та anti-age пілінги.",
         href: "/treatments/anti-age",
         featuredInNav: true,
@@ -83,7 +83,7 @@ export const ukLandingContent = {
       },
       {
         id: "services-category-blood",
-        title: "Blood tests",
+        title: "Аналізи крові",
         description:
           "Аналізи крові для wellness і фертильності — основа персонального плану.",
         href: "/treatments/blood-tests",
@@ -91,7 +91,7 @@ export const ukLandingContent = {
       },
       {
         id: "services-category-skin",
-        title: "Facials & peels",
+        title: "Догляд обличчя та пілінги",
         description:
           "Процедури догляду від Jan Marini та пілінги для чистоти, сяйва та балансу шкіри.",
         href: "/treatments/aesthetic-treatments",
@@ -208,6 +208,12 @@ export const ukLandingContent = {
       "Курси, відновлення та правила безпеки згруповані, для зручної навігації за вашими пріоритетами.",
       "Якщо сумніваєтесь, почніть з «Планування та очікування», потім перейдіть до вашої категорії процедур.",
     ],
+    nextStep: {
+      eyebrow: "Наступний крок",
+      title: "Вагaєтесь, що обрати?",
+      description:
+        "Поділіться метою, термінами та бажаним відновленням — на консультації швидко звузимо варіанти.",
+    },
     groups: faqGroupsUk,
     items: faqItemsUk,
   },
@@ -260,7 +266,7 @@ export const ukLandingContent = {
     services: {
       heading: "Основні категорії",
       links: [
-        { label: "Cosmetology", href: "/treatments/cosmetology" },
+        { label: "Косметологія", href: "/treatments/cosmetology" },
         { label: "Anti age", href: "/treatments/anti-age" },
         { label: "Body slimming", href: "/treatments/body-slimming" },
         { label: "Blood tests", href: "/treatments/blood-tests" },

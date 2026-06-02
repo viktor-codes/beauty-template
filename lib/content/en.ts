@@ -201,6 +201,12 @@ export const enLandingContent = {
       "Courses, downtime, and safety rules are grouped so nothing important gets buried.",
       "If you’re unsure, start with Planning & expectations, then jump to your treatment category.",
     ],
+    nextStep: {
+      eyebrow: "Next step",
+      title: "Still deciding?",
+      description:
+        "Share your goal, timeline, and downtime preference—I’ll narrow options quickly in consultation.",
+    },
     groups: faqGroupsEn,
     items: faqItemsEn,
   },

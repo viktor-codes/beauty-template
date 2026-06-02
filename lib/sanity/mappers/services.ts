@@ -2,6 +2,12 @@ import type { AppLocale } from "@/i18n/routing";
 import { readLocalizedValue, type LocaleFieldValues } from "@/lib/i18n/pick-locale-field";
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
 import { getStaticCategoryShortTitle } from "@/lib/services/category-short-titles";
+import {
+  getCategoryLocaleCopyField,
+  getProcedureLocaleCopy,
+  getSubcategoryLocaleCopy,
+} from "@/lib/services/locale-copy/get";
+import { resolveServiceLocalizedField } from "@/lib/services/locale-copy/resolve-field";
 import { getStaticServicesCatalog } from "@/lib/sanity/fetch/get-services-catalog";
 import type {
   ServiceCategory,
@@ -114,13 +120,23 @@ function mapProcedure(
   const id = mapSlugSafe(raw.slug, fallback?.id ?? "");
   if (!id) return null;
 
+  const procedureCopy = getProcedureLocaleCopy(id, locale);
+
   return {
     id,
-    title: readLocalizedValue(raw.title, locale, fallback?.title ?? "Treatment"),
-    description: readLocalizedValue(
-      raw.description,
+    title: resolveServiceLocalizedField(
+      readLocalizedValue(raw.title, locale, fallback?.title ?? "Treatment"),
+      locale,
+      fallback?.title ?? "Treatment",
+      procedureCopy,
+      (entry) => entry.title,
+    ),
+    description: resolveServiceLocalizedField(
+      readLocalizedValue(raw.description, locale, fallback?.description ?? ""),
       locale,
       fallback?.description ?? "",
+      procedureCopy,
+      (entry) => entry.description,
     ),
     image: mapServiceImageSafe(raw.image, locale, fallback?.image),
     price: mapMoneySafe(raw.price) ?? fallback?.price,
@@ -146,10 +162,24 @@ function mapSubcategory(
     })
     .filter((p): p is ServiceProcedure => p !== null);
 
+  const subcategoryCopy = getSubcategoryLocaleCopy(id, locale);
+
   return {
     id,
-    title: readLocalizedValue(raw.title, locale, fallbackSub?.title ?? id),
-    description: readLocalizedValue(raw.description, locale, fallbackSub?.description ?? ""),
+    title: resolveServiceLocalizedField(
+      readLocalizedValue(raw.title, locale, fallbackSub?.title ?? id),
+      locale,
+      fallbackSub?.title ?? id,
+      subcategoryCopy,
+      (entry) => entry.title,
+    ),
+    description: resolveServiceLocalizedField(
+      readLocalizedValue(raw.description, locale, fallbackSub?.description ?? ""),
+      locale,
+      fallbackSub?.description ?? "",
+      subcategoryCopy,
+      (entry) => entry.description,
+    ),
     image: mapServiceImageSafe(raw.image, locale, fallbackSub?.image),
     procedures: procedures.length > 0 ? procedures : fallbackProcedures,
   };
@@ -203,13 +233,26 @@ function mapCategory(
     .filter((s): s is ServiceSubcategory => s !== null);
 
   const staticFlags = getStaticCategoryFeatureFlags(id);
-  const title = readLocalizedValue(raw.title, locale, fallback?.title ?? id);
+  const categoryCopy = getCategoryLocaleCopyField(id, locale);
+  const title = resolveServiceLocalizedField(
+    readLocalizedValue(raw.title, locale, fallback?.title ?? id),
+    locale,
+    fallback?.title ?? id,
+    categoryCopy,
+    (entry) => entry.title,
+  );
 
   return {
     id,
     title,
     shortTitle: resolveCategoryShortTitle(id, title, locale, raw.shortTitle, fallback?.shortTitle),
-    description: readLocalizedValue(raw.description, locale, fallback?.description ?? ""),
+    description: resolveServiceLocalizedField(
+      readLocalizedValue(raw.description, locale, fallback?.description ?? ""),
+      locale,
+      fallback?.description ?? "",
+      categoryCopy,
+      (entry) => entry.description,
+    ),
     image: mapServiceImageSafe(raw.image, locale, fallback?.image),
     subcategories: subcategories.length > 0 ? subcategories : fallbackSubs,
     sortOrder: raw.sortOrder ?? fallback?.sortOrder ?? staticFlags.sortOrder,
@@ -229,6 +272,18 @@ function mapHubUi(raw: SanityHubLike | null | undefined, locale: AppLocale, fall
     faqEyebrow: readLocalizedValue(raw.faqEyebrow, locale, fallback.faqEyebrow),
     faqTitle: readLocalizedValue(raw.faqTitle, locale, fallback.faqTitle),
     faqSubtitle: readLocalizedValue(raw.faqSubtitle, locale, fallback.faqSubtitle),
+    categoryMetaTitleSuffix: fallback.categoryMetaTitleSuffix,
+    subcategoriesSrOnlyLabel: fallback.subcategoriesSrOnlyLabel,
+    proceduresSrOnlyLabel: fallback.proceduresSrOnlyLabel,
+    categoryFaqTitleTemplate: fallback.categoryFaqTitleTemplate,
+    categoryFaqSubtitle: fallback.categoryFaqSubtitle,
+    subcategoryFaqTitleTemplate: fallback.subcategoryFaqTitleTemplate,
+    subcategoryFaqSubtitle: fallback.subcategoryFaqSubtitle,
+    procedureFaqTitleTemplate: fallback.procedureFaqTitleTemplate,
+    procedureFaqSubtitle: fallback.procedureFaqSubtitle,
+    consultationRecommendedLabel: fallback.consultationRecommendedLabel,
+    subcategoryConsultationBlurb: fallback.subcategoryConsultationBlurb,
+    procedureConsultationBlurb: fallback.procedureConsultationBlurb,
     viewFullFaqLabel: readLocalizedValue(raw.viewFullFaqLabel, locale, fallback.viewFullFaqLabel),
     recommendedForPrefix: fallback.recommendedForPrefix,
     viewDetailsLabel: fallback.viewDetailsLabel,

@@ -1,5 +1,6 @@
 import type { AppLocale } from "@/i18n/routing";
 import type { ServicesCatalog } from "@/lib/types/services";
+import { localizeServicesCatalog } from "@/lib/services/locale-copy/apply-catalog-locale";
 import { getStaticTreatmentConcerns } from "@/lib/services/static-treatment-concerns";
 import { getStaticTreatmentsHubCopy } from "@/lib/services/treatments-hub-copy";
 
@@ -29,14 +30,17 @@ const staticServiceCategories = [
 export function buildStaticServicesCatalog(locale: AppLocale): ServicesCatalog {
   const hubUi = getStaticTreatmentsHubCopy(locale);
 
-  return {
-    id: "treatments",
-    title: hubUi.pageTitle,
-    description: hubUi.pageDescription,
-    categories: staticServiceCategories,
-    concerns: getStaticTreatmentConcerns(locale),
-    hubUi,
-  };
+  return localizeServicesCatalog(
+    {
+      id: "treatments",
+      title: hubUi.pageTitle,
+      description: hubUi.pageDescription,
+      categories: staticServiceCategories,
+      concerns: getStaticTreatmentConcerns(locale),
+      hubUi,
+    },
+    locale,
+  );
 }
 
 /** English static catalog — used for generateStaticParams and seed. */

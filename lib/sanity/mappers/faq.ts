@@ -95,6 +95,7 @@ export function mapFaqSafe(raw: SanityFaqLike | null | undefined, fallback: FAQC
     description: raw.description?.trim() || fallback.description,
     introBullets:
       introBullets && introBullets.length > 0 ? introBullets : fallback.introBullets,
+    nextStep: fallback.nextStep,
     groups: resolvedGroups.length > 0 ? resolvedGroups : fallback.groups,
     items,
   };

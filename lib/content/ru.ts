@@ -53,7 +53,7 @@ export const ruLandingContent = {
     categories: [
       {
         id: "services-category-cosmetology",
-        title: "Cosmetology",
+        title: "Косметология",
         description:
           "Инъекции, биостимуляторы, биоревитализация и аппаратные протоколы для лица и кожи.",
         href: "/treatments/cosmetology",
@@ -61,14 +61,14 @@ export const ruLandingContent = {
       },
       {
         id: "services-category-body",
-        title: "Body slimming & contouring",
+        title: "Коррекция фигуры и похудение",
         description:
           "CRYO, Emsculpt, пилинги, лазерная коррекция и процедуры для тела.",
         href: "/treatments/body-slimming",
       },
       {
         id: "services-category-anti-age",
-        title: "Anti age",
+        title: "Anti-age",
         description: "Лифтинг, коллаген, нейромодуляторы и anti-age пилинги.",
         href: "/treatments/anti-age",
         featuredInNav: true,
@@ -83,7 +83,7 @@ export const ruLandingContent = {
       },
       {
         id: "services-category-blood",
-        title: "Blood tests",
+        title: "Анализы крови",
         description:
           "Анализы крови для wellness и фертильности — основа персонального плана.",
         href: "/treatments/blood-tests",
@@ -91,7 +91,7 @@ export const ruLandingContent = {
       },
       {
         id: "services-category-skin",
-        title: "Facials & peels",
+        title: "Уход за лицом и пилинги",
         description:
           "Протоколы ухода Jan Marini и пилинги для чистоты, сияния и баланса кожи.",
         href: "/treatments/aesthetic-treatments",
@@ -208,6 +208,12 @@ export const ruLandingContent = {
       "Курсы, восстановление и правила безопасности сгруппированы, чтобы важное не потерялось.",
       "Если сомневаетесь, начните с «Планирование и ожидания», затем перейдите к вашей категории процедур.",
     ],
+    nextStep: {
+      eyebrow: "Следующий шаг",
+      title: "Сомневаетесь, что выбрать?",
+      description:
+        "Расскажите о цели, сроках и желаемом восстановлении — на консультации быстро сузим варианты.",
+    },
     groups: faqGroupsRu,
     items: faqItemsRu,
   },
@@ -260,7 +266,7 @@ export const ruLandingContent = {
     services: {
       heading: "Основные категории",
       links: [
-        { label: "Cosmetology", href: "/treatments/cosmetology" },
+        { label: "Косметология", href: "/treatments/cosmetology" },
         { label: "Anti age", href: "/treatments/anti-age" },
         { label: "Body slimming", href: "/treatments/body-slimming" },
         { label: "Blood tests", href: "/treatments/blood-tests" },
