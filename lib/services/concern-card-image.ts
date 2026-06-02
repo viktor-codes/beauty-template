@@ -1,26 +1,36 @@
-import { deviceImage, injectionImage, laserImage, peelImage } from "@/lib/services/helpers";
 import type { StaticConcernSlug } from "@/lib/services/static-treatment-concerns";
 import type { ServiceImage, TreatmentConcern } from "@/lib/types/services";
 
-const CONCERN_FALLBACK_IMAGES: Record<StaticConcernSlug, ServiceImage> = {
-  glow: peelImage,
-  texture: peelImage,
-  acne: peelImage,
-  pigmentation: deviceImage,
-  firmness: injectionImage,
-  hair: laserImage,
+const CONCERN_IMAGE_DIR = "/concerns";
+const DEFAULT_IMAGE_SIZE = { width: 1200, height: 800 } as const;
+
+const CONCERN_IMAGE_FILENAMES: Record<StaticConcernSlug, string> = {
+  glow: "glow.webp",
+  texture: "texture.webp",
+  acne: "acne.webp",
+  pigmentation: "pigmentation.webp",
+  firmness: "elasticy.webp",
+  hair: "hairloss.webp",
 };
 
+function concernAsset(filename: string, alt: string): ServiceImage {
+  return {
+    src: `${CONCERN_IMAGE_DIR}/${filename}`,
+    alt,
+    ...DEFAULT_IMAGE_SIZE,
+  };
+}
+
 function isStaticConcernSlug(id: string): id is StaticConcernSlug {
-  return id in CONCERN_FALLBACK_IMAGES;
+  return id in CONCERN_IMAGE_FILENAMES;
 }
 
 /** CMS image when uploaded; otherwise a stable dev fallback per concern slug. */
 export function resolveConcernCardImage(concern: TreatmentConcern): ServiceImage {
   if (concern.image) return concern.image;
   if (isStaticConcernSlug(concern.id)) {
-    const fallback = CONCERN_FALLBACK_IMAGES[concern.id];
-    return { ...fallback, alt: concern.title };
+    const filename = CONCERN_IMAGE_FILENAMES[concern.id];
+    return concernAsset(filename, concern.title);
   }
-  return { ...peelImage, alt: concern.title };
+  return concernAsset("glow.webp", concern.title);
 }
