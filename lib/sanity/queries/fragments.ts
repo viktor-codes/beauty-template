@@ -57,7 +57,7 @@ export const sanityImageFields = /* groq */ `
 
 /** GROQ projection for `serviceImage` object (nested asset + localeString alt). */
 export const serviceImageFields = /* groq */ `
-  asset->{
+  "asset": asset.asset->{
     _id,
     url
   },
