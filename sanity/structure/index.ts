@@ -72,9 +72,16 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem("serviceProcedure").title(
                 "3. Procedures — pick a subcategory + concerns",
               ),
-              S.divider(),
-              S.listItem()
-                .title("Browse by category")
+      S.divider(),
+      S.listItem()
+        .title("Gift voucher page (/gift-voucher)")
+        .child(
+          S.document().schemaType("giftVoucherSettings").documentId("giftVoucherSettings"),
+        ),
+      S.documentTypeListItem("giftVoucherOrder").title("Gift voucher orders"),
+      S.divider(),
+      S.listItem()
+        .title("Browse by category")
                 .child(
                   S.documentTypeList("serviceCategory")
                     .title("Categories")

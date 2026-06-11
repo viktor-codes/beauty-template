@@ -12,7 +12,7 @@ const SERVICE_DOCUMENT_TYPES = new Set([
   "treatmentsHub",
 ]);
 
-const MARKETING_PATHS = ["/", "/treatments", "/privacy", "/terms"] as const;
+const MARKETING_PATHS = ["/", "/treatments", "/gift-voucher", "/privacy", "/terms"] as const;
 
 export interface SanityWebhookPayload {
   _type?: string;
@@ -97,6 +97,14 @@ function revalidateServicesCatalog(result: SanityRevalidationResult, slug?: stri
   }
 }
 
+function revalidateGiftVoucherPages(result: SanityRevalidationResult): void {
+  for (const locale of routing.locales) {
+    const path = localizedPath(locale, "/gift-voucher");
+    revalidatePath(path, "page");
+    result.paths.push(`${path} (page)`);
+  }
+}
+
 function revalidateAllSanityContent(result: SanityRevalidationResult): void {
   revalidateTag(SANITY_CACHE_TAG.all, "max");
   result.tags.push(SANITY_CACHE_TAG.all);
@@ -164,6 +172,11 @@ export function revalidateSanityContent(
 
   if (SERVICE_DOCUMENT_TYPES.has(documentType)) {
     revalidateServicesCatalog(result, payload.slug);
+    return result;
+  }
+
+  if (documentType === "giftVoucherSettings") {
+    revalidateGiftVoucherPages(result);
     return result;
   }
 

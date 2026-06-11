@@ -5,6 +5,8 @@ import { serviceProcedure } from "./documents/service-procedure";
 import { serviceSubcategory } from "./documents/service-subcategory";
 import { treatmentConcern } from "./documents/treatment-concern";
 import { treatmentsHub } from "./documents/treatments-hub";
+import { giftVoucherOrder } from "./documents/gift-voucher-order";
+import { giftVoucherSettings } from "./documents/gift-voucher-settings";
 import { siteSettings } from "./documents/site-settings";
 import { aboutStat } from "./objects/about-stat";
 import { brandLogo } from "./objects/brand-logo";
@@ -69,4 +71,6 @@ export const schemaTypes = [
   landingPage,
   legalPage,
   siteSettings,
+  giftVoucherSettings,
+  giftVoucherOrder,
 ];

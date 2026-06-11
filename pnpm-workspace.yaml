@@ -2,6 +2,10 @@ packages:
   - "."
   - "sanity"
 
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+# Native/postinstall deps required by Next.js, Sanity Studio, and tooling.
+allowBuilds:
+  "@parcel/watcher": true
+  "@swc/core": true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true

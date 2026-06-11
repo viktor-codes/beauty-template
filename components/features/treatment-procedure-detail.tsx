@@ -29,6 +29,8 @@ export interface TreatmentProcedureDetailProps {
   hubUi: TreatmentsHubUi;
   procedureFaq: FAQItem[];
   contactCtaLabel: string;
+  giftVoucherHref?: string;
+  giftVoucherLabel?: string;
   isFlatCategory: boolean;
   categorySlug: string;
   pageTitleId: string;
@@ -43,6 +45,8 @@ export function TreatmentProcedureDetail({
   hubUi,
   procedureFaq,
   contactCtaLabel,
+  giftVoucherHref,
+  giftVoucherLabel,
   isFlatCategory: isFlat,
   categorySlug,
   pageTitleId,
@@ -96,6 +100,11 @@ export function TreatmentProcedureDetail({
                 <Button href="/#contact" size="lg">
                   {contactCtaLabel}
                 </Button>
+                {giftVoucherHref && giftVoucherLabel ? (
+                  <Button href={giftVoucherHref} variant="secondary" size="lg">
+                    {giftVoucherLabel}
+                  </Button>
+                ) : null}
                 <Button href={backHref} variant="secondary" size="lg">
                   {backLabel}
                 </Button>

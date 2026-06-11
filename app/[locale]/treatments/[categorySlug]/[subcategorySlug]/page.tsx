@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { permanentRedirect } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 import { TreatmentProcedureDetail } from "@/components/features/treatment-procedure-detail";
@@ -120,6 +120,7 @@ export default async function ServicesSubcategoryPage({
       subcategorySlug,
     );
     const landingContent = await getLandingContent(appLocale);
+    const giftT = await getTranslations("GiftVoucher");
     const procedureFaq = await getServicesProcedureFaq(
       category,
       subcategory,
@@ -144,6 +145,12 @@ export default async function ServicesSubcategoryPage({
         hubUi={hubUi}
         procedureFaq={procedureFaq}
         contactCtaLabel={landingContent.nav.cta.label}
+        giftVoucherHref={
+          procedure.price
+            ? `/gift-voucher?procedure=${encodeURIComponent(procedure.id)}`
+            : undefined
+        }
+        giftVoucherLabel={procedure.price ? giftT("giftProcedureCta") : undefined}
         isFlatCategory
         categorySlug={categorySlug}
         pageTitleId={pageTitleId}

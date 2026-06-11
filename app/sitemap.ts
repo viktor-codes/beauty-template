@@ -48,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries: SitemapEntry[] = [
     ...createEntry("/", 1),
     ...createEntry("/treatments", 0.9),
+    ...createEntry("/gift-voucher", 0.7),
     ...createEntry("/privacy", 0.3),
     ...createEntry("/terms", 0.3),
   ];
