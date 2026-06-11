@@ -19,18 +19,23 @@ import { getServicesHubFaq } from "@/lib/services-faq";
 import {
   getConcernRecommendations,
   getConcernTitle,
-  isConcernSlug,
 } from "@/lib/services/concern-recommendations";
+import type { TreatmentConcern } from "@/lib/types/services";
 import { resolveServicesCatalog } from "@/lib/services";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 function resolveConcernFromSearchParams(
   searchParams: Record<string, string | string[] | undefined>,
+  concerns: TreatmentConcern[],
 ): string | null {
   const rawConcern = searchParams.concern ?? searchParams.goal;
   const value = Array.isArray(rawConcern) ? rawConcern[0] : rawConcern;
-  if (!value || !isConcernSlug(value)) return null;
-  return value;
+  if (!value) return null;
+
+  const match = concerns.find(
+    (concern) => concern.id === value && concern.isActive !== false,
+  );
+  return match?.id ?? null;
 }
 
 export async function generateMetadata({
@@ -71,12 +76,15 @@ export default async function ServicesPage({
   const breadcrumbs = buildTreatmentsBreadcrumbs(hubUi);
 
   const resolvedSearchParams = await searchParams;
-  const selectedConcern = resolveConcernFromSearchParams(resolvedSearchParams);
+  const activeConcerns = catalog.concerns.filter((c) => c.isActive !== false);
+  const selectedConcern = resolveConcernFromSearchParams(
+    resolvedSearchParams,
+    activeConcerns,
+  );
   const recommended = selectedConcern
     ? getConcernRecommendations(selectedConcern, catalog, 10)
     : [];
   const hubFaq = await getServicesHubFaq(appLocale, 6);
-  const activeConcerns = catalog.concerns.filter((c) => c.isActive !== false);
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">
@@ -179,7 +187,7 @@ export default async function ServicesPage({
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex justify-end gap-4">
+          <div className="mt-8 flex justify-end md:justify-start gap-4">
             <Button href="/#contact" size="lg">
               {landingContent.nav.cta.label}
             </Button>
@@ -209,7 +217,7 @@ export default async function ServicesPage({
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex justify-end gap-4">
+            <div className="mt-8 flex justify-end md:justify-start gap-4">
               <Button href="/#contact" size="lg">
                 {landingContent.nav.cta.label}
               </Button>

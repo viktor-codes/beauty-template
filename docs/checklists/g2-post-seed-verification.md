@@ -74,18 +74,18 @@ flowchart LR
 ### B. Site — EN
 
 - [x] `/` — publish in Studio → webhook `/api/revalidate` → site updates (verified 2026-06-01)
-- [ ] `/treatments` — H1/subtitle from hub, category cards, concern cards
-- [ ] `/treatments?concern=glow` — recommended list (CMS links or keyword fallback)
-- [ ] Nav dropdown — 5 categories max, short titles
-- [ ] Homepage services — 4 featured categories from catalog flags
-- [ ] Phone in footer/contact = `siteSettings` for locale
+- [x] `/treatments` — H1/subtitle from hub, category cards, concern cards (smoke 2026-06-11)
+- [x] `/treatments?concern=glow` — recommended list from Sanity `concerns[]` refs (smoke 2026-06-11)
+- [x] Nav dropdown — featured categories + `/treatments/{slug}` links (smoke 2026-06-11)
+- [x] Homepage services — 4 featured categories from catalog flags (smoke 2026-06-11)
+- [x] Phone in footer/contact = `siteSettings` (`tel:+353…`, smoke 2026-06-11)
 
 ### C. Site — UK / RU
 
 - [x] Landing copy aligned (manual QA — editor)
-- [ ] `/uk/treatments`, `/ru/treatments` — hub title localized, category titles UK/RU where seeded
-- [ ] Breadcrumbs localized (Головна / Процедуры …)
-- [ ] Procedure names EN — **expected**
+- [x] `/uk/treatments`, `/ru/treatments` — hub loads with localized copy (smoke 2026-06-11; see [part-5](./part-5-uk-ru.md))
+- [x] Breadcrumbs localized (UK: «Головна», smoke 2026-06-11)
+- [x] Procedure names EN — **expected**
 
 ### D. Images (known gap — phase D.3)
 

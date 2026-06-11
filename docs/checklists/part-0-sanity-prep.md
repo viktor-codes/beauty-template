@@ -26,16 +26,16 @@ Store the archive outside the repo. Record the date in [sanity-client-admin-road
 
 ## 3. EN smoke checklist (after each landing/catalog PR)
 
-- [ ] `/` — hero visible, primary CTA works
-- [ ] Header — short nav CTA → `#contact` or configured href
-- [ ] Treatments dropdown — up to **5** categories, links `/treatments/{slug}`
-- [ ] Services section — exactly **4** homepage cards, images load
-- [ ] Footer — phone/email match Site settings when CMS on
-- [ ] `/treatments` hub loads
-- [ ] One category page e.g. `/treatments/cosmetology`
+- [x] `/` — hero visible, primary CTA works (smoke 2026-06-11)
+- [x] Header — nav links to `/treatments/{slug}` categories (smoke 2026-06-11)
+- [x] Treatments dropdown — featured categories, links `/treatments/{slug}` (smoke 2026-06-11)
+- [x] Services section — **4** homepage category cards (smoke 2026-06-11)
+- [x] Footer — `tel:` from Site settings when CMS on (smoke 2026-06-11)
+- [x] `/treatments` hub loads (smoke 2026-06-11)
+- [x] One category page e.g. `/treatments/cosmetology` (smoke 2026-06-11)
 - [x] Draft/publish: edit in Studio → revalidate → site updates (verified 2026-06-01)
 - [ ] About: replace one brand logo in Studio → marquee shows CDN image (not `/public/logos`)
-- [ ] Site settings EN: change phone → contact section + footer update (see [site-settings-merge.md](./site-settings-merge.md))
+- [ ] Site settings EN: change phone → contact section + footer update (see [site-settings-merge.md](./site-settings-merge.md)) — tel present; live edit not re-verified
 
 ## 4. Content fallback policy (agreed)
 

@@ -1,16 +1,7 @@
 import type { ProcedureHit } from "@/lib/services-goals";
-import { getGoalRecommendations, isGoalSlug } from "@/lib/services-goals";
-import { isStaticConcernSlug } from "@/lib/services/static-treatment-concerns";
 import type { ServicesCatalog } from "@/lib/types/services";
 
-export function isConcernSlug(value: string): boolean {
-  return isStaticConcernSlug(value) || isGoalSlug(value);
-}
-
-/**
- * Procedures explicitly linked to a concern in Sanity (`concerns` references).
- * Falls back to keyword scoring when CMS links are missing (e.g. before seed).
- */
+/** Procedures linked to a concern in Sanity (`concerns` references on `serviceProcedure`). */
 export function getConcernRecommendations(
   concernSlug: string,
   catalog: ServicesCatalog,
@@ -34,33 +25,10 @@ export function getConcernRecommendations(
     });
   });
 
-  if (hits.length > 0) {
-    return hits.slice(0, limit);
-  }
-
-  if (isGoalSlug(concernSlug)) {
-    return getGoalRecommendations(concernSlug, catalog, limit);
-  }
-
-  return [];
+  return hits.slice(0, limit);
 }
 
-export function getConcernTitle(
-  concernSlug: string,
-  catalog: ServicesCatalog,
-): string {
+export function getConcernTitle(concernSlug: string, catalog: ServicesCatalog): string {
   const concern = catalog.concerns.find((c) => c.id === concernSlug);
-  if (concern) return concern.title;
-  if (isGoalSlug(concernSlug)) {
-    const labels: Record<string, string> = {
-      glow: "Glow",
-      texture: "Texture",
-      acne: "Acne control",
-      pigmentation: "Pigmentation",
-      firmness: "Firmness",
-      hair: "Hair loss",
-    };
-    return labels[concernSlug] ?? concernSlug;
-  }
-  return concernSlug;
+  return concern?.title ?? concernSlug;
 }

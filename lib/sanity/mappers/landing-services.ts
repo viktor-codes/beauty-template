@@ -32,7 +32,7 @@ function mapGoalPreviewSafe(
   return { id, title, href: normalizeLegacyServicesHref(href) };
 }
 
-/** Maps landing services copy from CMS. Category cards come from the services catalog. */
+/** Maps landing services copy from CMS. Category cards and concern chips come from the services catalog. */
 export function mapLandingServicesSafe(
   raw: SanityLandingServicesLike | null | undefined,
   fallback: ServicesContent,

@@ -52,7 +52,7 @@
 | FAQ legacy `items` | ✅ Исправлено (ч.2) | Только `groups` |
 | Brand logos только в `/public` | ✅ Исправлено (ч.3) | Upload в Studio + seed |
 | Контакты в трёх местах | ✅ Частично (ч.4) | Канон в `siteSettings`, см. [site-settings-merge.md](../checklists/site-settings-merge.md) |
-| **Goals** → keyword matching | ⏳ Открыто | Фаза **2b** (`treatmentConcern`) |
+| **Goals** → keyword matching | ✅ Исправлено | `treatmentConcern` + `concerns[]`; chips с каталога |
 | **Hero-фото** dev-only | ⏳ По дизайну | Не в CMS |
 | **Галерея** — фото dev-only | ⏳ По дизайну | Тексты в CMS |
 | **Nav** — presets для `href` | ⏳ Открыто | Dropdown из каталога есть, пресеты нет |
@@ -106,7 +106,7 @@
 - [x] **B.4** **About:** brand logos в CMS (upload + alt per locale); `/public/logos` — fallback при пустом CMS.
 - [x] **B.5** **Services preview:** `serviceCategory` + `featuredOnHomepage` (**max 4**) + `featuredInNav` (**max 5**); убрать ручной `categories[]`; валидация в Studio.
 - [x] **B.5b** Починить мапперы CTA: nav label + hero `primaryCtaLabel` из CMS (см. матрица §13).
-- [ ] **B.6** Чипы «by concern» на лендинге — из справочника `treatmentConcern` (фаза **2b**, не ручной `goals[]`).
+- [x] **B.6** Чипы «by concern» на лендинге — из справочника `treatmentConcern` (фаза **2b**, не ручной `goals[]`).
 - [x] **B.7** **Gallery:** тексты в CMS; фото слайдера — **dev-only**.
 - [x] **B.8** **Reviews:** реальные `authorName`; `authorRole` / treatment tag; опционально `instagramSourceUrl`; подсказка про согласие клиента; max ~6–8.
 - [x] **B.8b** UI: ссылка «View on Instagram» если URL задан (открывает post/highlight в IG).
@@ -141,8 +141,8 @@
 
 - [x] **D2.1** Документ `treatmentConcern` (`localeString` title, slug автоген).
 - [x] **D2.2** На `serviceProcedure`: `concerns[]` (references).
-- [ ] **D2.3** Убрать keyword scoring; hub + `?concern=` из явных связей (fallback пока есть).
-- [ ] **D2.4** UI: сетка concerns на `/treatments` ✅; chips на лендинге из справочника — **B.6**.
+- [x] **D2.3** Убрать keyword scoring; hub + `?concern=` из явных связей Sanity `concerns[]`.
+- [x] **D2.4** UI: сетка concerns на `/treatments` ✅; chips на лендинге из справочника — **B.6** ✅.
 - [x] **D2.5** Seed + миграция с текущих `goal-*` (concern refs на процедурах).
 
 ### Блок E — Legal (`legalPage`)
@@ -205,7 +205,7 @@
 | **4** | ✅ | Site settings UX + merge doc | Телефон/URL в одном месте |
 | **1b** | ✅ | UK/RU seed | [part-5 checklist](../checklists/part-5-uk-ru.md); процедуры EN fallback |
 | **2** | ⏳ | D: цены, фото процедур, structure (D.1 tabs ✅) | Полный каталог в Studio |
-| **2b** | 🟡 | D2 treatment concerns | Hub ✅; лендинг chips — B.6 |
+| **2b** | ✅ | D2 treatment concerns | Hub + лендинг chips + CMS procedure links |
 | **G** | ✅ | seed prod + g2 checklist | CMS = source of truth |
 | **E+H** | ⏳ | Legal polish (E.2–E.5) + H быстрый старт | Инструкция для Инны |
 | **G+F** | ⏳ | seed prod, revalidate, preview | Go-live |

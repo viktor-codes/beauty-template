@@ -50,5 +50,4 @@ After `pnpm seed:sanity` (with prod backup per [part-0-sanity-prep.md](./part-0-
 
 - Procedure/subcategory UK/RU: translate in Studio when ready (EN-only policy until then)
 - **Images:** most treatment/category photos still from `/public` — upload in Studio (phase **D.3**) or keep static
-- Landing `services.goals[]` chips — still from `landingPage`; hub uses `treatmentConcern` (unify in **B.6**)
 - Cookie / a11y strings still in `messages/*`
