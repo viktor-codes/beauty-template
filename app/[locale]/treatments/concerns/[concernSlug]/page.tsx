@@ -95,33 +95,13 @@ export default async function TreatmentsConcernPage({
         />
         <Breadcrumbs items={breadcrumbs} />
 
-        <div className="mt-6 flex w-full flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <SectionHeading
-            titleId={pageTitleId}
-            titleLevel={1}
-            title={concern.title}
-            subtitle={subtitle}
-            className="mb-0 min-w-0 md:max-w-xl lg:max-w-2xl"
-          />
-          {heroImage ? (
-            <div className="relative mx-auto w-full max-w-xl md:mx-0 md:w-auto md:max-w-none md:shrink-0">
-              <Image
-                src={heroImage.src}
-                alt={heroImage.alt}
-                width={heroImage.width}
-                height={heroImage.height}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className={cn(
-                  "rounded-2xl border border-border bg-surface/50 object-cover",
-                  "aspect-5/4 w-full sm:aspect-4/3",
-                  "md:aspect-auto md:h-48 md:w-auto lg:h-52",
-                )}
-                priority
-              />
-              <div className="absolute inset-0 bg-linear-to-b from-background/10 to-background/60 backdrop-blur-[0.4px]" />
-            </div>
-          ) : null}
-        </div>
+        <SectionHeading
+          titleId={pageTitleId}
+          titleLevel={1}
+          title={concern.title}
+          subtitle={subtitle}
+          className="mb-0 min-w-0 md:max-w-xl lg:max-w-2xl"
+        />
 
         <section className="mt-8" aria-labelledby={proceduresListId}>
           <h2 id={proceduresListId} className="sr-only">
