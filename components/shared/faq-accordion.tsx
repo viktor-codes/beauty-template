@@ -17,7 +17,7 @@ export function FaqAccordion({
   itemHeadingLevel = 3,
 }: FaqAccordionProps) {
   return (
-    <div className={cn(isContained && "mx-auto max-w-3xl", className)}>
+    <div className={cn(isContained && "max-w-4xl", className)}>
       {items.map((item, index) => (
         <AccordionItem
           key={item.id ?? `${item.question}-${index}`}

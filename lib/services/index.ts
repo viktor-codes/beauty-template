@@ -15,6 +15,8 @@ export {
 export { servicesCatalog };
 export { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
 export { resolveConcernCardImage } from "@/lib/services/concern-card-image";
+export { isFlatCategory, getCategoryProcedures } from "@/lib/services/flat-categories";
+export { buildProcedurePath, buildLegacyProcedurePath } from "@/lib/services/procedure-path";
 
 export function getServicesCategory(slug: string) {
   return servicesCatalog.categories.find((c) => c.id === slug) ?? null;

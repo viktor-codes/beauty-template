@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
+import { TreatmentProceduresList } from "@/components/features/treatment-procedures-list";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
@@ -14,7 +15,9 @@ import type { AppLocale } from "@/i18n/routing";
 import { getServicesCategoryFaq } from "@/lib/services-faq";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
+import { getCategoryProcedures, isFlatCategory } from "@/lib/services/flat-categories";
 import { findCategory } from "@/lib/services/page-helpers";
+import { buildProcedurePath } from "@/lib/services/procedure-path";
 import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
@@ -65,6 +68,8 @@ export default async function ServicesCategoryPage({
   ]);
 
   const pageTitleId = `category-${categorySlug}-title`;
+  const isFlat = isFlatCategory(category);
+  const procedureEntries = isFlat ? getCategoryProcedures(category) : [];
 
   return (
     <main id="main-content" className="flex-1 pt-20 md:pt-0">
@@ -73,11 +78,19 @@ export default async function ServicesCategoryPage({
         <ItemListJsonLd
           name={category.title}
           description={category.description}
-          items={category.subcategories.map((subcategory) => ({
-            name: subcategory.title,
-            description: subcategory.description,
-            url: `/treatments/${categorySlug}/${subcategory.id}`,
-          }))}
+          items={
+            isFlat
+              ? procedureEntries.map(({ subcategory, procedure }) => ({
+                  name: procedure.title,
+                  description: procedure.description,
+                  url: buildProcedurePath({ category, subcategory, procedure }),
+                }))
+              : category.subcategories.map((subcategory) => ({
+                  name: subcategory.title,
+                  description: subcategory.description,
+                  url: `/treatments/${categorySlug}/${subcategory.id}`,
+                }))
+          }
         />
         <Breadcrumbs items={breadcrumbs} />
 
@@ -88,22 +101,34 @@ export default async function ServicesCategoryPage({
           subtitle={category.description}
         />
 
-        <section aria-labelledby={`${pageTitleId}-subcategories`}>
-          <h2 id={`${pageTitleId}-subcategories`} className="sr-only">
-            {hubUi.subcategoriesSrOnlyLabel}
-          </h2>
-          <ul className="grid gap-6 sm:grid-cols-2">
-            {category.subcategories.map((subcategory) => (
-              <li key={subcategory.id}>
-                <ServiceCard
-                  title={subcategory.title}
-                  description={subcategory.description}
-                  href={`/treatments/${categorySlug}/${subcategory.id}`}
-                />
-              </li>
-            ))}
-          </ul>
-        </section>
+        {isFlat ? (
+          <TreatmentProceduresList
+            items={procedureEntries.map(({ subcategory, procedure }) => ({
+              procedure,
+              href: buildProcedurePath({ category, subcategory, procedure }),
+            }))}
+            listId={`${pageTitleId}-procedures`}
+            proceduresSrOnlyLabel={hubUi.proceduresSrOnlyLabel}
+            viewDetailsLabel={hubUi.viewDetailsLabel}
+          />
+        ) : (
+          <section aria-labelledby={`${pageTitleId}-subcategories`}>
+            <h2 id={`${pageTitleId}-subcategories`} className="sr-only">
+              {hubUi.subcategoriesSrOnlyLabel}
+            </h2>
+            <ul className="grid gap-6 sm:grid-cols-2">
+              {category.subcategories.map((subcategory) => (
+                <li key={subcategory.id}>
+                  <ServiceCard
+                    title={subcategory.title}
+                    description={subcategory.description}
+                    href={`/treatments/${categorySlug}/${subcategory.id}`}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </Section>
 
       <Section

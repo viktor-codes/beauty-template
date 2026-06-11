@@ -1,3 +1,4 @@
+import { buildProcedurePath } from "@/lib/services/procedure-path";
 import type {
   ServiceCategory,
   ServiceProcedure,
@@ -84,7 +85,7 @@ export function getGoalRecommendations(
           category,
           subcategory,
           procedure,
-          href: `/treatments/${category.id}/${subcategory.id}/${procedure.id}`,
+          href: buildProcedurePath({ category, subcategory, procedure }),
           score,
         });
       });

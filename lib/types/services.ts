@@ -75,6 +75,8 @@ export interface ServiceCategory {
   description: string;
   image?: ServiceImage;
   subcategories: ServiceSubcategory[];
+  /** Procedures live at /treatments/{category}/{procedure} (no subcategory in URL). */
+  isFlatCategory?: boolean;
   /** Lower numbers sort first among featured categories. */
   sortOrder?: number;
   /** Landing services grid (max 4 across catalog). */

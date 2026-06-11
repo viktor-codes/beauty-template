@@ -1,4 +1,5 @@
 import type { ProcedureHit } from "@/lib/services-goals";
+import { buildProcedurePath } from "@/lib/services/procedure-path";
 import type { ServicesCatalog } from "@/lib/types/services";
 
 export interface GetConcernRecommendationsOptions {
@@ -22,7 +23,7 @@ export function getConcernRecommendations(
           category,
           subcategory,
           procedure,
-          href: `/treatments/${category.id}/${subcategory.id}/${procedure.id}`,
+          href: buildProcedurePath({ category, subcategory, procedure }),
           score: 1,
         });
       });

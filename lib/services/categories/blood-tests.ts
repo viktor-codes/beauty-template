@@ -8,6 +8,7 @@ export const bloodTestsCategory: ServiceCategory = {
   description:
     "Laboratory blood panels for energy, fertility, hormones, nutrition, and general wellness—results guide personalised care.",
   image: bloodTestsCategoryImage,
+  isFlatCategory: true,
   subcategories: [
     {
       id: "wellness-panels",

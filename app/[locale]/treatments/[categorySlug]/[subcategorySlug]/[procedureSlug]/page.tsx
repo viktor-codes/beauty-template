@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { Breadcrumbs } from "@/components/shared/breadcrumbs";
-import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
-import { Section } from "@/components/shared/section";
-import { SectionHeading } from "@/components/shared/section-heading";
-import { Button } from "@/components/ui/button";
-import { FaqAccordion } from "@/components/shared/faq-accordion";
-import { FaqJsonLd } from "@/components/shared/faq-jsonld";
-import { ServiceJsonLd } from "@/components/shared/service-jsonld";
+
+import { TreatmentProcedureDetail } from "@/components/features/treatment-procedure-detail";
+import { getLandingContent } from "@/lib/content";
 import { getServicesProcedureFaq } from "@/lib/services-faq";
 import type { AppLocale } from "@/i18n/routing";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
-import { findProcedure } from "@/lib/services/page-helpers";
+import { isFlatCategory } from "@/lib/services/flat-categories";
+import { findCategory, findProcedure } from "@/lib/services/page-helpers";
+import { buildProcedurePath } from "@/lib/services/procedure-path";
 import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
-import { getLandingContent } from "@/lib/content";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
@@ -45,6 +40,27 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, categorySlug, subcategorySlug, procedureSlug } = await params;
   const catalog = await resolveServicesCatalog(locale as AppLocale);
+  const category = findCategory(catalog, categorySlug);
+
+  if (isFlatCategory(category)) {
+    const { procedure } = findProcedure(
+      catalog,
+      categorySlug,
+      subcategorySlug,
+      procedureSlug,
+    );
+    const priceLabel = procedure.price
+      ? `${procedure.price.amount} ${procedure.price.currency}`
+      : null;
+
+    return {
+      title: priceLabel
+        ? `${procedure.title} (${priceLabel}) — ${category.title}`
+        : `${procedure.title} — ${category.title}`,
+      description: procedure.description,
+    };
+  }
+
   const { subcategory, procedure } = findProcedure(
     catalog,
     categorySlug,
@@ -84,7 +100,13 @@ export default async function ServiceProcedurePage({
   setRequestLocale(locale);
   const appLocale = locale as AppLocale;
   const catalog = await resolveServicesCatalog(appLocale);
-  const { category, subcategory, procedure } = findProcedure(
+  const category = findCategory(catalog, categorySlug);
+
+  if (isFlatCategory(category)) {
+    permanentRedirect(`/treatments/${categorySlug}/${procedureSlug}`);
+  }
+
+  const { subcategory, procedure } = findProcedure(
     catalog,
     categorySlug,
     subcategorySlug,
@@ -99,6 +121,7 @@ export default async function ServiceProcedurePage({
     appLocale,
     5,
   );
+  const procedurePath = buildProcedurePath({ category, subcategory, procedure });
   const breadcrumbs = buildTreatmentsBreadcrumbs(hubUi, [
     { label: category.title, href: `/treatments/${categorySlug}` },
     {
@@ -107,122 +130,24 @@ export default async function ServiceProcedurePage({
     },
     {
       label: procedure.title,
-      href: `/treatments/${categorySlug}/${subcategorySlug}/${procedureSlug}`,
+      href: procedurePath,
     },
   ]);
-
-  const priceLabel = procedure.price
-    ? `${procedure.price.amount} ${procedure.price.currency}`
-    : null;
-
-  const procedurePath = `/treatments/${categorySlug}/${subcategorySlug}/${procedureSlug}`;
   const pageTitleId = `procedure-${categorySlug}-${subcategorySlug}-${procedureSlug}-title`;
 
   return (
-    <main id="main-content" className="flex-1 pt-20 md:pt-0">
-      <Section className="bg-background">
-        <BreadcrumbsJsonLd items={breadcrumbs} />
-        <ServiceJsonLd
-          procedure={procedure}
-          procedurePath={procedurePath}
-          categoryLabel={category.title}
-          subcategoryLabel={subcategory.title}
-        />
-        <Breadcrumbs items={breadcrumbs} />
-
-        <article aria-labelledby={pageTitleId}>
-          <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
-            <div>
-              <SectionHeading
-                titleId={pageTitleId}
-                titleLevel={1}
-                title={procedure.title}
-                subtitle={procedure.description}
-                className="mb-0"
-              />
-
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                {priceLabel ? (
-                  <div className="inline-flex items-center rounded-full border border-border bg-surface px-4 py-2 text-sm text-primary">
-                    {priceLabel}
-                  </div>
-                ) : null}
-                <div className="inline-flex items-center rounded-full border border-border bg-surface px-4 py-2 text-sm text-muted">
-                  {hubUi.consultationRecommendedLabel}
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/#contact" size="lg">
-                  {landingContent.nav.cta.label}
-                </Button>
-                <Button
-                  href={`/treatments/${categorySlug}/${subcategorySlug}`}
-                  variant="secondary"
-                  size="lg"
-                >
-                  {hubUi.backToCategoryPrefix} {subcategory.title}
-                </Button>
-              </div>
-
-              <div className="mt-10 rounded-2xl border border-border bg-surface/50 p-6">
-                <p className="text-sm leading-relaxed text-muted">
-                  {hubUi.procedureConsultationBlurb}
-                </p>
-              </div>
-
-              <div className="mt-10">
-                <Link
-                  href="/treatments"
-                  className="text-sm text-muted underline underline-offset-4 hover:text-primary"
-                >
-                  {hubUi.backToAllCategoriesLabel}
-                </Link>
-              </div>
-            </div>
-
-            <div className="mx-auto w-full max-w-xl md:mx-0">
-              <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-surface/50">
-                {procedure.image ? (
-                  <Image
-                    src={procedure.image.src}
-                    alt={procedure.image.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-surface" />
-                )}
-              </div>
-            </div>
-          </div>
-        </article>
-      </Section>
-
-      <Section
-        className="bg-background"
-        aria-labelledby={`${pageTitleId}-faq-heading`}
-      >
-        <FaqJsonLd items={procedureFaq} />
-        <SectionHeading
-          titleId={`${pageTitleId}-faq-heading`}
-          eyebrow={hubUi.faqEyebrow}
-          title={hubUi.procedureFaqTitleTemplate.replace("{title}", procedure.title)}
-          subtitle={hubUi.procedureFaqSubtitle}
-          className="mb-6"
-        />
-        <FaqAccordion items={procedureFaq} />
-        <div className="mt-6">
-          <Link
-            href="/#faq"
-            className="text-sm text-muted underline underline-offset-4 hover:text-primary"
-          >
-            {hubUi.viewFullFaqLabel}
-          </Link>
-        </div>
-      </Section>
-    </main>
+    <TreatmentProcedureDetail
+      category={category}
+      subcategory={subcategory}
+      procedure={procedure}
+      procedurePath={procedurePath}
+      breadcrumbs={breadcrumbs}
+      hubUi={hubUi}
+      procedureFaq={procedureFaq}
+      contactCtaLabel={landingContent.nav.cta.label}
+      isFlatCategory={false}
+      categorySlug={categorySlug}
+      pageTitleId={pageTitleId}
+    />
   );
 }

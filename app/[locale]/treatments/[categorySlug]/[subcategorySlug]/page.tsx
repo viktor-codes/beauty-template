@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+
+import { TreatmentProcedureDetail } from "@/components/features/treatment-procedure-detail";
+import { TreatmentProceduresList } from "@/components/features/treatment-procedures-list";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { BreadcrumbsJsonLd } from "@/components/shared/breadcrumbs-jsonld";
 import { Section } from "@/components/shared/section";
@@ -9,24 +13,37 @@ import { Button } from "@/components/ui/button";
 import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
-import { getServicesSubcategoryFaq } from "@/lib/services-faq";
+import { getLandingContent } from "@/lib/content";
+import { getServicesProcedureFaq, getServicesSubcategoryFaq } from "@/lib/services-faq";
 import type { AppLocale } from "@/i18n/routing";
 import { resolveServicesCatalog } from "@/lib/services";
 import { servicesCatalog } from "@/lib/services/catalog";
-import { findSubcategory } from "@/lib/services/page-helpers";
+import {
+  findProcedureInCategory,
+  getCategoryProcedures,
+  isFlatCategory,
+} from "@/lib/services/flat-categories";
+import { findCategory, findFlatProcedure, findSubcategory } from "@/lib/services/page-helpers";
+import { buildProcedurePath } from "@/lib/services/procedure-path";
 import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
-import { getLandingContent } from "@/lib/content";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
   Array<{ categorySlug: string; subcategorySlug: string }>
 > {
-  return servicesCatalog.categories.flatMap((category) =>
-    category.subcategories.map((subcategory) => ({
+  return servicesCatalog.categories.flatMap((category) => {
+    if (isFlatCategory(category)) {
+      return getCategoryProcedures(category).map(({ procedure }) => ({
+        categorySlug: category.id,
+        subcategorySlug: procedure.id,
+      }));
+    }
+
+    return category.subcategories.map((subcategory) => ({
       categorySlug: category.id,
       subcategorySlug: subcategory.id,
-    })),
-  );
+    }));
+  });
 }
 
 export async function generateMetadata({
@@ -36,7 +53,34 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, categorySlug, subcategorySlug } = await params;
   const catalog = await resolveServicesCatalog(locale as AppLocale);
-  const { category, subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
+  const category = findCategory(catalog, categorySlug);
+
+  if (isFlatCategory(category)) {
+    const match = findProcedureInCategory(category, subcategorySlug);
+    if (!match) {
+      return { title: category.title };
+    }
+
+    const { subcategory, procedure } = match;
+    const priceLabel = procedure.price
+      ? `${procedure.price.amount} ${procedure.price.currency}`
+      : null;
+
+    return {
+      title: priceLabel
+        ? `${procedure.title} (${priceLabel}) — ${category.title}`
+        : `${procedure.title} — ${category.title}`,
+      description: procedure.description,
+      openGraph: {
+        title: procedure.title,
+        description: procedure.description,
+        type: "article",
+        siteName: `${SITE_BRAND} · ${SITE_PRACTITIONER}`,
+      },
+    };
+  }
+
+  const { subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
 
   return {
     title: `${subcategory.title} — ${category.title}`,
@@ -59,8 +103,55 @@ export default async function ServicesSubcategoryPage({
   setRequestLocale(locale);
   const appLocale = locale as AppLocale;
   const catalog = await resolveServicesCatalog(appLocale);
-  const { category, subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
+  const category = findCategory(catalog, categorySlug);
   const { hubUi } = catalog;
+
+  if (isFlatCategory(category)) {
+    const isLegacySubcategory = category.subcategories.some(
+      (subcategory) => subcategory.id === subcategorySlug,
+    );
+    if (isLegacySubcategory) {
+      permanentRedirect(`/treatments/${categorySlug}`);
+    }
+
+    const { subcategory, procedure } = findFlatProcedure(
+      catalog,
+      categorySlug,
+      subcategorySlug,
+    );
+    const landingContent = await getLandingContent(appLocale);
+    const procedureFaq = await getServicesProcedureFaq(
+      category,
+      subcategory,
+      procedure,
+      appLocale,
+      5,
+    );
+    const procedurePath = buildProcedurePath({ category, subcategory, procedure });
+    const breadcrumbs = buildTreatmentsBreadcrumbs(hubUi, [
+      { label: category.title, href: `/treatments/${categorySlug}` },
+      { label: procedure.title, href: procedurePath },
+    ]);
+    const pageTitleId = `procedure-${categorySlug}-${subcategorySlug}-title`;
+
+    return (
+      <TreatmentProcedureDetail
+        category={category}
+        subcategory={subcategory}
+        procedure={procedure}
+        procedurePath={procedurePath}
+        breadcrumbs={breadcrumbs}
+        hubUi={hubUi}
+        procedureFaq={procedureFaq}
+        contactCtaLabel={landingContent.nav.cta.label}
+        isFlatCategory
+        categorySlug={categorySlug}
+        pageTitleId={pageTitleId}
+      />
+    );
+  }
+
+  const { subcategory } = findSubcategory(catalog, categorySlug, subcategorySlug);
   const landingContent = await getLandingContent(appLocale);
   const subcategoryFaq = await getServicesSubcategoryFaq(
     category,
@@ -88,7 +179,7 @@ export default async function ServicesSubcategoryPage({
           items={subcategory.procedures.map((procedure) => ({
             name: procedure.title,
             description: procedure.description,
-            url: `/treatments/${categorySlug}/${subcategorySlug}/${procedure.id}`,
+            url: buildProcedurePath({ category, subcategory, procedure }),
           }))}
         />
         <Breadcrumbs items={breadcrumbs} />
@@ -100,57 +191,15 @@ export default async function ServicesSubcategoryPage({
           subtitle={subcategory.description}
         />
 
-        <section aria-labelledby={`${pageTitleId}-procedures`}>
-          <h2 id={`${pageTitleId}-procedures`} className="sr-only">
-            {hubUi.proceduresSrOnlyLabel}
-          </h2>
-          <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
-            {subcategory.procedures.map((procedure) => {
-              const priceLabel = procedure.price
-                ? `${procedure.price.amount} ${procedure.price.currency}`
-                : null;
-
-              return (
-                <li
-                  key={procedure.id}
-                  className="group bg-background p-6 transition-colors hover:bg-surface/40"
-                >
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <h3 className="min-w-0 font-heading text-lg text-primary">
-                          {procedure.title}
-                        </h3>
-                        {priceLabel ? (
-                          <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-2 text-xs font-medium text-primary">
-                            {priceLabel}
-                          </span>
-                        ) : null}
-                      </div>
-                      <p
-                        className="mt-2 max-w-3xl truncate text-sm leading-relaxed text-muted"
-                        title={procedure.description}
-                      >
-                        {procedure.description}
-                      </p>
-                    </div>
-
-                    <div className="flex shrink-0 items-center gap-3">
-                      <Button
-                        href={`/treatments/${categorySlug}/${subcategorySlug}/${procedure.id}`}
-                        variant="secondary"
-                        size="sm"
-                        className="whitespace-nowrap"
-                      >
-                        {hubUi.viewDetailsLabel}
-                      </Button>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
+        <TreatmentProceduresList
+          items={subcategory.procedures.map((procedure) => ({
+            procedure,
+            href: buildProcedurePath({ category, subcategory, procedure }),
+          }))}
+          listId={`${pageTitleId}-procedures`}
+          proceduresSrOnlyLabel={hubUi.proceduresSrOnlyLabel}
+          viewDetailsLabel={hubUi.viewDetailsLabel}
+        />
       </Section>
 
       <Section

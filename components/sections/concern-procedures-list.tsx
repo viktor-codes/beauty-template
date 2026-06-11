@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { isFlatCategory } from "@/lib/services/flat-categories";
 import type { ProcedureHit } from "@/lib/services-goals";
 import type { TreatmentsHubUi } from "@/lib/types/services";
 
@@ -57,7 +58,9 @@ export function ConcernProceduresList({
                   {hit.procedure.description}
                 </p>
                 <p className="mt-2 text-xs text-muted">
-                  {hit.category.title} · {hit.subcategory.title}
+                  {isFlatCategory(hit.category)
+                    ? hit.category.title
+                    : `${hit.category.title} · ${hit.subcategory.title}`}
                 </p>
               </div>
 

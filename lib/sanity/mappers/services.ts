@@ -2,6 +2,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { readLocalizedValue, type LocaleFieldValues } from "@/lib/i18n/pick-locale-field";
 import { buildConcernPath } from "@/lib/services/concern-path";
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
+import { isFlatCategory } from "@/lib/services/flat-categories";
 import { getStaticCategoryShortTitle } from "@/lib/services/category-short-titles";
 import {
   getCategoryLocaleCopyField,
@@ -206,6 +207,7 @@ function applyStaticFlagsToCategory(category: ServiceCategory, locale: AppLocale
     featuredOnHomepage: category.featuredOnHomepage ?? staticFlags.featuredOnHomepage,
     featuredInNav: category.featuredInNav ?? staticFlags.featuredInNav,
     shortTitle: category.shortTitle ?? getStaticCategoryShortTitle(category.id, locale, category.title),
+    isFlatCategory: category.isFlatCategory ?? isFlatCategory(category),
   };
 }
 
@@ -260,6 +262,7 @@ function mapCategory(
     featuredOnHomepage:
       raw.featuredOnHomepage ?? fallback?.featuredOnHomepage ?? staticFlags.featuredOnHomepage,
     featuredInNav: raw.featuredInNav ?? fallback?.featuredInNav ?? staticFlags.featuredInNav,
+    isFlatCategory: fallback?.isFlatCategory ?? isFlatCategory({ id }),
   };
 }
 

@@ -8,7 +8,8 @@ export const laserHairRemovalCategory: ServiceCategory = {
   description:
     "Laser treatments designed to reduce unwanted hair by targeting follicles. Results build over a course of sessions, with protocols tailored to hair thickness, skin tone, and treatment area.",
   image: laserImage,
-      subcategories: [
+  isFlatCategory: true,
+  subcategories: [
         {
           id: "laser-hair-removal-sets",
           title: "Laser hair removal — sets",

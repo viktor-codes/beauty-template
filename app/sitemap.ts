@@ -4,6 +4,8 @@ import { routing } from "@/i18n/routing";
 import { getSiteUrl } from "@/lib/site-url";
 import { servicesCatalog } from "@/lib/services";
 import { buildConcernPath } from "@/lib/services/concern-path";
+import { getCategoryProcedures, isFlatCategory } from "@/lib/services/flat-categories";
+import { buildProcedurePath } from "@/lib/services/procedure-path";
 import { CONCERN_ORDER } from "@/lib/services/static-treatment-concerns";
 
 function buildLocalizedUrl(locale: string, pathname: string): string {
@@ -58,13 +60,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const categoryPath = `/treatments/${category.id}`;
     entries.push(...createEntry(categoryPath, 0.8));
 
+    if (isFlatCategory(category)) {
+      for (const { subcategory, procedure } of getCategoryProcedures(category)) {
+        entries.push(
+          ...createEntry(
+            buildProcedurePath({ category, subcategory, procedure }),
+            0.6,
+          ),
+        );
+      }
+      continue;
+    }
+
     for (const subcategory of category.subcategories) {
       const subcategoryPath = `${categoryPath}/${subcategory.id}`;
       entries.push(...createEntry(subcategoryPath, 0.7));
 
       for (const procedure of subcategory.procedures) {
         entries.push(
-          ...createEntry(`${subcategoryPath}/${procedure.id}`, 0.6),
+          ...createEntry(
+            buildProcedurePath({ category, subcategory, procedure }),
+            0.6,
+          ),
         );
       }
     }

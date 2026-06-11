@@ -1,8 +1,13 @@
 import { notFound } from "next/navigation";
 
+import {
+  findProcedureInCategory,
+  isFlatCategory,
+} from "@/lib/services/flat-categories";
 import type {
   ServicesCatalog,
   ServiceCategory,
+  ServiceProcedure,
   ServiceSubcategory,
   TreatmentConcern,
 } from "@/lib/types/services";
@@ -43,4 +48,18 @@ export function findProcedure(
   const procedure = subcategory.procedures.find((p) => p.id === procedureSlug) ?? null;
   if (!procedure) notFound();
   return { category, subcategory, procedure };
+}
+
+export function findFlatProcedure(
+  catalog: ServicesCatalog,
+  categorySlug: string,
+  procedureSlug: string,
+): { category: ServiceCategory; subcategory: ServiceSubcategory; procedure: ServiceProcedure } {
+  const category = findCategory(catalog, categorySlug);
+  if (!isFlatCategory(category)) notFound();
+
+  const match = findProcedureInCategory(category, procedureSlug);
+  if (!match) notFound();
+
+  return { category, subcategory: match.subcategory, procedure: match.procedure };
 }

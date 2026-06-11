@@ -8,6 +8,7 @@ export const vitaminShotsCategory: ServiceCategory = {
   description:
     "Intramuscular vitamin injections to support energy, immunity, skin, hair, and overall well-being.",
   image: vitaminShotsCategoryImage,
+  isFlatCategory: true,
   subcategories: [
     {
       id: "vitamin-injections",
