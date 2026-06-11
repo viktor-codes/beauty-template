@@ -1,5 +1,7 @@
-import type { HTMLAttributes } from "react";
+"use client";
 
+import type { HTMLAttributes } from "react";
+import { QuotesIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/cn";
 
 export interface TestimonialCardProps extends HTMLAttributes<HTMLElement> {
@@ -37,9 +39,14 @@ export function TestimonialCard({
           <span className="sr-only">{rating} out of 5 stars</span>
         </p>
       ) : null}
-      <blockquote className="flex-1 text-base leading-relaxed text-primary">
-        &ldquo;{quote}&rdquo;
+      <QuotesIcon
+        aria-hidden
+        className="absolute top-1 left-0 -z-10 size-8 rotate-180 text-accent opacity-40"
+      />
+      <blockquote className="relative flex-1 text-base leading-relaxed text-primary before:content-none after:content-none">
+        {quote}
       </blockquote>
+      <QuotesIcon className="size-36 text-accent absolute bottom-0 right-0  opacity-40 " />
       <figcaption className="mt-4 text-sm">
         <span className="font-medium text-primary">{authorName}</span>
         {authorRole ? (
