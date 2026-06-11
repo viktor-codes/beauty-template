@@ -23,7 +23,9 @@ import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumb
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 import { cn } from "@/lib/cn";
 
-export async function generateStaticParams(): Promise<Array<{ concernSlug: string }>> {
+export async function generateStaticParams(): Promise<
+  Array<{ concernSlug: string }>
+> {
   return CONCERN_ORDER.map((concernSlug) => ({ concernSlug }));
 }
 
@@ -93,25 +95,33 @@ export default async function TreatmentsConcernPage({
         />
         <Breadcrumbs items={breadcrumbs} />
 
-        {heroImage ? (
-          <div className="mb-8 overflow-hidden rounded-2xl border border-border">
-            <Image
-              src={heroImage.src}
-              alt={heroImage.alt}
-              width={heroImage.width}
-              height={heroImage.height}
-              className="h-48 w-full object-cover sm:h-56"
-              sizes="(min-width: 768px) 896px, 100vw"
-            />
-          </div>
-        ) : null}
-
-        <SectionHeading
-          titleId={pageTitleId}
-          titleLevel={1}
-          title={concern.title}
-          subtitle={subtitle}
-        />
+        <div className="mt-6 flex w-full flex-col gap-8 md:flex-row md:items-start md:justify-between">
+          <SectionHeading
+            titleId={pageTitleId}
+            titleLevel={1}
+            title={concern.title}
+            subtitle={subtitle}
+            className="mb-0 min-w-0 md:max-w-xl lg:max-w-2xl"
+          />
+          {heroImage ? (
+            <div className="relative mx-auto w-full max-w-xl md:mx-0 md:w-auto md:max-w-none md:shrink-0">
+              <Image
+                src={heroImage.src}
+                alt={heroImage.alt}
+                width={heroImage.width}
+                height={heroImage.height}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className={cn(
+                  "rounded-2xl border border-border bg-surface/50 object-cover",
+                  "aspect-5/4 w-full sm:aspect-4/3",
+                  "md:aspect-auto md:h-48 md:w-auto lg:h-52",
+                )}
+                priority
+              />
+              <div className="absolute inset-0 bg-linear-to-b from-background/10 to-background/60 backdrop-blur-[0.4px]" />
+            </div>
+          ) : null}
+        </div>
 
         <section className="mt-8" aria-labelledby={proceduresListId}>
           <h2 id={proceduresListId} className="sr-only">
@@ -125,51 +135,17 @@ export default async function TreatmentsConcernPage({
           />
         </section>
 
-        <div className="mt-8 flex justify-end md:justify-start">
+        <div className="mt-8 flex flex-col items-end gap-8 md:items-start">
           <Button href="/#contact" size="lg">
             {landingContent.nav.cta.label}
           </Button>
-        </div>
-      </Section>
-
-      {otherConcerns.length > 0 ? (
-        <Section className="bg-surface/40" aria-labelledby={`${pageTitleId}-other-concerns`}>
-          <h2
-            id={`${pageTitleId}-other-concerns`}
-            className="type-caption font-semibold uppercase tracking-[0.22em] text-muted"
+          <Link
+            href="/treatments"
+            className="text-sm text-muted underline underline-offset-4 hover:text-primary"
           >
-            {hubUi.goalsSectionTitle}
-          </h2>
-          <ul className="mt-6 flex flex-wrap gap-2 sm:gap-4">
-            {otherConcerns.map((chip) => (
-              <li key={chip.id}>
-                <Link
-                  href={chip.href}
-                  className={cn(
-                    "no-underline",
-                    "inline-flex min-h-9 items-center rounded-full border border-border bg-background px-4 py-2",
-                    "text-xs font-medium uppercase tracking-[0.14em] text-primary",
-                    "shadow-[0_2px_10px_-4px_rgba(44,44,44,0.09)]",
-                    "transition-[color,background-color,border-color,box-shadow] duration-200",
-                    "hover:border-accent/35 hover:bg-surface hover:shadow-[0_8px_22px_-10px_rgba(44,44,44,0.13)]",
-                    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-                  )}
-                >
-                  {chip.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Section>
-      ) : null}
-
-      <Section className="bg-background">
-        <Link
-          href="/treatments"
-          className="text-sm text-muted underline underline-offset-4 hover:text-primary"
-        >
-          ← {hubUi.breadcrumbTreatments}
-        </Link>
+            ← {hubUi.breadcrumbTreatments}
+          </Link>
+        </div>
       </Section>
     </main>
   );
