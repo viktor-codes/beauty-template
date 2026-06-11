@@ -13,7 +13,7 @@ export const treatmentConcern = defineType({
       title: "Slug",
       type: "slug",
       description:
-        "URL query on /treatments?concern={slug}. Auto-generated from English title; do not change after publish.",
+        "URL path /treatments/concerns/{slug}. Auto-generated from English title; do not change after publish.",
       options: { source: "title.en", maxLength: 96 },
       validation: (rule) => rule.required(),
     }),

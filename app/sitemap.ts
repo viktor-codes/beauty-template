@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { getSiteUrl } from "@/lib/site-url";
 import { servicesCatalog } from "@/lib/services";
+import { buildConcernPath } from "@/lib/services/concern-path";
+import { CONCERN_ORDER } from "@/lib/services/static-treatment-concerns";
 
 function buildLocalizedUrl(locale: string, pathname: string): string {
   const siteUrl = getSiteUrl();
@@ -47,6 +49,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...createEntry("/privacy", 0.3),
     ...createEntry("/terms", 0.3),
   ];
+
+  for (const concernSlug of CONCERN_ORDER) {
+    entries.push(...createEntry(buildConcernPath(concernSlug), 0.75));
+  }
 
   for (const category of servicesCatalog.categories) {
     const categoryPath = `/treatments/${category.id}`;

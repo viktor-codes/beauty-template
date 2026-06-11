@@ -1,5 +1,6 @@
 import type { AppLocale } from "@/i18n/routing";
 import { getStaticLandingContent } from "@/lib/content/static";
+import { buildConcernPath } from "@/lib/services/concern-path";
 import type { TreatmentConcern } from "@/lib/types/services";
 
 export const CONCERN_ORDER = [
@@ -22,7 +23,9 @@ export function getStaticTreatmentConcerns(locale: AppLocale): TreatmentConcern[
   const goals = getStaticLandingContent(locale).services.goals;
 
   return CONCERN_ORDER.map((slug, index) => {
-    const goal = goals.find((g) => g.href.includes(`goal=${slug}`) || g.href.includes(`concern=${slug}`));
+    const goal = goals.find(
+      (g) => g.href === buildConcernPath(slug) || g.href.includes(`goal=${slug}`),
+    );
     const title =
       goal?.title ??
       ({
@@ -37,7 +40,7 @@ export function getStaticTreatmentConcerns(locale: AppLocale): TreatmentConcern[
     return {
       id: slug,
       title,
-      href: `/treatments?concern=${slug}`,
+      href: buildConcernPath(slug),
       sortOrder: index,
       isActive: true,
     };

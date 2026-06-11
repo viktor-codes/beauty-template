@@ -28,7 +28,7 @@ function procedureDocId(categorySlug: string, subSlug: string, procedureSlug: st
 function goalTitleForLocale(slug: StaticConcernSlug, locale: AppLocale): string {
   const goals = getStaticLandingContent(locale).services.goals;
   const goal = goals.find(
-    (g) => g.href.includes(`goal=${slug}`) || g.href.includes(`concern=${slug}`),
+    (g) => g.href.includes(`/concerns/${slug}`) || g.href.includes(`goal=${slug}`),
   );
   return goal?.title ?? GOAL_LABELS_EN[slug];
 }

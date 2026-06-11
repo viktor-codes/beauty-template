@@ -121,31 +121,31 @@ export const ukLandingContent = {
     ],
     goalsHeading: "або оберіть за вашим запитом",
     goals: [
-      { id: "goal-glow", title: "Сяйво", href: "/treatments?goal=glow" },
+      { id: "goal-glow", title: "Сяйво", href: "/treatments/concerns/glow" },
       {
         id: "goal-texture",
         title: "Текстура",
-        href: "/treatments?goal=texture",
+        href: "/treatments/concerns/texture",
       },
       {
         id: "goal-acne",
         title: "Контроль акне",
-        href: "/treatments?goal=acne",
+        href: "/treatments/concerns/acne",
       },
       {
         id: "goal-pigmentation",
         title: "Пігментація",
-        href: "/treatments?goal=pigmentation",
+        href: "/treatments/concerns/pigmentation",
       },
       {
         id: "goal-firmness",
         title: "Пружність",
-        href: "/treatments?goal=firmness",
+        href: "/treatments/concerns/firmness",
       },
       {
         id: "goal-hair",
         title: "Випадіння волосся",
-        href: "/treatments?goal=hair",
+        href: "/treatments/concerns/hair",
       },
     ],
     cta: { label: "Усі процедури", href: "/treatments" },

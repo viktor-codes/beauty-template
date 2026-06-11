@@ -75,7 +75,7 @@ flowchart LR
 
 - [x] `/` — publish in Studio → webhook `/api/revalidate` → site updates (verified 2026-06-01)
 - [x] `/treatments` — H1/subtitle from hub, category cards, concern cards (smoke 2026-06-11)
-- [x] `/treatments?concern=glow` — recommended list from Sanity `concerns[]` refs (smoke 2026-06-11)
+- [x] `/treatments/concerns/glow` — procedures from Sanity `concerns[]` refs (path route 2026-06-11)
 - [x] Nav dropdown — featured categories + `/treatments/{slug}` links (smoke 2026-06-11)
 - [x] Homepage services — 4 featured categories from catalog flags (smoke 2026-06-11)
 - [x] Phone in footer/contact = `siteSettings` (`tel:+353…`, smoke 2026-06-11)

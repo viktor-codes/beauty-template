@@ -121,31 +121,31 @@ export const ruLandingContent = {
     ],
     goalsHeading: "или выберите по вашему запросу",
     goals: [
-      { id: "goal-glow", title: "Сияние", href: "/treatments?goal=glow" },
+      { id: "goal-glow", title: "Сияние", href: "/treatments/concerns/glow" },
       {
         id: "goal-texture",
         title: "Текстура",
-        href: "/treatments?goal=texture",
+        href: "/treatments/concerns/texture",
       },
       {
         id: "goal-acne",
         title: "Контроль акне",
-        href: "/treatments?goal=acne",
+        href: "/treatments/concerns/acne",
       },
       {
         id: "goal-pigmentation",
         title: "Пигментация",
-        href: "/treatments?goal=pigmentation",
+        href: "/treatments/concerns/pigmentation",
       },
       {
         id: "goal-firmness",
         title: "Упругость",
-        href: "/treatments?goal=firmness",
+        href: "/treatments/concerns/firmness",
       },
       {
         id: "goal-hair",
         title: "Выпадение волос",
-        href: "/treatments?goal=hair",
+        href: "/treatments/concerns/hair",
       },
     ],
     cta: { label: "Все процедуры", href: "/treatments" },

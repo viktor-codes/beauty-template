@@ -50,7 +50,7 @@ export const serviceProcedure = defineType({
       type: "array",
       of: [{ type: "reference", to: [{ type: "treatmentConcern" }] }],
       description:
-        "Select which client concerns this procedure addresses. Used on /treatments hub and ?concern= recommendations.",
+        "Select which client concerns this procedure addresses. Shown on /treatments/concerns/{slug} pages.",
     }),
   ],
   preview: {

@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
 
-import type { ServicesCatalog, ServiceCategory, ServiceSubcategory } from "@/lib/types/services";
+import type {
+  ServicesCatalog,
+  ServiceCategory,
+  ServiceSubcategory,
+  TreatmentConcern,
+} from "@/lib/types/services";
 
 export function findCategory(catalog: ServicesCatalog, categorySlug: string): ServiceCategory {
   const category = catalog.categories.find((c) => c.id === categorySlug) ?? null;
@@ -18,6 +23,14 @@ export function findSubcategory(
     category.subcategories.find((s) => s.id === subcategorySlug) ?? null;
   if (!subcategory) notFound();
   return { category, subcategory };
+}
+
+export function findConcern(catalog: ServicesCatalog, concernSlug: string): TreatmentConcern {
+  const concern =
+    catalog.concerns.find((item) => item.id === concernSlug && item.isActive !== false) ??
+    null;
+  if (!concern) notFound();
+  return concern;
 }
 
 export function findProcedure(

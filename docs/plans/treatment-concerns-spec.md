@@ -53,11 +53,13 @@
 
 ## Поведение на сайте
 
-### `/treatments?concern=glow` (или `goal=` — редирект со старых URL)
+### `/treatments/concerns/glow` (канонический URL)
 
 - Заголовок: `title` concern на текущей локали.
-- Список процедур: все `serviceProcedure`, у которых в `concerns` есть этот concern (сортировка: `sortOrder`, затем title).
+- Breadcrumbs: Home → Treatments → {concern title}.
+- Список процедур: все `serviceProcedure`, у которых в `concerns` есть этот concern.
 - Без keyword-guessing.
+- Legacy `?concern=` / `?goal=` на hub → redirect на path.
 
 ### Лендинг (`#treatments`)
 
@@ -68,7 +70,7 @@
 
 - Секция **Browse by concern**: сетка карточек (как категории): **image** + title + shortDescription + ссылка.
 - Ниже или рядом — категории (как сейчас).
-- При `?concern=` — блок «Recommended for …» (уже есть паттерн для goal).
+- Карточки concern ведут на `/treatments/concerns/{slug}` (отдельная страница, не режим hub).
 
 ## Studio UX для Инны
 

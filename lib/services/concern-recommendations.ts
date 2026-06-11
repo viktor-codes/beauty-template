@@ -1,11 +1,15 @@
 import type { ProcedureHit } from "@/lib/services-goals";
 import type { ServicesCatalog } from "@/lib/types/services";
 
+export interface GetConcernRecommendationsOptions {
+  limit?: number;
+}
+
 /** Procedures linked to a concern in Sanity (`concerns` references on `serviceProcedure`). */
 export function getConcernRecommendations(
   concernSlug: string,
   catalog: ServicesCatalog,
-  limit = 10,
+  options?: GetConcernRecommendationsOptions,
 ): ProcedureHit[] {
   const hits: ProcedureHit[] = [];
 
@@ -25,10 +29,6 @@ export function getConcernRecommendations(
     });
   });
 
-  return hits.slice(0, limit);
-}
-
-export function getConcernTitle(concernSlug: string, catalog: ServicesCatalog): string {
-  const concern = catalog.concerns.find((c) => c.id === concernSlug);
-  return concern?.title ?? concernSlug;
+  const { limit } = options ?? {};
+  return limit !== undefined ? hits.slice(0, limit) : hits;
 }

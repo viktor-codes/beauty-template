@@ -1,5 +1,6 @@
 import type { AppLocale } from "@/i18n/routing";
 import { readLocalizedValue, type LocaleFieldValues } from "@/lib/i18n/pick-locale-field";
+import { buildConcernPath } from "@/lib/services/concern-path";
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
 import { getStaticCategoryShortTitle } from "@/lib/services/category-short-titles";
 import {
@@ -312,7 +313,7 @@ function mapConcern(
       fallback?.shortDescription ?? "",
     ) || undefined,
     image: mapServiceImageSafe(raw.image, locale, fallback?.image),
-    href: `/treatments?concern=${id}`,
+    href: buildConcernPath(id),
     sortOrder: raw.sortOrder ?? fallback?.sortOrder,
     isActive: raw.isActive ?? fallback?.isActive ?? true,
   };
