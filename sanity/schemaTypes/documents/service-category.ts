@@ -33,6 +33,13 @@ export const serviceCategory = defineType({
     defineField({ name: "description", title: "Description", type: "localeText" }),
     defineField({ name: "image", title: "Image", type: "serviceImage" }),
     defineField({
+      name: "isActive",
+      title: "Active",
+      type: "boolean",
+      description: "Inactive categories are hidden on the site but kept in Studio.",
+      initialValue: true,
+    }),
+    defineField({
       name: "sortOrder",
       title: "Sort order",
       type: "number",
@@ -63,8 +70,9 @@ export const serviceCategory = defineType({
       slug: "slug.current",
       featuredOnHomepage: "featuredOnHomepage",
       featuredInNav: "featuredInNav",
+      isActive: "isActive",
     },
-    prepare: ({ title, shortTitle, slug, featuredOnHomepage, featuredInNav }) => {
+    prepare: ({ title, shortTitle, slug, featuredOnHomepage, featuredInNav, isActive }) => {
       const flags = [
         featuredOnHomepage ? "Home" : null,
         featuredInNav ? "Nav" : null,
@@ -76,6 +84,7 @@ export const serviceCategory = defineType({
           slug,
           shortTitle ? `Nav: ${shortTitle}` : null,
           flags.length > 0 ? flags.join(" · ") : null,
+          isActive === false ? "Hidden" : null,
         ]
           .filter(Boolean)
           .join(" — "),

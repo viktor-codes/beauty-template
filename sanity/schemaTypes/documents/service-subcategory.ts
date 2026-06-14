@@ -23,6 +23,13 @@ export const serviceSubcategory = defineType({
     defineField({ name: "description", title: "Description", type: "localeText" }),
     defineField({ name: "image", title: "Image", type: "serviceImage" }),
     defineField({
+      name: "isActive",
+      title: "Active",
+      type: "boolean",
+      description: "Inactive subcategories are hidden on the site but kept in Studio.",
+      initialValue: true,
+    }),
+    defineField({
       name: "sortOrder",
       title: "Sort order",
       type: "number",
@@ -30,10 +37,10 @@ export const serviceSubcategory = defineType({
     }),
   ],
   preview: {
-    select: { title: "title.en", category: "category.title.en" },
-    prepare: ({ title, category }) => ({
+    select: { title: "title.en", category: "category.title.en", isActive: "isActive" },
+    prepare: ({ title, category, isActive }) => ({
       title: title ?? "Subcategory",
-      subtitle: category,
+      subtitle: [category, isActive === false ? "Hidden" : null].filter(Boolean).join(" · "),
     }),
   },
 });

@@ -25,6 +25,7 @@ sanity/dist/
 # misc
 .DS_Store
 *.pem
+sanity/backups/*.tar.gz
 
 # debug
 npm-debug.log*

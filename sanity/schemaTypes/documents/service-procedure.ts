@@ -39,6 +39,13 @@ export const serviceProcedure = defineType({
       ],
     }),
     defineField({
+      name: "isActive",
+      title: "Active",
+      type: "boolean",
+      description: "Inactive procedures are hidden on the site but kept in Studio.",
+      initialValue: true,
+    }),
+    defineField({
       name: "sortOrder",
       title: "Sort order",
       type: "number",
@@ -54,10 +61,21 @@ export const serviceProcedure = defineType({
     }),
   ],
   preview: {
-    select: { title: "title.en", subcategory: "subcategory.title.en" },
-    prepare: ({ title, subcategory }) => ({
+    select: {
+      title: "title.en",
+      subcategory: "subcategory.title.en",
+      amount: "price.amount",
+      isActive: "isActive",
+    },
+    prepare: ({ title, subcategory, amount, isActive }) => ({
       title: title ?? "Procedure",
-      subtitle: subcategory,
+      subtitle: [
+        subcategory,
+        typeof amount === "number" ? `€${amount}` : null,
+        isActive === false ? "Hidden" : null,
+      ]
+        .filter(Boolean)
+        .join(" · "),
     }),
   },
 });

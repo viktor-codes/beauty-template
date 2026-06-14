@@ -13,12 +13,12 @@
 |-------|------|---------------------------|
 | **Sanity (production dataset)** | **Primary** — texts, prices, flags, legal, hub, concerns | `NEXT_PUBLIC_SANITY_PROJECT_ID` set and document exists |
 | **`lib/content/{en,uk,ru}.ts`** | Fallback landing copy | CMS off, fetch error, or empty field → mapper/static |
-| **`lib/services/**`** | Fallback catalog tree + dev images | Same; categories merged if missing in CMS |
+| **`lib/services/**`** | Fallback catalog tree + dev images | Same; categories **missing** in CMS only — no static refill of Sanity-backed structure |
 | **`messages/*.json`** | UI chrome only (cookie, a11y, locale switcher) | Always next-intl — not in Sanity yet |
 | **`/public/**` images** | Dev defaults (hero, gallery, category cards until upload) | Used when CMS `serviceImage` / hero not set |
 
 **UK/RU empty field in CMS** → English on site (`pick-locale-field`).  
-**Procedures / subcategories** → EN in CMS by design until translated in Studio.
+**Procedures / subcategories** → seed fills EN/UK/RU; empty or EN-only CMS values fall back via `locale-copy` (see `resolveServiceLocalizedField`).
 
 **Re-seed warning:** `pnpm seed:sanity` **overwrites** documents with fixed `_id`s (landing, settings, legal, catalog, hub, concerns). Use only after backup or for a fresh environment — not for routine edits.
 

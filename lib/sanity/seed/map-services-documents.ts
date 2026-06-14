@@ -53,6 +53,7 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
       sortOrder: flags.sortOrder ?? categoryOrder,
       featuredOnHomepage: flags.featuredOnHomepage ?? false,
       featuredInNav: flags.featuredInNav ?? false,
+      isActive: true,
     });
     categoryOrder += 1;
 
@@ -75,6 +76,7 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
           getSubcategoryLocaleCopy(subcategory.id, "ru")?.description,
         ),
         sortOrder: subOrder,
+        isActive: true,
       });
       subOrder += 1;
 
@@ -105,6 +107,7 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
             ? { amount: procedure.price.amount, currency: procedure.price.currency }
             : undefined,
           sortOrder: procOrder,
+          isActive: true,
           ...(concernRefs.length > 0 ? { concerns: concernRefs } : {}),
         });
         procOrder += 1;

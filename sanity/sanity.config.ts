@@ -4,6 +4,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
 import { StudioIcon } from "./components/studio-icon";
+import { resolveCatalogDocumentActions } from "./actions";
 import { schemaTypes } from "./schemaTypes";
 import { skinbarStudioTheme } from "./studio-theme";
 import { structure } from "./structure";
@@ -32,4 +33,7 @@ export default defineConfig({
     }),
   ],
   schema: { types: schemaTypes },
+  document: {
+    actions: resolveCatalogDocumentActions,
+  },
 });

@@ -1,0 +1,2520 @@
+{
+  "capturedAt": "2026-06-14",
+  "source": "static catalog (servicesCatalog en)",
+  "counts": {
+    "categories": 9,
+    "subcategories": 52,
+    "procedures": 209,
+    "uniqueProcedureSlugs": 110
+  },
+  "procedures": [
+    {
+      "documentId": "serviceProcedure-advanced-aesthetic-treatments-black-doll-facial-carbon-peel-black-doll-facial",
+      "categorySlug": "advanced-aesthetic-treatments",
+      "subcategorySlug": "black-doll-facial-carbon-peel",
+      "procedureSlug": "black-doll-facial",
+      "title": "Black Doll Facial (Carbon Peel)",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/advanced-aesthetic-treatments/black-doll-facial-carbon-peel/black-doll-facial"
+    },
+    {
+      "documentId": "serviceProcedure-advanced-aesthetic-treatments-hifu-face-lift-hifu-face-lift",
+      "categorySlug": "advanced-aesthetic-treatments",
+      "subcategorySlug": "hifu-face-lift",
+      "procedureSlug": "hifu-face-lift",
+      "title": "HIFU Face Lift",
+      "price": {
+        "amount": 300,
+        "currency": "EUR"
+      },
+      "path": "/treatments/advanced-aesthetic-treatments/hifu-face-lift/hifu-face-lift"
+    },
+    {
+      "documentId": "serviceProcedure-advanced-aesthetic-treatments-laser-tattoo-pmu-removal-laser-tattoo-pmu-removal",
+      "categorySlug": "advanced-aesthetic-treatments",
+      "subcategorySlug": "laser-tattoo-pmu-removal",
+      "procedureSlug": "laser-tattoo-pmu-removal",
+      "title": "Laser Tattoo / PMU Removal",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/advanced-aesthetic-treatments/laser-tattoo-pmu-removal/laser-tattoo-pmu-removal"
+    },
+    {
+      "documentId": "serviceProcedure-advanced-aesthetic-treatments-rf-microneedling-rf-microneedling",
+      "categorySlug": "advanced-aesthetic-treatments",
+      "subcategorySlug": "rf-microneedling",
+      "procedureSlug": "rf-microneedling",
+      "title": "RF Microneedling",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/advanced-aesthetic-treatments/rf-microneedling/rf-microneedling"
+    },
+    {
+      "documentId": "serviceProcedure-advanced-aesthetic-treatments-rf-microneedling-rf-microneedling-exosomes",
+      "categorySlug": "advanced-aesthetic-treatments",
+      "subcategorySlug": "rf-microneedling",
+      "procedureSlug": "rf-microneedling-exosomes",
+      "title": "RF Microneedling + Exosomes",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/advanced-aesthetic-treatments/rf-microneedling/rf-microneedling-exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-advanced-aesthetic-treatments-skin-tag-papilloma-removal-skin-tag-papilloma-removal-from-50",
+      "categorySlug": "advanced-aesthetic-treatments",
+      "subcategorySlug": "skin-tag-papilloma-removal",
+      "procedureSlug": "skin-tag-papilloma-removal-from-50",
+      "title": "Skin Tag / Papilloma Removal",
+      "price": {
+        "amount": 50,
+        "currency": "EUR"
+      },
+      "path": "/treatments/advanced-aesthetic-treatments/skin-tag-papilloma-removal/skin-tag-papilloma-removal-from-50"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-aquashine-ptx",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "aquashine-ptx",
+      "title": "Aquashine PTX",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/aquashine-ptx"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-combo-dna-f-2-5ml-legacy",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "combo-dna-f-2-5ml-legacy",
+      "title": "Combo DNA f 2.5 ml",
+      "price": {
+        "amount": 170,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/combo-dna-f-2-5ml-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-combo-dna-i-1-1ml-legacy",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "combo-dna-i-1-1ml-legacy",
+      "title": "Combo DNA i 1.1 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/combo-dna-i-1-1ml-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-exosomes",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "exosomes",
+      "title": "Exosomes",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-hyalual-1-1",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-1-1",
+      "title": "Hyalual 1.1%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/hyalual-1-1"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-hyalual-2-2",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-2-2",
+      "title": "Hyalual 2.2%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/hyalual-2-2"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-mesoeye",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesoeye",
+      "title": "MesoEye",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/mesoeye"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-mesosculpt",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesosculpt",
+      "title": "Mesosculpt",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/mesosculpt"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-mesowharton",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesowharton",
+      "title": "MesoWharton",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/mesowharton"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-mesoxanthin",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesoxanthin",
+      "title": "MesoXanthin",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/mesoxanthin"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-neauvia-hydra-deluxe",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "neauvia-hydra-deluxe",
+      "title": "Neauvia Hydra Deluxe",
+      "price": {
+        "amount": 120,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/neauvia-hydra-deluxe"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-nucleofill-20-25",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "nucleofill-20-25",
+      "title": "Nucleofill 20 / 25",
+      "price": {
+        "amount": 180,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/nucleofill-20-25"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-plinest",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "plinest",
+      "title": "Plinest",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/plinest"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-plinest-eye-legacy",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "plinest-eye-legacy",
+      "title": "Plinest eye",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/plinest-eye-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-profhilo-2ml",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "profhilo-2ml",
+      "title": "Profhilo 2 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/profhilo-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-rejuaran-healer",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "rejuaran-healer",
+      "title": "Reguran Healer",
+      "price": {
+        "amount": 180,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/rejuaran-healer"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-biorevitalisation-rejuaran-s",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "rejuaran-s",
+      "title": "Reguran S",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/biorevitalisation/rejuaran-s"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-juvelook-eye-2ml",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "juvelook-eye-2ml",
+      "title": "Juvelook Eye 2 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/juvelook-eye-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-lenisna-6ml",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "lenisna-6ml",
+      "title": "Lenisna 6 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/lenisna-6ml"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-lennea-booster-pdrn",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "lennea-booster-pdrn",
+      "title": "Lennea Booster (PDRN)",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/lennea-booster-pdrn"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-nythia-5ml",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "nythia-5ml",
+      "title": "Nythia 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/nythia-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-radiesse-1-5ml-lidocaine",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "radiesse-1-5ml-lidocaine",
+      "title": "Radiesse 1.5 ml (with lidocaine)",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/radiesse-1-5ml-lidocaine"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-radiesse-flash",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "radiesse-flash",
+      "title": "Radiesse FLASH",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/radiesse-flash"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-revacoll-dmae-5ml",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-dmae-5ml",
+      "title": "Revacoll + DMAE 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/revacoll-dmae-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-collagen-stimulators-sculptra-plla",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "sculptra-plla",
+      "title": "Sculptra (PLLA)",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/collagen-stimulators/sculptra-plla"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-lip-fillers-neuramis-deep",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "lip-fillers",
+      "procedureSlug": "neuramis-deep",
+      "title": "Neuramis Deep",
+      "price": {
+        "amount": 180,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/lip-fillers/neuramis-deep"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-lip-fillers-stylage-m",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "lip-fillers",
+      "procedureSlug": "stylage-m",
+      "title": "Stylage M",
+      "price": {
+        "amount": 220,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/lip-fillers/stylage-m"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-lip-fillers-sypha",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "lip-fillers",
+      "procedureSlug": "sypha",
+      "title": "Sypha",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/lip-fillers/sypha"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-mesotherapy-for-hair-loss-dermaheal-hl",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "mesotherapy-for-hair-loss",
+      "procedureSlug": "dermaheal-hl",
+      "title": "Dermaheal HL",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/mesotherapy-for-hair-loss/dermaheal-hl"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-mesotherapy-for-hair-loss-prp-extra-hair-legacy",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "mesotherapy-for-hair-loss",
+      "procedureSlug": "prp-extra-hair-legacy",
+      "title": "PRP extra",
+      "price": {
+        "amount": 140,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/mesotherapy-for-hair-loss/prp-extra-hair-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-plasma-therapy-prf",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "plasma-therapy",
+      "procedureSlug": "prf",
+      "title": "PRF",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/plasma-therapy/prf"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-plasma-therapy-prp-extra-legacy",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "plasma-therapy",
+      "procedureSlug": "prp-extra-legacy",
+      "title": "PRP extra",
+      "price": {
+        "amount": 140,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/plasma-therapy/prp-extra-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-sclerotherapy-sclerotherapy-1-vial",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "sclerotherapy",
+      "procedureSlug": "sclerotherapy-1-vial",
+      "title": "1 vial",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/sclerotherapy/sclerotherapy-1-vial"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-injections-sclerotherapy-sclerotherapy-2-vials",
+      "categorySlug": "aesthetic-injections",
+      "subcategorySlug": "sclerotherapy",
+      "procedureSlug": "sclerotherapy-2-vials",
+      "title": "2 vials",
+      "price": {
+        "amount": 360,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-injections/sclerotherapy/sclerotherapy-2-vials"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-chemical-peels-carbon-peel",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "chemical-peels",
+      "procedureSlug": "carbon-peel",
+      "title": "Carbon Peel",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/chemical-peels/carbon-peel"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-chemical-peels-extractions-plus-obagi-peel",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "chemical-peels",
+      "procedureSlug": "extractions-plus-obagi-peel",
+      "title": "Extractions + Obagi Peel",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/chemical-peels/extractions-plus-obagi-peel"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-chemical-peels-obagi-blue-peel-4-layers",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "chemical-peels",
+      "procedureSlug": "obagi-blue-peel-4-layers",
+      "title": "Obagi Blue Peel (4 layers)",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/chemical-peels/obagi-blue-peel-4-layers"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-chemical-peels-prx-t33",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "chemical-peels",
+      "procedureSlug": "prx-t33",
+      "title": "PRX-T33",
+      "price": {
+        "amount": 120,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/chemical-peels/prx-t33"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-chemical-peels-tca-35",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "chemical-peels",
+      "procedureSlug": "tca-35",
+      "title": "TCA 35%",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/chemical-peels/tca-35"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-facials-jan-marini-age-intervention-facial",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "facials",
+      "procedureSlug": "jan-marini-age-intervention-facial",
+      "title": "Jan Marini Age Intervention Facial (Anti-Aging)",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/facials/jan-marini-age-intervention-facial"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-facials-jan-marini-c-esta-vitamin-c-facial",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "facials",
+      "procedureSlug": "jan-marini-c-esta-vitamin-c-facial",
+      "title": "Jan Marini C-ESTA Vitamin C Facial",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/facials/jan-marini-c-esta-vitamin-c-facial"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-facials-jan-marini-clarify-facial",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "facials",
+      "procedureSlug": "jan-marini-clarify-facial",
+      "title": "Jan Marini Clarify Facial (Acne / Blemish Control)",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/facials/jan-marini-clarify-facial"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-facials-jan-marini-enzyme-facial",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "facials",
+      "procedureSlug": "jan-marini-enzyme-facial",
+      "title": "Jan Marini Enzyme Facial (Proteolytic Enzyme Treatment)",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/facials/jan-marini-enzyme-facial"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-facials-jan-marini-illuminate-facial",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "facials",
+      "procedureSlug": "jan-marini-illuminate-facial",
+      "title": "Jan Marini Illuminate Facial (Brightening & Pigmentation)",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/facials/jan-marini-illuminate-facial"
+    },
+    {
+      "documentId": "serviceProcedure-aesthetic-treatments-facials-jan-marini-retinol-plus-facial",
+      "categorySlug": "aesthetic-treatments",
+      "subcategorySlug": "facials",
+      "procedureSlug": "jan-marini-retinol-plus-facial",
+      "title": "Jan Marini Retinol Plus Facial",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/aesthetic-treatments/facials/jan-marini-retinol-plus-facial"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-facials-jan-marini-age-intervention-facial",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-facials",
+      "procedureSlug": "jan-marini-age-intervention-facial",
+      "title": "Jan Marini Age Intervention Facial (Anti-Aging)",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-facials/jan-marini-age-intervention-facial"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-facials-jan-marini-c-esta-vitamin-c-facial",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-facials",
+      "procedureSlug": "jan-marini-c-esta-vitamin-c-facial",
+      "title": "Jan Marini C-ESTA Vitamin C Facial",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-facials/jan-marini-c-esta-vitamin-c-facial"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-facials-jan-marini-illuminate-facial",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-facials",
+      "procedureSlug": "jan-marini-illuminate-facial",
+      "title": "Jan Marini Illuminate Facial (Brightening & Pigmentation)",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-facials/jan-marini-illuminate-facial"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-facials-jan-marini-retinol-plus-facial",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-facials",
+      "procedureSlug": "jan-marini-retinol-plus-facial",
+      "title": "Jan Marini Retinol Plus Facial",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-facials/jan-marini-retinol-plus-facial"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-peels-extractions-plus-obagi-peel",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-peels",
+      "procedureSlug": "extractions-plus-obagi-peel",
+      "title": "Extractions with Obagi peel",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-peels/extractions-plus-obagi-peel"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-peels-obagi-blue-peel-4-layers",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-peels",
+      "procedureSlug": "obagi-blue-peel-4-layers",
+      "title": "Obagi Blue Peel (4 layers)",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-peels/obagi-blue-peel-4-layers"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-peels-prx-t33",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-peels",
+      "procedureSlug": "prx-t33",
+      "title": "PRX-T33",
+      "price": {
+        "amount": 120,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-peels/prx-t33"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-anti-age-peels-tca-peel",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "anti-age-peels",
+      "procedureSlug": "tca-peel",
+      "title": "TCA peel",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/anti-age-peels/tca-peel"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-aqualight-monaco-2ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "aqualight-monaco-2ml",
+      "title": "Aqualight cocktail Monaco 2 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/aqualight-monaco-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-aquashine-ptx",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "aquashine-ptx",
+      "title": "Aquashine PTX",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/aquashine-ptx"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-aquashine-ptx",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "aquashine-ptx",
+      "title": "Aquashine PTX",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/aquashine-ptx"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-combo-dna-f-2-5ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "combo-dna-f-2-5ml",
+      "title": "Combo DNA f 2.5 ml",
+      "price": {
+        "amount": 170,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/combo-dna-f-2-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-combo-dna-f-2-5ml-legacy",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "combo-dna-f-2-5ml-legacy",
+      "title": "Combo DNA f 2.5 ml",
+      "price": {
+        "amount": 170,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/combo-dna-f-2-5ml-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-combo-dna-i-1-1ml-legacy",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "combo-dna-i-1-1ml-legacy",
+      "title": "Combo DNA i 1.1 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/combo-dna-i-1-1ml-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-exopeptide-5ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "exopeptide-5ml",
+      "title": "ExoPeptide 5 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/exopeptide-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-exosomes",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "exosomes",
+      "title": "Exosomes",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-hyalual-1-1",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-1-1",
+      "title": "Hyalual 1.1%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/hyalual-1-1"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-hyalual-1-1",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-1-1",
+      "title": "Hyalual 1.1%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/hyalual-1-1"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-hyalual-2-2",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-2-2",
+      "title": "Hyalual 2.2%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/hyalual-2-2"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-hyalual-2-2",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-2-2",
+      "title": "Hyalual 2.2%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/hyalual-2-2"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-mesoeye",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesoeye",
+      "title": "MesoEye",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/mesoeye"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-mesosculpt",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesosculpt",
+      "title": "Mesosculpt",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/mesosculpt"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-mesowharton",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesowharton",
+      "title": "MesoWharton",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/mesowharton"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-mesoxanthin",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "mesoxanthin",
+      "title": "MesoXanthin",
+      "price": {
+        "amount": 190,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/mesoxanthin"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-neauvia-hydra-deluxe",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "neauvia-hydra-deluxe",
+      "title": "Neauvia Hydra Deluxe",
+      "price": {
+        "amount": 120,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/neauvia-hydra-deluxe"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-nucleofill-20-25",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "nucleofill-20-25",
+      "title": "Nucleofill 20 / 25",
+      "price": {
+        "amount": 180,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/nucleofill-20-25"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-plinest",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "plinest",
+      "title": "Plinest",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/plinest"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-plinest",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "plinest",
+      "title": "Plinest",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/plinest"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-plinest-eye-legacy",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "plinest-eye-legacy",
+      "title": "Plinest eye",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/plinest-eye-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-profhilo-2ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "profhilo-2ml",
+      "title": "Profhilo 2 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/profhilo-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-profhilo-2ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "profhilo-2ml",
+      "title": "Profhilo 2 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/profhilo-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-pure-skin-3ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "pure-skin-3ml",
+      "title": "Pure skin 3 ml",
+      "price": {
+        "amount": 140,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/pure-skin-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-rejuaran-healer",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "rejuaran-healer",
+      "title": "Reguran Healer",
+      "price": {
+        "amount": 180,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/rejuaran-healer"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-biorevitalisation-rejuaran-s",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "rejuaran-s",
+      "title": "Reguran S",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/biorevitalisation/rejuaran-s"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-botox-botox-1-zone",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-1-zone",
+      "title": "Botox — 1 zone",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/botox/botox-1-zone"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-botox-botox-2-zones",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-2-zones",
+      "title": "Botox — 2 zones",
+      "price": {
+        "amount": 170,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/botox/botox-2-zones"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-botox-botox-3-zones",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-3-zones",
+      "title": "Botox — 3 zones",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/botox/botox-3-zones"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-botox-botox-full-face",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-full-face",
+      "title": "Botox — full face",
+      "price": {
+        "amount": 400,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/botox/botox-full-face"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-botox-botox-hyperhidrosis",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-hyperhidrosis",
+      "title": "Botox — hyperhidrosis",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/botox/botox-hyperhidrosis"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-algeness-1-5ml-collagen",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "algeness-1-5ml-collagen",
+      "title": "Algeness 1.5 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/algeness-1-5ml-collagen"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-juvelook-eye-2ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "juvelook-eye-2ml",
+      "title": "Juvelook Eye 2 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/juvelook-eye-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-lenisna-6ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "lenisna-6ml",
+      "title": "Lenisna 6 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/lenisna-6ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-lennea-booster-pdrn",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "lennea-booster-pdrn",
+      "title": "Lennea Booster (PDRN)",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/lennea-booster-pdrn"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-lennea-booster-pdrn",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "lennea-booster-pdrn",
+      "title": "Lennea Booster (PDRN)",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/lennea-booster-pdrn"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-nythia-5ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "nythia-5ml",
+      "title": "Nythia 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/nythia-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-radiesse-1-5ml-lidocaine",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "radiesse-1-5ml-lidocaine",
+      "title": "Radiesse 1.5 ml (with lidocaine)",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/radiesse-1-5ml-lidocaine"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-radiesse-1-5ml-lidocaine",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "radiesse-1-5ml-lidocaine",
+      "title": "Radiesse 1.5 ml (with lidocaine)",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/radiesse-1-5ml-lidocaine"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-radiesse-flash",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "radiesse-flash",
+      "title": "Radiesse FLASH",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/radiesse-flash"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-revacoll-dmae-5ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-dmae-5ml",
+      "title": "REVACOLL+ DMAE 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/revacoll-dmae-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-revacoll-dmae-5ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-dmae-5ml",
+      "title": "Revacoll + DMAE 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/revacoll-dmae-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-revacoll-ha-5ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-ha-5ml",
+      "title": "REVACOLL+ HA 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/revacoll-ha-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-revacoll-prp-extra-11ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-prp-extra-11ml",
+      "title": "REVACOLL+ PRP extra 11 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/revacoll-prp-extra-11ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-collagen-stimulators-sculptra-plla",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "sculptra-plla",
+      "title": "Sculptra (PLLA)",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/collagen-stimulators/sculptra-plla"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-face-contouring-algeness-1-5ml-contouring",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "algeness-1-5ml-contouring",
+      "title": "Algeness 1.5 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/face-contouring/algeness-1-5ml-contouring"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-face-contouring-algeness-3ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "algeness-3ml",
+      "title": "Algeness 3 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/face-contouring/algeness-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-face-contouring-revolax-1ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "revolax-1ml",
+      "title": "Revolax 1 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/face-contouring/revolax-1ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-face-contouring-revolax-2ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "revolax-2ml",
+      "title": "Revolax 2 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/face-contouring/revolax-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-face-contouring-revolax-3ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "revolax-3ml",
+      "title": "Revolax 3 ml",
+      "price": {
+        "amount": 410,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/face-contouring/revolax-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-hifu-face-lift-hifu-face-lift",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "hifu-face-lift",
+      "procedureSlug": "hifu-face-lift",
+      "title": "HIFU Face Lift",
+      "price": {
+        "amount": 300,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/hifu-face-lift/hifu-face-lift"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-hifu-face-lift-hifu-face-lift",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "hifu-face-lift",
+      "procedureSlug": "hifu-face-lift",
+      "title": "HIFU Face Lift",
+      "price": {
+        "amount": 300,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/hifu-face-lift/hifu-face-lift"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-plasma-therapy-prf",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "plasma-therapy",
+      "procedureSlug": "prf",
+      "title": "PRF",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/plasma-therapy/prf"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-plasma-therapy-prp-extra-legacy",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "plasma-therapy",
+      "procedureSlug": "prp-extra-legacy",
+      "title": "PRP extra",
+      "price": {
+        "amount": 140,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/plasma-therapy/prp-extra-legacy"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-plla-vector-lifting-elastifill-6ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "plla-vector-lifting",
+      "procedureSlug": "elastifill-6ml",
+      "title": "ElastiFill 6 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/plla-vector-lifting/elastifill-6ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-plla-vector-lifting-juvelook-eye-2ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "plla-vector-lifting",
+      "procedureSlug": "juvelook-eye-2ml",
+      "title": "Juvelook Eyes 2 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/plla-vector-lifting/juvelook-eye-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-plla-vector-lifting-lenisna-6ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "plla-vector-lifting",
+      "procedureSlug": "lenisna-6ml",
+      "title": "Lenisna 6 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/plla-vector-lifting/lenisna-6ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-rf-microneedling-and-dermapen-dermapen",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "dermapen",
+      "title": "Dermapen",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/rf-microneedling-and-dermapen/dermapen"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-rf-microneedling-and-dermapen-dermapen-exosomes",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "dermapen-exosomes",
+      "title": "Dermapen + exosomes",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/rf-microneedling-and-dermapen/dermapen-exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-rf-microneedling-and-dermapen-rf-microneedling",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "rf-microneedling",
+      "title": "RF microneedling",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/rf-microneedling-and-dermapen/rf-microneedling"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-rf-microneedling-and-dermapen-rf-microneedling-exosomes",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "rf-microneedling-exosomes",
+      "title": "RF microneedling + exosomes",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/rf-microneedling-and-dermapen/rf-microneedling-exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-rf-microneedling-rf-microneedling",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "rf-microneedling",
+      "procedureSlug": "rf-microneedling",
+      "title": "RF Microneedling",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/rf-microneedling/rf-microneedling"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-rf-microneedling-rf-microneedling-exosomes",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "rf-microneedling",
+      "procedureSlug": "rf-microneedling-exosomes",
+      "title": "RF Microneedling + Exosomes",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/rf-microneedling/rf-microneedling-exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-treatments-under-eyes-combo-dna-i-1-1ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "treatments-under-eyes",
+      "procedureSlug": "combo-dna-i-1-1ml",
+      "title": "Combo DNA i 1.1 ml",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/treatments-under-eyes/combo-dna-i-1-1ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-treatments-under-eyes-mesoten-eye-3ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "treatments-under-eyes",
+      "procedureSlug": "mesoten-eye-3ml",
+      "title": "Mesoten eye 3 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/treatments-under-eyes/mesoten-eye-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-treatments-under-eyes-plinest-eye",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "treatments-under-eyes",
+      "procedureSlug": "plinest-eye",
+      "title": "Plinest eye",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/treatments-under-eyes/plinest-eye"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-wrinkle-augmentation-belotero-soft-1ml",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "wrinkle-augmentation",
+      "procedureSlug": "belotero-soft-1ml",
+      "title": "Belotero soft 1 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/wrinkle-augmentation/belotero-soft-1ml"
+    },
+    {
+      "documentId": "serviceProcedure-anti-age-wrinkle-augmentation-revolax-1ml-wrinkles",
+      "categorySlug": "anti-age",
+      "subcategorySlug": "wrinkle-augmentation",
+      "procedureSlug": "revolax-1ml-wrinkles",
+      "title": "Revolax 1 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/anti-age/wrinkle-augmentation/revolax-1ml-wrinkles"
+    },
+    {
+      "documentId": "serviceProcedure-blood-tests-wellness-panels-basic-female-fertility",
+      "categorySlug": "blood-tests",
+      "subcategorySlug": "wellness-panels",
+      "procedureSlug": "basic-female-fertility",
+      "title": "Basic Female Fertility",
+      "price": {
+        "amount": 99,
+        "currency": "EUR"
+      },
+      "path": "/treatments/blood-tests/basic-female-fertility"
+    },
+    {
+      "documentId": "serviceProcedure-blood-tests-wellness-panels-comprehensive-female-fertility",
+      "categorySlug": "blood-tests",
+      "subcategorySlug": "wellness-panels",
+      "procedureSlug": "comprehensive-female-fertility",
+      "title": "Comprehensive Female Fertility",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/blood-tests/comprehensive-female-fertility"
+    },
+    {
+      "documentId": "serviceProcedure-blood-tests-wellness-panels-male-testosterone",
+      "categorySlug": "blood-tests",
+      "subcategorySlug": "wellness-panels",
+      "procedureSlug": "male-testosterone",
+      "title": "Male Testosterone",
+      "price": {
+        "amount": 69,
+        "currency": "EUR"
+      },
+      "path": "/treatments/blood-tests/male-testosterone"
+    },
+    {
+      "documentId": "serviceProcedure-blood-tests-wellness-panels-tired-all-the-time",
+      "categorySlug": "blood-tests",
+      "subcategorySlug": "wellness-panels",
+      "procedureSlug": "tired-all-the-time",
+      "title": "Tired All The Time",
+      "price": {
+        "amount": 199,
+        "currency": "EUR"
+      },
+      "path": "/treatments/blood-tests/tired-all-the-time"
+    },
+    {
+      "documentId": "serviceProcedure-blood-tests-wellness-panels-vitamins-minerals",
+      "categorySlug": "blood-tests",
+      "subcategorySlug": "wellness-panels",
+      "procedureSlug": "vitamins-minerals",
+      "title": "Vitamins & Minerals",
+      "price": {
+        "amount": 110,
+        "currency": "EUR"
+      },
+      "path": "/treatments/blood-tests/vitamins-minerals"
+    },
+    {
+      "documentId": "serviceProcedure-blood-tests-wellness-panels-wellness-man-women",
+      "categorySlug": "blood-tests",
+      "subcategorySlug": "wellness-panels",
+      "procedureSlug": "wellness-man-women",
+      "title": "Wellness Man | Women",
+      "price": {
+        "amount": 290,
+        "currency": "EUR"
+      },
+      "path": "/treatments/blood-tests/wellness-man-women"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-cryo-fat-reduction-cryo-1-applicator",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "cryo-fat-reduction",
+      "procedureSlug": "cryo-1-applicator",
+      "title": "1 applicator",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/cryo-fat-reduction/cryo-1-applicator"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-cryo-fat-reduction-cryo-2-applicators",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "cryo-fat-reduction",
+      "procedureSlug": "cryo-2-applicators",
+      "title": "2 applicators",
+      "price": {
+        "amount": 300,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/cryo-fat-reduction/cryo-2-applicators"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-cryo-fat-reduction-cryo-4-applicators",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "cryo-fat-reduction",
+      "procedureSlug": "cryo-4-applicators",
+      "title": "4 applicators",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/cryo-fat-reduction/cryo-4-applicators"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-emsculpt-emsculpt-1-zone",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "emsculpt",
+      "procedureSlug": "emsculpt-1-zone",
+      "title": "1 treatment — 1 zone (45 min)",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/emsculpt/emsculpt-1-zone"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-laser-pigment-removal-laser-pigment-removal",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "laser-pigment-removal",
+      "procedureSlug": "laser-pigment-removal",
+      "title": "Laser pigment removal",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/laser-pigment-removal/laser-pigment-removal"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-laser-tattoo-removal-laser-tattoo-pmu-1-zone",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "laser-tattoo-removal",
+      "procedureSlug": "laser-tattoo-pmu-1-zone",
+      "title": "1 zone",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/laser-tattoo-removal/laser-tattoo-pmu-1-zone"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-peels-carbon-peel",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "peels",
+      "procedureSlug": "carbon-peel",
+      "title": "Carbon peel",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/peels/carbon-peel"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-peels-dermaplaning",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "peels",
+      "procedureSlug": "dermaplaning",
+      "title": "Dermaplaning",
+      "price": {
+        "amount": 60,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/peels/dermaplaning"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-peels-extractions-plus-obagi-peel",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "peels",
+      "procedureSlug": "extractions-plus-obagi-peel",
+      "title": "Extractions with Obagi peel",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/peels/extractions-plus-obagi-peel"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-peels-obagi-blue-peel-4-layers",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "peels",
+      "procedureSlug": "obagi-blue-peel-4-layers",
+      "title": "Obagi Blue Peel (4 layers)",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/peels/obagi-blue-peel-4-layers"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-peels-prx-t33",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "peels",
+      "procedureSlug": "prx-t33",
+      "title": "PRX-T33",
+      "price": {
+        "amount": 120,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/peels/prx-t33"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-peels-tca-peel",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "peels",
+      "procedureSlug": "tca-peel",
+      "title": "TCA peel",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/peels/tca-peel"
+    },
+    {
+      "documentId": "serviceProcedure-body-slimming-skin-tag-removal-skin-tag-papilloma-removal-from-50",
+      "categorySlug": "body-slimming",
+      "subcategorySlug": "skin-tag-removal",
+      "procedureSlug": "skin-tag-papilloma-removal-from-50",
+      "title": "Skin tag / papilloma removal",
+      "price": {
+        "amount": 50,
+        "currency": "EUR"
+      },
+      "path": "/treatments/body-slimming/skin-tag-removal/skin-tag-papilloma-removal-from-50"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-aqualight-monaco-2ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "aqualight-monaco-2ml",
+      "title": "Aqualight cocktail Monaco 2 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/aqualight-monaco-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-aquashine-ptx",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "aquashine-ptx",
+      "title": "Aquashine PTX",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/aquashine-ptx"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-combo-dna-f-2-5ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "combo-dna-f-2-5ml",
+      "title": "Combo DNA f 2.5 ml",
+      "price": {
+        "amount": 170,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/combo-dna-f-2-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-exopeptide-5ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "exopeptide-5ml",
+      "title": "ExoPeptide 5 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/exopeptide-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-hyalual-1-1",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-1-1",
+      "title": "Hyalual 1.1%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/hyalual-1-1"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-hyalual-2-2",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "hyalual-2-2",
+      "title": "Hyalual 2.2%",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/hyalual-2-2"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-plinest",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "plinest",
+      "title": "Plinest",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/plinest"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-profhilo-2ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "profhilo-2ml",
+      "title": "Profhilo 2 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/profhilo-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-biorevitalisation-pure-skin-3ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "biorevitalisation",
+      "procedureSlug": "pure-skin-3ml",
+      "title": "Pure skin 3 ml",
+      "price": {
+        "amount": 140,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/biorevitalisation/pure-skin-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-botox-botox-1-zone",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-1-zone",
+      "title": "Botox — 1 zone",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/botox/botox-1-zone"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-botox-botox-2-zones",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-2-zones",
+      "title": "Botox — 2 zones",
+      "price": {
+        "amount": 170,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/botox/botox-2-zones"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-botox-botox-3-zones",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-3-zones",
+      "title": "Botox — 3 zones",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/botox/botox-3-zones"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-botox-botox-full-face",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-full-face",
+      "title": "Botox — full face",
+      "price": {
+        "amount": 400,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/botox/botox-full-face"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-botox-botox-hyperhidrosis",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "botox",
+      "procedureSlug": "botox-hyperhidrosis",
+      "title": "Botox — hyperhidrosis",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/botox/botox-hyperhidrosis"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-collagen-stimulators-algeness-1-5ml-collagen",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "algeness-1-5ml-collagen",
+      "title": "Algeness 1.5 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/collagen-stimulators/algeness-1-5ml-collagen"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-collagen-stimulators-lennea-booster-pdrn",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "lennea-booster-pdrn",
+      "title": "Lennea Booster (PDRN)",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/collagen-stimulators/lennea-booster-pdrn"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-collagen-stimulators-radiesse-1-5ml-lidocaine",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "radiesse-1-5ml-lidocaine",
+      "title": "Radiesse 1.5 ml (with lidocaine)",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/collagen-stimulators/radiesse-1-5ml-lidocaine"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-collagen-stimulators-revacoll-dmae-5ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-dmae-5ml",
+      "title": "REVACOLL+ DMAE 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/collagen-stimulators/revacoll-dmae-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-collagen-stimulators-revacoll-ha-5ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-ha-5ml",
+      "title": "REVACOLL+ HA 5 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/collagen-stimulators/revacoll-ha-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-collagen-stimulators-revacoll-prp-extra-11ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "collagen-stimulators",
+      "procedureSlug": "revacoll-prp-extra-11ml",
+      "title": "REVACOLL+ PRP extra 11 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/collagen-stimulators/revacoll-prp-extra-11ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-face-contouring-algeness-1-5ml-contouring",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "algeness-1-5ml-contouring",
+      "title": "Algeness 1.5 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/face-contouring/algeness-1-5ml-contouring"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-face-contouring-algeness-3ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "algeness-3ml",
+      "title": "Algeness 3 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/face-contouring/algeness-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-face-contouring-revolax-1ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "revolax-1ml",
+      "title": "Revolax 1 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/face-contouring/revolax-1ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-face-contouring-revolax-2ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "revolax-2ml",
+      "title": "Revolax 2 ml",
+      "price": {
+        "amount": 350,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/face-contouring/revolax-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-face-contouring-revolax-3ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "face-contouring",
+      "procedureSlug": "revolax-3ml",
+      "title": "Revolax 3 ml",
+      "price": {
+        "amount": 410,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/face-contouring/revolax-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-hifu-face-lift-hifu-face-lift",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "hifu-face-lift",
+      "procedureSlug": "hifu-face-lift",
+      "title": "HIFU Face Lift",
+      "price": {
+        "amount": 300,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/hifu-face-lift/hifu-face-lift"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-lip-fillers-lips-with-strips",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "lip-fillers",
+      "procedureSlug": "lips-with-strips",
+      "title": "Lips with strips — full protocol",
+      "price": {
+        "amount": 300,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/lip-fillers/lips-with-strips"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-lip-fillers-regenovue-deep",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "lip-fillers",
+      "procedureSlug": "regenovue-deep",
+      "title": "Regenovue deep",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/lip-fillers/regenovue-deep"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-lip-fillers-revolax-lips",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "lip-fillers",
+      "procedureSlug": "revolax-lips",
+      "title": "Revolax",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/lip-fillers/revolax-lips"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-lip-fillers-stylage-m",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "lip-fillers",
+      "procedureSlug": "stylage-m",
+      "title": "Stylage M",
+      "price": {
+        "amount": 220,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/lip-fillers/stylage-m"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-lipolytics-dermaheal-ll-5ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "lipolytics",
+      "procedureSlug": "dermaheal-ll-5ml",
+      "title": "Dermaheal LL 5 ml",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/lipolytics/dermaheal-ll-5ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-mesotherapy-for-hair-loss-dermaheal-hl",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "mesotherapy-for-hair-loss",
+      "procedureSlug": "dermaheal-hl",
+      "title": "Dermaheal HL",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/mesotherapy-for-hair-loss/dermaheal-hl"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-mesotherapy-for-hair-loss-prp-extra-hair",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "mesotherapy-for-hair-loss",
+      "procedureSlug": "prp-extra-hair",
+      "title": "PRP extra",
+      "price": {
+        "amount": 140,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/mesotherapy-for-hair-loss/prp-extra-hair"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-plasma-therapy-prf",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "plasma-therapy",
+      "procedureSlug": "prf",
+      "title": "PRF",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/plasma-therapy/prf"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-plasma-therapy-prp-extra-plasma",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "plasma-therapy",
+      "procedureSlug": "prp-extra-plasma",
+      "title": "PRP extra",
+      "price": {
+        "amount": 140,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/plasma-therapy/prp-extra-plasma"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-plla-vector-lifting-elastifill-6ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "plla-vector-lifting",
+      "procedureSlug": "elastifill-6ml",
+      "title": "ElastiFill 6 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/plla-vector-lifting/elastifill-6ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-plla-vector-lifting-juvelook-eye-2ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "plla-vector-lifting",
+      "procedureSlug": "juvelook-eye-2ml",
+      "title": "Juvelook Eyes 2 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/plla-vector-lifting/juvelook-eye-2ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-plla-vector-lifting-lenisna-6ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "plla-vector-lifting",
+      "procedureSlug": "lenisna-6ml",
+      "title": "Lenisna 6 ml",
+      "price": {
+        "amount": 500,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/plla-vector-lifting/lenisna-6ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-rf-microneedling-and-dermapen-dermapen",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "dermapen",
+      "title": "Dermapen",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/rf-microneedling-and-dermapen/dermapen"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-rf-microneedling-and-dermapen-dermapen-exosomes",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "dermapen-exosomes",
+      "title": "Dermapen + exosomes",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/rf-microneedling-and-dermapen/dermapen-exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-rf-microneedling-and-dermapen-rf-microneedling",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "rf-microneedling",
+      "title": "RF microneedling",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/rf-microneedling-and-dermapen/rf-microneedling"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-rf-microneedling-and-dermapen-rf-microneedling-exosomes",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "rf-microneedling-and-dermapen",
+      "procedureSlug": "rf-microneedling-exosomes",
+      "title": "RF microneedling + exosomes",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/rf-microneedling-and-dermapen/rf-microneedling-exosomes"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-sclerotherapy-sclerotherapy-1-vial",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "sclerotherapy",
+      "procedureSlug": "sclerotherapy-1-vial",
+      "title": "1 vial",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/sclerotherapy/sclerotherapy-1-vial"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-sclerotherapy-sclerotherapy-2-vials",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "sclerotherapy",
+      "procedureSlug": "sclerotherapy-2-vials",
+      "title": "2 vials",
+      "price": {
+        "amount": 360,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/sclerotherapy/sclerotherapy-2-vials"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-treatments-under-eyes-combo-dna-i-1-1ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "treatments-under-eyes",
+      "procedureSlug": "combo-dna-i-1-1ml",
+      "title": "Combo DNA i 1.1 ml",
+      "price": {
+        "amount": 150,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/treatments-under-eyes/combo-dna-i-1-1ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-treatments-under-eyes-mesoten-eye-3ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "treatments-under-eyes",
+      "procedureSlug": "mesoten-eye-3ml",
+      "title": "Mesoten eye 3 ml",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/treatments-under-eyes/mesoten-eye-3ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-treatments-under-eyes-plinest-eye",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "treatments-under-eyes",
+      "procedureSlug": "plinest-eye",
+      "title": "Plinest eye",
+      "price": {
+        "amount": 160,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/treatments-under-eyes/plinest-eye"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-wrinkle-augmentation-belotero-soft-1ml",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "wrinkle-augmentation",
+      "procedureSlug": "belotero-soft-1ml",
+      "title": "Belotero soft 1 ml",
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/wrinkle-augmentation/belotero-soft-1ml"
+    },
+    {
+      "documentId": "serviceProcedure-cosmetology-wrinkle-augmentation-revolax-1ml-wrinkles",
+      "categorySlug": "cosmetology",
+      "subcategorySlug": "wrinkle-augmentation",
+      "procedureSlug": "revolax-1ml-wrinkles",
+      "title": "Revolax 1 ml",
+      "price": {
+        "amount": 200,
+        "currency": "EUR"
+      },
+      "path": "/treatments/cosmetology/wrinkle-augmentation/revolax-1ml-wrinkles"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-bikini-and-abdominal-line",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "bikini-and-abdominal-line",
+      "title": "Bikini + Abdominal Line",
+      "price": {
+        "amount": 50,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/bikini-and-abdominal-line"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-full-bikini-and-full-legs",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "full-bikini-and-full-legs",
+      "title": "Full Bikini + Full Legs",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/full-bikini-and-full-legs"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-full-bikini-and-lower-legs",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "full-bikini-and-lower-legs",
+      "title": "Full Bikini + Lower Legs",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/full-bikini-and-lower-legs"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-underarms-and-full-bikini",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "underarms-and-full-bikini",
+      "title": "Underarms + Full Bikini",
+      "price": {
+        "amount": 60,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/underarms-and-full-bikini"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-underarms-and-full-legs",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "underarms-and-full-legs",
+      "title": "Underarms + Full Legs",
+      "price": {
+        "amount": 90,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/underarms-and-full-legs"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-underarms-and-lower-legs",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "underarms-and-lower-legs",
+      "title": "Underarms + Lower Legs",
+      "price": {
+        "amount": 80,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/underarms-and-lower-legs"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-underarms-full-bikini-and-full-legs",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "underarms-full-bikini-and-full-legs",
+      "title": "Underarms + Full Bikini + Full Legs",
+      "price": {
+        "amount": 110,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/underarms-full-bikini-and-full-legs"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-underarms-full-bikini-and-lower-legs",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "underarms-full-bikini-and-lower-legs",
+      "title": "Underarms + Full Bikini + Lower Legs",
+      "price": {
+        "amount": 100,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/underarms-full-bikini-and-lower-legs"
+    },
+    {
+      "documentId": "serviceProcedure-laser-hair-removal-laser-hair-removal-sets-upper-lip-and-chin",
+      "categorySlug": "laser-hair-removal",
+      "subcategorySlug": "laser-hair-removal-sets",
+      "procedureSlug": "upper-lip-and-chin",
+      "title": "Upper Lip & Chin",
+      "price": {
+        "amount": 40,
+        "currency": "EUR"
+      },
+      "path": "/treatments/laser-hair-removal/upper-lip-and-chin"
+    },
+    {
+      "documentId": "serviceProcedure-vitamin-shots-vitamin-injections-biotin-b7",
+      "categorySlug": "vitamin-shots",
+      "subcategorySlug": "vitamin-injections",
+      "procedureSlug": "biotin-b7",
+      "title": "Biotin (B7)",
+      "price": {
+        "amount": 45,
+        "currency": "EUR"
+      },
+      "path": "/treatments/vitamin-shots/biotin-b7"
+    },
+    {
+      "documentId": "serviceProcedure-vitamin-shots-vitamin-injections-vitamin-b12",
+      "categorySlug": "vitamin-shots",
+      "subcategorySlug": "vitamin-injections",
+      "procedureSlug": "vitamin-b12",
+      "title": "Vitamin B12",
+      "price": {
+        "amount": 45,
+        "currency": "EUR"
+      },
+      "path": "/treatments/vitamin-shots/vitamin-b12"
+    },
+    {
+      "documentId": "serviceProcedure-vitamin-shots-vitamin-injections-vitamin-b5",
+      "categorySlug": "vitamin-shots",
+      "subcategorySlug": "vitamin-injections",
+      "procedureSlug": "vitamin-b5",
+      "title": "Vitamin B5",
+      "price": {
+        "amount": 45,
+        "currency": "EUR"
+      },
+      "path": "/treatments/vitamin-shots/vitamin-b5"
+    },
+    {
+      "documentId": "serviceProcedure-vitamin-shots-vitamin-injections-vitamin-c",
+      "categorySlug": "vitamin-shots",
+      "subcategorySlug": "vitamin-injections",
+      "procedureSlug": "vitamin-c",
+      "title": "Vitamin C",
+      "price": {
+        "amount": 45,
+        "currency": "EUR"
+      },
+      "path": "/treatments/vitamin-shots/vitamin-c"
+    },
+    {
+      "documentId": "serviceProcedure-vitamin-shots-vitamin-injections-vitamin-d",
+      "categorySlug": "vitamin-shots",
+      "subcategorySlug": "vitamin-injections",
+      "procedureSlug": "vitamin-d",
+      "title": "Vitamin D",
+      "price": {
+        "amount": 45,
+        "currency": "EUR"
+      },
+      "path": "/treatments/vitamin-shots/vitamin-d"
+    }
+  ]
+}

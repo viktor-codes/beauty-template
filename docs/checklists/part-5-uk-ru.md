@@ -14,7 +14,7 @@ After `pnpm seed:sanity` (with prod backup per [part-0-sanity-prep.md](./part-0-
 | `treatmentsHub` | field i18n EN/UK/RU on one doc | | |
 | `treatmentConcern` | ×6 slugs, field i18n | | |
 | Services **categories** | EN + UK/RU where static copy differs | from `uk.ts` / `ru.ts` preview cards |
-| Services subcategories / procedures | EN only in CMS | UK/RU **fallback to EN** on site |
+| Services subcategories / procedures | EN + UK/RU from seed (`locale-copy` → CMS fields) | `resolveServiceLocalizedField` when CMS uk/ru empty or still EN |
 
 ## Smoke checklist
 

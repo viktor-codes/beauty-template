@@ -146,11 +146,17 @@ function mapProcedure(
   };
 }
 
+interface MapTreeOptions {
+  /** When true, empty nested arrays from CMS are kept (no static structure refill). */
+  isSanityBacked?: boolean;
+}
+
 function mapSubcategory(
   raw: SanitySubcategoryLike,
   locale: AppLocale,
   fallbackCategory?: ServiceCategory,
   fallbackSub?: ServiceSubcategory,
+  options?: MapTreeOptions,
 ): ServiceSubcategory | null {
   const id = mapSlugSafe(raw.slug, fallbackSub?.id ?? "");
   if (!id) return null;
@@ -183,7 +189,7 @@ function mapSubcategory(
       (entry) => entry.description,
     ),
     image: mapServiceImageSafe(raw.image, locale, fallbackSub?.image),
-    procedures: procedures.length > 0 ? procedures : fallbackProcedures,
+    procedures: options?.isSanityBacked ? procedures : procedures.length > 0 ? procedures : fallbackProcedures,
   };
 }
 
@@ -222,6 +228,7 @@ function mapCategory(
   raw: SanityCategoryLike,
   locale: AppLocale,
   fallback?: ServiceCategory,
+  options?: MapTreeOptions,
 ): ServiceCategory | null {
   const id = mapSlugSafe(raw.slug, fallback?.id ?? "");
   if (!id) return null;
@@ -231,7 +238,7 @@ function mapCategory(
     .map((sub) => {
       const subId = mapSlugSafe(sub.slug, "");
       const fallbackSub = fallbackSubs.find((s) => s.id === subId);
-      return mapSubcategory(sub, locale, fallback, fallbackSub);
+      return mapSubcategory(sub, locale, fallback, fallbackSub, options);
     })
     .filter((s): s is ServiceSubcategory => s !== null);
 
@@ -257,7 +264,11 @@ function mapCategory(
       (entry) => entry.description,
     ),
     image: mapServiceImageSafe(raw.image, locale, fallback?.image),
-    subcategories: subcategories.length > 0 ? subcategories : fallbackSubs,
+    subcategories: options?.isSanityBacked
+      ? subcategories
+      : subcategories.length > 0
+        ? subcategories
+        : fallbackSubs,
     sortOrder: raw.sortOrder ?? fallback?.sortOrder ?? staticFlags.sortOrder,
     featuredOnHomepage:
       raw.featuredOnHomepage ?? fallback?.featuredOnHomepage ?? staticFlags.featuredOnHomepage,
@@ -368,7 +379,7 @@ export function mapServicesCatalogSafe(
     .map((cat) => {
       const slug = mapSlugSafe(cat.slug, "");
       const fallbackCat = fallback.categories.find((c) => c.id === slug);
-      return mapCategory(cat, locale, fallbackCat);
+      return mapCategory(cat, locale, fallbackCat, { isSanityBacked: true });
     })
     .filter((c): c is ServiceCategory => c !== null);
 
