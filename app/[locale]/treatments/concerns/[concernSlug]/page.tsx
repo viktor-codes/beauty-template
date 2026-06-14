@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
@@ -12,8 +11,6 @@ import { Button } from "@/components/ui/button";
 import { getLandingContent } from "@/lib/content";
 import type { AppLocale } from "@/i18n/routing";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
-import { buildLandingConcernChips } from "@/lib/services/concern-chips";
-import { resolveConcernCardImage } from "@/lib/services/concern-card-image";
 import { buildConcernPath } from "@/lib/services/concern-path";
 import { getConcernRecommendations } from "@/lib/services/concern-recommendations";
 import { resolveServicesCatalog } from "@/lib/services";
@@ -21,7 +18,6 @@ import { findConcern } from "@/lib/services/page-helpers";
 import { CONCERN_ORDER } from "@/lib/services/static-treatment-concerns";
 import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
-import { cn } from "@/lib/cn";
 
 export async function generateStaticParams(): Promise<
   Array<{ concernSlug: string }>
@@ -71,12 +67,8 @@ export default async function TreatmentsConcernPage({
     { label: concern.title, href: concernPath },
   ]);
   const procedures = getConcernRecommendations(concernSlug, catalog);
-  const otherConcerns = buildLandingConcernChips(catalog).filter(
-    (chip) => chip.id !== concernSlug,
-  );
   const pageTitleId = `concern-${concernSlug}-title`;
   const proceduresListId = `${pageTitleId}-procedures`;
-  const heroImage = resolveConcernCardImage(concern);
   const subtitle =
     concern.shortDescription?.trim() || hubUi.concernCardFallbackDescription;
 
