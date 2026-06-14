@@ -123,6 +123,13 @@ export function buildCatalogDeskItem(S: StructureBuilder, context: StructureReso
         .title("Catalog")
         .items([
           S.listItem()
+            .title("All procedures")
+            .child(
+              S.documentTypeList("serviceProcedure")
+                .title("All procedures")
+                .defaultOrdering(NESTED_ORDERING),
+            ),
+          S.listItem()
             .title("Browse by category")
             .child(
               S.documentTypeList("serviceCategory")
