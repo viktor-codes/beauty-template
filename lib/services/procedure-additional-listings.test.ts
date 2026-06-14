@@ -9,7 +9,7 @@ describe("procedure additional listings", () => {
   it("keeps shared procedures in secondary subcategories after catalog finalize", () => {
     const index = collectProcedureListingIndex(servicesCatalog);
 
-    assert.equal(ADDITIONAL_PROCEDURE_LISTINGS.length, 23);
+    assert.equal(ADDITIONAL_PROCEDURE_LISTINGS.length, 18);
     assert.equal(index.get("profhilo-2ml")?.length, 2);
     assert.equal(index.get("stylage-m")?.length, 2);
   });

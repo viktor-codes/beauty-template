@@ -61,10 +61,10 @@ export const ukLandingContent = {
       },
       {
         id: "services-category-body",
-        title: "Корекція фігури та схуднення",
+        title: "Процедури для тіла",
         description:
-          "CRYO, Emsculpt, пілінги, лазерна корекція та процедури для тіла.",
-        href: "/treatments/body-slimming",
+          "CRYO та Emsculpt для контуру тіла та тонусу м'язів.",
+        href: "/treatments/body-treatment",
         featuredInNav: true,
       },
       {
@@ -261,7 +261,7 @@ export const ukLandingContent = {
       heading: "Основні категорії",
       links: [
         { label: "Косметологія", href: "/treatments/cosmetology" },
-        { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Процедури для тіла", href: "/treatments/body-treatment" },
         { label: "Догляд обличчя", href: "/treatments/aesthetic-treatments" },
         { label: "Blood tests", href: "/treatments/blood-tests" },
         { label: "Усі процедури", href: "/treatments" },

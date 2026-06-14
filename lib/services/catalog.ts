@@ -9,14 +9,14 @@ import { aestheticInjectionsCategory } from "@/lib/services/categories/aesthetic
 import { aestheticTreatmentsCategory } from "@/lib/services/categories/aesthetic-treatments";
 import { advancedAestheticTreatmentsCategory } from "@/lib/services/categories/advanced-aesthetic-treatments";
 import { bloodTestsCategory } from "@/lib/services/categories/blood-tests";
-import { bodySlimmingCategory } from "@/lib/services/categories/body-slimming";
+import { bodyTreatmentCategory } from "@/lib/services/categories/body-treatment";
 import { cosmetologyCategory } from "@/lib/services/categories/cosmetology";
 import { laserHairRemovalCategory } from "@/lib/services/categories/laser-hair-removal";
 import { vitaminShotsCategory } from "@/lib/services/categories/vitamin-shots";
 
 const staticServiceCategories = [
     cosmetologyCategory,
-    bodySlimmingCategory,
+    bodyTreatmentCategory,
     vitaminShotsCategory,
     bloodTestsCategory,
     aestheticTreatmentsCategory,

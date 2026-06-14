@@ -1,28 +1,25 @@
 /**
- * Deletes legacy per-placement procedure documents (pre–Phase 5 dedupe).
+ * Deletes the legacy body-slimming branch from Sanity (category, subcategories, procedures).
  *
- * Run after seeding slug-based procedure docs:
+ * Run after seeding body-treatment in the static catalog:
  *   pnpm seed:sanity
- *   pnpm purge:sanity:legacy-procedures
+ *   pnpm purge:sanity:body-slimming
  */
 import { createClient } from "@sanity/client";
 
-const LEGACY_PROCEDURE_QUERY = /* groq */ `
+const BODY_SLIMMING_DOC_QUERY = /* groq */ `
   *[
-    _type == "serviceProcedure"
+    _type in ["serviceCategory", "serviceSubcategory", "serviceProcedure"]
     && (
-      _id match "serviceProcedure-cosmetology-*"
+      _id match "serviceCategory-body-slimming"
+      || _id match "serviceSubcategory-body-slimming-*"
       || _id match "serviceProcedure-body-slimming-*"
-      || _id match "serviceProcedure-body-treatment-*"
-      || _id match "serviceProcedure-vitamin-shots-*"
-      || _id match "serviceProcedure-blood-tests-*"
-      || _id match "serviceProcedure-aesthetic-treatments-*"
-      || _id match "serviceProcedure-aesthetic-injections-*"
-      || _id match "serviceProcedure-advanced-aesthetic-treatments-*"
-      || _id match "serviceProcedure-laser-hair-removal-*"
     )
   ]._id
 `;
+
+/** Removed from catalog — only existed under body-slimming laser tattoo subcategory. */
+const ORPHAN_PROCEDURE_IDS = ["serviceProcedure-laser-tattoo-pmu-1-zone"] as const;
 
 function getWriteClient() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID?.trim();
@@ -54,8 +51,8 @@ async function deleteDocumentWithReferencingDrafts(
   documentId: string,
 ): Promise<void> {
   const referencingIds = await client.fetch<string[]>(`*[references($id)]._id`, { id: documentId });
-
   const transaction = client.transaction();
+
   for (const referencingId of referencingIds) {
     transaction.delete(referencingId);
   }
@@ -66,22 +63,26 @@ async function deleteDocumentWithReferencingDrafts(
 
 async function main() {
   const client = getWriteClient();
-  const documentIds = await client.fetch<string[]>(LEGACY_PROCEDURE_QUERY);
+
+  for (const documentId of ORPHAN_PROCEDURE_IDS) {
+    const exists = await client.fetch<boolean>(`*[_id == $id][0]._id != null`, { id: documentId });
+    if (!exists) continue;
+
+    console.log(`Deleting orphan procedure ${documentId}…`);
+    await deleteDocumentWithReferencingDrafts(client, documentId);
+  }
+
+  const documentIds = await client.fetch<string[]>(BODY_SLIMMING_DOC_QUERY);
 
   if (documentIds.length === 0) {
-    console.log("No legacy procedure documents found.");
+    console.log("No body-slimming catalog documents found in Sanity.");
     return;
   }
 
-  console.log(`Deleting ${documentIds.length} legacy procedure documents…`);
+  console.log(`Deleting ${documentIds.length} body-slimming catalog documents…`);
 
-  for (let index = 0; index < documentIds.length; index += 1) {
-    const documentId = documentIds[index]!;
+  for (const documentId of documentIds) {
     await deleteDocumentWithReferencingDrafts(client, documentId);
-
-    if ((index + 1) % 25 === 0 || index + 1 === documentIds.length) {
-      console.log(`  → ${index + 1}/${documentIds.length}`);
-    }
   }
 
   console.log("Done.");

@@ -61,10 +61,10 @@ export const ruLandingContent = {
       },
       {
         id: "services-category-body",
-        title: "Коррекция фигуры и похудение",
+        title: "Процедуры для тела",
         description:
-          "CRYO, Emsculpt, пилинги, лазерная коррекция и процедуры для тела.",
-        href: "/treatments/body-slimming",
+          "CRYO и Emsculpt для контура тела и тонуса мышц.",
+        href: "/treatments/body-treatment",
         featuredInNav: true,
       },
       {
@@ -261,7 +261,7 @@ export const ruLandingContent = {
       heading: "Основные категории",
       links: [
         { label: "Косметология", href: "/treatments/cosmetology" },
-        { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Процедуры для тела", href: "/treatments/body-treatment" },
         { label: "Уход за лицом", href: "/treatments/aesthetic-treatments" },
         { label: "Blood tests", href: "/treatments/blood-tests" },
         { label: "Все процедуры", href: "/treatments" },

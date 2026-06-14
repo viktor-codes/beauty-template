@@ -1,6 +1,6 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
-import { deviceImage } from "@/lib/services/helpers";
+import { deviceImage, proc } from "@/lib/services/helpers";
 
 export const advancedAestheticTreatmentsCategory: ServiceCategory = {
   id: "advanced-aesthetic-treatments",
@@ -73,7 +73,33 @@ export const advancedAestheticTreatmentsCategory: ServiceCategory = {
             width: 1000,
             height: 1000,
           },
-          procedures: [],
+          procedures: [
+            proc(
+              "skin-tag-papilloma-removal-from-50",
+              "Skin tag / papilloma removal",
+              "Removal of skin tags or papillomas—pricing from €50 after assessment.",
+              50,
+            ),
+          ],
+        },
+        {
+          id: "laser-pigment-removal",
+          title: "Laser pigment removal",
+          description: "Targeted laser treatment for superficial pigmentation concerns.",
+          image: {
+            src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&h=1000&q=80",
+            alt: "Laser device in a clinical setting",
+            width: 1000,
+            height: 1000,
+          },
+          procedures: [
+            proc(
+              "laser-pigment-removal",
+              "Laser pigment removal",
+              "Fixed-price laser session for pigmentation correction.",
+              100,
+            ),
+          ],
         },
         {
           id: "laser-tattoo-pmu-removal",

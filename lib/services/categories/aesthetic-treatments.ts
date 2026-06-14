@@ -1,6 +1,6 @@
 import type { ServiceCategory } from "@/lib/types/services";
 
-import { peelImage } from "@/lib/services/helpers";
+import { peelImage, proc } from "@/lib/services/helpers";
 
 export const aestheticTreatmentsCategory: ServiceCategory = {
   id: "aesthetic-treatments",
@@ -128,6 +128,42 @@ export const aestheticTreatmentsCategory: ServiceCategory = {
               },
               price: { amount: 150, currency: "EUR" },
             },
+            proc(
+              "tca-peel",
+              "TCA peel",
+              "Medium-depth TCA peel for texture, tone, and fine lines—downtime discussed in advance.",
+              150,
+            ),
+            proc(
+              "prx-t33",
+              "PRX-T33",
+              "Biorevitalizing peel for glow and early laxity with minimal visible peeling.",
+              120,
+            ),
+            proc(
+              "obagi-blue-peel-4-layers",
+              "Obagi Blue Peel (4 layers)",
+              "Layered TCA peel for photodamage and texture refinement.",
+              80,
+            ),
+            proc(
+              "carbon-peel",
+              "Carbon peel",
+              "Laser-activated carbon peel for pores, oil control, and radiance.",
+              80,
+            ),
+            proc(
+              "extractions-plus-obagi-peel",
+              "Extractions with Obagi peel",
+              "Extractions combined with Obagi peel for clearer, smoother skin.",
+              80,
+            ),
+            proc(
+              "dermaplaning",
+              "Dermaplaning",
+              "Gentle exfoliation removing peach fuzz and dull surface cells for instant smoothness.",
+              60,
+            ),
           ],
         },
       ],

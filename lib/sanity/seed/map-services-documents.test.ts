@@ -14,8 +14,8 @@ describe("procedure dedupe seed", () => {
     const docs = buildServiceDocuments(servicesCatalog);
     const procedureDocs = docs.filter((doc) => doc._type === "serviceProcedure");
 
-    assert.equal(listingIndex.size, 105);
-    assert.equal(procedureDocs.length, 105);
+    assert.equal(listingIndex.size, 104);
+    assert.equal(procedureDocs.length, 104);
 
     for (const [slug, placements] of listingIndex) {
       assert.equal(procedureDocumentId(slug), `serviceProcedure-${slug}`);

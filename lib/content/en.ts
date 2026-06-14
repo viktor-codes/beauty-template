@@ -61,10 +61,10 @@ export const enLandingContent = {
       },
       {
         id: "services-category-body",
-        title: "Body slimming & contouring",
+        title: "Body treatment",
         description:
-          "CRYO, Emsculpt, peels, laser correction, and targeted body treatments.",
-        href: "/treatments/body-slimming",
+          "CRYO and Emsculpt for body contour and muscle tone.",
+        href: "/treatments/body-treatment",
         featuredInNav: true,
       },
       {
@@ -253,7 +253,7 @@ export const enLandingContent = {
       heading: "Main categories",
       links: [
         { label: "Cosmetology", href: "/treatments/cosmetology" },
-        { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Body treatment", href: "/treatments/body-treatment" },
         { label: "Facials & peels", href: "/treatments/aesthetic-treatments" },
         { label: "Blood tests", href: "/treatments/blood-tests" },
         { label: "All treatments", href: "/treatments" },

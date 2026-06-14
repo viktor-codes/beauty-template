@@ -5,12 +5,8 @@ import type {
   ServiceSubcategory,
 } from "@/lib/types/services";
 
-/** Secondary catalog placements — canonical copy lives in cosmetology / body-slimming. */
+/** Secondary catalog placements — canonical copy lives in cosmetology / body-treatment / aesthetic-treatments. */
 export const ADDITIONAL_PROCEDURE_LISTINGS = [
-  { procedureSlug: "prx-t33", categorySlug: "aesthetic-treatments", subcategorySlug: "chemical-peels", sortOrder: 1 },
-  { procedureSlug: "obagi-blue-peel-4-layers", categorySlug: "aesthetic-treatments", subcategorySlug: "chemical-peels", sortOrder: 2 },
-  { procedureSlug: "carbon-peel", categorySlug: "aesthetic-treatments", subcategorySlug: "chemical-peels", sortOrder: 3 },
-  { procedureSlug: "extractions-plus-obagi-peel", categorySlug: "aesthetic-treatments", subcategorySlug: "chemical-peels", sortOrder: 4 },
   { procedureSlug: "stylage-m", categorySlug: "aesthetic-injections", subcategorySlug: "lip-fillers", sortOrder: 0 },
   { procedureSlug: "radiesse-1-5ml-lidocaine", categorySlug: "aesthetic-injections", subcategorySlug: "collagen-stimulators", sortOrder: 0 },
   { procedureSlug: "lenisna-6ml", categorySlug: "aesthetic-injections", subcategorySlug: "collagen-stimulators", sortOrder: 3 },
@@ -29,12 +25,6 @@ export const ADDITIONAL_PROCEDURE_LISTINGS = [
   { procedureSlug: "hifu-face-lift", categorySlug: "advanced-aesthetic-treatments", subcategorySlug: "hifu-face-lift", sortOrder: 0 },
   { procedureSlug: "rf-microneedling", categorySlug: "advanced-aesthetic-treatments", subcategorySlug: "rf-microneedling", sortOrder: 0 },
   { procedureSlug: "rf-microneedling-exosomes", categorySlug: "advanced-aesthetic-treatments", subcategorySlug: "rf-microneedling", sortOrder: 1 },
-  {
-    procedureSlug: "skin-tag-papilloma-removal-from-50",
-    categorySlug: "advanced-aesthetic-treatments",
-    subcategorySlug: "skin-tag-papilloma-removal",
-    sortOrder: 0,
-  },
 ] as const;
 
 const additionalListingKeys = new Set(

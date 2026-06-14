@@ -9,14 +9,14 @@ describe("mapServicesCatalogSafe", () => {
       {
         categories: [
           {
-            slug: { current: "body-slimming" },
-            title: { en: "Body slimming" },
+            slug: { current: "body-treatment" },
+            title: { en: "Body treatment" },
             description: { en: "Desc" },
             subcategories: [
               {
-                slug: { current: "peels" },
-                title: { en: "Peels" },
-                description: { en: "Peels desc" },
+                slug: { current: "cryo-fat-reduction" },
+                title: { en: "CRYO" },
+                description: { en: "CRYO desc" },
                 procedures: [],
               },
             ],
@@ -26,9 +26,9 @@ describe("mapServicesCatalogSafe", () => {
       "en",
     );
 
-    const category = catalog.categories.find((c) => c.id === "body-slimming");
+    const category = catalog.categories.find((c) => c.id === "body-treatment");
     assert.ok(category);
-    const subcategory = category.subcategories.find((s) => s.id === "peels");
+    const subcategory = category.subcategories.find((s) => s.id === "cryo-fat-reduction");
     assert.ok(subcategory);
     assert.equal(subcategory.procedures.length, 0);
   });
@@ -38,8 +38,8 @@ describe("mapServicesCatalogSafe", () => {
       {
         categories: [
           {
-            slug: { current: "body-slimming" },
-            title: { en: "Body slimming" },
+            slug: { current: "body-treatment" },
+            title: { en: "Body treatment" },
             description: { en: "Desc" },
             subcategories: [],
           },
@@ -48,7 +48,7 @@ describe("mapServicesCatalogSafe", () => {
       "en",
     );
 
-    const category = catalog.categories.find((c) => c.id === "body-slimming");
+    const category = catalog.categories.find((c) => c.id === "body-treatment");
     assert.ok(category);
     assert.equal(category.subcategories.length, 0);
   });
@@ -69,7 +69,7 @@ describe("mapServicesCatalogSafe", () => {
     );
 
     assert.ok(catalog.categories.some((c) => c.id === "cosmetology"));
-    assert.ok(catalog.categories.some((c) => c.id === "body-slimming"));
+    assert.ok(catalog.categories.some((c) => c.id === "body-treatment"));
   });
 
   it("keeps CMS UK procedure title when locale field is set", () => {
