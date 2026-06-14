@@ -3,6 +3,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
+import { catalogTemplates } from "./schemaTemplates/catalog";
 import { StudioIcon } from "./components/studio-icon";
 import { resolveCatalogDocumentActions } from "./actions";
 import { schemaTypes } from "./schemaTypes";
@@ -32,7 +33,10 @@ export default defineConfig({
       schemaTypes: ["landingPage", "siteSettings"],
     }),
   ],
-  schema: { types: schemaTypes },
+  schema: {
+    types: schemaTypes,
+    templates: (prev) => [...prev, ...catalogTemplates],
+  },
   document: {
     actions: resolveCatalogDocumentActions,
   },

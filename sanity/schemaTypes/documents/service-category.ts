@@ -1,5 +1,7 @@
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 
+import { catalogSlugField } from "../helpers/catalog-slug-field";
 import {
   validateFeaturedInNavLimit,
   validateFeaturedOnHomepageLimit,
@@ -13,14 +15,11 @@ export const serviceCategory = defineType({
   name: "serviceCategory",
   title: "Service category",
   type: "document",
+  orderings: [orderRankOrdering],
   fields: [
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      description: "URL segment for /treatments/{slug}. Auto-generated from English title; do not change after publish.",
-      options: { source: "title.en", maxLength: 96 },
-      validation: (rule) => rule.required(),
+    orderRankField({ type: "serviceCategory" }),
+    catalogSlugField({
+      urlHint: "URL segment for /treatments/{slug}.",
     }),
     defineField({ name: "title", title: "Title", type: "localeString" }),
     defineField({
@@ -41,9 +40,9 @@ export const serviceCategory = defineType({
     }),
     defineField({
       name: "sortOrder",
-      title: "Sort order",
+      title: "Sort order (legacy)",
       type: "number",
-      description: "Lower numbers appear first when multiple categories share a feature flag.",
+      description: "Fallback when orderRank is unset. Prefer drag-and-drop in Catalog → Reorder categories.",
       initialValue: 0,
     }),
     defineField({

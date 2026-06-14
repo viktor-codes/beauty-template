@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import type { DocumentActionComponent } from "sanity";
-import { TrashIcon } from "@sanity/icons";
 import { useClient } from "sanity";
 
 interface ReferencedProcedure {
@@ -48,7 +47,6 @@ export const deleteSubcategoryWithChildrenAction: DocumentActionComponent = (pro
 
   return {
     label: isDeleting ? "Deleting…" : "Delete with procedures",
-    icon: TrashIcon,
     tone: "critical",
     disabled: isDeleting,
     onHandle: () => {

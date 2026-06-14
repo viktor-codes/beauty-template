@@ -15,7 +15,7 @@ export const servicesCatalogQuery = /* groq */ `
       faqSubtitle { ${localeStringFields} },
       viewFullFaqLabel { ${localeStringFields} }
     },
-    "concerns": *[_type == "treatmentConcern" && isActive != false] | order(sortOrder asc, title.en asc) {
+    "concerns": *[_type == "treatmentConcern" && isActive != false] | order(orderRank asc, sortOrder asc, title.en asc) {
       "slug": slug,
       title { ${localeStringFields} },
       shortDescription { ${localeStringFields} },
@@ -25,7 +25,7 @@ export const servicesCatalogQuery = /* groq */ `
       sortOrder,
       isActive
     },
-    "categories": *[_type == "serviceCategory" && isActive != false] | order(sortOrder asc, title.en asc) {
+    "categories": *[_type == "serviceCategory" && isActive != false] | order(orderRank asc, sortOrder asc, title.en asc) {
       "slug": slug,
       title { ${localeStringFields} },
       shortTitle { ${localeStringFields} },
@@ -36,14 +36,14 @@ export const servicesCatalogQuery = /* groq */ `
       sortOrder,
       featuredOnHomepage,
       featuredInNav,
-      "subcategories": *[_type == "serviceSubcategory" && references(^._id) && isActive != false] | order(sortOrder asc, title.en asc) {
+      "subcategories": *[_type == "serviceSubcategory" && references(^._id) && isActive != false] | order(orderRank asc, sortOrder asc, title.en asc) {
         "slug": slug,
         title { ${localeStringFields} },
         description { ${localeStringFields} },
         image {
           ${serviceImageFields}
         },
-        "procedures": *[_type == "serviceProcedure" && references(^._id) && isActive != false] | order(sortOrder asc, title.en asc) {
+        "procedures": *[_type == "serviceProcedure" && references(^._id) && isActive != false] | order(orderRank asc, sortOrder asc, title.en asc) {
           "slug": slug,
           title { ${localeStringFields} },
           description { ${localeStringFields} },

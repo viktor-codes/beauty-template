@@ -3,6 +3,7 @@ import { getStaticLandingContent } from "@/lib/content/static";
 import { getGoalRecommendations, type GoalSlug } from "@/lib/services-goals";
 import { servicesCatalog } from "@/lib/services/catalog";
 import { CONCERN_ORDER, type StaticConcernSlug } from "@/lib/services/static-treatment-concerns";
+import { buildSeedOrderRank } from "@/lib/sanity/seed/build-order-rank";
 import { toLocaleStringI18n, toLocaleTextI18n } from "@/lib/sanity/seed/to-locale-fields";
 
 type SanitySeedDoc = Record<string, unknown> & { _id: string; _type: string };
@@ -46,6 +47,7 @@ export function buildTreatmentConcernDocuments(): SanitySeedDoc[] {
     shortDescription: toLocaleTextI18n(""),
     sortOrder: index,
     isActive: true,
+    orderRank: buildSeedOrderRank(index),
   }));
 }
 

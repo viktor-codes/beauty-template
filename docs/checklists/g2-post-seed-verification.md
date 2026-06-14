@@ -37,7 +37,7 @@
 | `treatmentsHub` | `treatmentsHub` | singleton, field i18n |
 | `treatmentConcern` | `treatmentConcern-{slug}` | field i18n (glow, texture, …) |
 
-**Studio entry points:** Site (per locale) · Services → hub, concerns, categories, Browse by category.
+**Studio entry points:** Site (per locale) · Services → **Catalog** (primary), Treatments hub, Browse by concern.
 
 ---
 

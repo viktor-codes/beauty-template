@@ -1,4 +1,7 @@
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
+
+import { catalogSlugField } from "../helpers/catalog-slug-field";
 
 /**
  * Client concern / goal (field i18n). Linked from procedures; shown on /treatments hub.
@@ -7,15 +10,11 @@ export const treatmentConcern = defineType({
   name: "treatmentConcern",
   title: "Treatment concern",
   type: "document",
+  orderings: [orderRankOrdering],
   fields: [
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      description:
-        "URL path /treatments/concerns/{slug}. Auto-generated from English title; do not change after publish.",
-      options: { source: "title.en", maxLength: 96 },
-      validation: (rule) => rule.required(),
+    orderRankField({ type: "treatmentConcern" }),
+    catalogSlugField({
+      urlHint: "URL path /treatments/concerns/{slug}.",
     }),
     defineField({ name: "title", title: "Title", type: "localeString" }),
     defineField({
@@ -32,8 +31,9 @@ export const treatmentConcern = defineType({
     }),
     defineField({
       name: "sortOrder",
-      title: "Sort order",
+      title: "Sort order (legacy)",
       type: "number",
+      description: "Fallback when orderRank is unset. Prefer drag-and-drop in Services → Browse by concern.",
       initialValue: 0,
     }),
     defineField({

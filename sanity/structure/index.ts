@@ -1,6 +1,8 @@
 import type { StructureResolver } from "sanity/structure";
 
-export const structure: StructureResolver = (S) =>
+import { buildCatalogDeskItem, buildOrderableConcernsDeskItem } from "./services-catalog";
+
+export const structure: StructureResolver = (S, context) =>
   S.list()
     .title("The Skinbar")
     .items([
@@ -49,74 +51,25 @@ export const structure: StructureResolver = (S) =>
         ),
       S.divider(),
       S.listItem()
-        .title("Services (edit prices & copy here)")
+        .title("Services")
         .child(
           S.list()
             .title("Services")
             .items([
               S.listItem()
-                .title("Treatments hub page (/treatments)")
+                .title("Treatments hub (/treatments)")
                 .child(
                   S.document().schemaType("treatmentsHub").documentId("treatmentsHub"),
                 ),
-              S.documentTypeListItem("treatmentConcern").title(
-                "Treatment concerns (goals)",
-              ),
-              S.divider(),
-              S.documentTypeListItem("serviceCategory").title(
-                "1. Categories (homepage & menu flags)",
-              ),
-              S.documentTypeListItem("serviceSubcategory").title(
-                "2. Subcategories — pick a parent category",
-              ),
-              S.documentTypeListItem("serviceProcedure").title(
-                "3. Procedures — pick a subcategory + concerns",
-              ),
+              buildOrderableConcernsDeskItem(S, context),
+              buildCatalogDeskItem(S, context),
+            ]),
+        ),
       S.divider(),
       S.listItem()
-        .title("Gift voucher page (/gift-voucher)")
+        .title("Gift voucher (/gift-voucher)")
         .child(
           S.document().schemaType("giftVoucherSettings").documentId("giftVoucherSettings"),
         ),
       S.documentTypeListItem("giftVoucherOrder").title("Gift voucher orders"),
-      S.divider(),
-      S.listItem()
-        .title("Browse by category")
-                .child(
-                  S.documentTypeList("serviceCategory")
-                    .title("Categories")
-                    .child((categoryId) =>
-                      S.list()
-                        .title("Category tree")
-                        .items([
-                          S.listItem()
-                            .title("Edit category")
-                            .child(
-                              S.document()
-                                .schemaType("serviceCategory")
-                                .documentId(categoryId),
-                            ),
-                          S.listItem()
-                            .title("Subcategories")
-                            .child(
-                              S.documentTypeList("serviceSubcategory")
-                                .title("Subcategories")
-                                .filter(
-                                  '_type == "serviceSubcategory" && category._ref == $categoryId',
-                                )
-                                .params({ categoryId })
-                                .child((subcategoryId) =>
-                                  S.documentTypeList("serviceProcedure")
-                                    .title("Procedures")
-                                    .filter(
-                                      '_type == "serviceProcedure" && subcategory._ref == $subcategoryId',
-                                    )
-                                    .params({ subcategoryId }),
-                                ),
-                            ),
-                        ]),
-                    ),
-                ),
-            ]),
-        ),
     ]);

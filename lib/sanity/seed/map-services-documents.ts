@@ -1,3 +1,4 @@
+import { buildSeedOrderRank } from "@/lib/sanity/seed/build-order-rank";
 import type { ServicesCatalog } from "@/lib/types/services";
 
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
@@ -54,6 +55,7 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
       featuredOnHomepage: flags.featuredOnHomepage ?? false,
       featuredInNav: flags.featuredInNav ?? false,
       isActive: true,
+      orderRank: buildSeedOrderRank(categoryOrder),
     });
     categoryOrder += 1;
 
@@ -77,6 +79,7 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
         ),
         sortOrder: subOrder,
         isActive: true,
+        orderRank: buildSeedOrderRank(subOrder),
       });
       subOrder += 1;
 
@@ -108,6 +111,7 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
             : undefined,
           sortOrder: procOrder,
           isActive: true,
+          orderRank: buildSeedOrderRank(procOrder),
           ...(concernRefs.length > 0 ? { concerns: concernRefs } : {}),
         });
         procOrder += 1;
