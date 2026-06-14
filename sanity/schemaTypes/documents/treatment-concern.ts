@@ -1,6 +1,7 @@
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 
+import { ConcernProcedureLinksInput } from "../../components/concern-procedure-links-input";
 import { catalogSlugField } from "../helpers/catalog-slug-field";
 
 /**
@@ -42,6 +43,16 @@ export const treatmentConcern = defineType({
       type: "boolean",
       description: "Inactive concerns are hidden on the site but kept in Studio.",
       initialValue: true,
+    }),
+    defineField({
+      name: "linkedProceduresUi",
+      title: "Linked procedures",
+      type: "string",
+      components: {
+        input: ConcernProcedureLinksInput,
+      },
+      description:
+        "Manage which procedures appear on this concern page. Saved on each procedure document.",
     }),
   ],
   preview: {

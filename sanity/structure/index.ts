@@ -1,6 +1,7 @@
 import type { StructureResolver } from "sanity/structure";
 
-import { buildCatalogDeskItem, buildOrderableConcernsDeskItem } from "./services-catalog";
+import { buildCatalogDeskItem } from "./services-catalog";
+import { buildConcernsDeskItem } from "./concerns";
 
 export const structure: StructureResolver = (S, context) =>
   S.list()
@@ -61,7 +62,7 @@ export const structure: StructureResolver = (S, context) =>
                 .child(
                   S.document().schemaType("treatmentsHub").documentId("treatmentsHub"),
                 ),
-              buildOrderableConcernsDeskItem(S, context),
+              buildConcernsDeskItem(S, context),
               buildCatalogDeskItem(S, context),
             ]),
         ),

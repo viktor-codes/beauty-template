@@ -147,16 +147,3 @@ export function buildCatalogDeskItem(S: StructureBuilder, context: StructureReso
         ]),
     );
 }
-
-export function buildOrderableConcernsDeskItem(
-  S: StructureBuilder,
-  context: StructureResolverContext,
-) {
-  return orderableDocumentListDeskItem({
-    type: "treatmentConcern",
-    title: "Browse by concern",
-    id: "orderable-treatment-concerns",
-    S,
-    context,
-  });
-}
