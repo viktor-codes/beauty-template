@@ -27,6 +27,8 @@ export const ADDITIONAL_PROCEDURE_LISTINGS = [
   { procedureSlug: "rf-microneedling-exosomes", categorySlug: "advanced-aesthetic-treatments", subcategorySlug: "rf-microneedling", sortOrder: 1 },
 ] as const;
 
+type AdditionalProcedureListing = (typeof ADDITIONAL_PROCEDURE_LISTINGS)[number];
+
 const additionalListingKeys = new Set(
   ADDITIONAL_PROCEDURE_LISTINGS.map(
     (entry) => `${entry.categorySlug}/${entry.subcategorySlug}/${entry.procedureSlug}`,
@@ -89,7 +91,7 @@ function sortProcedures(procedures: ServiceProcedure[], orderById: Map<string, n
 /** Re-applies shared procedures to secondary subcategories for site + seed listing index. */
 export function applyAdditionalProcedureListings(catalog: ServicesCatalog): ServicesCatalog {
   const procedureLookup = buildProcedureLookup(catalog);
-  const placementsBySubcategory = new Map<string, typeof ADDITIONAL_PROCEDURE_LISTINGS>();
+  const placementsBySubcategory = new Map<string, AdditionalProcedureListing[]>();
 
   for (const entry of ADDITIONAL_PROCEDURE_LISTINGS) {
     const key = `${entry.categorySlug}/${entry.subcategorySlug}`;
