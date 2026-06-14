@@ -1,6 +1,8 @@
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import type { StructureBuilder, StructureResolverContext } from "sanity/structure";
 
+import { resolveCategoryContext } from "./catalog-ids";
+
 const CATEGORY_ORDERING = [
   { field: "orderRank", direction: "asc" as const },
   { field: "sortOrder", direction: "asc" as const },
@@ -54,43 +56,46 @@ function buildCategoryPane(
   context: StructureResolverContext,
   categoryId: string,
 ) {
+  const { categoryDocumentId, subcategoryRefPattern } = resolveCategoryContext(categoryId);
+
   return S.list()
     .title("Category")
     .items([
       S.listItem()
         .title("All procedures in category")
         .child(
-          S.documentList()
+          S.documentTypeList("serviceProcedure")
             .title("All procedures")
-            .schemaType("serviceProcedure")
-            .filter(
-              '_type == "serviceProcedure" && subcategory._ref in *[_type == "serviceSubcategory" && category._ref == $categoryId][]._id',
-            )
-            .params({ categoryId })
+            // WHY: Structure Builder filters cannot use GROQ joins (`->`).
+            // Match subcategory _id prefix instead: serviceSubcategory-{slug}-*
+            .filter("subcategory._ref match $subcategoryRefPattern")
+            .params({ subcategoryRefPattern })
             .defaultOrdering(NESTED_ORDERING),
         ),
       S.listItem()
         .title("Edit category")
-        .child(S.document().schemaType("serviceCategory").documentId(categoryId)),
+        .child(S.document().schemaType("serviceCategory").documentId(categoryDocumentId)),
       S.listItem()
         .title("Subcategories")
         .child(
           S.documentTypeList("serviceSubcategory")
             .title("Subcategories")
-            .filter('_type == "serviceSubcategory" && category._ref == $categoryId')
-            .params({ categoryId })
+            .filter('category._ref == $categoryDocumentId')
+            .params({ categoryDocumentId })
             .defaultOrdering(NESTED_ORDERING)
             .initialValueTemplates([
-              S.initialValueTemplateItem("subcategory-in-category", { categoryId }),
+              S.initialValueTemplateItem("subcategory-in-category", {
+                categoryId: categoryDocumentId,
+              }),
             ])
             .child((subcategoryId) => buildSubcategoryPane(S, context, subcategoryId)),
         ),
       orderableDocumentListDeskItem({
         type: "serviceSubcategory",
         title: "Reorder subcategories",
-        id: `orderable-subcategories-${categoryId}`,
-        filter: '_type == "serviceSubcategory" && category._ref == $categoryId',
-        params: { categoryId },
+        id: `orderable-subcategories-${categoryDocumentId}`,
+        filter: 'category._ref == $categoryDocumentId',
+        params: { categoryDocumentId },
         createIntent: false,
         menuItems: [
           S.menuItem()
@@ -100,7 +105,7 @@ function buildCategoryPane(
               params: {
                 type: "serviceSubcategory",
                 template: "subcategory-in-category",
-                categoryId,
+                categoryId: categoryDocumentId,
               },
             }),
         ],

@@ -78,18 +78,22 @@ export const serviceProcedure = defineType({
       subcategory: "subcategory.title.en",
       amount: "price.amount",
       isActive: "isActive",
-      concernCount: "count(concerns)",
+      concerns: "concerns",
     },
-    prepare: ({ title, subcategory, amount, isActive, concernCount }) => ({
-      title: title ?? "Procedure",
-      subtitle: [
-        subcategory,
-        typeof amount === "number" ? `€${amount}` : null,
-        typeof concernCount === "number" && concernCount > 0 ? `${concernCount} concerns` : null,
-        isActive === false ? "Hidden" : null,
-      ]
-        .filter(Boolean)
-        .join(" · "),
-    }),
+    prepare: ({ title, subcategory, amount, isActive, concerns }) => {
+      const concernCount = Array.isArray(concerns) ? concerns.length : 0;
+
+      return {
+        title: title ?? "Procedure",
+        subtitle: [
+          subcategory,
+          typeof amount === "number" ? `€${amount}` : null,
+          concernCount > 0 ? `${concernCount} concerns` : null,
+          isActive === false ? "Hidden" : null,
+        ]
+          .filter(Boolean)
+          .join(" · "),
+      };
+    },
   },
 });
