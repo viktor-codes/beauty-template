@@ -17,14 +17,14 @@
 
 The services catalog works technically but is **editor-unfriendly**:
 
-| Editor intent | Current reality |
-|---------------|-----------------|
-| Remove peels from Body slimming | Must delete all procedures first, then subcategory; Sanity warns about references |
-| Hide a service without losing data | No `isActive` on subcategories/procedures (unlike `treatmentConcern`) |
-| Trust that CMS = site | Static fallback can **re-show** deleted/hidden content |
-| Change a price | 3–4 clicks through “Browse by category” |
-| One procedure in Body + Anti age | Duplicate Sanity documents with separate prices |
-| Edit concern links | Only from each procedure, not from concern page |
+| Editor intent                      | Current reality                                                                   |
+| ---------------------------------- | --------------------------------------------------------------------------------- |
+| Remove peels from Body slimming    | Must delete all procedures first, then subcategory; Sanity warns about references |
+| Hide a service without losing data | No `isActive` on subcategories/procedures (unlike `treatmentConcern`)             |
+| Trust that CMS = site              | Static fallback can **re-show** deleted/hidden content                            |
+| Change a price                     | 3–4 clicks through “Browse by category”                                           |
+| One procedure in Body + Anti age   | Duplicate Sanity documents with separate prices                                   |
+| Edit concern links                 | Only from each procedure, not from concern page                                   |
 
 **Goal:** deliver a CMS product Inna can use daily without developer help, **without changing site URLs or re-entering content manually**.
 
@@ -32,16 +32,16 @@ The services catalog works technically but is **editor-unfriendly**:
 
 ## 2. Decisions (locked)
 
-| # | Decision | Choice |
-|---|----------|--------|
-| D1 | Technology | Stay on **Sanity v5** (`sanity@5.28` in `sanity/package.json`) — no Wagtail migration |
-| D2 | Content migration | **No manual Studio entry** — static catalog + `pnpm seed:sanity` + migration scripts |
-| D3 | Production dataset state | **Mostly seed** — re-seed allowed with backup; not blind re-seed after Inna edits without export |
-| D4 | Anti-age dedupe | **Same project**, after Phase A (trust + hide) |
-| D5 | Presentation Tool | **Phase 4** — after Studio UX + `isActive` |
-| D6 | Staging dataset | **Not needed** — backup + local Studio against production |
-| D7 | `isActive` on category | **Yes** — hide entire category on site without delete |
-| D8 | Procedure UK/RU | **Already complete in codebase** — see §3 |
+| #   | Decision                 | Choice                                                                                           |
+| --- | ------------------------ | ------------------------------------------------------------------------------------------------ |
+| D1  | Technology               | Stay on **Sanity v5** (`sanity@5.28` in `sanity/package.json`) — no Wagtail migration            |
+| D2  | Content migration        | **No manual Studio entry** — static catalog + `pnpm seed:sanity` + migration scripts             |
+| D3  | Production dataset state | **Mostly seed** — re-seed allowed with backup; not blind re-seed after Inna edits without export |
+| D4  | Anti-age dedupe          | **Same project**, after Phase A (trust + hide)                                                   |
+| D5  | Presentation Tool        | **Phase 4** — after Studio UX + `isActive`                                                       |
+| D6  | Staging dataset          | **Not needed** — backup + local Studio against production                                        |
+| D7  | `isActive` on category   | **Yes** — hide entire category on site without delete                                            |
+| D8  | Procedure UK/RU          | **Already complete in codebase** — see §3                                                        |
 
 ---
 
@@ -49,21 +49,21 @@ The services catalog works technically but is **editor-unfriendly**:
 
 Automated check: all catalog slugs in static tree vs `lib/services/locale-copy/translations/{uk,ru}.ts`.
 
-| Entity | Count in catalog | UK titles | RU titles |
-|--------|------------------|-----------|-----------|
-| Categories | 9 | 9 / 9 | 9 / 9 |
-| Subcategories | 31 | 31 / 31 | 31 / 31 |
-| Procedures | 110 | 110 / 110 | 110 / 110 |
+| Entity        | Count in catalog | UK titles | RU titles |
+| ------------- | ---------------- | --------- | --------- |
+| Categories    | 9                | 9 / 9     | 9 / 9     |
+| Subcategories | 31               | 31 / 31   | 31 / 31   |
+| Procedures    | 110              | 110 / 110 | 110 / 110 |
 
 **Where translations live today:**
 
-| Layer | Path | Role |
-|-------|------|------|
-| Canonical EN | `lib/services/categories/*` | English titles/descriptions; seed source |
-| UK/RU copy | `lib/services/locale-copy/translations/uk.ts`, `ru.ts` | Full tree translations keyed by slug (`procedure.id`, etc.) |
-| Runtime | `lib/services/locale-copy/apply-catalog-locale.ts` | Applies UK/RU to static catalog per locale |
-| Seed | `lib/sanity/seed/map-services-documents.ts` | Writes `title`/`description` as `localeString` / `localeText` with EN + UK + RU via `getProcedureLocaleCopy()` |
-| Mapper | `lib/sanity/mappers/services.ts` + `resolveServiceLocalizedField()` | CMS value → if empty or still EN → locale-copy → EN fallback |
+| Layer        | Path                                                                | Role                                                                                                           |
+| ------------ | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Canonical EN | `lib/services/categories/*`                                         | English titles/descriptions; seed source                                                                       |
+| UK/RU copy   | `lib/services/locale-copy/translations/uk.ts`, `ru.ts`              | Full tree translations keyed by slug (`procedure.id`, etc.)                                                    |
+| Runtime      | `lib/services/locale-copy/apply-catalog-locale.ts`                  | Applies UK/RU to static catalog per locale                                                                     |
+| Seed         | `lib/sanity/seed/map-services-documents.ts`                         | Writes `title`/`description` as `localeString` / `localeText` with EN + UK + RU via `getProcedureLocaleCopy()` |
+| Mapper       | `lib/sanity/mappers/services.ts` + `resolveServiceLocalizedField()` | CMS value → if empty or still EN → locale-copy → EN fallback                                                   |
 
 **Implication for this project:**
 
@@ -94,12 +94,12 @@ serviceProcedure
 
 **Document ID patterns** (stable, used by seed):
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Category | `serviceCategory-{slug}` | `serviceCategory-body-slimming` |
-| Subcategory | `serviceSubcategory-{cat}-{sub}` | `serviceSubcategory-body-slimming-peels` |
-| Procedure | `serviceProcedure-{cat}-{sub}-{proc}` | `serviceProcedure-body-slimming-peels-tca-peel` |
-| Concern | `treatmentConcern-{slug}` | `treatmentConcern-glow` |
+| Type        | Pattern                               | Example                                         |
+| ----------- | ------------------------------------- | ----------------------------------------------- |
+| Category    | `serviceCategory-{slug}`              | `serviceCategory-body-slimming`                 |
+| Subcategory | `serviceSubcategory-{cat}-{sub}`      | `serviceSubcategory-body-slimming-peels`        |
+| Procedure   | `serviceProcedure-{cat}-{sub}-{proc}` | `serviceProcedure-body-slimming-peels-tca-peel` |
+| Concern     | `treatmentConcern-{slug}`             | `treatmentConcern-glow`                         |
 
 ### 4.2 Site resolution
 
@@ -151,26 +151,26 @@ Project uses **Sanity Studio v5.28**. Below: what to adopt vs skip.
 
 ### 5.1 Adopt in this spec
 
-| Feature | Use case | Official docs |
-|---------|----------|---------------|
-| **Structure Builder — parent/child taxonomy** | Category → subcategory → procedure tree | [Parent/Child Taxonomy](https://www.sanity.io/docs/developer-guides/parent-child-taxonomy) |
-| **Initial Value Templates** | Pre-fill `subcategory` / `category` when creating from tree | [Initial Value Templates](https://www.sanity.io/docs/studio/initial-value-templates) |
-| **`reference.options.filter`** | Valid parents only; active concerns only | [Reference type](https://www.sanity.io/docs/studio/reference-type) |
-| **`@sanity/orderable-document-list`** | Drag-and-drop order (categories, subs, procedures) | [Plugin](https://www.sanity.io/plugins/orderable-document-list) |
-| **Document Actions** | Hide/show, delete-with-children, move procedure | [Document actions](https://www.sanity.io/docs/studio/document-actions) |
-| **Built-in Unpublish** | From **published** perspective only (Studio v4.6.1+) | [Document actions](https://www.sanity.io/docs/studio/document-actions) |
-| **Presentation Tool** | Live preview, “Used on” links (Phase 4) | [Configuring Presentation](https://www.sanity.io/docs/visual-editing/configuring-the-presentation-tool) |
-| **`defineDocuments` / `defineLocations`** | Map procedure/concern ↔ frontend routes | Same as Presentation docs |
+| Feature                                       | Use case                                                    | Official docs                                                                                           |
+| --------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Structure Builder — parent/child taxonomy** | Category → subcategory → procedure tree                     | [Parent/Child Taxonomy](https://www.sanity.io/docs/developer-guides/parent-child-taxonomy)              |
+| **Initial Value Templates**                   | Pre-fill `subcategory` / `category` when creating from tree | [Initial Value Templates](https://www.sanity.io/docs/studio/initial-value-templates)                    |
+| **`reference.options.filter`**                | Valid parents only; active concerns only                    | [Reference type](https://www.sanity.io/docs/studio/reference-type)                                      |
+| **`@sanity/orderable-document-list`**         | Drag-and-drop order (categories, subs, procedures)          | [Plugin](https://www.sanity.io/plugins/orderable-document-list)                                         |
+| **Document Actions**                          | Hide/show, delete-with-children, move procedure             | [Document actions](https://www.sanity.io/docs/studio/document-actions)                                  |
+| **Built-in Unpublish**                        | From **published** perspective only (Studio v4.6.1+)        | [Document actions](https://www.sanity.io/docs/studio/document-actions)                                  |
+| **Presentation Tool**                         | Live preview, “Used on” links (Phase 4)                     | [Configuring Presentation](https://www.sanity.io/docs/visual-editing/configuring-the-presentation-tool) |
+| **`defineDocuments` / `defineLocations`**     | Map procedure/concern ↔ frontend routes                     | Same as Presentation docs                                                                               |
 
 ### 5.2 Skip for now
 
-| Feature | Reason |
-|---------|--------|
-| Canvas / Agent Actions / Functions | Solo editor; no AI workflow need |
-| Content Releases | No team scheduling requirement |
-| App SDK custom app | Structure + actions sufficient |
+| Feature                                | Reason                                   |
+| -------------------------------------- | ---------------------------------------- |
+| Canvas / Agent Actions / Functions     | Solo editor; no AI workflow need         |
+| Content Releases                       | No team scheduling requirement           |
+| App SDK custom app                     | Structure + actions sufficient           |
 | Presentation page-building (block DnD) | Site is catalog routes, not page builder |
-| Staging dataset | Explicitly declined (D6) |
+| Staging dataset                        | Explicitly declined (D6)                 |
 
 ---
 
@@ -178,11 +178,11 @@ Project uses **Sanity Studio v5.28**. Below: what to adopt vs skip.
 
 ### 6.1 Source of truth policy (after Phase 1)
 
-| Layer | Role |
-|-------|------|
-| **Sanity (published)** | Primary for structure, copy, prices, flags, `isActive`, concerns |
-| **`lib/services/**`** | Seed source + fallback **only when document/slug missing in CMS** |
-| **`lib/services/locale-copy/**`** | Fallback for UK/RU when CMS field empty or still equals EN |
+| Layer                               | Role                                                              |
+| ----------------------------------- | ----------------------------------------------------------------- |
+| **Sanity (published)**              | Primary for structure, copy, prices, flags, `isActive`, concerns  |
+| **`lib/services/**`\*\*             | Seed source + fallback **only when document/slug missing in CMS** |
+| **`lib/services/locale-copy/**`\*\* | Fallback for UK/RU when CMS field empty or still equals EN        |
 
 **Rules:**
 
@@ -196,8 +196,8 @@ Project uses **Sanity Studio v5.28**. Below: what to adopt vs skip.
 #### `serviceCategory`
 
 ```typescript
-isActive: boolean  // default true
-  // description: "Inactive categories are hidden on the site but kept in Studio."
+isActive: boolean; // default true
+// description: "Inactive categories are hidden on the site but kept in Studio."
 ```
 
 Existing: `slug`, `title`, `shortTitle`, `description`, `image`, `sortOrder`, `featuredOnHomepage`, `featuredInNav`.
@@ -274,12 +274,12 @@ Implement explicit flag or check: “category document exists in Sanity response
 
 ### Phase 0 — Preparation (0.5–1 day)
 
-| ID | Task | Details |
-|----|------|---------|
-| 0.1 | Export backup | `sanity dataset export production ./backups/pre-catalog-ux-$(date +%Y%m%d).tar.gz` |
-| 0.2 | Baseline URL list | Save checklist — minimum URLs below |
+| ID  | Task                   | Details                                                                                                 |
+| --- | ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| 0.1 | Export backup          | `sanity dataset export production ./backups/pre-catalog-ux-$(date +%Y%m%d).tar.gz`                      |
+| 0.2 | Baseline URL list      | Save checklist — minimum URLs below                                                                     |
 | 0.3 | Baseline data snapshot | GROQ or script: slug + price for all 110 procedures; store JSON in `docs/checklists/` or commit message |
-| 0.4 | Branch | `feat/services-catalog-cms-ux` |
+| 0.4 | Branch                 | `feat/services-catalog-cms-ux`                                                                          |
 
 **Baseline URLs (minimum):**
 
@@ -404,7 +404,7 @@ Add `orderRankField` to category, subcategory, procedure schemas.
 
 ```
 The Skinbar
-├── Site (per locale)          [unchanged]
+├── Web Content          [unchanged]
 ├── Services
 │   ├── Treatments hub         [singleton]
 │   ├── Browse by concern      [orderable treatmentConcern list]
@@ -431,9 +431,9 @@ Reference implementation pattern: [Sanity parent-child taxonomy guide](https://w
 
 In `sanity/sanity.config.ts` → `schema.templates`:
 
-| Template ID | Params | Pre-filled fields |
-|-------------|--------|-------------------|
-| `subcategory-in-category` | `categoryId` | `category: { _ref: categoryId }` |
+| Template ID                | Params          | Pre-filled fields                      |
+| -------------------------- | --------------- | -------------------------------------- |
+| `subcategory-in-category`  | `categoryId`    | `category: { _ref: categoryId }`       |
 | `procedure-in-subcategory` | `subcategoryId` | `subcategory: { _ref: subcategoryId }` |
 
 Wire via `.initialValueTemplates([S.initialValueTemplateItem('procedure-in-subcategory', { subcategoryId })])` on procedure list panes.
@@ -456,7 +456,7 @@ Optional: add read-only `category` reference on procedure for filtering (denorma
 **`serviceProcedure.concerns`:**
 
 ```typescript
-filter: '_type == "treatmentConcern" && isActive != false'
+filter: '_type == "treatmentConcern" && isActive != false';
 ```
 
 #### 2.5 List previews
@@ -536,35 +536,36 @@ Follow [Sanity configuring Presentation tool](https://www.sanity.io/docs/visual-
 #### 4.2 Sanity config
 
 ```typescript
-import { presentationTool, defineDocuments, defineLocations } from 'sanity/presentation'
+import {
+  presentationTool,
+  defineDocuments,
+  defineLocations,
+} from "sanity/presentation";
 
 presentationTool({
   previewUrl: {
-    initial: process.env.SANITY_STUDIO_PREVIEW_URL ?? 'http://localhost:3000',
+    initial: process.env.SANITY_STUDIO_PREVIEW_URL ?? "http://localhost:3000",
     previewMode: {
-      enable: '/api/draft-mode/enable',
-      disable: '/api/draft-mode/disable',
+      enable: "/api/draft-mode/enable",
+      disable: "/api/draft-mode/disable",
     },
   },
-  allowOrigins: [
-    'http://localhost:*',
-    'https://YOUR_PRODUCTION_DOMAIN',
-  ],
+  allowOrigins: ["http://localhost:*", "https://YOUR_PRODUCTION_DOMAIN"],
   resolve: { mainDocuments, locations },
-})
+});
 ```
 
 Env: `SANITY_STUDIO_PREVIEW_URL` for deployed Studio.
 
 #### 4.3 Route resolvers
 
-| Document type | Route pattern | Notes |
-|---------------|---------------|-------|
-| `treatmentsHub` | `/treatments` | singleton |
-| `serviceCategory` | `/treatments/:categorySlug` | |
-| `serviceSubcategory` | `/treatments/:cat/:sub` | skip for flat categories in locations |
-| `serviceProcedure` | `/treatments/:cat/:sub/:proc` OR flat | two `defineDocuments` entries |
-| `treatmentConcern` | `/treatments/concerns/:slug` | |
+| Document type        | Route pattern                         | Notes                                 |
+| -------------------- | ------------------------------------- | ------------------------------------- |
+| `treatmentsHub`      | `/treatments`                         | singleton                             |
+| `serviceCategory`    | `/treatments/:categorySlug`           |                                       |
+| `serviceSubcategory` | `/treatments/:cat/:sub`               | skip for flat categories in locations |
+| `serviceProcedure`   | `/treatments/:cat/:sub/:proc` OR flat | two `defineDocuments` entries         |
+| `treatmentConcern`   | `/treatments/concerns/:slug`          |                                       |
 
 **defineLocations for procedure** — “Used on” panel:
 
@@ -617,11 +618,11 @@ listedIn: array of {
 
 #### Scripts
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm purge:sanity:legacy-procedures` | Remove pre-dedupe procedure document IDs |
-| `pnpm purge:sanity:botox` | Remove Botox subcategory + procedure docs |
-| `pnpm seed:sanity` | Re-seed catalog (includes `theskinbarbyic@gmail.com` in site settings) |
+| Command                               | Purpose                                                                |
+| ------------------------------------- | ---------------------------------------------------------------------- |
+| `pnpm purge:sanity:legacy-procedures` | Remove pre-dedupe procedure document IDs                               |
+| `pnpm purge:sanity:botox`             | Remove Botox subcategory + procedure docs                              |
+| `pnpm seed:sanity`                    | Re-seed catalog (includes `theskinbarbyic@gmail.com` in site settings) |
 
 **DoD Phase 5:**
 
@@ -639,18 +640,18 @@ listedIn: array of {
 
 Create `docs/client/sanity-quick-start.md` (or Notion export):
 
-| Section | Content |
-|---------|---------|
-| Start here | Open **Services → Catalog** |
-| Change a price | Catalog → category → subcategory → procedure → Price → Publish |
-| Hide a service | Procedure → ⋮ → **Hide on website** (or toggle `Active`) |
-| Hide whole section | Subcategory or Category → Hide |
-| Concern links | Procedure → “Helps with concerns” OR Concern → Linked procedures |
-| Subcategory links | Procedure → “Catalog placements” OR Subcategory → Linked procedures |
-| Featured flags | Category → Featured on homepage (max 4) / Featured in nav (max 5) |
-| Languages | EN / UK / RU tabs on title fields |
-| Don't touch | Slugs, document IDs, Vision tool |
-| When site doesn't update | Publish + wait ~1 min; contact developer if webhook issue |
+| Section                  | Content                                                             |
+| ------------------------ | ------------------------------------------------------------------- |
+| Start here               | Open **Services → Catalog**                                         |
+| Change a price           | Catalog → category → subcategory → procedure → Price → Publish      |
+| Hide a service           | Procedure → ⋮ → **Hide on website** (or toggle `Active`)            |
+| Hide whole section       | Subcategory or Category → Hide                                      |
+| Concern links            | Procedure → “Helps with concerns” OR Concern → Linked procedures    |
+| Subcategory links        | Procedure → “Catalog placements” OR Subcategory → Linked procedures |
+| Featured flags           | Category → Featured on homepage (max 4) / Featured in nav (max 5)   |
+| Languages                | EN / UK / RU tabs on title fields                                   |
+| Don't touch              | Slugs, document IDs, Vision tool                                    |
+| When site doesn't update | Publish + wait ~1 min; contact developer if webhook issue           |
 
 Optional: 3 short GIFs for price / hide / concerns.
 
@@ -662,38 +663,38 @@ Update `docs/checklists/g2-post-seed-verification.md` policy section after Phase
 
 ### Phase 7 — QA & rollout (1–2 days)
 
-| Check | Expected |
-|-------|----------|
-| All baseline URLs | 200, same content/prices as snapshot |
-| Hide procedure | Absent from category, concern, sitemap |
-| Hide category | 404, absent from nav/home |
-| UK/RU | `/uk/` and `/ru/` procedure pages translated |
-| Flat categories | URLs without subcategory segment |
-| Sitemap | `app/sitemap.ts` respects `isActive` |
-| Revalidate | Publish triggers update |
-| Re-seed | Restores full catalog with backup policy |
+| Check             | Expected                                     |
+| ----------------- | -------------------------------------------- |
+| All baseline URLs | 200, same content/prices as snapshot         |
+| Hide procedure    | Absent from category, concern, sitemap       |
+| Hide category     | 404, absent from nav/home                    |
+| UK/RU             | `/uk/` and `/ru/` procedure pages translated |
+| Flat categories   | URLs without subcategory segment             |
+| Sitemap           | `app/sitemap.ts` respects `isActive`         |
+| Revalidate        | Publish triggers update                      |
+| Re-seed           | Restores full catalog with backup policy     |
 
 ---
 
 ## 8. File touch list (implementation reference)
 
-| Area | Files |
-|------|-------|
-| Schema | `sanity/schemaTypes/documents/service-*.ts`, `sanity/schemaTypes/index.ts` |
-| Structure | `sanity/structure/index.ts` |
-| Actions | `sanity/actions/*.ts`, `sanity/sanity.config.ts` |
-| Seed | `lib/sanity/seed/map-services-documents.ts` |
-| GROQ | `lib/sanity/queries/services.ts` |
-| Mapper | `lib/sanity/mappers/services.ts` |
-| Static / anti-age | `lib/services/categories/anti-age.ts`, `lib/services/catalog.ts` |
-| Concerns list dedupe | `lib/services/concern-recommendations.ts` (Phase 5) |
-| Previews / nav | `lib/services/category-previews.ts` |
-| Pages 404 | `app/[locale]/treatments/**/page.tsx` |
-| Draft mode | `app/api/draft-mode/**`, `lib/sanity/client.ts` |
-| Presentation | `sanity/sanity.config.ts` |
-| Migration | `scripts/migrate-dedupe-procedures.ts` |
-| Tests | `lib/sanity/mappers/services.test.ts` (create if missing) |
-| Docs | this file, `g2-post-seed-verification.md`, `part-5-uk-ru.md`, client quick start |
+| Area                 | Files                                                                            |
+| -------------------- | -------------------------------------------------------------------------------- |
+| Schema               | `sanity/schemaTypes/documents/service-*.ts`, `sanity/schemaTypes/index.ts`       |
+| Structure            | `sanity/structure/index.ts`                                                      |
+| Actions              | `sanity/actions/*.ts`, `sanity/sanity.config.ts`                                 |
+| Seed                 | `lib/sanity/seed/map-services-documents.ts`                                      |
+| GROQ                 | `lib/sanity/queries/services.ts`                                                 |
+| Mapper               | `lib/sanity/mappers/services.ts`                                                 |
+| Static / anti-age    | `lib/services/categories/anti-age.ts`, `lib/services/catalog.ts`                 |
+| Concerns list dedupe | `lib/services/concern-recommendations.ts` (Phase 5)                              |
+| Previews / nav       | `lib/services/category-previews.ts`                                              |
+| Pages 404            | `app/[locale]/treatments/**/page.tsx`                                            |
+| Draft mode           | `app/api/draft-mode/**`, `lib/sanity/client.ts`                                  |
+| Presentation         | `sanity/sanity.config.ts`                                                        |
+| Migration            | `scripts/migrate-dedupe-procedures.ts`                                           |
+| Tests                | `lib/sanity/mappers/services.test.ts` (create if missing)                        |
+| Docs                 | this file, `g2-post-seed-verification.md`, `part-5-uk-ru.md`, client quick start |
 
 ---
 
@@ -723,15 +724,15 @@ Phase 4 (3–5d) ────┼── parallel after Phase 2
 
 ## 10. Risks & mitigations
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| Mapper fallback hides bugs | Site shows stale content | Phase 1 tests + g2 policy update |
-| Re-seed overwrites Inna edits | Lost CMS work | Backup before seed; migration not re-seed for Phase 5 |
-| orderRank vs sortOrder drift | Wrong order | Seed maps sortOrder → orderRank; GROQ uses both |
-| Anti-age URL break | SEO / bookmarks | 301 redirects; baseline URL test |
-| Presentation CORS / iframe | Preview blank | allowOrigins + CSP frame-ancestors |
-| Dedupe breaks concern links | Missing on concern pages | Migration merges concerns[]; dedupe in getter |
-| Flat category resolver wrong | Preview opens wrong URL | Separate defineDocuments entries |
+| Risk                          | Impact                   | Mitigation                                            |
+| ----------------------------- | ------------------------ | ----------------------------------------------------- |
+| Mapper fallback hides bugs    | Site shows stale content | Phase 1 tests + g2 policy update                      |
+| Re-seed overwrites Inna edits | Lost CMS work            | Backup before seed; migration not re-seed for Phase 5 |
+| orderRank vs sortOrder drift  | Wrong order              | Seed maps sortOrder → orderRank; GROQ uses both       |
+| Anti-age URL break            | SEO / bookmarks          | 301 redirects; baseline URL test                      |
+| Presentation CORS / iframe    | Preview blank            | allowOrigins + CSP frame-ancestors                    |
+| Dedupe breaks concern links   | Missing on concern pages | Migration merges concerns[]; dedupe in getter         |
+| Flat category resolver wrong  | Preview opens wrong URL  | Separate defineDocuments entries                      |
 
 ---
 
@@ -760,7 +761,7 @@ Phase 4 (3–5d) ────┼── parallel after Phase 2
 
 ## 13. Changelog
 
-| Date | Change |
-|------|--------|
-| 2026-06-14 | Initial spec: translation audit, phased plan, Sanity docs review, locked decisions D1–D8 |
+| Date       | Change                                                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------- |
+| 2026-06-14 | Initial spec: translation audit, phased plan, Sanity docs review, locked decisions D1–D8                                  |
 | 2026-06-14 | Phase 5 complete: `listedIn` dedupe, static cleanup, subcategory bulk links, anti-age + Botox removed, seed email updated |

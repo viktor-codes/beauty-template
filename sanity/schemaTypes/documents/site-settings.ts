@@ -78,7 +78,8 @@ export const siteSettings = defineType({
       title: "Directions URL",
       type: "url",
       group: "social",
-      description: "Google Maps or similar — “Directions” link in contact and footer.",
+      description:
+        "Google Maps or similar — “Directions” link in contact and footer.",
       validation: (rule) => rule.custom(validateHttpUrl),
     }),
     defineField({
@@ -86,7 +87,8 @@ export const siteSettings = defineType({
       title: "Instagram URL",
       type: "url",
       group: "social",
-      description: "Used for gallery link, contact Instagram button, and footer social link.",
+      description:
+        "Used for gallery link, contact Instagram button, and footer social link.",
       validation: (rule) => rule.custom(validateHttpUrl),
     }),
     defineField({
@@ -110,7 +112,9 @@ export const siteSettings = defineType({
     select: { language: "language", phone: "phone", email: "email" },
     prepare: ({ language, phone, email }) => ({
       title: "Site settings",
-      subtitle: [language?.toUpperCase(), phone, email].filter(Boolean).join(" · "),
+      subtitle: [language?.toUpperCase(), phone, email]
+        .filter(Boolean)
+        .join(" · "),
     }),
   },
 });

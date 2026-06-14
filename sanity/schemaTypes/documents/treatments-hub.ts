@@ -13,7 +13,8 @@ export const treatmentsHub = defineType({
       name: "hubTitle",
       title: "Page title (H1)",
       type: "localeString",
-      description: "Main heading on /treatments (e.g. “Explore treatments by category”).",
+      description:
+        "Main heading on /treatments (e.g. “Explore treatments by category”).",
     }),
     defineField({
       name: "hubDescription",
@@ -25,7 +26,8 @@ export const treatmentsHub = defineType({
       name: "goalsSectionTitle",
       title: "Concerns section label",
       type: "localeString",
-      description: "Heading above concern chips/cards (e.g. “Choose by concern”).",
+      description:
+        "Heading above concern chips/cards (e.g. “Choose by concern”).",
     }),
     defineField({
       name: "faqEyebrow",
@@ -49,6 +51,6 @@ export const treatmentsHub = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({ title: "Treatments hub (/treatments)" }),
+    prepare: () => ({ title: "Treatments Page" }),
   },
 });
