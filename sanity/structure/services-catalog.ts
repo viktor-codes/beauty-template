@@ -26,11 +26,21 @@ function buildSubcategoryPane(
       S.listItem()
         .title("Edit subcategory")
         .child(S.document().schemaType("serviceSubcategory").documentId(subcategoryId)),
+      S.listItem()
+        .title("Linked procedures")
+        .child(
+          S.documentTypeList("serviceProcedure")
+            .title("Linked procedures")
+            .filter('_type == "serviceProcedure" && references($subcategoryId) && isActive != false')
+            .params({ subcategoryId })
+            .defaultOrdering(NESTED_ORDERING)
+            .canHandleIntent((intent) => intent.action !== "create"),
+        ),
       orderableDocumentListDeskItem({
         type: "serviceProcedure",
         title: "Procedures",
         id: `orderable-procedures-${subcategoryId}`,
-        filter: '_type == "serviceProcedure" && subcategory._ref == $subcategoryId',
+        filter: '_type == "serviceProcedure" && references($subcategoryId)',
         params: { subcategoryId },
         createIntent: false,
         menuItems: [
@@ -68,7 +78,7 @@ function buildCategoryPane(
             .title("All procedures")
             // WHY: Structure Builder filters cannot use GROQ joins (`->`).
             // Match subcategory _id prefix instead: serviceSubcategory-{slug}-*
-            .filter("subcategory._ref match $subcategoryRefPattern")
+            .filter("listedIn[].subcategory._ref match $subcategoryRefPattern")
             .params({ subcategoryRefPattern })
             .defaultOrdering(NESTED_ORDERING),
         ),

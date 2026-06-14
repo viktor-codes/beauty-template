@@ -14,7 +14,6 @@ Use this list in Phase 7 QA. All URLs must return **200** with the same content/
 | `/treatments` | Treatments hub |
 | `/treatments/body-slimming` | Nested category |
 | `/treatments/body-slimming/peels/tca-peel` | Canonical TCA peel path |
-| `/treatments/anti-age/anti-age-peels/tca-peel` | Duplicate anti-age path — note for Phase 5 dedupe |
 | `/treatments/blood-tests/tired-all-the-time` | Flat category (no subcategory in URL) |
 | `/treatments/concerns/glow` | Concern page |
 

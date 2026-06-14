@@ -43,7 +43,7 @@ export const servicesCatalogQuery = /* groq */ `
         image {
           ${serviceImageFields}
         },
-        "procedures": *[_type == "serviceProcedure" && references(^._id) && isActive != false] | order(orderRank asc, sortOrder asc, title.en asc) {
+        "procedures": *[_type == "serviceProcedure" && references(^._id) && isActive != false] {
           "slug": slug,
           title { ${localeStringFields} },
           description { ${localeStringFields} },
@@ -55,8 +55,9 @@ export const servicesCatalogQuery = /* groq */ `
             currency
           },
           sortOrder,
+          "listingSortOrder": coalesce(listedIn[subcategory._ref == ^._id][0].sortOrder, sortOrder, 0),
           "concernSlugs": concerns[]->slug.current
-        }
+        } | order(listingSortOrder asc, title.en asc)
       }
     }
   }

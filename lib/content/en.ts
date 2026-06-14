@@ -65,13 +65,6 @@ export const enLandingContent = {
         description:
           "CRYO, Emsculpt, peels, laser correction, and targeted body treatments.",
         href: "/treatments/body-slimming",
-      },
-      {
-        id: "services-category-anti-age",
-        title: "Anti age",
-        description:
-          "Age-focused lifting, collagen support, neuromodulators, and corrective peels.",
-        href: "/treatments/anti-age",
         featuredInNav: true,
       },
       {
@@ -260,8 +253,8 @@ export const enLandingContent = {
       heading: "Main categories",
       links: [
         { label: "Cosmetology", href: "/treatments/cosmetology" },
-        { label: "Anti age", href: "/treatments/anti-age" },
         { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Facials & peels", href: "/treatments/aesthetic-treatments" },
         { label: "Blood tests", href: "/treatments/blood-tests" },
         { label: "All treatments", href: "/treatments" },
       ],

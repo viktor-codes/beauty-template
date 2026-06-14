@@ -2,12 +2,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useClient } from "sanity";
 
 import {
-  appendConcernReference,
+  appendSubcategoryListing,
   computeLinkDiff,
+  type ProcedureCatalogListing,
   type ProcedureOption,
-  removeConcernReference,
-  type SanityConcernReference,
-} from "../lib/concern-procedure-links";
+  removeSubcategoryListing,
+  resolveNextSortOrder,
+} from "../lib/subcategory-procedure-links";
 
 const API_VERSION = "2025-05-05";
 
@@ -16,20 +17,20 @@ const ALL_PROCEDURES_QUERY = /* groq */ `
     | order(title.en asc) {
       _id,
       "title": title.en,
-      "subcategory": listedIn[0].subcategory->title.en
+      "primarySubcategory": listedIn[0].subcategory->title.en
     }
 `;
 
 const LINKED_PROCEDURE_IDS_QUERY = /* groq */ `
-  *[_type == "serviceProcedure" && references($concernId) && isActive != false]._id
+  *[_type == "serviceProcedure" && references($subcategoryId) && isActive != false]._id
 `;
 
 interface ProcedureDocumentLike {
   _id: string;
-  concerns?: SanityConcernReference[] | null;
+  listedIn?: ProcedureCatalogListing[] | null;
 }
 
-export function useConcernProcedureLinks(concernDocumentId: string | undefined) {
+export function useSubcategoryProcedureLinks(subcategoryDocumentId: string | undefined) {
   const client = useClient({ apiVersion: API_VERSION });
   const [options, setOptions] = useState<ProcedureOption[]>([]);
   const [linkedIds, setLinkedIds] = useState<string[]>([]);
@@ -45,7 +46,7 @@ export function useConcernProcedureLinks(concernDocumentId: string | undefined) 
   }, [linkedIds, selectedIds]);
 
   const load = useCallback(async () => {
-    if (!concernDocumentId) {
+    if (!subcategoryDocumentId) {
       setIsLoading(false);
       return;
     }
@@ -56,7 +57,7 @@ export function useConcernProcedureLinks(concernDocumentId: string | undefined) 
     try {
       const [allProcedures, linkedProcedureIds] = await Promise.all([
         client.fetch<ProcedureOption[]>(ALL_PROCEDURES_QUERY),
-        client.fetch<string[]>(LINKED_PROCEDURE_IDS_QUERY, { concernId: concernDocumentId }),
+        client.fetch<string[]>(LINKED_PROCEDURE_IDS_QUERY, { subcategoryId: subcategoryDocumentId }),
       ]);
 
       setOptions(allProcedures);
@@ -67,7 +68,7 @@ export function useConcernProcedureLinks(concernDocumentId: string | undefined) 
     } finally {
       setIsLoading(false);
     }
-  }, [client, concernDocumentId]);
+  }, [client, subcategoryDocumentId]);
 
   useEffect(() => {
     void load();
@@ -82,7 +83,7 @@ export function useConcernProcedureLinks(concernDocumentId: string | undefined) 
   }, []);
 
   const save = useCallback(async () => {
-    if (!concernDocumentId || !isDirty) return;
+    if (!subcategoryDocumentId || !isDirty) return;
 
     setIsSaving(true);
     setError(null);
@@ -94,28 +95,34 @@ export function useConcernProcedureLinks(concernDocumentId: string | undefined) 
 
       for (const procedureId of added) {
         const document = await client.fetch<ProcedureDocumentLike>(
-          `*[_id == $id][0]{ _id, concerns }`,
+          `*[_id == $id][0]{ _id, listedIn }`,
           { id: procedureId },
         );
         if (!document?._id) continue;
 
-        const concerns = appendConcernReference(
-          document.concerns,
-          concernDocumentId,
-          `${concernDocumentId}-${procedureId}`,
+        const listedIn = appendSubcategoryListing(
+          document.listedIn,
+          subcategoryDocumentId,
+          resolveNextSortOrder(document.listedIn),
         );
-        transaction.patch(procedureId, { set: { concerns } });
+        transaction.patch(procedureId, { set: { listedIn } });
       }
 
       for (const procedureId of removed) {
         const document = await client.fetch<ProcedureDocumentLike>(
-          `*[_id == $id][0]{ _id, concerns }`,
+          `*[_id == $id][0]{ _id, listedIn }`,
           { id: procedureId },
         );
         if (!document?._id) continue;
 
-        const concerns = removeConcernReference(document.concerns, concernDocumentId);
-        transaction.patch(procedureId, { set: { concerns } });
+        const listedIn = removeSubcategoryListing(document.listedIn, subcategoryDocumentId);
+        if (listedIn.length === 0) {
+          setError("Each procedure must stay in at least one subcategory. Add another placement first.");
+          setIsSaving(false);
+          return;
+        }
+
+        transaction.patch(procedureId, { set: { listedIn } });
       }
 
       await transaction.commit();
@@ -125,7 +132,7 @@ export function useConcernProcedureLinks(concernDocumentId: string | undefined) 
     } finally {
       setIsSaving(false);
     }
-  }, [client, concernDocumentId, isDirty, linkedIds, selectedIds]);
+  }, [client, isDirty, linkedIds, selectedIds, subcategoryDocumentId]);
 
   return {
     options,

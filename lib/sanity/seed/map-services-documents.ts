@@ -3,6 +3,11 @@ import type { ServicesCatalog } from "@/lib/types/services";
 
 import { getStaticCategoryFeatureFlags } from "@/lib/services/category-feature-flags";
 import { STATIC_CATEGORY_SHORT_TITLES } from "@/lib/services/category-short-titles";
+import {
+  collectProcedureListingIndex,
+  procedureDocumentId,
+  subcategoryDocumentId,
+} from "@/lib/services/procedure-listings";
 import { getProcedureConcernRefs } from "@/lib/sanity/seed/map-treatment-concerns";
 import {
   getCategoryLocaleCopyField,
@@ -18,14 +23,6 @@ type SanitySeedDoc = Record<string, unknown> & { _id: string; _type: string };
 
 function categoryDocId(slug: string) {
   return `serviceCategory-${slug}`;
-}
-
-function subcategoryDocId(categorySlug: string, subSlug: string) {
-  return `serviceSubcategory-${categorySlug}-${subSlug}`;
-}
-
-function procedureDocId(categorySlug: string, subSlug: string, procedureSlug: string) {
-  return `serviceProcedure-${categorySlug}-${subSlug}-${procedureSlug}`;
 }
 
 /** Builds serviceCategory / serviceSubcategory / serviceProcedure documents from static catalog. */
@@ -61,9 +58,8 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
 
     let subOrder = 0;
     for (const subcategory of category.subcategories) {
-      const subId = subcategoryDocId(category.id, subcategory.id);
       docs.push({
-        _id: subId,
+        _id: subcategoryDocumentId(category.id, subcategory.id),
         _type: "serviceSubcategory",
         category: { _type: "reference", _ref: categoryId },
         slug: { _type: "slug", current: subcategory.id },
@@ -82,41 +78,47 @@ export function buildServiceDocuments(catalog: ServicesCatalog): SanitySeedDoc[]
         orderRank: buildSeedOrderRank(subOrder),
       });
       subOrder += 1;
-
-      let procOrder = 0;
-      for (const procedure of subcategory.procedures) {
-        const concernRefs = getProcedureConcernRefs(
-          category.id,
-          subcategory.id,
-          procedure.id,
-        );
-
-        docs.push({
-          _id: procedureDocId(category.id, subcategory.id, procedure.id),
-          _type: "serviceProcedure",
-          subcategory: { _type: "reference", _ref: subId },
-          slug: { _type: "slug", current: procedure.id },
-          title: toLocaleStringI18n(
-            procedure.title,
-            getProcedureLocaleCopy(procedure.id, "uk")?.title,
-            getProcedureLocaleCopy(procedure.id, "ru")?.title,
-          ),
-          description: toLocaleTextI18n(
-            procedure.description,
-            getProcedureLocaleCopy(procedure.id, "uk")?.description,
-            getProcedureLocaleCopy(procedure.id, "ru")?.description,
-          ),
-          price: procedure.price
-            ? { amount: procedure.price.amount, currency: procedure.price.currency }
-            : undefined,
-          sortOrder: procOrder,
-          isActive: true,
-          orderRank: buildSeedOrderRank(procOrder),
-          ...(concernRefs.length > 0 ? { concerns: concernRefs } : {}),
-        });
-        procOrder += 1;
-      }
     }
+  }
+
+  const listingIndex = collectProcedureListingIndex(catalog);
+  let procedureOrder = 0;
+
+  for (const [procedureSlug, placements] of listingIndex) {
+    const primary = placements[0];
+    if (!primary) continue;
+
+    const { procedure } = primary;
+    const concernRefs = getProcedureConcernRefs(procedureSlug);
+
+    docs.push({
+      _id: procedureDocumentId(procedureSlug),
+      _type: "serviceProcedure",
+      slug: { _type: "slug", current: procedure.id },
+      title: toLocaleStringI18n(
+        procedure.title,
+        getProcedureLocaleCopy(procedure.id, "uk")?.title,
+        getProcedureLocaleCopy(procedure.id, "ru")?.title,
+      ),
+      description: toLocaleTextI18n(
+        procedure.description,
+        getProcedureLocaleCopy(procedure.id, "uk")?.description,
+        getProcedureLocaleCopy(procedure.id, "ru")?.description,
+      ),
+      price: procedure.price
+        ? { amount: procedure.price.amount, currency: procedure.price.currency }
+        : undefined,
+      sortOrder: procedureOrder,
+      isActive: true,
+      orderRank: buildSeedOrderRank(procedureOrder),
+      listedIn: placements.map((placement) => ({
+        _key: `${placement.categorySlug}-${placement.subcategorySlug}`,
+        subcategory: { _type: "reference", _ref: placement.subcategoryDocumentId },
+        sortOrder: placement.sortOrder,
+      })),
+      ...(concernRefs.length > 0 ? { concerns: concernRefs } : {}),
+    });
+    procedureOrder += 1;
   }
 
   return docs;

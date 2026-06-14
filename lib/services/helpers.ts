@@ -1,10 +1,4 @@
-import type {
-  Money,
-  ServiceCategory,
-  ServiceImage,
-  ServiceProcedure,
-  ServiceSubcategory,
-} from "@/lib/types/services";
+import type { Money, ServiceImage, ServiceProcedure } from "@/lib/types/services";
 
 const CATEGORY_IMAGE_DIR = "/categories";
 const DEFAULT_IMAGE_SIZE = { width: 1200, height: 800 } as const;
@@ -44,10 +38,6 @@ export const bodySlimmingCategoryImage = categoryAsset(
   "body-slimming.webp",
   "Body contouring and slimming treatment",
 );
-export const antiAgeCategoryImage = categoryAsset(
-  "anti-age.webp",
-  "Anti-age aesthetic protocols",
-);
 export const vitaminShotsCategoryImage = categoryAsset(
   "vitamin-shots.webp",
   "Vitamin injection wellness support",
@@ -72,33 +62,5 @@ export function proc(
     title,
     description,
     price: eur(amount),
-  };
-}
-
-/** Deep-clone subcategories/procedures for duplicate Anti age listings. */
-export function cloneSubcategory(sub: ServiceSubcategory): ServiceSubcategory {
-  return {
-    ...sub,
-    procedures: sub.procedures.map((p) => ({ ...p, price: p.price ? { ...p.price } : undefined })),
-  };
-}
-
-export function cloneSubcategories(
-  category: ServiceCategory,
-  subcategoryIds: string[],
-): ServiceSubcategory[] {
-  return subcategoryIds
-    .map((id) => category.subcategories.find((s) => s.id === id))
-    .filter((s): s is ServiceSubcategory => s !== undefined)
-    .map(cloneSubcategory);
-}
-
-export function filterProcedures(
-  sub: ServiceSubcategory,
-  procedureIds: string[],
-): ServiceSubcategory {
-  return {
-    ...sub,
-    procedures: sub.procedures.filter((p) => procedureIds.includes(p.id)),
   };
 }

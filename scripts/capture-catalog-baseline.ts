@@ -8,6 +8,7 @@ import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { servicesCatalog } from "@/lib/services";
+import { procedureDocumentId } from "@/lib/services/procedure-listings";
 import { buildProcedurePath } from "@/lib/services/procedure-path";
 
 interface ProcedureBaselineEntry {
@@ -20,12 +21,8 @@ interface ProcedureBaselineEntry {
   path: string;
 }
 
-function buildDocumentId(
-  categorySlug: string,
-  subcategorySlug: string,
-  procedureSlug: string,
-): string {
-  return `serviceProcedure-${categorySlug}-${subcategorySlug}-${procedureSlug}`;
+function buildDocumentId(procedureSlug: string): string {
+  return procedureDocumentId(procedureSlug);
 }
 
 function captureBaseline(): {
@@ -48,7 +45,7 @@ function captureBaseline(): {
 
       for (const procedure of subcategory.procedures) {
         procedures.push({
-          documentId: buildDocumentId(category.id, subcategory.id, procedure.id),
+          documentId: buildDocumentId(procedure.id),
           categorySlug: category.id,
           subcategorySlug: subcategory.id,
           procedureSlug: procedure.id,

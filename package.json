@@ -10,6 +10,9 @@
     "start": "next start",
     "lint": "eslint",
     "seed:sanity": "tsx --env-file=.env.local scripts/seed-sanity.ts",
+    "purge:sanity:anti-age": "tsx --env-file=.env.local scripts/purge-sanity-anti-age.ts",
+    "purge:sanity:legacy-procedures": "tsx --env-file=.env.local scripts/purge-legacy-procedure-docs.ts",
+    "purge:sanity:botox": "tsx --env-file=.env.local scripts/purge-sanity-botox.ts",
     "baseline:catalog": "tsx scripts/capture-catalog-baseline.ts",
     "test": "tsx --test lib/**/*.test.ts"
   },

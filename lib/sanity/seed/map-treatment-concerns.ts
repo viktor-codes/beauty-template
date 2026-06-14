@@ -22,10 +22,6 @@ function concernDocId(slug: string) {
   return `treatmentConcern-${slug}`;
 }
 
-function procedureDocId(categorySlug: string, subSlug: string, procedureSlug: string) {
-  return `serviceProcedure-${categorySlug}-${subSlug}-${procedureSlug}`;
-}
-
 function goalTitleForLocale(slug: StaticConcernSlug, locale: AppLocale): string {
   const goals = getStaticLandingContent(locale).services.goals;
   const goal = goals.find(
@@ -52,21 +48,12 @@ export function buildTreatmentConcernDocuments(): SanitySeedDoc[] {
 }
 
 /** Procedure → concern refs from legacy keyword scoring (Inna can refine in Studio). */
-export function getProcedureConcernRefs(
-  categorySlug: string,
-  subSlug: string,
-  procedureSlug: string,
-): SanityReference[] {
+export function getProcedureConcernRefs(procedureSlug: string): SanityReference[] {
   const refs: SanityReference[] = [];
 
   for (const concern of CONCERN_ORDER) {
     const hits = getGoalRecommendations(concern as GoalSlug, servicesCatalog, 200);
-    const matched = hits.some(
-      (hit) =>
-        hit.category.id === categorySlug &&
-        hit.subcategory.id === subSlug &&
-        hit.procedure.id === procedureSlug,
-    );
+    const matched = hits.some((hit) => hit.procedure.id === procedureSlug);
     if (matched) {
       refs.push({ _type: "reference", _ref: concernDocId(concern) });
     }

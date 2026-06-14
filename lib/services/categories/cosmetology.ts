@@ -6,7 +6,7 @@ export const cosmetologyCategory: ServiceCategory = {
   id: "cosmetology",
   title: "Cosmetology",
   description:
-    "Injectable and device-led cosmetology protocols—from neuromodulators and contouring to biostimulators, biorevitalisation, and targeted correction.",
+    "Injectable and device-led cosmetology protocols—contouring, biostimulators, biorevitalisation, and targeted correction.",
   image: cosmetologyCategoryImage,
   subcategories: [
     {
@@ -20,44 +20,6 @@ export const cosmetologyCategory: ServiceCategory = {
           "HIFU Face Lift",
           "High-intensity focused ultrasound (HIFU) stimulates collagen remodeling in the SMAS layer. Results build over 8–12 weeks with minimal downtime.",
           300,
-        ),
-      ],
-    },
-    {
-      id: "botox",
-      title: "Botox",
-      description:
-        "Neuromodulator treatments to soften expression lines and address targeted concerns—planned for natural movement.",
-      procedures: [
-        proc(
-          "botox-full-face",
-          "Botox — full face",
-          "Full-face neuromodulator protocol to soften dynamic lines while keeping expression natural.",
-          400,
-        ),
-        proc(
-          "botox-3-zones",
-          "Botox — 3 zones",
-          "Three-area protocol (commonly forehead, frown, and crow's feet)—ideal for a refreshed, balanced look.",
-          200,
-        ),
-        proc(
-          "botox-2-zones",
-          "Botox — 2 zones",
-          "Two-area protocol tailored to your primary concern areas.",
-          170,
-        ),
-        proc(
-          "botox-1-zone",
-          "Botox — 1 zone",
-          "Single-area treatment for focused correction.",
-          100,
-        ),
-        proc(
-          "botox-hyperhidrosis",
-          "Botox — hyperhidrosis",
-          "Targeted protocol to reduce excessive sweating in treated areas.",
-          250,
         ),
       ],
     },

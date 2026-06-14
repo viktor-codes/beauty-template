@@ -1,6 +1,7 @@
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 
+import { SubcategoryProcedureLinksInput } from "../../components/subcategory-procedure-links-input";
 import { catalogSlugField } from "../helpers/catalog-slug-field";
 
 export const serviceSubcategory = defineType({
@@ -36,6 +37,16 @@ export const serviceSubcategory = defineType({
       type: "number",
       description: "Fallback when orderRank is unset. Prefer drag-and-drop in Catalog.",
       initialValue: 0,
+    }),
+    defineField({
+      name: "linkedProceduresUi",
+      title: "Linked procedures",
+      type: "string",
+      components: {
+        input: SubcategoryProcedureLinksInput,
+      },
+      description:
+        "Manage which procedures appear in this subcategory. Saved on each procedure document.",
     }),
   ],
   preview: {

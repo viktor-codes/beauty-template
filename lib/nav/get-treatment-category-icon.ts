@@ -1,7 +1,6 @@
 /** Slug from `/treatments/[slug]` → icon under `public/icons/`. */
 const TREATMENT_CATEGORY_ICON_BY_SLUG: Record<string, string> = {
   cosmetology: "/icons/cosmetology.svg",
-  "anti-age": "/icons/anti-age.svg",
   "vitamin-shots": "/icons/vitamin-shots.svg",
   "blood-tests": "/icons/blood-test.svg",
   "aesthetic-injections": "/icons/injectables.svg",

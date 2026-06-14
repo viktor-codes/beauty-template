@@ -6,7 +6,7 @@ import { getCategoryProcedures } from "@/lib/services/flat-categories";
 export function buildGiftableProcedures(
   catalog: ServicesCatalog,
 ): GiftableProcedure[] {
-  // WHY: Some categories (e.g. anti-age) reuse the same procedure slugs from other trees.
+  // WHY: Cosmetology and injectables share some procedure slugs across category trees.
   const bySlug = new Map<string, GiftableProcedure>();
 
   for (const category of catalog.categories) {

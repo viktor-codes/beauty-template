@@ -82,13 +82,13 @@ describe("mapServicesCatalogSafe", () => {
             description: { en: "Desc", uk: "Desc" },
             subcategories: [
               {
-                slug: { current: "botox" },
-                title: { en: "Botox", uk: "Botox" },
-                description: { en: "Botox desc", uk: "Botox desc" },
+                slug: { current: "biorevitalisation" },
+                title: { en: "Biorevitalisation", uk: "Biorevitalisation" },
+                description: { en: "Biorevitalisation desc", uk: "Biorevitalisation desc" },
                 procedures: [
                   {
-                    slug: { current: "botox-full-face" },
-                    title: { en: "Botox — full face", uk: "Botox — все обличчя" },
+                    slug: { current: "profhilo-2ml" },
+                    title: { en: "Profhilo 2 ml", uk: "Profhilo 2 ml" },
                     description: { en: "English description", uk: "UA description" },
                     price: { amount: 400, currency: "EUR" },
                   },
@@ -103,10 +103,10 @@ describe("mapServicesCatalogSafe", () => {
 
     const procedure = catalog.categories
       .find((c) => c.id === "cosmetology")
-      ?.subcategories.find((s) => s.id === "botox")
-      ?.procedures.find((p) => p.id === "botox-full-face");
+      ?.subcategories.find((s) => s.id === "biorevitalisation")
+      ?.procedures.find((p) => p.id === "profhilo-2ml");
 
     assert.ok(procedure);
-    assert.equal(procedure.title, "Botox — все обличчя");
+    assert.equal(procedure.title, "Profhilo 2 ml");
   });
 });

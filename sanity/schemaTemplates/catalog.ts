@@ -16,7 +16,13 @@ export const procedureInSubcategoryTemplate: Template = {
   schemaType: "serviceProcedure",
   parameters: [{ name: "subcategoryId", type: "string" }],
   value: ({ subcategoryId }: { subcategoryId: string }) => ({
-    subcategory: { _type: "reference", _ref: subcategoryId },
+    listedIn: [
+      {
+        _key: subcategoryId,
+        subcategory: { _type: "reference", _ref: subcategoryId },
+        sortOrder: 0,
+      },
+    ],
   }),
 };
 

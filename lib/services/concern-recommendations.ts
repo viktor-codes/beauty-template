@@ -13,12 +13,15 @@ export function getConcernRecommendations(
   options?: GetConcernRecommendationsOptions,
 ): ProcedureHit[] {
   const hits: ProcedureHit[] = [];
+  const seenProcedureIds = new Set<string>();
 
   catalog.categories.forEach((category) => {
     category.subcategories.forEach((subcategory) => {
       subcategory.procedures.forEach((procedure) => {
         if (!procedure.concernIds?.includes(concernSlug)) return;
+        if (seenProcedureIds.has(procedure.id)) return;
 
+        seenProcedureIds.add(procedure.id);
         hits.push({
           category,
           subcategory,

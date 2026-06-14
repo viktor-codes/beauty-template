@@ -1,5 +1,5 @@
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 import { catalogSlugField } from "../helpers/catalog-slug-field";
 
@@ -10,16 +10,6 @@ export const serviceProcedure = defineType({
   orderings: [orderRankOrdering],
   fields: [
     orderRankField({ type: "serviceProcedure" }),
-    defineField({
-      name: "subcategory",
-      title: "Subcategory",
-      type: "reference",
-      to: [{ type: "serviceSubcategory" }],
-      validation: (rule) => rule.required(),
-      options: {
-        filter: '_type == "serviceSubcategory" && isActive != false',
-      },
-    }),
     catalogSlugField({
       urlHint: "URL segment for /treatments/{category}/{subcategory}/{slug}.",
     }),
@@ -42,6 +32,48 @@ export const serviceProcedure = defineType({
       ],
     }),
     defineField({
+      name: "listedIn",
+      title: "Catalog placements",
+      type: "array",
+      description:
+        "Subcategories where this procedure appears on the site. One document — one price everywhere.",
+      validation: (rule) => rule.required().min(1),
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "procedureCatalogPlacement",
+          fields: [
+            defineField({
+              name: "subcategory",
+              title: "Subcategory",
+              type: "reference",
+              to: [{ type: "serviceSubcategory" }],
+              validation: (rule) => rule.required(),
+              options: {
+                filter: '_type == "serviceSubcategory" && isActive != false',
+              },
+            }),
+            defineField({
+              name: "sortOrder",
+              title: "Sort order in subcategory",
+              type: "number",
+              initialValue: 0,
+            }),
+          ],
+          preview: {
+            select: {
+              title: "subcategory.title.en",
+              sortOrder: "sortOrder",
+            },
+            prepare: ({ title, sortOrder }) => ({
+              title: title ?? "Subcategory",
+              subtitle: typeof sortOrder === "number" ? `Order ${sortOrder}` : undefined,
+            }),
+          },
+        }),
+      ],
+    }),
+    defineField({
       name: "isActive",
       title: "Active",
       type: "boolean",
@@ -52,7 +84,7 @@ export const serviceProcedure = defineType({
       name: "sortOrder",
       title: "Sort order (legacy)",
       type: "number",
-      description: "Fallback when orderRank is unset. Prefer drag-and-drop in Catalog.",
+      description: "Fallback when orderRank is unset. Prefer sort order inside each placement.",
       initialValue: 0,
     }),
     defineField({
@@ -75,19 +107,20 @@ export const serviceProcedure = defineType({
   preview: {
     select: {
       title: "title.en",
-      subcategory: "subcategory.title.en",
       amount: "price.amount",
       isActive: "isActive",
       concerns: "concerns",
+      listedIn: "listedIn",
     },
-    prepare: ({ title, subcategory, amount, isActive, concerns }) => {
+    prepare: ({ title, amount, isActive, concerns, listedIn }) => {
       const concernCount = Array.isArray(concerns) ? concerns.length : 0;
+      const placementCount = Array.isArray(listedIn) ? listedIn.length : 0;
 
       return {
         title: title ?? "Procedure",
         subtitle: [
-          subcategory,
           typeof amount === "number" ? `€${amount}` : null,
+          placementCount > 0 ? `${placementCount} placements` : null,
           concernCount > 0 ? `${concernCount} concerns` : null,
           isActive === false ? "Hidden" : null,
         ]

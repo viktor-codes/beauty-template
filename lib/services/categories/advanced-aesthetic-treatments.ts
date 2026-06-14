@@ -20,21 +20,7 @@ export const advancedAestheticTreatmentsCategory: ServiceCategory = {
             width: 1000,
             height: 1000,
           },
-          procedures: [
-            {
-              id: "hifu-face-lift",
-              title: "HIFU Face Lift",
-              description:
-                "A non-surgical tightening treatment that delivers focused ultrasound energy to precise depths (including the SMAS layer). Results build gradually over 8–12 weeks as collagen remodels, with minimal downtime.",
-              image: {
-                src: "https://images.unsplash.com/photo-1582719478185-2f5b8b6b7b5b?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Aesthetic ultrasound device concept",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 300, currency: "EUR" },
-            },
-          ],
+          procedures: [],
         },
         {
           id: "rf-microneedling",
@@ -47,34 +33,7 @@ export const advancedAestheticTreatmentsCategory: ServiceCategory = {
             width: 1000,
             height: 1000,
           },
-          procedures: [
-            {
-              id: "rf-microneedling",
-              title: "RF Microneedling",
-              description:
-                "A collagen-induction treatment designed to refine pores, smooth texture, and soften the look of scars and fine lines. Expect short downtime (often redness for 1–3 days) with results improving over weeks.",
-              image: {
-                src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Microneedling device in a modern clinic",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 150, currency: "EUR" },
-            },
-            {
-              id: "rf-microneedling-exosomes",
-              title: "RF Microneedling + Exosomes",
-              description:
-                "An enhanced protocol pairing RF microneedling with a regenerative-focused step to support recovery and skin quality. Designed for clients who want texture refinement plus an extra glow and comfort boost.",
-              image: {
-                src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Skin rejuvenation device concept",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 200, currency: "EUR" },
-            },
-          ],
+          procedures: [],
         },
         {
           id: "black-doll-facial-carbon-peel",
@@ -114,21 +73,7 @@ export const advancedAestheticTreatmentsCategory: ServiceCategory = {
             width: 1000,
             height: 1000,
           },
-          procedures: [
-            {
-              id: "skin-tag-papilloma-removal-from-50",
-              title: "Skin Tag / Papilloma Removal",
-              description:
-                "Removal of unwanted skin tags or papillomas with a technique chosen based on size, location, and skin type. Pricing starts from the listed amount after assessment.",
-              image: {
-                src: "https://images.unsplash.com/photo-1580281658629-34f6a0f2b1d3?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Minimal clinic setting for minor procedure",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 50, currency: "EUR" },
-            },
-          ],
+          procedures: [],
         },
         {
           id: "laser-tattoo-pmu-removal",

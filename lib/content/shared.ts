@@ -27,7 +27,7 @@ export const studioAddressDisplay = [
 
 export const studioContact = {
   phone: STUDIO_PHONE_DISPLAY,
-  email: "hello@studio.example.com",
+  email: "theskinbarbyic@gmail.com",
   address: studioAddressDisplay,
   phoneTelHref: studioPhoneTelHref(),
   telegramHref: studioPhoneTelegramHref(),

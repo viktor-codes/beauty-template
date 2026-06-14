@@ -128,58 +128,6 @@ export const aestheticTreatmentsCategory: ServiceCategory = {
               },
               price: { amount: 150, currency: "EUR" },
             },
-            {
-              id: "prx-t33",
-              title: "PRX-T33",
-              description:
-                "A next-generation TCA-based “biorevitalizing” peel (commonly described as 33% TCA combined with hydrogen peroxide) designed to stimulate regeneration with minimal visible peeling. Often chosen for glow, texture refinement, and early laxity with little downtime.",
-              image: {
-                src: "https://images.unsplash.com/photo-1556228724-4b3a8f2a9b55?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Skincare bottles with a clean clinical feel",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 120, currency: "EUR" },
-            },
-            {
-              id: "obagi-blue-peel-4-layers",
-              title: "Obagi Blue Peel (4 layers)",
-              description:
-                "A TCA-based peel applied in multiple coats to control depth. Helps refine tone, texture, and the look of photodamage—peeling typically starts after a couple of days and recovery guidance is provided to protect results.",
-              image: {
-                src: "https://images.unsplash.com/photo-1556228724-4b3a8f2a9b55?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Close-up of skincare droppers and bottles",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 80, currency: "EUR" },
-            },
-            {
-              id: "carbon-peel",
-              title: "Carbon Peel",
-              description:
-                "Also known as a “Hollywood peel”: a carbon lotion is applied and then activated with a laser to deeply cleanse the pores and gently exfoliate. Popular for oily or congested skin and for a quick, event-ready glow with minimal downtime.",
-              image: {
-                src: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Aesthetic skincare setting with soft light",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 80, currency: "EUR" },
-            },
-            {
-              id: "extractions-plus-obagi-peel",
-              title: "Extractions + Obagi Peel",
-              description:
-                "A combined treatment pairing professional extractions with a controlled peel for clearer-looking pores and a smoother surface. Best for congestion-prone skin that needs both purification and refinement in one visit.",
-              image: {
-                src: "https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?auto=format&fit=crop&w=900&h=900&q=80",
-                alt: "Professional skincare tools and products",
-                width: 900,
-                height: 900,
-              },
-              price: { amount: 80, currency: "EUR" },
-            },
           ],
         },
       ],

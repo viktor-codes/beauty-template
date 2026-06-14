@@ -590,77 +590,48 @@ Sanity manage → API → CORS → add frontend origin.
 
 ---
 
-### Phase 5 — Anti-age dedupe (5–8 days)
+### Phase 5 — Procedure dedupe ✅ (completed 2026-06-14)
 
-**Goal:** one canonical procedure document per slug; anti-age is a **curated view**, not duplicate docs.
+**Goal:** one canonical `serviceProcedure` document per slug; shared procedures appear in multiple subcategories without duplicate CMS rows.
 
-#### 5.1 Recommended model
+**Status:** Done. Anti-age category was **removed** (not curated — client decision). Phase 4 (Presentation) skipped.
 
-Keep canonical home: `subcategory` ref points to real subcategory (e.g. body-slimming/peels).
+#### Implemented model
 
-Add on `serviceProcedure`:
+`serviceProcedure` uses **`listedIn[]`** (not `alsoListedIn`):
 
 ```typescript
-alsoListedIn: array of {
-  category: reference → serviceCategory   // required
-  virtualSubcategoryId: slug            // e.g. "anti-age-peels" for URL/breadcrumb
-  virtualSubcategoryTitle: localeString // optional display override
+listedIn: array of {
+  subcategory: reference → serviceSubcategory
   sortOrder: number
 }
 ```
 
-#### 5.2 Static catalog refactor
+- Document ID: `serviceProcedure-{slug}` (110 unique slugs → 105 after Botox removal)
+- GROQ: `references(^._id)` on subcategory + `listingSortOrder` from matching placement
+- Seed: `collectProcedureListingIndex()` from finalized static catalog
+- Static: canonical rows in cosmetology / body-slimming; secondary placements via `ADDITIONAL_PROCEDURE_LISTINGS` + `finalizeStaticServicesCatalog()`
+- Migration: `pnpm purge:sanity:legacy-procedures` then `pnpm seed:sanity` (no merge script)
+- Concerns: dedupe in `getConcernRecommendations()`
+- Studio: **Catalog placements** on procedure; **Linked procedures** bulk editor on subcategory (mirrors concern UX)
 
-File: `lib/services/categories/anti-age.ts`
+#### Scripts
 
-Replace cloneSubcategory clones with declarative listing:
-
-```typescript
-// Conceptual — implementer defines exact shape
-{ canonicalProcedureId: 'tca-peel', listedUnder: { category: 'anti-age', virtualSub: 'anti-age-peels' } }
-```
-
-#### 5.3 Seed changes
-
-- Emit **one** procedure doc per unique procedure slug per canonical path
-- Populate `alsoListedIn` from anti-age config
-- **Do not** emit `serviceProcedure-anti-age-*` duplicates
-
-#### 5.4 GROQ / mapper
-
-When building `anti-age` category for site:
-
-- Merge procedures where `alsoListedIn[].category._ref == anti-age category id`
-- Group by `virtualSubcategoryId` into synthetic subcategories
-- URLs: `/treatments/anti-age/anti-age-peels/tca-peel` → same procedure content as canonical
-
-#### 5.5 Migration script (required — not blind re-seed)
-
-New script: `scripts/migrate-dedupe-procedures.ts`
-
-1. Find duplicate groups by `slug.current`
-2. Pick canonical doc (prefer non-anti-age path)
-3. Merge `concerns[]`, price, CMS overrides from duplicates into canonical
-4. Set `alsoListedIn` on canonical
-5. Delete duplicate documents
-6. Log report
-
-Run once on production after backup.
-
-#### 5.6 Redirects
-
-If any URL changes: add permanent redirects in Next middleware or `next.config` from old anti-age duplicate paths to canonical paths (if different).
-
-#### 5.7 Studio UX
-
-On procedure form: section **“Also show in categories”** — array editor for `alsoListedIn`.
+| Command | Purpose |
+|---------|---------|
+| `pnpm purge:sanity:legacy-procedures` | Remove pre-dedupe procedure document IDs |
+| `pnpm purge:sanity:botox` | Remove Botox subcategory + procedure docs |
+| `pnpm seed:sanity` | Re-seed catalog (includes `theskinbarbyic@gmail.com` in site settings) |
 
 **DoD Phase 5:**
 
-- [ ] Single price edit updates everywhere
-- [ ] Anti-age peels shows TCA peel once
-- [ ] Concern page still lists procedure once (dedupe in `getConcernRecommendations` if needed)
-- [ ] Migration script report archived
+- [x] Single price edit updates everywhere
+- [x] One Studio row per procedure slug
+- [x] Concern page lists each procedure once
+- [x] Static TS duplicates removed from secondary category files
+- [x] Subcategory bulk link editor (like concerns)
+- [x] Botox removed from catalog (site + CMS)
+- [ ] ~~Anti-age curated view~~ — N/A (category removed)
 
 ---
 
@@ -675,6 +646,7 @@ Create `docs/client/sanity-quick-start.md` (or Notion export):
 | Hide a service | Procedure → ⋮ → **Hide on website** (or toggle `Active`) |
 | Hide whole section | Subcategory or Category → Hide |
 | Concern links | Procedure → “Helps with concerns” OR Concern → Linked procedures |
+| Subcategory links | Procedure → “Catalog placements” OR Subcategory → Linked procedures |
 | Featured flags | Category → Featured on homepage (max 4) / Featured in nav (max 5) |
 | Languages | EN / UK / RU tabs on title fields |
 | Don't touch | Slugs, document IDs, Vision tool |
@@ -779,7 +751,7 @@ Phase 4 (3–5d) ────┼── parallel after Phase 2
 1. Inna hides subcategory **without delete**; site matches within revalidate window.
 2. Inna changes price in **≤ 2 clicks** from Catalog entry.
 3. CMS published state **matches site** — no static structure resurrection.
-4. Anti-age procedure exists **once** in Studio per slug; one price everywhere.
+4. Each procedure slug exists **once** in Studio; one price everywhere (shared subcategories via `listedIn`).
 5. UK/RU procedure pages show translated titles (CMS or locale-copy fallback).
 6. Presentation preview works for category, procedure, concern (Phase 4).
 7. Client quick start document delivered (Phase 6).
@@ -791,3 +763,4 @@ Phase 4 (3–5d) ────┼── parallel after Phase 2
 | Date | Change |
 |------|--------|
 | 2026-06-14 | Initial spec: translation audit, phased plan, Sanity docs review, locked decisions D1–D8 |
+| 2026-06-14 | Phase 5 complete: `listedIn` dedupe, static cleanup, subcategory bulk links, anti-age + Botox removed, seed email updated |

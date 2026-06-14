@@ -65,12 +65,6 @@ export const ruLandingContent = {
         description:
           "CRYO, Emsculpt, пилинги, лазерная коррекция и процедуры для тела.",
         href: "/treatments/body-slimming",
-      },
-      {
-        id: "services-category-anti-age",
-        title: "Anti-age",
-        description: "Лифтинг, коллаген, нейромодуляторы и anti-age пилинги.",
-        href: "/treatments/anti-age",
         featuredInNav: true,
       },
       {
@@ -267,8 +261,8 @@ export const ruLandingContent = {
       heading: "Основные категории",
       links: [
         { label: "Косметология", href: "/treatments/cosmetology" },
-        { label: "Anti age", href: "/treatments/anti-age" },
         { label: "Body slimming", href: "/treatments/body-slimming" },
+        { label: "Уход за лицом", href: "/treatments/aesthetic-treatments" },
         { label: "Blood tests", href: "/treatments/blood-tests" },
         { label: "Все процедуры", href: "/treatments" },
       ],
