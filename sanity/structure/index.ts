@@ -5,7 +5,7 @@ import { buildConcernsDeskItem } from "./concerns";
 
 export const structure: StructureResolver = (S, context) =>
   S.list()
-    .title("The Skinbar")
+    .title("The Skinbar by Inna Chernovol")
     .items([
       S.listItem()
         .title("Web Content")
