@@ -7,6 +7,16 @@ function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function clearHashFromUrl(): void {
+  if (!window.location.hash) return;
+
+  window.history.replaceState(
+    null,
+    "",
+    `${window.location.pathname}${window.location.search}`,
+  );
+}
+
 /**
  * Same-page #hash navigation: scrollIntoView({ behavior: 'smooth' }) is reliable
  * in Safari; CSS scroll-behavior alone often still jumps for anchor clicks.
@@ -51,15 +61,12 @@ export function SmoothHashNavigation() {
         behavior: prefersReducedMotion() ? "auto" : "smooth",
         block: "start",
       });
-      window.history.pushState(
-        null,
-        "",
-        `${url.pathname}${url.search}${url.hash}`,
-      );
+      clearHashFromUrl();
+      window.setTimeout(clearHashFromUrl, 0);
     };
 
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
   }, []);
 
   return null;
