@@ -1,7 +1,6 @@
 "use client";
 
 import type { HTMLAttributes } from "react";
-import { QuotesIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/cn";
 
 export interface TestimonialCardProps extends HTMLAttributes<HTMLElement> {
@@ -28,7 +27,7 @@ export function TestimonialCard({
   return (
     <figure
       className={cn(
-        "flex h-full flex-col rounded-2xl border border-border bg-background p-6",
+        "relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background p-6",
         className,
       )}
       {...rest}
@@ -39,14 +38,13 @@ export function TestimonialCard({
           <span className="sr-only">{rating} out of 5 stars</span>
         </p>
       ) : null}
-      <QuotesIcon
-        aria-hidden
-        className="absolute top-1 left-0 -z-10 size-8 rotate-180 text-accent opacity-40"
-      />
       <blockquote className="relative flex-1 text-base leading-relaxed text-primary before:content-none after:content-none">
         {quote}
       </blockquote>
-      <QuotesIcon className="size-36 text-accent absolute bottom-0 right-0  opacity-40 " />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-6 right-4 size-24 bg-accent opacity-20 [mask:url('/quote.svg')_center/contain_no-repeat] [-webkit-mask:url('/quote.svg')_center/contain_no-repeat]"
+      />
       <figcaption className="mt-4 text-sm">
         <span className="font-medium text-primary">{authorName}</span>
         {authorRole ? (

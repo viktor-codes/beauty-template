@@ -78,6 +78,10 @@ export function GalleryGridWithLightbox({
                     : "(min-width: 768px) 28vw, (min-width: 640px) 33vw, 50vw"
                 }
               />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(196,149,106,0.34),rgba(226,166,183,0.26)_48%,rgba(244,216,198,0.18))] transition-opacity duration-300 group-hover:opacity-80"
+              />
             </button>
           );
         })}
