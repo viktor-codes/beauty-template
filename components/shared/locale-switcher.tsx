@@ -43,12 +43,11 @@ export function LocaleSwitcher({
   const rootRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const otherLocales = routing.locales.filter((code) => code !== locale);
-  const isTapMenu = menuPlacement === "right";
   const placement = MENU_PLACEMENT_STYLES[menuPlacement];
   const currentLocaleLabel = t(LOCALE_CODES[locale]);
 
   useEffect(() => {
-    if (!isTapMenu || !isOpen) return;
+    if (!isOpen) return;
 
     const handlePointerDown = (event: PointerEvent) => {
       if (rootRef.current?.contains(event.target as Node)) return;
@@ -66,34 +65,29 @@ export function LocaleSwitcher({
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, isTapMenu]);
+  }, [isOpen]);
 
   return (
     <div
       ref={rootRef}
       className={cn(
         "group/locale-switcher relative inline-flex cursor-pointer select-none",
-        isTapMenu && isOpen && "z-(--z-dropdown)",
+        isOpen && "z-(--z-dropdown)",
         className,
       )}
     >
-      {isTapMenu ? (
-        <button
-          type="button"
-          aria-expanded={isOpen}
-          aria-controls={menuId}
-          aria-haspopup="true"
-          aria-label={`${t("switchLanguage")}: ${currentLocaleLabel}`}
-          className="cursor-pointer text-muted"
-          onClick={() => setIsOpen((open) => !open)}
-        >
-          {currentLocaleLabel}
-        </button>
-      ) : (
-        <span aria-current="page" className="cursor-pointer text-muted">
-          {currentLocaleLabel}
-        </span>
-      )}
+      <button
+        type="button"
+        aria-current="page"
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        aria-haspopup="true"
+        aria-label={`${t("switchLanguage")}: ${currentLocaleLabel}`}
+        className="cursor-pointer text-muted"
+        onClick={() => setIsOpen((open) => !open)}
+      >
+        {currentLocaleLabel}
+      </button>
 
       {otherLocales.length > 0 ? (
         <nav
@@ -101,11 +95,9 @@ export function LocaleSwitcher({
           aria-label={t("switchLanguage")}
           className={cn(
             placement.nav,
-            isTapMenu
-              ? isOpen
-                ? "flex"
-                : "hidden"
-              : "hidden group-hover/locale-switcher:flex group-focus-within/locale-switcher:flex",
+            isOpen
+              ? "flex"
+              : "hidden group-hover/locale-switcher:flex",
           )}
         >
           <div className={placement.list}>
@@ -114,7 +106,7 @@ export function LocaleSwitcher({
                 key={code}
                 href={pathname}
                 locale={code}
-                onClick={isTapMenu ? () => setIsOpen(false) : undefined}
+                onClick={() => setIsOpen(false)}
                 className={cn(
                   capsuleClass,
                   "whitespace-nowrap bg-background text-muted shadow-sm ring-1 ring-border hover:bg-surface hover:text-primary",
