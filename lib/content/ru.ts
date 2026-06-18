@@ -62,8 +62,7 @@ export const ruLandingContent = {
       {
         id: "services-category-body",
         title: "Процедуры для тела",
-        description:
-          "CRYO и Emsculpt для контура тела и тонуса мышц.",
+        description: "CRYO и Emsculpt для контура тела и тонуса мышц.",
         href: "/treatments/body-treatment",
         featuredInNav: true,
       },
@@ -292,7 +291,7 @@ export const ruLandingContent = {
     developerCredit: {
       lead: "Дизайн и разработка — ",
       brandLabel: "RuraMade",
-      tail: " · независимая студия (численность: одна). Не агентство.",
+      tail: " · независимая студия",
       href: "https://ruramade.dev",
     },
   },
