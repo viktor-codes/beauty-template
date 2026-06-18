@@ -10,6 +10,7 @@ const montserrat = Montserrat({
   subsets: ["latin", "cyrillic"],
   display: "swap",
   weight: ["400", "500", "600"],
+  preload: true,
 });
 
 const playfairDisplay = Playfair_Display({
@@ -17,6 +18,7 @@ const playfairDisplay = Playfair_Display({
   subsets: ["latin", "cyrillic"],
   display: "swap",
   weight: ["500", "700"],
+  preload: true,
 });
 
 export default async function RootLayout({
