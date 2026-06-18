@@ -13,7 +13,7 @@ export const SITE_TITLE_TEMPLATE = `%s · ${SITE_BRAND} · ${SITE_PRACTITIONER}`
 export const SITE_DEFAULT_TITLE = `${SITE_BRAND} by ${SITE_PRACTITIONER} | Aesthetic cosmetology`;
 
 export const SITE_DEFAULT_DESCRIPTION =
-  "I am Inna Chernovol — The Skinbar is my practice for injectables, laser, peels, and skin-first protocols. Book a consultation for evidence-based planning, natural-looking results, and direct one-on-one care.";
+  "Book injectables, laser, peels, and skin-first treatments at The Skinbar by Inna Chernovol for evidence-based care and natural-looking results.";
 
 export const SITE_OG_IMAGE = "/og-image.webp";
 
