@@ -2,7 +2,7 @@
 
 import { CaretLeft, CaretRight, X } from "@phosphor-icons/react";
 import Image from "next/image";
-import { useEffect, type KeyboardEvent } from "react";
+import { useEffect } from "react";
 
 export interface GalleryLightboxSlide {
   readonly src: string;
@@ -46,10 +46,6 @@ export function GalleryLightbox({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [active, onClose, onPrev, onNext]);
 
-  const onBackdropKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Escape") onClose();
-  };
-
   if (!active) {
     return null;
   }
@@ -58,15 +54,12 @@ export function GalleryLightbox({
     <div
       className="fixed inset-0 z-(--z-modal) flex items-center justify-center bg-background/85 p-4 backdrop-blur-[2px]"
       role="presentation"
-      onClick={onClose}
-      onKeyDown={onBackdropKeyDown}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-label={active.alt}
         className="relative flex max-h-[min(90vh,900px)] w-full max-w-[min(96vw,1200px)] flex-col items-center"
-        onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
