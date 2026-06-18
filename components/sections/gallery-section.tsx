@@ -9,24 +9,14 @@ import type { GalleryContent } from "@/lib/types/content";
 import { cn } from "@/lib/cn";
 
 /** Temporary hardcoded assets; replace with CMS / content model later. */
-const LANDING_GALLERY_IMAGES = [
-  {
-    src: "/gallery/1.jpg",
-    alt: "Calm studio interior with soft natural light",
-  },
-  {
-    src: "/gallery/2.jpg",
-    alt: "Minimal treatment room detail",
-  },
-  {
-    src: "/gallery/3.jpg",
-    alt: "Spa atmosphere and neutral tones",
-  },
-  {
-    src: "/gallery/4.jpg",
-    alt: "Beauty studio mood and texture",
-  },
-] as const;
+const LANDING_GALLERY_IMAGES = Array.from({ length: 36 }, (_, index) => {
+  const imageNumber = index + 1;
+
+  return {
+    src: `/gallery/gallery_${imageNumber}.webp`,
+    alt: `Beauty clinic gallery photo ${imageNumber}`,
+  };
+});
 
 const GRID_SLOT_COUNT = 6;
 

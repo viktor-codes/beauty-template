@@ -27,7 +27,10 @@ export function GalleryGridWithLightbox({
         if (!photo) {
           throw new Error("GalleryGridWithLightbox: photos array must not be empty");
         }
-        return photo;
+        return {
+          photo,
+          slideIndex: i % photos.length,
+        };
       }),
     [photos, slotCount],
   );
@@ -38,31 +41,31 @@ export function GalleryGridWithLightbox({
 
   const goPrev = useCallback(() => {
     setOpenIndex((i) =>
-      i === null ? null : (i - 1 + slots.length) % slots.length,
+      i === null ? null : (i - 1 + photos.length) % photos.length,
     );
-  }, [slots.length]);
+  }, [photos.length]);
 
   const goNext = useCallback(() => {
-    setOpenIndex((i) => (i === null ? null : (i + 1) % slots.length));
-  }, [slots.length]);
+    setOpenIndex((i) => (i === null ? null : (i + 1) % photos.length));
+  }, [photos.length]);
 
   return (
     <>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-4">
-        {slots.map((photo, i) => {
+        {slots.map(({ photo, slideIndex }, i) => {
           const isHero = i === 0;
           return (
             <button
-              key={i}
+              key={`${photo.src}-${slideIndex}`}
               type="button"
               className={cn(
                 "group relative block min-h-[200px] w-full cursor-zoom-in overflow-hidden rounded-xl border-0 bg-surface p-0 text-left transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 isHero &&
                   "sm:col-span-2 sm:row-span-2 sm:min-h-[min(70vh,520px)]",
               )}
-              onClick={() => setOpenIndex(i)}
+              onClick={() => setOpenIndex(slideIndex)}
               aria-haspopup="dialog"
-              aria-expanded={openIndex === i}
+              aria-expanded={openIndex === slideIndex}
             >
               <Image
                 src={photo.src}
@@ -83,7 +86,7 @@ export function GalleryGridWithLightbox({
       {openIndex !== null ? (
         <GalleryLightbox
           openIndex={openIndex}
-          slides={slots}
+          slides={photos}
           onClose={close}
           onPrev={goPrev}
           onNext={goNext}
