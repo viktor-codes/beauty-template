@@ -4,9 +4,13 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import { ConsentModeDefaultScript } from "@/components/consent/consent-mode-default-script";
+import { resolveMetadataBase } from "@/lib/site-metadata";
 import "./globals.css";
 
+const metadataBase = resolveMetadataBase();
+
 export const metadata: Metadata = {
+  metadataBase,
   verification: {
     google: "N0d0-N4qDDZsQm5GS7EVEdsxyZKgh4PxN4b0OdKEnIo",
   },

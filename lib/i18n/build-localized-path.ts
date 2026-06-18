@@ -18,5 +18,5 @@ export function buildLocalizedAbsoluteUrl(
 }
 
 export function resolveSiteOrigin(): string {
-  return getSiteUrl() ?? "http://localhost:3000";
+  return getSiteUrl();
 }

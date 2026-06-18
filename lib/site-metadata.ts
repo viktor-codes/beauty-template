@@ -1,3 +1,5 @@
+import { getSiteUrl } from "@/lib/site-url";
+
 /**
  * Central brand + SEO strings. Import from layouts and `generateMetadata` only.
  */
@@ -33,12 +35,10 @@ export const SITE_KEYWORDS = [
   "aesthetic consultation",
 ] as const;
 
-export function resolveMetadataBase(): URL | undefined {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL;
-  if (!raw) return undefined;
+export function resolveMetadataBase(): URL {
   try {
-    return new URL(raw);
+    return new URL(getSiteUrl());
   } catch {
-    return undefined;
+    return new URL("http://localhost:3000");
   }
 }

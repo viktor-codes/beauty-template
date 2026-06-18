@@ -16,6 +16,9 @@ import { SITE_NAME_FULL } from "@/lib/site-metadata";
 
 const iconFrameClass =
   "inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-primary";
+const logoClass = "h-auto w-24";
+const logoWidth = 361;
+const logoHeight = 180;
 
 export interface SiteHeaderProps {
   content: NavContent;
@@ -49,8 +52,9 @@ export function SiteHeader({
               <Image
                 src="/logo.svg"
                 alt={SITE_NAME_FULL}
-                width={100}
-                height={100}
+                width={logoWidth}
+                height={logoHeight}
+                className={logoClass}
               />
             </Link>
           </div>
@@ -79,8 +83,9 @@ export function SiteHeader({
             <Image
               src="/logo.svg"
               alt={SITE_NAME_FULL}
-              width={100}
-              height={100}
+              width={logoWidth}
+              height={logoHeight}
+              className="h-auto w-28"
             />
           </Link>
           <nav

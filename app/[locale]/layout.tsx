@@ -45,18 +45,14 @@ export async function generateMetadata({
   const appLocale = locale as AppLocale;
 
   return {
-    ...(metadataBase ? { metadataBase } : {}),
+    metadataBase,
     title: {
       default: SITE_DEFAULT_TITLE,
       template: SITE_TITLE_TEMPLATE,
     },
     description: SITE_DEFAULT_DESCRIPTION,
     keywords: [...SITE_KEYWORDS],
-    authors: [
-      metadataBase
-        ? { name: SITE_PRACTITIONER, url: metadataBase.origin }
-        : { name: SITE_PRACTITIONER },
-    ],
+    authors: [{ name: SITE_PRACTITIONER, url: metadataBase.origin }],
     creator: SITE_PRACTITIONER,
     applicationName: SITE_BRAND,
     manifest: "/favicon/site.webmanifest",
