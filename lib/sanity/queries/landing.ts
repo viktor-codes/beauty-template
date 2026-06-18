@@ -123,6 +123,9 @@ export const landingPageQuery = /* groq */ `
       messageLabel,
       messagePlaceholder,
       submit,
+      submitPending,
+      successMessage,
+      errorMessage,
       validation {
         nameRequired,
         nameTooLong,

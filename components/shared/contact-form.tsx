@@ -18,6 +18,7 @@ const fieldClass =
   "w-full rounded-xl border border-border bg-background px-4 py-4 text-sm text-primary placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
 
 type FieldErrors = Partial<Record<keyof ContactFormValues, string>>;
+type SubmitStatus = "idle" | "success" | "error";
 
 function readFormPayload(form: HTMLFormElement): ContactFormValues {
   const fd = new FormData(form);
@@ -46,6 +47,8 @@ function fieldErrorsFromIssues(
 
 export function ContactForm({ copy, className, ...rest }: ContactFormProps) {
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
 
   const schema = useMemo(
     () =>
@@ -59,16 +62,40 @@ export function ContactForm({ copy, className, ...rest }: ContactFormProps) {
     [copy.validation],
   );
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const parsed = schema.safeParse(readFormPayload(form));
     if (!parsed.success) {
       setErrors(fieldErrorsFromIssues(parsed.error.issues));
+      setSubmitStatus("idle");
       return;
     }
     setErrors({});
-    form.reset();
+    setSubmitStatus("idle");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(parsed.data),
+      });
+
+      if (!response.ok) {
+        setSubmitStatus("error");
+        return;
+      }
+
+      setSubmitStatus("success");
+      form.reset();
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -141,9 +168,21 @@ export function ContactForm({ copy, className, ...rest }: ContactFormProps) {
           </p>
         ) : null}
       </div>
-      <Button type="submit" className="self-start">
-        {copy.submit}
+      <Button type="submit" className="self-start" disabled={isSubmitting}>
+        {isSubmitting ? copy.submitPending : copy.submit}
       </Button>
+      {submitStatus !== "idle" ? (
+        <p
+          className={cn(
+            "text-sm",
+            submitStatus === "success" ? "text-primary" : "text-red-700",
+          )}
+          role="status"
+          aria-live="polite"
+        >
+          {submitStatus === "success" ? copy.successMessage : copy.errorMessage}
+        </p>
+      ) : null}
     </form>
   );
 }

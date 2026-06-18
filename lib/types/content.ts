@@ -126,6 +126,9 @@ export interface ContactFormCopy {
   messageLabel: string;
   messagePlaceholder: string;
   submit: string;
+  submitPending: string;
+  successMessage: string;
+  errorMessage: string;
   validation: ContactFormValidationCopy;
 }
 

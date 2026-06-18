@@ -16,6 +16,9 @@ export interface SanityContactFormLike {
   messageLabel?: string;
   messagePlaceholder?: string;
   submit?: string;
+  submitPending?: string;
+  successMessage?: string;
+  errorMessage?: string;
   validation?: SanityContactFormValidationLike | null;
 }
 
@@ -48,6 +51,9 @@ export function mapContactFormSafe(
     messageLabel: raw.messageLabel?.trim() || fallback.messageLabel,
     messagePlaceholder: raw.messagePlaceholder?.trim() || fallback.messagePlaceholder,
     submit: raw.submit.trim(),
+    submitPending: raw.submitPending?.trim() || fallback.submitPending,
+    successMessage: raw.successMessage?.trim() || fallback.successMessage,
+    errorMessage: raw.errorMessage?.trim() || fallback.errorMessage,
     validation: mapValidationSafe(raw.validation, fallback.validation),
   };
 }

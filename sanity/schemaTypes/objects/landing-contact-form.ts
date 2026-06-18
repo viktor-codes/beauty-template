@@ -33,6 +33,24 @@ export const landingContactForm = defineType({
     }),
     defineField({ name: "submit", title: "Submit button", type: "string", validation: (r) => r.required() }),
     defineField({
+      name: "submitPending",
+      title: "Submit pending label",
+      type: "string",
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "successMessage",
+      title: "Success message",
+      type: "string",
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "errorMessage",
+      title: "Error message",
+      type: "string",
+      validation: (r) => r.required(),
+    }),
+    defineField({
       name: "validation",
       title: "Validation messages",
       type: "object",

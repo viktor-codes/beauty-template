@@ -9,6 +9,9 @@ const contactFormCopyEn = {
   messageLabel: "Message",
   messagePlaceholder: "What would you like me to know?",
   submit: "Send message",
+  submitPending: "Sending...",
+  successMessage: "Message sent. Thank you.",
+  errorMessage: "Message could not be sent. Please try again.",
   validation: {
     nameRequired: "Please enter your name.",
     nameTooLong: "Name is too long.",
@@ -26,6 +29,9 @@ const contactFormCopyUk = {
   messageLabel: "Повідомлення",
   messagePlaceholder: "Що б ви хотіли мені повідомити?",
   submit: "Надіслати повідомлення",
+  submitPending: "Надсилаємо...",
+  successMessage: "Повідомлення надіслано. Дякуємо.",
+  errorMessage: "Не вдалося надіслати повідомлення. Спробуйте ще раз.",
   validation: {
     nameRequired: "Будь ласка, введіть ім'я.",
     nameTooLong: "Ім'я занадто довге.",
@@ -43,6 +49,9 @@ const contactFormCopyRu = {
   messageLabel: "Сообщение",
   messagePlaceholder: "Что бы вы хотели мне сообщить?",
   submit: "Отправить сообщение",
+  submitPending: "Отправляем...",
+  successMessage: "Сообщение отправлено. Спасибо.",
+  errorMessage: "Не удалось отправить сообщение. Попробуйте ещё раз.",
   validation: {
     nameRequired: "Пожалуйста, введите имя.",
     nameTooLong: "Имя слишком длинное.",
