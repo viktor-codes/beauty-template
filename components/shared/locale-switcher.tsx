@@ -106,6 +106,7 @@ export function LocaleSwitcher({
                 key={code}
                 href={pathname}
                 locale={code}
+                scroll={false}
                 onClick={() => setIsOpen(false)}
                 className={cn(
                   capsuleClass,
