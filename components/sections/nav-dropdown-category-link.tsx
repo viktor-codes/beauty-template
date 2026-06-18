@@ -8,16 +8,19 @@ import type { ContentLink } from "@/lib/types/content";
 
 export interface NavDropdownCategoryLinkProps {
   item: ContentLink;
+  onClick?: () => void;
 }
 
 export function NavDropdownCategoryLink({
   item,
+  onClick,
 }: NavDropdownCategoryLinkProps) {
   const iconSrc = getTreatmentCategoryIconSrc(item.href);
 
   return (
     <Link
       href={item.href}
+      onClick={onClick}
       className="group/item relative flex h-full min-h-20 flex-col justify-center overflow-hidden px-4 pb-4 pt-6 transition-colors hover:bg-background"
     >
       {/* Текст гарантированно выше иконки благодаря z-10 */}
