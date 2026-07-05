@@ -100,11 +100,11 @@ export function TreatmentProcedureDetail({
                 <Button href="/#contact" size="lg">
                   {contactCtaLabel}
                 </Button>
-                {giftVoucherHref && giftVoucherLabel ? (
+                {/* {giftVoucherHref && giftVoucherLabel ? (
                   <Button href={giftVoucherHref} variant="secondary" size="lg">
                     {giftVoucherLabel}
                   </Button>
-                ) : null}
+                ) : null} */}
                 <Button href={backHref} variant="secondary" size="lg">
                   {backLabel}
                 </Button>
