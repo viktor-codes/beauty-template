@@ -17,7 +17,7 @@ export const SITE_DEFAULT_TITLE = `${SITE_BRAND} by ${SITE_PRACTITIONER} | Aesth
 export const SITE_DEFAULT_DESCRIPTION =
   "Book injectables, laser, peels, and skin-first treatments at The Skinbar by Inna Chernovol for evidence-based care and natural-looking results.";
 
-export const SITE_OG_IMAGE = "/og-image.webp";
+export const SITE_OG_IMAGE = "/open-graph-image.webp";
 
 export const SITE_SERVICES_HUB_DESCRIPTION =
   "Explore The Skinbar treatment categories with Inna Chernovol — injectables, laser hair removal, peels, and device-based aesthetics with clear planning and safety-first protocols.";

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 function prefersReducedMotion(): boolean {
   if (typeof window === "undefined") return false;
@@ -17,11 +18,30 @@ function clearHashFromUrl(): void {
   );
 }
 
+function scrollToHashDestination(hash: string): boolean {
+  if (!hash || hash === "#") return false;
+
+  const id = decodeURIComponent(hash.slice(1));
+  if (!id) return false;
+
+  const destination = document.getElementById(id);
+  if (!destination) return false;
+
+  destination.scrollIntoView({
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+    block: "start",
+  });
+
+  return true;
+}
+
 /**
  * Same-page #hash navigation: scrollIntoView({ behavior: 'smooth' }) is reliable
  * in Safari; CSS scroll-behavior alone often still jumps for anchor clicks.
  */
 export function SmoothHashNavigation() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented) return;
@@ -50,17 +70,8 @@ export function SmoothHashNavigation() {
       const hash = url.hash;
       if (!hash || hash === "#") return;
 
-      const id = decodeURIComponent(hash.slice(1));
-      if (!id) return;
-
-      const destination = document.getElementById(id);
-      if (!destination) return;
-
+      if (!scrollToHashDestination(hash)) return;
       event.preventDefault();
-      destination.scrollIntoView({
-        behavior: prefersReducedMotion() ? "auto" : "smooth",
-        block: "start",
-      });
       clearHashFromUrl();
       window.setTimeout(clearHashFromUrl, 0);
     };
@@ -68,6 +79,19 @@ export function SmoothHashNavigation() {
     document.addEventListener("click", onClick, { capture: true });
     return () => document.removeEventListener("click", onClick, { capture: true });
   }, []);
+
+  useEffect(() => {
+    if (!window.location.hash) return;
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (scrollToHashDestination(window.location.hash)) {
+        clearHashFromUrl();
+        window.setTimeout(clearHashFromUrl, 0);
+      }
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [pathname]);
 
   return null;
 }
