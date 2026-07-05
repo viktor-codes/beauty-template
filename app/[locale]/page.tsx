@@ -8,12 +8,8 @@ import { GallerySection } from "@/components/sections/gallery-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ReviewsSection } from "@/components/sections/reviews-section";
 import { ServicesSection } from "@/components/sections/services-section";
-import { SiteFooter } from "@/components/sections/site-footer";
-import { SiteHeader } from "@/components/sections/site-header";
 import { getLandingContent } from "@/lib/content";
 import type { AppLocale } from "@/i18n/routing";
-import { enrichNavWithTreatmentCategories } from "@/lib/nav/build-nav-links";
-import { resolveServicesCatalog } from "@/lib/services";
 import {
   SITE_DEFAULT_DESCRIPTION,
   SITE_DEFAULT_TITLE,
@@ -37,35 +33,23 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
   const appLocale = locale as AppLocale;
-  const [landingContent, catalog] = await Promise.all([
-    getLandingContent(appLocale),
-    resolveServicesCatalog(appLocale),
-  ]);
-  const nav = enrichNavWithTreatmentCategories(
-    landingContent.nav,
-    catalog,
-    landingContent.services.cta,
-  );
+  const landingContent = await getLandingContent(appLocale);
 
   return (
-    <>
-      <SiteHeader content={nav} />
-      <main id="main-content" className="flex-1 pt-20 md:pt-0">
-        <HeroSection content={landingContent.hero} />
-        <AboutSection content={landingContent.about} />
-        <ServicesSection content={landingContent.services} />
-        <GallerySection content={landingContent.gallery} />
-        <ReviewsSection content={landingContent.reviews} />
-        <FAQSection
-          content={landingContent.faq}
-          consultationCtaLabel={landingContent.nav.cta.label}
-        />
-        <ContactSection
-          content={landingContent.contact}
-          contactForm={landingContent.contactForm}
-        />
-      </main>
-      <SiteFooter content={landingContent.footer} />
-    </>
+    <main id="main-content" className="flex-1 pt-20 md:pt-0">
+      <HeroSection content={landingContent.hero} />
+      <AboutSection content={landingContent.about} />
+      <ServicesSection content={landingContent.services} />
+      <GallerySection content={landingContent.gallery} />
+      <ReviewsSection content={landingContent.reviews} />
+      <FAQSection
+        content={landingContent.faq}
+        consultationCtaLabel={landingContent.nav.cta.label}
+      />
+      <ContactSection
+        content={landingContent.contact}
+        contactForm={landingContent.contactForm}
+      />
+    </main>
   );
 }

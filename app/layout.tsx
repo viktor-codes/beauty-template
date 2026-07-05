@@ -45,8 +45,10 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${montserrat.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">
+      <head>
         <ConsentModeDefaultScript />
+      </head>
+      <body className="flex min-h-full flex-col font-sans">
         {children}
       </body>
     </html>

@@ -5,10 +5,12 @@ import { notFound } from "next/navigation";
 
 import { BrowserLocaleRedirect } from "@/components/shared/browser-locale-redirect";
 import { CookieConsentRoot } from "@/components/consent/cookie-consent-root";
+import { MarketingChrome } from "@/components/layouts/marketing-chrome";
 import { SiteGraphJsonLd } from "@/components/shared/site-graph-jsonld";
 import { SmoothHashNavigation } from "@/components/shared/smooth-hash-navigation";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { getLandingContent } from "@/lib/content";
+import { resolveServicesCatalog } from "@/lib/services";
 import {
   buildLanguageAlternates,
   getOpenGraphLocale,
@@ -117,7 +119,11 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
   const t = await getTranslations("Accessibility");
-  const landingContent = await getLandingContent(locale as AppLocale);
+  const appLocale = locale as AppLocale;
+  const [landingContent, catalog] = await Promise.all([
+    getLandingContent(appLocale),
+    resolveServicesCatalog(appLocale),
+  ]);
 
   return (
     <>
@@ -136,7 +142,11 @@ export default async function LocaleLayout({
       <NextIntlClientProvider locale={locale} messages={messages}>
         <BrowserLocaleRedirect />
         <SmoothHashNavigation />
-        <CookieConsentRoot>{children}</CookieConsentRoot>
+        <CookieConsentRoot>
+          <MarketingChrome content={landingContent} catalog={catalog}>
+            {children}
+          </MarketingChrome>
+        </CookieConsentRoot>
       </NextIntlClientProvider>
     </>
   );

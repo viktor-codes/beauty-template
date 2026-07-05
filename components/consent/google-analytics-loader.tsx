@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import { useEffect, useRef } from "react";
 
 import { updateGtagAnalyticsConsent } from "@/lib/cookie-consent/gtag-consent";
@@ -38,12 +37,20 @@ export function GoogleAnalyticsLoader({
     };
   }, [measurementId]);
 
+  useEffect(() => {
+    if (!measurementId) return;
+
+    const script = document.createElement("script");
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
+  }, [measurementId]);
+
   if (!measurementId) return null;
 
-  return (
-    <Script
-      src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`}
-      strategy="afterInteractive"
-    />
-  );
+  return null;
 }

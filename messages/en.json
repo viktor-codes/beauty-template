@@ -36,6 +36,14 @@
     "uk": "Ukrainian",
     "ru": "Russian"
   },
+  "Errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The link may be outdated, or the page may have moved. Let us help you get back on track.",
+    "serverErrorTitle": "Something went wrong",
+    "serverErrorDescription": "We could not load this page. Please try again — if the problem continues, contact the salon.",
+    "homeCta": "Back to homepage",
+    "retryCta": "Try again"
+  },
   "GiftVoucher": {
     "metaTitle": "Gift voucher",
     "metaDescription": "Give a specific treatment at The Skinbar as a digital gift voucher — choose a procedure, personalise your message, and pay securely online.",
