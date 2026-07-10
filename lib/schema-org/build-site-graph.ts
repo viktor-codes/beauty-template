@@ -4,6 +4,7 @@ import {
   SITE_BRAND,
   SITE_DEFAULT_DESCRIPTION,
   SITE_NAME_FULL,
+  SITE_OG_IMAGE,
   SITE_PRACTITIONER,
 } from "@/lib/site-metadata";
 import { getSiteUrl, toAbsoluteUrl } from "@/lib/site-url";
@@ -24,7 +25,7 @@ function buildOrganization(contact: ContactContent): Record<string, unknown> {
     url: getSiteUrl() ?? "/",
     telephone: contact.phone,
     email: contact.email,
-    image: toAbsoluteUrl("/favicon/apple-touch-icon.png"),
+    image: toAbsoluteUrl(SITE_OG_IMAGE),
     logo: {
       "@type": "ImageObject",
       url: toAbsoluteUrl("/favicon/apple-touch-icon.png"),

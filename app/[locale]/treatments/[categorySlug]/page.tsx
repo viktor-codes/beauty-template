@@ -19,6 +19,7 @@ import { getCategoryProcedures, isFlatCategory } from "@/lib/services/flat-categ
 import { findCategory } from "@/lib/services/page-helpers";
 import { buildProcedurePath } from "@/lib/services/procedure-path";
 import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
+import { buildOpenGraph } from "@/lib/i18n/metadata";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
@@ -42,12 +43,12 @@ export async function generateMetadata({
   return {
     title: `${category.title} — ${hubUi.categoryMetaTitleSuffix}`,
     description: category.description,
-    openGraph: {
+    openGraph: buildOpenGraph({
       title: `${category.title} | ${SITE_BRAND}`,
       description: category.description,
       type: "website",
       siteName: `${SITE_BRAND} · ${SITE_PRACTITIONER}`,
-    },
+    }),
   };
 }
 

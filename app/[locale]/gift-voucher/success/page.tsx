@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import type { AppLocale } from "@/i18n/routing";
 import { fetchGiftVoucherOrderBySession } from "@/lib/gift-voucher/order-repository";
 import { retrieveCheckoutSession } from "@/lib/stripe/create-checkout-session";
-import { buildLanguageAlternates } from "@/lib/i18n/metadata";
+import { buildLanguageAlternates, buildOpenGraph } from "@/lib/i18n/metadata";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateMetadata({
@@ -23,11 +23,11 @@ export async function generateMetadata({
     title: t("successTitle"),
     alternates: buildLanguageAlternates("/gift-voucher/success", appLocale),
     robots: { index: false, follow: false },
-    openGraph: {
+    openGraph: buildOpenGraph({
       title: `${t("successTitle")} | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
       url: "/gift-voucher/success",
       type: "website",
-    },
+    }),
   };
 }
 

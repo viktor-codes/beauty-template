@@ -13,6 +13,8 @@ import { getLandingContent } from "@/lib/content";
 import { resolveServicesCatalog } from "@/lib/services";
 import {
   buildLanguageAlternates,
+  buildDefaultTwitterCard,
+  buildOpenGraph,
   getOpenGraphLocale,
 } from "@/lib/i18n/metadata";
 import {
@@ -21,7 +23,6 @@ import {
   SITE_DEFAULT_TITLE,
   SITE_KEYWORDS,
   SITE_NAME_FULL,
-  SITE_OG_IMAGE,
   SITE_PRACTITIONER,
   SITE_TITLE_TEMPLATE,
   resolveMetadataBase,
@@ -59,27 +60,17 @@ export async function generateMetadata({
     applicationName: SITE_BRAND,
     manifest: "/favicon/site.webmanifest",
     alternates: buildLanguageAlternates("/", appLocale),
-    openGraph: {
+    openGraph: buildOpenGraph({
       type: "website",
       locale: getOpenGraphLocale(appLocale),
       siteName: SITE_NAME_FULL,
       title: SITE_DEFAULT_TITLE,
       description: SITE_DEFAULT_DESCRIPTION,
-      images: [
-        {
-          url: SITE_OG_IMAGE,
-          width: 1200,
-          height: 630,
-          alt: SITE_NAME_FULL,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
+    }),
+    twitter: buildDefaultTwitterCard({
       title: SITE_DEFAULT_TITLE,
       description: SITE_DEFAULT_DESCRIPTION,
-      images: [SITE_OG_IMAGE],
-    },
+    }),
     robots: { index: true, follow: true },
     icons: {
       icon: [

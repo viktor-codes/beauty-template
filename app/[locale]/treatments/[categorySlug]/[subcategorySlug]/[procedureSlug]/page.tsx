@@ -12,6 +12,7 @@ import { isFlatCategory } from "@/lib/services/flat-categories";
 import { findCategory, findProcedure } from "@/lib/services/page-helpers";
 import { buildProcedurePath } from "@/lib/services/procedure-path";
 import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
+import { buildOpenGraph } from "@/lib/i18n/metadata";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
@@ -77,12 +78,12 @@ export async function generateMetadata({
       ? `${procedure.title} (${priceLabel}) — ${subcategory.title}`
       : `${procedure.title} — ${subcategory.title}`,
     description: procedure.description,
-    openGraph: {
+    openGraph: buildOpenGraph({
       title: procedure.title,
       description: procedure.description,
       type: "article",
       siteName: `${SITE_BRAND} · ${SITE_PRACTITIONER}`,
-    },
+    }),
   };
 }
 

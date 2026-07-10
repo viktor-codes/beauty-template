@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { HTMLAttributes } from "react";
+import type { CSSProperties, HTMLAttributes } from "react";
 
 import heroBg from "@/assets/hero-bg.webp";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,10 @@ export function HeroSection({
   id = "hero",
   ...rest
 }: HeroSectionProps) {
+  const heroBackgroundStyle = {
+    backgroundImage: `url(${heroBg.src})`,
+  } satisfies CSSProperties;
+
   return (
     <Section
       id={id}
@@ -30,18 +34,11 @@ export function HeroSection({
       )}
       {...rest}
     >
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <Image
-          src={heroBg}
-          alt=""
-          fill
-          sizes="100vw"
-          loading="eager"
-          fetchPriority="high"
-          className="object-cover opacity-40 transform-[scaleX(-1)]"
-          aria-hidden
-        />
-      </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 scale-x-[-1] bg-cover bg-center opacity-40"
+        style={heroBackgroundStyle}
+      />
       <div
         className="pointer-events-none absolute inset-0 z-1 bg-surface/75"
         aria-hidden

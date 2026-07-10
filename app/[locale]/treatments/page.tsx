@@ -17,6 +17,7 @@ import { FaqJsonLd } from "@/components/shared/faq-jsonld";
 import { ItemListJsonLd } from "@/components/shared/item-list-jsonld";
 import { getServicesHubFaq } from "@/lib/services-faq";
 import { resolveServicesCatalog } from "@/lib/services";
+import { buildOpenGraph } from "@/lib/i18n/metadata";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateMetadata({
@@ -31,12 +32,12 @@ export async function generateMetadata({
   return {
     title: catalog.title,
     description: catalog.description,
-    openGraph: {
+    openGraph: buildOpenGraph({
       title: `${catalog.title} | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
       description: catalog.description,
       type: "website",
       url: "/treatments",
-    },
+    }),
   };
 }
 

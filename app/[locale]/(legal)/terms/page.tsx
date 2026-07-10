@@ -6,6 +6,7 @@ import { LegalStaticPage } from "@/components/sections/legal-static-page";
 import { WebPageJsonLd } from "@/components/shared/web-page-jsonld";
 import { getLegalPageContent } from "@/lib/content/get-legal-content";
 import type { AppLocale } from "@/i18n/routing";
+import { buildOpenGraph } from "@/lib/i18n/metadata";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateMetadata({
@@ -19,12 +20,12 @@ export async function generateMetadata({
   return {
     title: page.title,
     description: page.metaDescription,
-    openGraph: {
+    openGraph: buildOpenGraph({
       title: `${page.title} | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
       description: page.metaDescription,
       type: "website",
       url: "/terms",
-    },
+    }),
   };
 }
 

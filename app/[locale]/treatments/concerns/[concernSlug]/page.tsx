@@ -17,6 +17,7 @@ import { resolveServicesCatalog } from "@/lib/services";
 import { findConcern } from "@/lib/services/page-helpers";
 import { CONCERN_ORDER } from "@/lib/services/static-treatment-concerns";
 import { buildTreatmentsBreadcrumbs } from "@/lib/services/treatments-breadcrumbs";
+import { buildOpenGraph } from "@/lib/i18n/metadata";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateStaticParams(): Promise<
@@ -40,13 +41,13 @@ export async function generateMetadata({
   return {
     title: `${concern.title} — ${hubUi.categoryMetaTitleSuffix}`,
     description,
-    openGraph: {
+    openGraph: buildOpenGraph({
       title: `${concern.title} | ${SITE_BRAND}`,
       description,
       type: "website",
       siteName: `${SITE_BRAND} · ${SITE_PRACTITIONER}`,
       url: buildConcernPath(concernSlug),
-    },
+    }),
   };
 }
 

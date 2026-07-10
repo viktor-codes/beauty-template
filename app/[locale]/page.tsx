@@ -14,15 +14,16 @@ import {
   SITE_DEFAULT_DESCRIPTION,
   SITE_DEFAULT_TITLE,
 } from "@/lib/site-metadata";
+import { buildOpenGraph } from "@/lib/i18n/metadata";
 
 export const metadata: Metadata = {
   title: { absolute: SITE_DEFAULT_TITLE },
   description: SITE_DEFAULT_DESCRIPTION,
-  openGraph: {
+  openGraph: buildOpenGraph({
     title: SITE_DEFAULT_TITLE,
     description: SITE_DEFAULT_DESCRIPTION,
     url: "/",
-  },
+  }),
 };
 
 export default async function Home({

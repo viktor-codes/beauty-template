@@ -9,7 +9,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { buildGiftableProcedures } from "@/lib/gift-voucher/build-giftable-procedures";
 import { fetchGiftVoucherSettings } from "@/lib/sanity/fetch/fetch-gift-voucher-settings";
 import { resolveServicesCatalog } from "@/lib/services";
-import { buildLanguageAlternates } from "@/lib/i18n/metadata";
+import { buildLanguageAlternates, buildOpenGraph } from "@/lib/i18n/metadata";
 import { SITE_BRAND, SITE_PRACTITIONER } from "@/lib/site-metadata";
 
 export async function generateMetadata({
@@ -25,12 +25,12 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: buildLanguageAlternates("/gift-voucher", appLocale),
-    openGraph: {
+    openGraph: buildOpenGraph({
       title: `${t("metaTitle")} | ${SITE_BRAND} · ${SITE_PRACTITIONER}`,
       description: t("metaDescription"),
       url: "/gift-voucher",
       type: "website",
-    },
+    }),
   };
 }
 
