@@ -9,6 +9,8 @@ const ContactRequestSchema = createContactFormSchema({
   nameRequired: "Name is required.",
   nameTooLong: "Name is too long.",
   emailInvalid: "Email is invalid.",
+  phoneRequired: "Phone is required.",
+  phoneInvalid: "Phone is invalid.",
   messageMin: "Message is too short.",
   messageTooLong: "Message is too long.",
 });

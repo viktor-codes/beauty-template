@@ -25,8 +25,18 @@ function readFormPayload(form: HTMLFormElement): ContactFormValues {
   return {
     name: String(fd.get("name") ?? ""),
     email: String(fd.get("email") ?? ""),
+    phone: String(fd.get("phone") ?? ""),
     message: String(fd.get("message") ?? ""),
   };
+}
+
+function isContactFormField(segment: string): segment is keyof ContactFormValues {
+  return (
+    segment === "name" ||
+    segment === "email" ||
+    segment === "phone" ||
+    segment === "message"
+  );
 }
 
 function fieldErrorsFromIssues(
@@ -35,10 +45,7 @@ function fieldErrorsFromIssues(
   const next: FieldErrors = {};
   for (const issue of issues) {
     const segment = issue.path[0];
-    if (
-      typeof segment === "string" &&
-      (segment === "name" || segment === "email" || segment === "message")
-    ) {
+    if (typeof segment === "string" && isContactFormField(segment)) {
       if (!next[segment]) next[segment] = issue.message;
     }
   }
@@ -56,6 +63,8 @@ export function ContactForm({ copy, className, ...rest }: ContactFormProps) {
         nameRequired: copy.validation.nameRequired,
         nameTooLong: copy.validation.nameTooLong,
         emailInvalid: copy.validation.emailInvalid,
+        phoneRequired: copy.validation.phoneRequired,
+        phoneInvalid: copy.validation.phoneInvalid,
         messageMin: copy.validation.messageMin,
         messageTooLong: copy.validation.messageTooLong,
       }),
@@ -142,6 +151,27 @@ export function ContactForm({ copy, className, ...rest }: ContactFormProps) {
         {errors.email ? (
           <p id="contact-email-error" className="text-sm text-red-700" role="alert">
             {errors.email}
+          </p>
+        ) : null}
+      </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="contact-phone" className="text-sm font-medium text-primary">
+          {copy.phoneLabel}
+        </label>
+        <input
+          id="contact-phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          inputMode="tel"
+          placeholder={copy.phonePlaceholder}
+          className={cn(fieldClass, errors.phone && "border-red-700/60 focus:border-red-700 focus:ring-red-700/40")}
+          aria-invalid={errors.phone ? true : undefined}
+          aria-describedby={errors.phone ? "contact-phone-error" : undefined}
+        />
+        {errors.phone ? (
+          <p id="contact-phone-error" className="text-sm text-red-700" role="alert">
+            {errors.phone}
           </p>
         ) : null}
       </div>

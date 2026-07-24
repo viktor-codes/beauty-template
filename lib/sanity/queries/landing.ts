@@ -120,6 +120,8 @@ export const landingPageQuery = /* groq */ `
       namePlaceholder,
       emailLabel,
       emailPlaceholder,
+      phoneLabel,
+      phonePlaceholder,
       messageLabel,
       messagePlaceholder,
       submit,
@@ -130,6 +132,8 @@ export const landingPageQuery = /* groq */ `
         nameRequired,
         nameTooLong,
         emailInvalid,
+        phoneRequired,
+        phoneInvalid,
         messageMin,
         messageTooLong
       }

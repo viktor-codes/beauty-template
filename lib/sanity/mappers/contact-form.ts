@@ -4,6 +4,8 @@ interface SanityContactFormValidationLike {
   nameRequired?: string;
   nameTooLong?: string;
   emailInvalid?: string;
+  phoneRequired?: string;
+  phoneInvalid?: string;
   messageMin?: string;
   messageTooLong?: string;
 }
@@ -13,6 +15,8 @@ export interface SanityContactFormLike {
   namePlaceholder?: string;
   emailLabel?: string;
   emailPlaceholder?: string;
+  phoneLabel?: string;
+  phonePlaceholder?: string;
   messageLabel?: string;
   messagePlaceholder?: string;
   submit?: string;
@@ -32,6 +36,8 @@ function mapValidationSafe(
     nameRequired: raw.nameRequired?.trim() || fallback.nameRequired,
     nameTooLong: raw.nameTooLong?.trim() || fallback.nameTooLong,
     emailInvalid: raw.emailInvalid?.trim() || fallback.emailInvalid,
+    phoneRequired: raw.phoneRequired?.trim() || fallback.phoneRequired,
+    phoneInvalid: raw.phoneInvalid?.trim() || fallback.phoneInvalid,
     messageMin: raw.messageMin?.trim() || fallback.messageMin,
     messageTooLong: raw.messageTooLong?.trim() || fallback.messageTooLong,
   };
@@ -48,6 +54,8 @@ export function mapContactFormSafe(
     namePlaceholder: raw.namePlaceholder?.trim() || fallback.namePlaceholder,
     emailLabel: raw.emailLabel?.trim() || fallback.emailLabel,
     emailPlaceholder: raw.emailPlaceholder?.trim() || fallback.emailPlaceholder,
+    phoneLabel: raw.phoneLabel?.trim() || fallback.phoneLabel,
+    phonePlaceholder: raw.phonePlaceholder?.trim() || fallback.phonePlaceholder,
     messageLabel: raw.messageLabel?.trim() || fallback.messageLabel,
     messagePlaceholder: raw.messagePlaceholder?.trim() || fallback.messagePlaceholder,
     submit: raw.submit.trim(),

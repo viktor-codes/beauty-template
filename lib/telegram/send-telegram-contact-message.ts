@@ -21,6 +21,7 @@ function buildContactMessage(values: ContactFormValues): string {
     "",
     `Name: ${values.name}`,
     `Email: ${values.email}`,
+    `Phone: ${values.phone}`,
     "",
     "Message:",
     values.message,

@@ -114,6 +114,8 @@ export interface ContactFormValidationCopy {
   nameRequired: string;
   nameTooLong: string;
   emailInvalid: string;
+  phoneRequired: string;
+  phoneInvalid: string;
   messageMin: string;
   messageTooLong: string;
 }
@@ -123,6 +125,8 @@ export interface ContactFormCopy {
   namePlaceholder: string;
   emailLabel: string;
   emailPlaceholder: string;
+  phoneLabel: string;
+  phonePlaceholder: string;
   messageLabel: string;
   messagePlaceholder: string;
   submit: string;

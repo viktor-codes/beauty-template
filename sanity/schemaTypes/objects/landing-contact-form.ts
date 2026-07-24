@@ -19,6 +19,13 @@ export const landingContactForm = defineType({
       type: "string",
       validation: (r) => r.required(),
     }),
+    defineField({ name: "phoneLabel", title: "Phone label", type: "string", validation: (r) => r.required() }),
+    defineField({
+      name: "phonePlaceholder",
+      title: "Phone placeholder",
+      type: "string",
+      validation: (r) => r.required(),
+    }),
     defineField({
       name: "messageLabel",
       title: "Message label",
@@ -59,6 +66,8 @@ export const landingContactForm = defineType({
         defineField({ name: "nameRequired", type: "string", validation: (r) => r.required() }),
         defineField({ name: "nameTooLong", type: "string", validation: (r) => r.required() }),
         defineField({ name: "emailInvalid", type: "string", validation: (r) => r.required() }),
+        defineField({ name: "phoneRequired", type: "string", validation: (r) => r.required() }),
+        defineField({ name: "phoneInvalid", type: "string", validation: (r) => r.required() }),
         defineField({ name: "messageMin", type: "string", validation: (r) => r.required() }),
         defineField({ name: "messageTooLong", type: "string", validation: (r) => r.required() }),
       ],
